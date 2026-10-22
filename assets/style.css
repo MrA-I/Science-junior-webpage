@@ -34,3 +34,7 @@ svg text{fill:var(--ink);font:600 13px var(--sans)}.hs{cursor:pointer}.hs:hover 
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
 .lcard{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}.lcard.soon{opacity:.55}.lcard b{display:block}.tag{font-size:.85rem;color:var(--soft)}.tag.done{color:var(--good);font-weight:700}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.sc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 16px;margin:0 0 16px}.sc ul{list-style:none;margin:6px 0 0;padding:0}.sc li{padding:3px 0}
+.tg{display:inline-block;min-width:58px;text-align:center;font-weight:700;font-size:.78rem;border-radius:999px;padding:1px 8px;margin-right:8px;background:var(--accent);color:var(--bg)}.tg.s{opacity:.8}.tg.c{opacity:.6}
+.lcard .g{display:block;font-size:.92rem;color:var(--soft);margin:4px 0 6px}
