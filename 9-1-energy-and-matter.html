@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.1 Energy and matter · Good Science 9</title><link rel="stylesheet" href="assets/style.css"></head>
+<body data-lesson="9-1"><div class="wrap">
+<div class="top"><div class="row"><a href="index.html">← All lessons</a><span><span class="phase"></span> · <span class="pct">0%</span></span></div><div class="bar"><i></i></div></div>
+
+<section class="step" data-phase="Engage">
+<h1>9.1 Energy and matter</h1>
+<div class="goal"><b>Goal:</b> describe how thermal energy is transferred, using the particle model. <br><small>Textbook: Good Science 9, pp. 198–199.</small></div>
+<div class="card"><h3>Predict first</h3><p>A metal spoon and a wooden spoon sit in the same cup of hot water. Which handle will feel hot first?</p>
+<div class="quiz" data-a="1" data-why="Metal passes heat along much faster than wood. You will see why in the next step." data-hint="Think about which material you would rather use for a saucepan handle.">
+<div class="opts"><button class="opt">The wooden spoon</button><button class="opt">The metal spoon</button><button class="opt">Both at the same time</button></div><p class="fb"></p></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Write your prediction and one reason for it. Leave space to fix it later.</div>
+<div class="nav"><span></span><button class="btn main" data-nav="1">Explore</button></div></section>
+
+<section class="step" data-phase="Explore">
+<h2>Watch heat travel along a solid</h2>
+<p>Each dot is a particle in a metal rod. Switch the heater on and watch the left end. Brighter red means more energy.</p>
+<canvas id="rod" width="640" height="130" aria-label="Row of particles in a rod. Heat spreads from the left end."></canvas>
+<p><button class="btn" id="heat">Heater: off</button> <button class="btn" id="cool">Reset rod</button></p>
+<div class="cb draw"><b>🎨 Draw &amp; label</b>Sketch five particles in a row. Show the first one shaking hard and the others shaking less and less. Add arrows showing the energy passing along.</div>
+<div class="cb write"><b>✏️ In your workbook</b>Complete: “Heat moved along the rod because particles ________ and bumped into their ________.”</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Explain</button></div></section>
+
+<section class="step" data-phase="Explain">
+<h2>Three ways heat moves</h2>
+<p>Tap each part of the picture.</p>
+<svg class="scene" viewBox="0 0 640 300" role="group" aria-label="Pot of water on a flame with a spoon. Tap parts to learn how heat moves.">
+<rect x="150" y="120" width="200" height="120" rx="10" fill="#8fb8d8" stroke="#16222e" stroke-width="3"/>
+<path d="M300 130 L560 60 L566 76 L306 146Z" fill="#9aa5ad" stroke="#16222e" stroke-width="2"/>
+<path d="M200 270 q10 -30 25 -10 q10 -30 25 0 q15 -25 25 5 q15 -20 25 5 z" fill="#f08a3c"/>
+<rect x="150" y="262" width="200" height="12" fill="#444"/>
+<g class="hs" tabindex="0" role="button" aria-label="Spoon" data-p="info" data-info="<b>Conduction.</b> Heat passes through the solid spoon as vibrating particles bump into neighbours. The particles stay put; only energy moves. Metal conducts well."><rect class="hl" x="300" y="55" width="270" height="100" fill="transparent" stroke="transparent"/><text x="480" y="52">Spoon</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Water" data-p="info" data-info="<b>Convection.</b> Warm water is less dense, so it rises. Cooler water sinks to take its place. The moving fluid carries energy in a current."><rect class="hl" x="155" y="125" width="190" height="110" fill="transparent" stroke="transparent"/><text x="195" y="190">Water</text><path d="M180 220 V150 M320 150 V220" stroke="#d6452b" stroke-width="3" fill="none"/></g>
+<g class="hs" tabindex="0" role="button" aria-label="Space beside the flame" data-p="info" data-info="<b>Radiation.</b> You feel heat on your hand beside the flame with nothing touching it. Electromagnetic waves carry the energy, so no particles are needed. This is also how the Sun warms Earth."><rect class="hl" x="30" y="200" width="110" height="80" fill="transparent" stroke="transparent"/><text x="40" y="245">Heat on</text><text x="40" y="262">your hand</text></g>
+</svg>
+<div class="card" id="info" aria-live="polite">Tap a part of the picture to see which type of heat transfer happens there.</div>
+<h3>Key terms: tap to reveal</h3>
+<div class="flips">
+<button class="btn flip rev" data-t="k1">conduction<small></small></button>
+<button class="btn flip rev" data-t="k2">convection</button>
+<button class="btn flip rev" data-t="k3">radiation</button>
+<button class="btn flip rev" data-t="k4">thermal conductivity</button></div>
+<div class="ans" id="k1" hidden>Conduction: energy passes between touching particles, mostly in solids.</div>
+<div class="ans" id="k2" hidden>Convection: warm fluid rises and cool fluid sinks, forming a current.</div>
+<div class="ans" id="k3" hidden>Radiation: energy travels as waves and needs no matter.</div>
+<div class="ans" id="k4" hidden>Thermal conductivity: how quickly a material lets heat pass through it.</div>
+<div class="cb write"><b>✏️ In your workbook</b>Make a three-column table: Conduction, Convection, Radiation. In each, write what is moving (energy only, fluid, or waves) and one everyday example.</div>
+<div class="cb draw"><b>🎨 Draw &amp; label</b>Sketch the pot picture above. Add three coloured arrows, one for each type of transfer.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Elaborate</button></div></section>
+
+<section class="step" data-phase="Elaborate">
+<h2>Use it: conductors and insulators</h2>
+<p>Metals have high thermal conductivity. Materials with low conductivity are insulators. Tap an item, then tap the box it belongs in.</p>
+<div class="sort"><div class="opts">
+<button class="chip" data-t="c">Copper pan</button><button class="chip" data-t="i">Plastic spatula</button><button class="chip" data-t="c">Silver spoon</button><button class="chip" data-t="i">Wooden spoon</button><button class="chip" data-t="i">Glass wool</button><button class="chip" data-t="c">Iron nail</button></div>
+<div class="buckets"><button class="bucket" data-b="c"><b>Good conductor</b><div></div></button><button class="bucket" data-b="i"><b>Insulator</b><div></div></button></div><p class="fb"></p></div>
+<div class="card"><h3>Science in society</h3><p>Double-glazed windows, insulated drink bottles and space blankets all slow heat transfer.</p></div>
+<div class="cb research"><b>🔍 Research task</b>Pick one of those technologies. Find out which type of transfer (conduction, convection or radiation) it reduces and how. Write 2–3 sentences.</div>
+<div class="cb write"><b>✏️ In your workbook</b>Explain why a saucepan has a metal base but a plastic handle.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Evaluate</button></div></section>
+
+<section class="step ev" data-phase="Evaluate">
+<h2>Check your understanding</h2><p class="score tag"></p>
+<div class="card quiz" data-a="2" data-why="Particles vibrate and pass energy to their neighbours." data-hint="Look for the answer where particles stay in place."><p><b>1.</b> Which describes conduction?</p><div class="opts"><button class="opt">Warm fluid rising in a current</button><button class="opt">Energy travelling through empty space</button><button class="opt">Vibrating particles passing energy to neighbours</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="0" data-why="Warmer fluid is less dense, so it rises." data-hint="Think about density."><p><b>2.</b> Why does warm water rise in a pot?</p><div class="opts"><button class="opt">It becomes less dense</button><button class="opt">It becomes heavier</button><button class="opt">It stops moving</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="Radiation needs no particles, so it crosses space."><p><b>3.</b> How does the Sun’s energy reach Earth?</p><div class="opts"><button class="opt">Conduction</button><button class="opt">Radiation</button><button class="opt">Convection</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="2" data-why="Low thermal conductivity means heat passes through slowly, so the handle stays cooler."><p><b>4.</b> Why is plastic used for pan handles?</p><div class="opts"><button class="opt">It melts easily</button><button class="opt">It conducts heat quickly</button><button class="opt">It has low thermal conductivity</button></div><p class="fb"></p></div>
+<div class="cb write"><b>✏️ Goal review</b>Write two sentences: how does the Sun’s energy reach Earth, and why is this not conduction or convection?</div>
+<div class="card checks"><h3>Workbook checklist</h3>
+<label><input type="checkbox">My spoon prediction and reason</label><label><input type="checkbox">My sketch of particles passing energy along a rod</label><label><input type="checkbox">My three-column table</label><label><input type="checkbox">My pot sketch with three coloured arrows</label><label><input type="checkbox">My pan handle explanation</label><label><input type="checkbox">My goal review sentences</label></div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><a class="btn main" href="index.html" style="text-decoration:none">Back to all lessons</a></div></section>
+</div>
+<script src="assets/lesson.js"></script>
+<script>(function(){var c=document.getElementById('rod'),x=c.getContext('2d'),N=12,e,on=false;
+function r(){e=[];for(var i=0;i<N;i++)e.push(0)}r();
+document.getElementById('heat').onclick=function(){on=!on;this.textContent='Heater: '+(on?'on':'off')};
+document.getElementById('cool').onclick=r;
+function t(){if(on)e[0]=1;var n=e.slice();for(var i=0;i<N;i++){var a=e[i-1]===undefined?e[i]:e[i-1],b=e[i+1]===undefined?e[i]:e[i+1];n[i]=e[i]+0.12*(a+b-2*e[i]);n[i]*=0.9985}e=n;
+x.clearRect(0,0,640,130);x.fillStyle=getComputedStyle(document.body).color;x.font='600 13px system-ui';x.fillText('Heated end',20,18);x.fillText('Cool end',560,18);
+for(var i=0;i<N;i++){var s=e[i]*7,cx=45+i*50+(Math.random()-.5)*s,cy=65+(Math.random()-.5)*s;x.beginPath();x.arc(cx,cy,16,0,7);x.fillStyle='rgb('+(70+Math.round(e[i]*185))+','+(110-Math.round(e[i]*70))+','+(190-Math.round(e[i]*150))+')';x.fill()}
+requestAnimationFrame(t)}t()})();</script>
+</body></html>
