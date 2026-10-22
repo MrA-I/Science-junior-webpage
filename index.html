@@ -6,8 +6,8 @@
 <div class="grid" id="g"></div>
 <p style="margin-top:24px"><button class="btn" id="reset">Clear my progress</button></p></div>
 <script>
-var L=[["9-1","9.1 Energy and matter",1],["9-2","9.2 Wave types"],["9-3","9.3 Features of waves"],["9-4","9.4 Sound energy"],["9-5","9.5 The Doppler effect"],["9-6","9.6 How we hear"],["9-7","9.7 First Nations peoples’ use of sound"],["9-8","9.8 The electromagnetic spectrum"],["9-9","9.9 Light waves"],["9-10","9.10 How we see"],["9-11","9.11 Medical uses of sound"]];
-var f={"9-1":"9-1-energy-and-matter.html"};
+var L=[["9-1","9.1 Energy and matter",1],["9-2","9.2 Wave types",1],["9-3","9.3 Features of waves"],["9-4","9.4 Sound energy"],["9-5","9.5 The Doppler effect"],["9-6","9.6 How we hear"],["9-7","9.7 First Nations peoples’ use of sound"],["9-8","9.8 The electromagnetic spectrum"],["9-9","9.9 Light waves"],["9-10","9.10 How we see"],["9-11","9.11 Medical uses of sound"]];
+var f={"9-1":"9-1-energy-and-matter.html","9-2":"9-2-wave-types.html"};
 function draw(){var h="";L.forEach(function(l){var s={};try{s=JSON.parse(localStorage.getItem("ch9:"+l[0])||"{}")}catch(e){}
 var t=l[2]?(s.done?'<span class="tag done">Done</span>':(s.step?'<span class="tag">In progress</span>':'<span class="tag">Start</span>')):'<span class="tag">Coming soon</span>';
 h+=l[2]?'<a class="lcard" href="'+f[l[0]]+'"><b>'+l[1]+'</b>'+t+'</a>':'<div class="lcard soon"><b>'+l[1]+'</b>'+t+'</div>'});document.getElementById("g").innerHTML=h}

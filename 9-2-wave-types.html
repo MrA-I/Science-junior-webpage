@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.2 Wave types · Good Science 9</title><link rel="stylesheet" href="assets/style.css"></head>
+<body data-lesson="9-2"><div class="wrap">
+<div class="top"><div class="row"><a href="index.html">← All lessons</a><span><span class="phase"></span> · <span class="pct">0%</span></span></div><div class="bar"><i></i></div></div>
+
+<section class="step" data-phase="Engage">
+<h1>9.2 Wave types</h1>
+<div class="goal"><b>Goal:</b> explain what a wave is, and the difference between types of waves and how they transfer energy.<br><small>Textbook: Good Science 9, pp. 200–201.</small></div>
+<div class="card"><h3>Predict first</h3><p>A cork floats on the sea. A wave rolls past it towards the beach. What does the cork do?</p>
+<div class="quiz" data-a="1" data-why="The water moves up and down on the spot. The wave carries energy forward, but not the water or the cork." data-hint="If waves carried water forward, the sea would pile up on the beach. Try again.">
+<div class="opts"><button class="opt">Travels to the beach with the wave</button><button class="opt">Bobs up and down in roughly the same place</button><button class="opt">Sinks and stays down</button></div><p class="fb"></p></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Write your prediction, then draw the cork and the wave with an arrow for the wave’s direction.</div>
+<div class="nav"><span></span><button class="btn main" data-nav="1">Explore</button></div></section>
+
+<section class="step" data-phase="Explore">
+<h2>Watch one particle</h2>
+<p>These dots are particles in a material. Follow the <b style="color:#d6452b">red</b> particle. The ring shows where it started.</p>
+<canvas id="wv" width="640" height="200" aria-label="Particles in a wave. One red particle moves but stays near its starting ring."></canvas>
+<p><button class="btn" id="mode">Showing: transverse</button> <button class="btn" id="pause">Pause</button></p>
+<div class="cb write"><b>✏️ In your workbook</b>Complete for each mode: “The red particle moves ________ (up and down / back and forth) while the wave travels ________.” Then answer: does the particle travel along with the wave?</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Explain</button></div></section>
+
+<section class="step" data-phase="Explain">
+<h2>Waves transfer energy, not matter</h2>
+<p>A <b>wave</b> carries energy from place to place. The particles of the <b>medium</b> only move a small distance and return. Tap parts of the diagrams.</p>
+<svg class="scene" viewBox="0 0 640 280" role="group" aria-label="Transverse and longitudinal wave diagrams. Tap parts to learn about them.">
+<text x="10" y="18">Transverse wave</text>
+<path d="M20 80 q40 -60 80 0 t80 0 t80 0 t80 0 t80 0 t80 0" fill="none" stroke="#0b6e8a" stroke-width="3"/>
+<line x1="20" y1="80" x2="620" y2="80" stroke="#999" stroke-dasharray="4 4"/>
+<g class="hs" tabindex="0" role="button" aria-label="Particle movement" data-p="info2" data-info="<b>Particle movement.</b> In a transverse wave, particles move <b>perpendicular</b> (at right angles) to the direction the wave travels."><rect class="hl" x="95" y="30" width="50" height="100" fill="transparent" stroke="transparent"/><path d="M120 40 V120 M120 40 l-5 8 M120 40 l5 8 M120 120 l-5 -8 M120 120 l5 -8" stroke="#d6452b" stroke-width="3" fill="none"/><text x="130" y="145">Particles</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Wave direction" data-p="info2" data-info="<b>Wave direction.</b> The energy travels this way. The medium itself does not travel with it."><rect class="hl" x="440" y="100" width="170" height="40" fill="transparent" stroke="transparent"/><path d="M450 120 H600 M600 120 l-8 -5 M600 120 l-8 5" stroke="#16222e" stroke-width="3" fill="none"/><text x="470" y="140">Wave direction</text></g>
+<text x="10" y="190">Longitudinal wave</text>
+<g fill="#0b6e8a"><circle cx="40" cy="230" r="4"/><circle cx="75" cy="230" r="4"/><circle cx="95" cy="230" r="4"/><circle cx="110" cy="230" r="4"/><circle cx="125" cy="230" r="4"/><circle cx="170" cy="230" r="4"/><circle cx="215" cy="230" r="4"/><circle cx="250" cy="230" r="4"/><circle cx="270" cy="230" r="4"/><circle cx="285" cy="230" r="4"/><circle cx="300" cy="230" r="4"/><circle cx="345" cy="230" r="4"/><circle cx="390" cy="230" r="4"/><circle cx="425" cy="230" r="4"/><circle cx="445" cy="230" r="4"/><circle cx="460" cy="230" r="4"/><circle cx="475" cy="230" r="4"/><circle cx="520" cy="230" r="4"/><circle cx="565" cy="230" r="4"/></g>
+<g class="hs" tabindex="0" role="button" aria-label="Compression" data-p="info2" data-info="<b>Compression.</b> A region where particles are squashed close together."><rect class="hl" x="85" y="205" width="55" height="50" fill="transparent" stroke="transparent"/><text x="85" y="272">Compression</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Rarefaction" data-p="info2" data-info="<b>Rarefaction.</b> A region where particles are spread apart. In a <b>longitudinal</b> wave, particles move <b>parallel</b> to the wave direction."><rect class="hl" x="140" y="205" width="90" height="50" fill="transparent" stroke="transparent"/><text x="145" y="272">Rarefaction</text></g>
+</svg>
+<div class="card" id="info2" aria-live="polite">Tap a label to see what it means.</div>
+<h3>Key terms: tap to reveal</h3>
+<div class="flips"><button class="btn flip rev" data-t="k1">medium</button><button class="btn flip rev" data-t="k2">mechanical wave</button><button class="btn flip rev" data-t="k3">electromagnetic wave</button><button class="btn flip rev" data-t="k4">vacuum</button></div>
+<div class="ans" id="k1" hidden>Medium: the matter a wave travels through, such as air, water or rock.</div>
+<div class="ans" id="k2" hidden>Mechanical wave: a wave that needs a medium, for example sound or water waves.</div>
+<div class="ans" id="k3" hidden>Electromagnetic wave: a wave that can travel through a vacuum, for example light.</div>
+<div class="ans" id="k4" hidden>Vacuum: a space with no matter, no particles.</div>
+<div class="cb draw"><b>🎨 Draw &amp; label</b>Sketch a transverse and a longitudinal wave. Label the wave direction and the particle movement on each. On the longitudinal wave, label a compression and a rarefaction.</div>
+<div class="cb write"><b>✏️ In your workbook</b>Copy this definition: “A wave transfers ________ from one place to another without the net transfer of ________.”</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Elaborate</button></div></section>
+
+<section class="step" data-phase="Elaborate">
+<h2>Sound or light in a vacuum?</h2>
+<p>A bell rings and a laser shines inside a sealed jar. Predict, then pump the air out.</p>
+<div class="quiz" data-a="2" data-why="Sound needs particles to vibrate. Light does not. Pump the air out to see it." data-hint="One of these waves needs a medium. Which one?"><p><b>What will you notice with no air?</b></p>
+<div class="opts"><button class="opt">Neither sound nor light gets out</button><button class="opt">Both still get out</button><button class="opt">The light still gets out, but the sound doesn’t</button></div><p class="fb"></p></div>
+<svg class="scene" viewBox="0 0 640 180" role="img" aria-label="Bell jar with a bell and laser. Air particles shown when air is present."><rect x="170" y="20" width="220" height="140" rx="20" fill="none" stroke="#16222e" stroke-width="3"/><g id="air" fill="#8fb8d8"><circle cx="200" cy="50" r="4"/><circle cx="240" cy="110" r="4"/><circle cx="280" cy="60" r="4"/><circle cx="320" cy="130" r="4"/><circle cx="355" cy="70" r="4"/><circle cx="215" cy="140" r="4"/><circle cx="300" cy="100" r="4"/><circle cx="360" cy="120" r="4"/><circle cx="260" cy="140" r="4"/><circle cx="190" cy="90" r="4"/></g><path d="M265 100 q15 -30 30 0z" fill="#c99a00"/><line x1="40" y1="130" x2="600" y2="130" stroke="#d6452b" stroke-width="3"/><text x="20" y="120">Laser</text><text x="460" y="60" id="snd">Sound outside: heard</text><text x="460" y="90" id="lgt">Laser beam: seen</text></svg>
+<p><button class="btn main" id="pump">Pump out the air</button></p>
+<div class="card" id="vtxt" aria-live="polite">The jar is full of air.</div>
+<h3>Sort the waves</h3>
+<p>Tap a wave, then tap its box.</p>
+<div class="sort"><div class="opts"><button class="chip" data-t="m">Sound</button><button class="chip" data-t="e">Light</button><button class="chip" data-t="m">Ocean waves</button><button class="chip" data-t="e">Radio waves</button><button class="chip" data-t="m">Earthquake waves</button><button class="chip" data-t="e">X-rays</button></div>
+<div class="buckets"><button class="bucket" data-b="m"><b>Mechanical (needs a medium)</b><div></div></button><button class="bucket" data-b="e"><b>Electromagnetic (no medium)</b><div></div></button></div><p class="fb"></p></div>
+<div class="cb write"><b>✏️ In your workbook</b>Explain in 3–4 sentences why light crosses a vacuum but sound cannot. Use: medium, particles, mechanical wave, electromagnetic wave.</div>
+<div class="cb research"><b>🔍 Research task</b>Find out how a seismometer uses wave science to detect earthquakes. Write two sentences.</div>
+<div class="cb draw"><b>🎨 Model it</b>In your workbook, describe how a group of people could model (a) a transverse wave and (b) a longitudinal wave. Add a simple sketch of each.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Evaluate</button></div></section>
+
+<section class="step ev" data-phase="Evaluate">
+<h2>Check your understanding</h2><p class="score tag"></p>
+<div class="card quiz" data-a="1" data-why="A wave transfers energy. The particles only vibrate about a fixed position." data-hint="Think about the cork."><p><b>1.</b> What does a wave transfer?</p><div class="opts"><button class="opt">Matter</button><button class="opt">Energy</button><button class="opt">Particles</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="2" data-why="In a longitudinal wave, particles move back and forth parallel to the wave direction." data-hint="Longitudinal means ‘along’."><p><b>2.</b> In a longitudinal wave, particles move…</p><div class="opts"><button class="opt">At right angles to the wave direction</button><button class="opt">In circles</button><button class="opt">Parallel to the wave direction</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="0" data-why="A compression is where particles are close together."><p><b>3.</b> What is a compression?</p><div class="opts"><button class="opt">Particles squashed close together</button><button class="opt">Particles spread far apart</button><button class="opt">The top of a transverse wave</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="Sound is a mechanical wave. With no particles to vibrate, it can’t travel."><p><b>4.</b> Why can’t sound travel through a vacuum?</p><div class="opts"><button class="opt">It travels too slowly</button><button class="opt">There are no particles to carry it</button><button class="opt">It needs sunlight</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="2" data-why="Revisiting 9.1: radiation is the only type of heat transfer that needs no matter, because it travels as electromagnetic waves."><p><b>5. Looking back.</b> Which heat transfer can cross the vacuum of space?</p><div class="opts"><button class="opt">Conduction</button><button class="opt">Convection</button><button class="opt">Radiation</button></div><p class="fb"></p></div>
+<div class="cb write"><b>✏️ Goal review</b>Write one sentence: why must astronauts talk to each other by radio instead of shouting?</div>
+<div class="card checks"><h3>Workbook checklist</h3>
+<label><input type="checkbox">My cork prediction and sketch</label><label><input type="checkbox">My notes on the red particle in both wave modes</label><label><input type="checkbox">My definition of a wave</label><label><input type="checkbox">My labelled transverse and longitudinal wave sketches</label><label><input type="checkbox">My explanation of light and sound in a vacuum</label><label><input type="checkbox">My seismometer research</label><label><input type="checkbox">My human wave models</label><label><input type="checkbox">My goal review sentence</label></div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><a class="btn main" href="index.html" style="text-decoration:none">Back to all lessons</a></div></section>
+</div>
+<script src="assets/lesson.js"></script>
+<script>(function(){var c=document.getElementById('wv'),x=c.getContext('2d'),m='t',run=true,t=0,N=26,rows=[60,100,140];
+document.getElementById('mode').onclick=function(){m=m==='t'?'l':'t';this.textContent='Showing: '+(m==='t'?'transverse':'longitudinal')};
+document.getElementById('pause').onclick=function(){run=!run;this.textContent=run?'Pause':'Play'};
+function f(){if(run)t+=0.04;x.clearRect(0,0,640,200);var k=2*Math.PI/160,A=m==='t'?16:11;
+for(var r=0;r<3;r++)for(var i=0;i<N;i++){var hx=30+i*22,hy=rows[r],d=A*Math.sin(k*hx-2.2*t),px=m==='t'?hx:hx+d,py=m==='t'?hy+d:hy,red=r===1&&i===12;
+if(red){x.beginPath();x.arc(hx,hy,9,0,7);x.strokeStyle='#d6452b';x.lineWidth=2;x.stroke()}
+x.beginPath();x.arc(px,py,red?6:4,0,7);x.fillStyle=red?'#d6452b':'#0b6e8a';x.fill()}
+requestAnimationFrame(f)}f();
+var air=true;document.getElementById('pump').onclick=function(){air=!air;document.getElementById('air').style.display=air?'':'none';
+document.getElementById('snd').textContent='Sound outside: '+(air?'heard':'silent');
+document.getElementById('lgt').textContent='Laser beam: seen';
+document.getElementById('vtxt').textContent=air?'The jar is full of air.':'The air is gone, so there is no medium for sound. The bell still rings, but you hear nothing. The laser beam still crosses the vacuum.';
+this.textContent=air?'Pump out the air':'Let the air back in'}})();</script>
+</body></html>
