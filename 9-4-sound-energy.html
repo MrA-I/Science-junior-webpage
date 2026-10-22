@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.4 Sound energy · Good Science 9</title><link rel="stylesheet" href="assets/style.css">
+<style>.sl{display:grid;grid-template-columns:150px 1fr 80px;gap:10px;align-items:center;margin:6px 0}.sl input{width:100%}.rd{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:10px 0}.rd div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px}.rd b{display:block;font-size:1.2rem;color:var(--accent)}.calc input{width:110px;border:2px solid var(--ink);border-radius:8px;padding:6px;font:inherit;background:var(--card);color:var(--ink)}.chainx{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}.chainx span{border:2px solid var(--ink);border-radius:8px;padding:6px 10px;font-weight:700;background:var(--card)}</style></head>
+<body data-lesson="9-4"><div class="wrap">
+<div class="top"><div class="row"><a href="index.html">← All lessons</a><span><span class="phase"></span> · <span class="pct">0%</span></span></div><div class="bar"><i></i></div></div>
+
+<section class="step" data-phase="Engage">
+<h1>9.4 Sound energy</h1>
+<div class="goal"><b>Goal:</b> model how sound waves travel and describe their properties.<br><small>Textbook: Good Science 9, pp. 206–207.</small></div>
+<div class="sc"><b>Success criteria</b><ul><li><span class="tg ">Must</span>I can describe sound as a form of energy.</li><li><span class="tg s">Should</span>I can model how sound waves travel.</li><li><span class="tg c">Could</span>I can describe how amplitude affects volume, how frequency affects pitch, and how sound speed differs in solids, liquids and gases.</li></ul></div>
+<div class="card"><h3>Predict first</h3><p>You turn up the volume on a speaker. The notes stay the same pitch. Which wave feature changed?</p>
+<div class="quiz" data-a="0" data-why="Volume depends on amplitude. Pitch depends on frequency. You will hear this yourself next." data-hint="Think about the height of the wave, not how often it repeats."><div class="opts"><button class="opt">Amplitude</button><button class="opt">Frequency</button><button class="opt">Wave speed</button></div><p class="fb"></p></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Write your prediction and a reason.</div>
+<div class="nav"><span></span><button class="btn main" data-nav="1">Explore</button></div></section>
+
+<section class="step" data-phase="Explore">
+<h2>Sound lab</h2>
+<p><b>Before you start:</b> turn your device volume down low, then press Play. Press Stop when you have finished.</p>
+<canvas id="osc" width="640" height="200" aria-label="Oscilloscope style picture of a sound wave"></canvas>
+<p><button class="btn main" id="play">Play sound</button></p>
+<div class="sl"><label for="vol">Volume (amplitude)</label><input id="vol" type="range" min="0.2" max="1" step="0.2" value="0.6"><span id="vv"></span></div>
+<div class="sl"><label for="pit">Pitch (frequency)</label><input id="pit" type="range" min="200" max="1000" step="100" value="400"><span id="pv"></span></div>
+<div class="rd"><div>Frequency<b id="rf"></b></div><div>Wavelength in air<b id="rl"></b></div><div>Speed in air<b id="rs">340 m/s</b></div></div>
+<p class="tag">If you hear nothing, check that your device is not on silent. The picture still works without sound.</p>
+<div class="cb write"><b>✏️ In your workbook</b>Record what you hear and see at four settings: loud/quiet and high/low pitch. Finish: “Changing the amplitude changed the ________. Changing the frequency changed the ________.”</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Explain</button></div></section>
+
+<section class="step" data-phase="Explain">
+<h2>How sound travels</h2>
+<p>Sound is energy that travels as a longitudinal wave through a medium. Tap each step.</p>
+<div class="chainx"><span>Vibration</span>→<span>Particles pushed together (compression)</span>→<span>Particles spread out (rarefaction)</span>→<span>Energy passes on</span></div>
+<p>The pattern of compressions and rarefactions can be drawn as peaks and troughs. Tap a graph.</p>
+<svg class="scene" viewBox="0 0 640 270" role="group" aria-label="Four sound waves: loud or quiet, high or low pitch. Tap one."><g class="hs" tabindex="0" role="button" aria-label="Loud, low pitch" data-p="inf" data-info="<b>Loud, low pitch.</b> Large amplitude (tall waves) and low frequency (waves spread far apart, long wavelength)."><rect class="hl" x="10" y="10" width="300" height="110" rx="8" fill="transparent" stroke="var(--line)" stroke-width="2"/><path d="M10 70 q37.5 -80 75 0 t75 0 t75 0 t75 0" fill="none" stroke="#0b6e8a" stroke-width="2.5"/><text x="16" y="26">Loud, low pitch</text></g><g class="hs" tabindex="0" role="button" aria-label="Loud, high pitch" data-p="inf" data-info="<b>Loud, high pitch.</b> Large amplitude (tall waves) and high frequency (waves packed close, short wavelength)."><rect class="hl" x="330" y="10" width="300" height="110" rx="8" fill="transparent" stroke="var(--line)" stroke-width="2"/><path d="M330 70 q12.5 -80 25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0" fill="none" stroke="#0b6e8a" stroke-width="2.5"/><text x="336" y="26">Loud, high pitch</text></g><g class="hs" tabindex="0" role="button" aria-label="Quiet, low pitch" data-p="inf" data-info="<b>Quiet, low pitch.</b> Small amplitude (short waves) and low frequency (long wavelength)."><rect class="hl" x="10" y="140" width="300" height="110" rx="8" fill="transparent" stroke="var(--line)" stroke-width="2"/><path d="M10 200 q37.5 -20 75 0 t75 0 t75 0 t75 0" fill="none" stroke="#0b6e8a" stroke-width="2.5"/><text x="16" y="156">Quiet, low pitch</text></g><g class="hs" tabindex="0" role="button" aria-label="Quiet, high pitch" data-p="inf" data-info="<b>Quiet, high pitch.</b> Small amplitude (short waves) and high frequency (short wavelength)."><rect class="hl" x="330" y="140" width="300" height="110" rx="8" fill="transparent" stroke="var(--line)" stroke-width="2"/><path d="M330 200 q12.5 -20 25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0 t25 0" fill="none" stroke="#0b6e8a" stroke-width="2.5"/><text x="336" y="156">Quiet, high pitch</text></g></svg>
+<div class="card" id="inf" aria-live="polite">Tap a wave to see what its shape tells you.</div>
+<div class="flips"><button class="btn flip rev" data-t="k1">sound</button><button class="btn flip rev" data-t="k2">volume</button><button class="btn flip rev" data-t="k3">pitch</button></div>
+<div class="ans" id="k1" hidden>Sound: energy transferred by vibrating particles as a longitudinal wave.</div>
+<div class="ans" id="k2" hidden>Volume: how loud a sound seems. It depends on amplitude and is measured in decibels (dB).</div>
+<div class="ans" id="k3" hidden>Pitch: how high or low a sound seems. It depends on frequency (Hz).</div>
+<div class="cb draw"><b>🎨 Draw &amp; label</b>Draw the four waves shown above on a grid. Beside each, write a real-world example of that sound. Label amplitude and wavelength on one of them.</div>
+<div class="cb write"><b>✏️ In your workbook</b>Copy: “Amplitude affects ________. Frequency affects ________.”</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Elaborate</button></div></section>
+
+<section class="step" data-phase="Elaborate">
+<h2>Sound in solids, liquids and gases</h2>
+<p>Choose a medium. Particles that are closer together pass vibrations on faster. Speeds are approximate.</p>
+<div class="opts"><button class="btn" data-m="0">Air (gas)</button><button class="btn" data-m="1">Water (liquid)</button><button class="btn" data-m="2">Iron (solid)</button></div>
+<svg class="scene" viewBox="0 0 640 110" role="img" aria-label="Particles in the chosen medium"><g id="pp" fill="#0b6e8a"></g></svg>
+<div class="rd"><div>Medium<b id="mn"></b></div><div>Speed<b id="ms"></b></div><div>Time to travel 1 km<b id="mt"></b></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Draw particle diagrams for air and iron. Write a caption for each explaining why sound travels faster in the solid.</div>
+<h3>Amplitude or frequency?</h3><p>Tap an item, then tap its box.</p>
+<div class="sort"><div class="opts"><button class="chip" data-t="a">Volume</button><button class="chip" data-t="f">Pitch</button><button class="chip" data-t="a">Height of the wave</button><button class="chip" data-t="f">Waves per second</button><button class="chip" data-t="a">Measured in dB</button><button class="chip" data-t="f">Measured in Hz</button></div>
+<div class="buckets"><button class="bucket" data-b="a"><b>Amplitude</b><div></div></button><button class="bucket" data-b="f"><b>Frequency</b><div></div></button></div><p class="fb"></p></div>
+<div class="card calc" data-a="0.4"><p><b>Calculate.</b> A sound wave in air (340 m/s) has a frequency of 850 Hz. Find its wavelength.</p><input type="number" step="any" aria-label="Wavelength"> m <button class="btn go">Check</button><p class="fb"></p></div>
+<div class="cb research"><b>🔍 Research task</b>Pick a musical instrument. Draw wave diagrams for a high and a low note on it. List two things that change its sound, such as size, material or how it vibrates.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Evaluate</button></div></section>
+
+<section class="step ev" data-phase="Evaluate">
+<h2>Check your understanding</h2><p class="score tag"></p>
+<div class="card quiz" data-a="1" data-why="Sound is a mechanical wave, so it needs particles to vibrate."><p><b>1.</b> What does sound need to travel?</p><div class="opts"><button class="opt">A vacuum</button><button class="opt">A medium</button><button class="opt">Light</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="2" data-why="Higher frequency means a higher pitch."><p><b>2.</b> Which feature sets the pitch of a sound?</p><div class="opts"><button class="opt">Amplitude</button><button class="opt">Speed</button><button class="opt">Frequency</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="0" data-why="Bigger amplitude means more energy, so a louder sound."><p><b>3.</b> A wave on the oscilloscope gets taller. The sound becomes…</p><div class="opts"><button class="opt">Louder</button><button class="opt">Higher in pitch</button><button class="opt">Slower</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="Particles in solids are packed closest, so vibrations pass along fastest."><p><b>4.</b> In which does sound usually travel fastest?</p><div class="opts"><button class="opt">Air</button><button class="opt">Iron</button><button class="opt">Water</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="2" data-why="Looking back at 9.3: λ = v ÷ f = 340 ÷ 170 = 2 m."><p><b>5. Looking back.</b> Sound at 340 m/s has a frequency of 170 Hz. What is its wavelength?</p><div class="opts"><button class="opt">0.5 m</button><button class="opt">20 m</button><button class="opt">2 m</button></div><p class="fb"></p></div>
+<div class="cb write"><b>✏️ Goal review</b>Write a sentence using the term <i>mechanical wave</i> to explain why sound cannot travel in a vacuum, unlike light.</div>
+<div class="card checks"><h3>Workbook checklist</h3>
+<label><input type="checkbox">My prediction about volume</label><label><input type="checkbox">My sound lab observations at four settings</label><label><input type="checkbox">Four wave drawings with examples</label><label><input type="checkbox">The amplitude and frequency sentences copied</label><label><input type="checkbox">Particle diagrams for air and iron with captions</label><label><input type="checkbox">My wavelength calculation</label><label><input type="checkbox">My instrument research</label><label><input type="checkbox">My goal review sentence</label></div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><a class="btn main" href="index.html" style="text-decoration:none">Back to all lessons</a></div></section>
+</div>
+<script src="assets/lesson.js"></script>
+<script>(function(){var $=function(i){return document.getElementById(i)};
+var ac,osc,gn,on=false,V=0.6,F=400,c=$('osc'),x=c.getContext('2d'),T0=Date.now();
+function upd(){V=+$('vol').value;F=+$('pit').value;$('vv').textContent=Math.round(V*100)+'%';$('pv').textContent=F+' Hz';$('rf').textContent=F+' Hz';$('rl').textContent=(340/F).toFixed(2)+' m';
+if(on){osc.frequency.value=F;gn.gain.value=V*0.2}}
+function stop(){if(on){try{osc.stop()}catch(e){}on=false;$('play').textContent='Play sound'}}
+$('play').onclick=function(){if(on){stop();return}
+try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();osc=ac.createOscillator();gn=ac.createGain();osc.type='sine';osc.connect(gn);gn.connect(ac.destination);on=true;upd();osc.start();this.textContent='Stop sound'}catch(e){on=false;this.textContent='Sound not available'}};
+$('vol').oninput=upd;$('pit').oninput=upd;document.querySelectorAll('[data-nav],a[href]').forEach(function(b){b.addEventListener('click',stop)});window.addEventListener('pagehide',stop);
+function d(){var t=(Date.now()-T0)/1000,A=V*80,cy=100;x.clearRect(0,0,640,200);x.strokeStyle='#999';x.setLineDash([4,4]);x.beginPath();x.moveTo(0,cy);x.lineTo(640,cy);x.stroke();x.setLineDash([]);
+x.strokeStyle='#0b6e8a';x.lineWidth=3;x.beginPath();for(var i=0;i<=640;i+=2){var y=cy-A*Math.sin(2*Math.PI*(i/640*F/100-t*0.5));i?x.lineTo(i,y):x.moveTo(i,y)}x.stroke();requestAnimationFrame(d)}upd();d();
+var M=[["Air",340,'gas',16],["Water",1480,'liquid',11],["Iron",5100,'solid',7]];
+function med(k){var m=M[k],g='';for(var r=0;r<3;r++)for(var i=0;i<30;i++){var sp=m[3]*3.6;g+='<circle cx="'+(20+i*sp*1.0)+'" cy="'+(25+r*30)+'" r="4"/>'}
+$('pp').innerHTML=g;$('mn').textContent=m[0];$('ms').textContent='about '+m[1]+' m/s';$('mt').textContent=(1000/m[1]).toFixed(2)+' s'}
+document.querySelectorAll('[data-m]').forEach(function(b){b.onclick=function(){med(+b.dataset.m)}});med(0);
+document.querySelectorAll('.calc').forEach(function(k){var i=k.querySelector('input'),f=k.querySelector('.fb');k.querySelector('.go').onclick=function(){var v=parseFloat(i.value),ok=Math.abs(v-+k.dataset.a)<1e-6;f.className='fb '+(ok?'ok':'no');f.textContent=ok?'Correct.':(isNaN(v)?'Enter a number first.':'Not quite. Use λ = v ÷ f.')}})})();</script>
+</body></html>

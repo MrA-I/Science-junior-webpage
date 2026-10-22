@@ -2,14 +2,14 @@
 <html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Chapter 9 Energy transfer · Good Science 9</title><link rel="stylesheet" href="assets/style.css"></head>
 <body><div class="wrap"><div style="padding-top:28px"><h1>Chapter 9: Energy transfer</h1>
-<p>Work through each lesson with your workbook open. Tick the checklist at the end of each one.</p></div>
+<p>Work through each lesson with your workbook open. Every lesson starts with a learning goal and success criteria. Use them to check you have reached the goal, and tick the workbook checklist at the end.</p></div>
 <div class="grid" id="g"></div>
 <p style="margin-top:24px"><button class="btn" id="reset">Clear my progress</button></p></div>
 <script>
-var L=[["9-1","9.1 Energy and matter",1],["9-2","9.2 Wave types",1],["9-3","9.3 Features of waves",1],["9-4","9.4 Sound energy"],["9-5","9.5 The Doppler effect"],["9-6","9.6 How we hear"],["9-7","9.7 First Nations peoples’ use of sound"],["9-8","9.8 The electromagnetic spectrum"],["9-9","9.9 Light waves"],["9-10","9.10 How we see"],["9-11","9.11 Medical uses of sound"]];
-var f={"9-1":"9-1-energy-and-matter.html","9-2":"9-2-wave-types.html","9-3":"9-3-features-of-waves.html"};
+var L=[["9-1", "9.1 Energy and matter", "describe how thermal energy is transferred using the particle model.", "9-1-energy-and-matter.html"], ["9-2", "9.2 Wave types", "explain what a wave is, the difference between types of waves and how they transfer energy.", "9-2-wave-types.html"], ["9-3", "9.3 Features of waves", "calculate or identify the key wave features: amplitude, wavelength, frequency and speed.", "9-3-features-of-waves.html"], ["9-4", "9.4 Sound energy", "model how sound waves travel and describe their properties.", "9-4-sound-energy.html"], ["9-5", "9.5 The Doppler effect", "explain the Doppler effect and give examples of its applications to technology.", ""], ["9-6", "9.6 How we hear", "explain how the ear works in relation to sound energy.", ""], ["9-7", "9.7 First Nations peoples’ use of sound", "outline how the materials Aboriginal and Torres Strait Islander peoples use to make traditional instruments affect their sound energy.", ""], ["9-8", "9.8 The electromagnetic spectrum", "compare the waves of the electromagnetic spectrum, including their uses and properties.", ""], ["9-9", "9.9 Light waves", "describe the properties of light and its applications.", ""], ["9-10", "9.10 How we see", "describe how the eye responds to light energy.", ""], ["9-11", "9.11 Medical uses of sound", "describe examples of the medical uses of sound energy.", ""]];
 function draw(){var h="";L.forEach(function(l){var s={};try{s=JSON.parse(localStorage.getItem("ch9:"+l[0])||"{}")}catch(e){}
-var t=l[2]?(s.done?'<span class="tag done">Done</span>':(s.step?'<span class="tag">In progress</span>':'<span class="tag">Start</span>')):'<span class="tag">Coming soon</span>';
-h+=l[2]?'<a class="lcard" href="'+f[l[0]]+'"><b>'+l[1]+'</b>'+t+'</a>':'<div class="lcard soon"><b>'+l[1]+'</b>'+t+'</div>'});document.getElementById("g").innerHTML=h}
+var live=!!l[3],t=live?(s.done?'<span class="tag done">Done</span>':(s.step?'<span class="tag">In progress</span>':'<span class="tag">Start</span>')):'<span class="tag">Coming soon</span>';
+var inner='<b>'+l[1]+'</b><span class="g">I will be able to '+l[2]+'</span>'+t;
+h+=live?'<a class="lcard" href="'+l[3]+'">'+inner+'</a>':'<div class="lcard soon">'+inner+'</div>'});document.getElementById("g").innerHTML=h}
 document.getElementById("reset").onclick=function(){try{L.forEach(function(l){localStorage.removeItem("ch9:"+l[0])})}catch(e){}draw()};draw();
 </script></body></html>
