@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.3 Features of waves · Good Science 9</title><link rel="stylesheet" href="assets/style.css">
+<style>.sl{display:grid;grid-template-columns:130px 1fr 70px;gap:10px;align-items:center;margin:6px 0}.sl input{width:100%}.rd{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:10px 0}.rd div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px}.rd b{display:block;font-size:1.2rem;color:var(--accent)}.tri{font:700 1.5rem var(--serif);text-align:center}.calc input{width:110px;border:2px solid var(--ink);border-radius:8px;padding:6px;font:inherit;background:var(--card);color:var(--ink)}</style></head>
+<body data-lesson="9-3"><div class="wrap">
+<div class="top"><div class="row"><a href="index.html">← All lessons</a><span><span class="phase"></span> · <span class="pct">0%</span></span></div><div class="bar"><i></i></div></div>
+
+<section class="step" data-phase="Engage">
+<h1>9.3 Features of waves</h1>
+<div class="goal"><b>Goal:</b> describe amplitude, wavelength, frequency and speed, and use v = f × λ.<br><small>Textbook: Good Science 9, pp. 202–205.</small></div>
+<div class="card"><h3>Predict first</h3><p>You shake a rope so the waves become three times taller. The wave speed stays the same. What happens to the distance between crests?</p>
+<div class="quiz" data-a="1" data-why="Height (amplitude) and wavelength are independent. You will test this next." data-hint="Does shaking harder change how often you shake?"><div class="opts"><button class="opt">It triples</button><button class="opt">It stays the same</button><button class="opt">It becomes a third</button></div><p class="fb"></p></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Write your prediction, with a reason.</div>
+<div class="nav"><span></span><button class="btn main" data-nav="1">Explore</button></div></section>
+
+<section class="step" data-phase="Explore">
+<h2>Wave simulator</h2>
+<p>The wave speed is fixed at 6 m/s. Change the amplitude and the frequency and watch what changes.</p>
+<canvas id="cv" width="640" height="220" aria-label="Moving wave controlled by amplitude and frequency sliders"></canvas>
+<div class="sl"><label for="am">Amplitude</label><input id="am" type="range" min="0.5" max="2" step="0.5" value="1"><span id="amv"></span></div>
+<div class="sl"><label for="fq">Frequency</label><input id="fq" type="range" min="0.5" max="3" step="0.5" value="1"><span id="fqv"></span></div>
+<div class="rd"><div>Amplitude<b id="ra"></b></div><div>Frequency<b id="rf"></b></div><div>Wavelength<b id="rl"></b></div><div>Speed<b id="rs">6 m/s</b></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Make a table with columns amplitude, frequency, wavelength. Record at least four settings. Then finish: “When frequency goes up, wavelength goes ________. When amplitude goes up, wavelength ________.”</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Explain</button></div></section>
+
+<section class="step" data-phase="Explain">
+<h2>The four features</h2>
+<svg class="scene" viewBox="0 0 640 190" role="group" aria-label="Wave diagram. Tap amplitude, wavelength, crest or trough.">
+<line x1="20" y1="110" x2="620" y2="110" stroke="#999" stroke-dasharray="4 4"/>
+<path d="M20 110 q50 -70 100 0 t100 0 t100 0 t100 0 t100 0 t100 0" fill="none" stroke="#0b6e8a" stroke-width="3"/>
+<g class="hs" tabindex="0" role="button" aria-label="Amplitude" data-p="inf" data-info="<b>Amplitude.</b> The height from the rest line to a crest (or down to a trough). It shows how much energy the wave carries. For sound, it sets the volume."><rect class="hl" x="55" y="70" width="40" height="45" fill="transparent" stroke="transparent"/><path d="M80 110 V76 M80 76 l-5 8 M80 76 l5 8" stroke="#d6452b" stroke-width="3" fill="none"/><text x="90" y="100">Amplitude</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Wavelength" data-p="inf" data-info="<b>Wavelength (λ).</b> The distance from one point on the wave to the same point on the next wave, for example crest to crest. Measured in metres (m)."><rect class="hl" x="65" y="25" width="215" height="30" fill="transparent" stroke="transparent"/><path d="M70 45 H270 M70 45 l8 -5 M70 45 l8 5 M270 45 l-8 -5 M270 45 l-8 5" stroke="#16222e" stroke-width="3" fill="none"/><text x="130" y="35">Wavelength (λ)</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Crest" data-p="inf" data-info="<b>Crest.</b> The highest point of the wave."><rect class="hl" x="50" y="60" width="40" height="20" fill="transparent" stroke="transparent"/><text x="335" y="70">Crest</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Trough" data-p="inf" data-info="<b>Trough.</b> The lowest point of the wave."><rect class="hl" x="150" y="140" width="40" height="20" fill="transparent" stroke="transparent"/><text x="150" y="170">Trough</text></g>
+</svg>
+<div class="card" id="inf" aria-live="polite">Tap a label. Frequency is not drawn here: it is how many waves pass a point each second, measured in hertz (Hz).</div>
+<div class="card"><h3>The wave equation</h3><p class="tri">v = f × λ</p><p>speed (m/s) = frequency (Hz) × wavelength (m)</p>
+<p>If the speed stays the same, a higher frequency means a shorter wavelength.</p>
+<button class="btn rev" data-t="w1">Show a worked example</button>
+<div class="ans" id="w1" hidden><b>A wave has f = 20 Hz and λ = 3 m. Find v.</b><br>v = f × λ = 20 × 3 = <b>60 m/s</b>.<br>To find f: f = v ÷ λ. To find λ: λ = v ÷ f.</div></div>
+<div class="flips"><button class="btn flip rev" data-t="k1">frequency</button><button class="btn flip rev" data-t="k2">wavelength</button><button class="btn flip rev" data-t="k3">amplitude</button><button class="btn flip rev" data-t="k4">hertz (Hz)</button></div>
+<div class="ans" id="k1" hidden>Frequency: the number of complete waves passing a point each second.</div>
+<div class="ans" id="k2" hidden>Wavelength: the distance between matching points on neighbouring waves.</div>
+<div class="ans" id="k3" hidden>Amplitude: the height of a wave from its rest position.</div>
+<div class="ans" id="k4" hidden>Hertz: the unit of frequency. 1 Hz is one wave per second.</div>
+<div class="cb draw"><b>🎨 Draw &amp; label</b>Sketch a wave on a ruler-drawn rest line. Label a crest, a trough, the amplitude and one wavelength. Write the symbol λ next to wavelength.</div>
+<div class="cb write"><b>✏️ In your workbook</b>Copy the equation v = f × λ with the units for each symbol. Add the rearranged forms for f and λ.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Elaborate</button></div></section>
+
+<section class="step" data-phase="Elaborate">
+<h2>Calculate</h2>
+<div class="card calc" data-a="200"><p><b>1.</b> A wave has a frequency of 50 Hz and a wavelength of 4 m. Find its speed.</p><input type="number" step="any" aria-label="Speed"> m/s <button class="btn go">Check</button><p class="fb"></p></div>
+<div class="card calc" data-a="170"><p><b>2.</b> Sound travels at 340 m/s. A sound wave has a wavelength of 2 m. Find its frequency.</p><input type="number" step="any" aria-label="Frequency"> Hz <button class="btn go">Check</button><p class="fb"></p></div>
+<div class="card calc" data-a="6"><p><b>3.</b> Sound travels at 1500 m/s in water. A wave has a frequency of 250 Hz. Find its wavelength.</p><input type="number" step="any" aria-label="Wavelength"> m <button class="btn go">Check</button><p class="fb"></p></div>
+<div class="cb calc"><b>🧮 Calculate</b>Show formula, substitution and unit for each question in your workbook, then check here.</div>
+<h2>Case study: tsunami waves</h2>
+<p>A tsunami has a long wavelength and a small amplitude in deep ocean. Slide towards the shore (simplified model, approximate values).</p>
+<canvas id="ts" width="640" height="170" aria-label="Tsunami wave changing as water gets shallower"></canvas>
+<div class="sl"><label for="dp">Towards shore</label><input id="dp" type="range" min="0" max="100" value="0"><span></span></div>
+<div class="rd"><div>Water depth<b id="td"></b></div><div>Speed<b id="tv"></b></div><div>Wavelength<b id="tl"></b></div><div>Wave height<b id="th"></b></div></div>
+<p class="tag">The time between waves (period) stays about 15 minutes, so the frequency stays the same.</p>
+<div class="cb write"><b>✏️ In your workbook</b>Explain why a tsunami becomes destructive near land. Use: speed, wavelength, amplitude, energy.</div>
+<div class="cb research"><b>🔍 Research task</b>Find out how tsunami warning systems detect and warn communities. Who benefits, and what might limit how widely the technology is used?</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Evaluate</button></div></section>
+
+<section class="step ev" data-phase="Evaluate">
+<h2>Check your understanding</h2><p class="score tag"></p>
+<div class="card quiz" data-a="2" data-why="Amplitude is the height measured from the rest line."><p><b>1.</b> What does amplitude measure?</p><div class="opts"><button class="opt">Crest to crest distance</button><button class="opt">Waves per second</button><button class="opt">Height from the rest line to a crest</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="0" data-why="v = f × λ, so with speed fixed, higher frequency means a shorter wavelength."><p><b>2.</b> Speed stays constant and frequency increases. The wavelength…</p><div class="opts"><button class="opt">Decreases</button><button class="opt">Increases</button><button class="opt">Stays the same</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="Hertz means waves per second."><p><b>3.</b> What is the unit of frequency?</p><div class="opts"><button class="opt">Metre</button><button class="opt">Hertz</button><button class="opt">Metres per second</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="2" data-why="Near shore the wave slows and the wavelength shortens. Its energy is squeezed into a taller wave."><p><b>4.</b> What happens to a tsunami’s amplitude as it reaches shallow water?</p><div class="opts"><button class="opt">It decreases</button><button class="opt">It stays the same</button><button class="opt">It increases</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="Looking back at 9.2: in a transverse wave, particles move at right angles to the direction the wave travels."><p><b>5. Looking back.</b> In a transverse wave, the particles move…</p><div class="opts"><button class="opt">Parallel to the wave direction</button><button class="opt">Perpendicular to the wave direction</button><button class="opt">Along with the wave</button></div><p class="fb"></p></div>
+<div class="cb write"><b>✏️ Goal review</b>Write the units for frequency, wavelength and speed, and rearrange v = f × λ to find wavelength.</div>
+<div class="card checks"><h3>Workbook checklist</h3>
+<label><input type="checkbox">My prediction about amplitude and wavelength</label><label><input type="checkbox">My simulator results table</label><label><input type="checkbox">My labelled wave sketch</label><label><input type="checkbox">The wave equation with units and rearrangements</label><label><input type="checkbox">Three calculations with working</label><label><input type="checkbox">My tsunami explanation</label><label><input type="checkbox">My tsunami warning research</label><label><input type="checkbox">My goal review</label></div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><a class="btn main" href="index.html" style="text-decoration:none">Back to all lessons</a></div></section>
+</div>
+<script src="assets/lesson.js"></script>
+<script>(function(){var $=function(i){return document.getElementById(i)};
+var c=$('cv'),x=c.getContext('2d'),T0=Date.now();
+function w(){var A=+$('am').value,F=+$('fq').value,L=6/F;$('amv').textContent=A+' m';$('fqv').textContent=F+' Hz';$('ra').textContent=A+' m';$('rf').textContent=F+' Hz';$('rl').textContent=L+' m';
+var t=(Date.now()-T0)/1000,s=640/12;x.clearRect(0,0,640,220);x.strokeStyle='#999';x.setLineDash([4,4]);x.beginPath();x.moveTo(0,110);x.lineTo(640,110);x.stroke();x.setLineDash([]);
+x.strokeStyle='#0b6e8a';x.lineWidth=3;x.beginPath();for(var i=0;i<=640;i+=4){var y=110-A*40*Math.sin(2*Math.PI*(i/s/L-F*t));i?x.lineTo(i,y):x.moveTo(i,y)}x.stroke();
+x.strokeStyle='#d6452b';x.beginPath();x.moveTo(10,110);x.lineTo(10,110-A*40);x.stroke();x.fillStyle=getComputedStyle(document.body).color;x.font='600 13px system-ui';x.fillText('amplitude',16,106-A*20+8);
+requestAnimationFrame(w)}w();
+var q=document.getElementById('ts'),y=q.getContext('2d');
+function ts(){var s=+$('dp').value/100,d=4000*Math.pow(10/4000,s),v=Math.sqrt(9.8*d),lam=v*900/1000,h=0.5*Math.pow(4000/d,0.25);
+$('td').textContent=Math.round(d)+' m';$('tv').textContent=Math.round(v*3.6)+' km/h';$('tl').textContent=lam.toFixed(lam<20?1:0)+' km';$('th').textContent=h.toFixed(1)+' m';
+var t=(Date.now()-T0)/1000,pl=60+240*(lam/178),pa=6+h*14;y.clearRect(0,0,640,170);y.strokeStyle='#0b6e8a';y.lineWidth=3;y.beginPath();
+for(var i=0;i<=640;i+=4){var yy=100-pa*Math.sin(2*Math.PI*(i/pl-t*0.25));i?y.lineTo(i,yy):y.moveTo(i,yy)}y.stroke();
+y.fillStyle='#8a7a5a';y.beginPath();y.moveTo(0,170);y.lineTo(640,170);y.lineTo(640,170-10-s*70);y.lineTo(0,170-10);y.fill();
+requestAnimationFrame(ts)}ts();
+document.querySelectorAll('.calc').forEach(function(k){var i=k.querySelector('input'),f=k.querySelector('.fb');k.querySelector('.go').onclick=function(){var v=parseFloat(i.value),ok=Math.abs(v-+k.dataset.a)<1e-6;
+f.className='fb '+(ok?'ok':'no');f.textContent=ok?'Correct.':(isNaN(v)?'Enter a number first.':'Not quite. Check which quantity you are finding and rearrange v = f × λ.')}})})();</script>
+</body></html>
