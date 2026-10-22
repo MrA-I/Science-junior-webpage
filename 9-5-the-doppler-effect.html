@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.5 The Doppler effect · Good Science 9</title><link rel="stylesheet" href="assets/style.css">
+<style>.sl{display:grid;grid-template-columns:150px 1fr 80px;gap:10px;align-items:center;margin:6px 0}.sl input{width:100%}.rd{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}.rd div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px}.rd b{display:block;font-size:1.2rem;color:var(--accent)}</style></head>
+<body data-lesson="9-5"><div class="wrap">
+<div class="top"><div class="row"><a href="index.html">← All lessons</a><span><span class="phase"></span> · <span class="pct">0%</span></span></div><div class="bar"><i></i></div></div>
+
+<section class="step" data-phase="Engage">
+<h1>9.5 The Doppler effect</h1>
+<div class="goal"><b>Goal:</b> explain the Doppler effect and give examples of its applications to technology.<br><small>Textbook: Good Science 9, pp. 208–209.</small></div>
+<div class="sc"><b>Success criteria</b><ul><li><span class="tg ">Must</span>I can define the Doppler effect as a change in frequency.</li><li><span class="tg s">Should</span>I can explain the Doppler effect and its applications in technology.</li><li><span class="tg c">Could</span>I can analyse how the Doppler effect shows that the frequency an observer detects depends on movement, and link this to applications.</li></ul></div>
+<div class="card"><h3>Predict first</h3><p>An ambulance with its siren on drives towards you, passes, then drives away. What happens to the pitch you hear?</p>
+<div class="quiz" data-a="0" data-why="The pitch is higher while it approaches and lower as it leaves. You will see why next." data-hint="Picture the ‘neeee-owww’ sound a passing siren makes."><div class="opts"><button class="opt">Higher, then lower</button><button class="opt">It stays the same</button><button class="opt">Lower, then higher</button></div><p class="fb"></p></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Write two short notes: the pitch as the ambulance approaches, and the pitch as it leaves. Mark each “high” or “low”.</div>
+<div class="nav"><span></span><button class="btn main" data-nav="1">Explore</button></div></section>
+
+<section class="step" data-phase="Explore">
+<h2>Moving sound source</h2>
+<p>A car sounds a horn at a steady 500 Hz. Each ring is a sound wave sent out earlier. Change the car’s speed and watch the rings.</p>
+<canvas id="dp" width="640" height="260" aria-label="Car moving right with circular sound waves. Waves bunch up in front and spread out behind."></canvas>
+<div class="sl"><label for="sp">Car speed</label><input id="sp" type="range" min="0" max="100" step="20" value="60"><span id="spv"></span></div>
+<div class="rd"><div>Horn frequency<b>500 Hz</b></div><div>Observer A (ahead)<b id="fa"></b></div><div>Observer B (behind)<b id="fb"></b></div></div>
+<p><button class="btn main" id="hear">Hear it pass</button> <span class="tag">Turn your device volume down first. The tone sweeps from A’s pitch to B’s.</span></p>
+<div class="cb draw"><b>🎨 Draw &amp; label</b>Sketch the car with waves for a stationary car, then a moving car. Mark where the waves are bunched up and where they are spread out. Label “high frequency” and “low frequency”.</div>
+<div class="cb write"><b>✏️ In your workbook</b>Finish: “In front of the moving car the waves are ________, so the frequency is ________ and the pitch is ________.”</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Explain</button></div></section>
+
+<section class="step" data-phase="Explain">
+<h2>Why the pitch changes</h2>
+<p>The <b>Doppler effect</b> is a change in the frequency of a wave detected by an observer, because the source and observer are moving relative to each other. Tap the diagram.</p>
+<svg class="scene" viewBox="0 0 640 220" role="group" aria-label="Moving source with wavefronts bunched in front and spread behind. Tap parts.">
+<g fill="none" stroke="#0b6e8a" stroke-width="2"><circle cx="300" cy="110" r="90"/><circle cx="320" cy="110" r="60"/><circle cx="340" cy="110" r="30"/></g>
+<g class="hs" tabindex="0" role="button" aria-label="Moving source" data-p="inf" data-info="<b>The moving source.</b> It sends out waves at a steady frequency. Its own pitch never changes. The change is in what an observer detects."><rect class="hl" x="345" y="95" width="30" height="30" fill="transparent" stroke="transparent"/><circle cx="360" cy="110" r="9" fill="#d6452b"/><path d="M375 110 H420 M420 110 l-8 -5 M420 110 l-8 5" stroke="#d6452b" stroke-width="3" fill="none"/><text x="340" y="150">Source</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="In front of the source" data-p="inf" data-info="<b>In front.</b> Each new wave starts closer to the one before it, so the waves are bunched up. Shorter wavelength, higher frequency, higher pitch."><rect class="hl" x="365" y="30" width="45" height="160" fill="transparent" stroke="transparent"/><text x="372" y="25">In front</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Behind the source" data-p="inf" data-info="<b>Behind.</b> The source moves away from the waves it has already sent out, so they are spread apart. Longer wavelength, lower frequency, lower pitch."><rect class="hl" x="208" y="30" width="100" height="160" fill="transparent" stroke="transparent"/><text x="225" y="25">Behind</text></g>
+<g><circle cx="570" cy="100" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M570 109 V140 M555 120 H585 M570 140 l-10 20 M570 140 l10 20" stroke="currentColor" stroke-width="2" fill="none"/><text x="520" y="185">Observer A</text></g>
+<g><circle cx="80" cy="100" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M80 109 V140 M65 120 H95 M80 140 l-10 20 M80 140 l10 20" stroke="currentColor" stroke-width="2" fill="none"/><text x="30" y="185">Observer B</text></g>
+</svg>
+<div class="card" id="inf" aria-live="polite">Tap the source, the area in front, or the area behind.</div>
+<div class="flips"><button class="btn flip rev" data-t="k1">Doppler effect</button><button class="btn flip rev" data-t="k2">emit</button><button class="btn flip rev" data-t="k3">stationary</button><button class="btn flip rev" data-t="k4">constant</button></div>
+<div class="ans" id="k1" hidden>Doppler effect: the change in the frequency of a wave detected by an observer when the source and observer move relative to each other.</div>
+<div class="ans" id="k2" hidden>Emit: to give out, for example sound or light waves.</div>
+<div class="ans" id="k3" hidden>Stationary: not moving.</div>
+<div class="ans" id="k4" hidden>Constant: staying the same.</div>
+<div class="cb write"><b>✏️ In your workbook</b>Make a two-column table: “Source approaching” and “Source moving away”. For each write wavelength, frequency and pitch.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Elaborate</button></div></section>
+
+<section class="step" data-phase="Elaborate">
+<h2>Apply it</h2>
+<div class="card quiz" data-a="2" data-why="The car is getting closer, so the waves reach you more often. Higher frequency, higher pitch." data-hint="Is the source getting closer or further away?"><p><b>A.</b> A race car speeds towards you. The pitch you hear is…</p><div class="opts"><button class="opt">Lower</button><button class="opt">The same</button><button class="opt">Higher</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="0" data-why="The source is moving away, so waves reach you less often. Lower frequency, lower pitch."><p><b>B.</b> The race car moves away from you. The pitch is…</p><div class="opts"><button class="opt">Lower</button><button class="opt">The same</button><button class="opt">Higher</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="If you travel alongside at the same speed, the distance between you and the source does not change. The Doppler effect depends on relative movement." data-hint="Think about whether the distance between you and the car changes."><p><b>C.</b> You ride in the car with the horn. The horn’s pitch, as you hear it, is…</p><div class="opts"><button class="opt">Higher</button><button class="opt">Unchanged</button><button class="opt">Lower</button></div><p class="fb"></p></div>
+<h3>Sound or electromagnetic?</h3>
+<p>The Doppler effect happens with all waves. Tap each technology, then tap the type of wave it mainly uses.</p>
+<div class="sort"><div class="opts"><button class="chip" data-t="e">Police speed radar</button><button class="chip" data-t="s">Blood flow ultrasound</button><button class="chip" data-t="e">Weather radar</button><button class="chip" data-t="e">Light from a distant galaxy</button><button class="chip" data-t="s">Sonar on a ship</button></div>
+<div class="buckets"><button class="bucket" data-b="s"><b>Sound waves</b><div></div></button><button class="bucket" data-b="e"><b>Electromagnetic waves</b><div></div></button></div><p class="fb"></p></div>
+<div class="cb write"><b>✏️ In your workbook</b>Pick one application. Explain in 2–3 sentences how it uses the change in frequency.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Go further</button></div></section>
+
+<section class="step" data-phase="Go further">
+<h2>Go further: the Doppler effect at work</h2>
+<p>Tap each card to read more.</p>
+<div class="flips"><button class="btn flip rev" data-t="g1">Police radar</button><button class="btn flip rev" data-t="g2">Weather radar</button><button class="btn flip rev" data-t="g3">Blood flow</button><button class="btn flip rev" data-t="g4">Astronomy</button></div>
+<div class="info ans" id="g1" hidden><b>Police radar.</b> A radar gun sends out radio waves. They bounce off a moving car and return with a slightly different frequency. The bigger the change, the faster the car.</div>
+<div class="info ans" id="g2" hidden><b>Weather radar.</b> Radio waves bounce off raindrops. The frequency change shows whether the rain is moving towards or away from the radar and how fast, which helps forecasters track storms.</div>
+<div class="info ans" id="g3" hidden><b>Blood flow.</b> Doctors use ultrasound that reflects off moving red blood cells. The change in frequency shows the speed and direction of blood flow.</div>
+<div class="info ans" id="g4" hidden><b>Astronomy.</b> Light from distant galaxies is shifted to longer wavelengths, called redshift. This suggests those galaxies are moving away from us, which is one piece of evidence that the universe is expanding.</div>
+<div class="card"><h3>Common mix-ups</h3><ul><li>The source does <b>not</b> change its own pitch. The observer detects a different frequency.</li><li>The wave speed in air does not change. The spacing between waves does.</li><li>Pitch is about frequency, not volume.</li></ul></div>
+<div class="task"><h3>Doppler effect presentation</h3>
+<p>Create a 2–3 minute slide presentation that explains the Doppler effect. Include:</p>
+<ul><li>a diagram of a stationary sound source</li><li>a diagram of a source moving towards an observer, and one moving away</li><li>for each, the waves drawn, what happens to pitch and loudness, and the link to frequency and wavelength</li><li>at least one real-world technology: radar, medical imaging or astronomy</li></ul>
+<p><b>Support:</b> use the guiding questions from your teacher. <b>Extend:</b> evaluate why knowing about the Doppler effect matters for society.</p>
+<p>When you present, give classmates feedback using <i>I like, I wonder, next steps</i>.</p></div>
+<div class="cb research"><b>🔍 Research task</b>Find one more real-world use of the Doppler effect. Note which wave it uses and what it measures.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Evaluate</button></div></section>
+
+<section class="step ev" data-phase="Evaluate">
+<h2>Check your understanding</h2><p class="score tag"></p>
+<div class="card quiz" data-a="1" data-why="The Doppler effect is a change in the frequency detected by an observer."><p><b>1.</b> What is the Doppler effect?</p><div class="opts"><button class="opt">A change in a wave’s speed in a medium</button><button class="opt">A change in detected frequency due to relative motion</button><button class="opt">A change in a wave’s amplitude</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="2" data-why="Waves in front of a moving source are bunched up, so the wavelength is shorter."><p><b>2.</b> In front of a moving source, the wavelength is…</p><div class="opts"><button class="opt">Longer</button><button class="opt">Unchanged</button><button class="opt">Shorter</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="0" data-why="Radar guns compare the frequency of reflected radio waves."><p><b>3.</b> Which device uses the Doppler effect?</p><div class="opts"><button class="opt">A radar speed gun</button><button class="opt">A thermometer</button><button class="opt">A loudspeaker</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="Redshift means the wavelength is stretched, so the source is moving away."><p><b>4.</b> Light from a galaxy has a longer wavelength than expected. The galaxy is probably…</p><div class="opts"><button class="opt">Moving towards us</button><button class="opt">Moving away from us</button><button class="opt">Not moving at all</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="2" data-why="Looking back at 9.4: pitch depends on frequency. The Doppler effect changes frequency, so pitch changes."><p><b>5. Looking back.</b> Which sound property depends on frequency?</p><div class="opts"><button class="opt">Volume</button><button class="opt">Speed in air</button><button class="opt">Pitch</button></div><p class="fb"></p></div>
+<div class="cb write"><b>✏️ Goal review</b>Write a short paragraph on one real-world application of the Doppler effect. Say what changes and why.</div>
+<div class="card checks"><h3>Workbook checklist</h3>
+<label><input type="checkbox">My siren pitch prediction</label><label><input type="checkbox">My stationary and moving car diagrams</label><label><input type="checkbox">My approaching and moving away table</label><label><input type="checkbox">My application explanation</label><label><input type="checkbox">My Doppler effect presentation plan or slides</label><label><input type="checkbox">My extra application research</label><label><input type="checkbox">My goal review paragraph</label></div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><a class="btn main" href="index.html" style="text-decoration:none">Back to all lessons</a></div></section>
+</div>
+<script src="assets/lesson.js"></script>
+<script>(function(){var $=function(i){return document.getElementById(i)},c=$('dp'),x=c.getContext('2d'),T0=Date.now(),ac,osc,on=false;
+function info(){var v=+$('sp').value;$('spv').textContent=v+' m/s';$('fa').textContent=Math.round(500*340/(340-v))+' Hz';$('fb').textContent=Math.round(500*340/(340+v))+' Hz'}
+$('sp').oninput=info;info();
+function fr(){var v=+$('sp').value,vp=100*v/340,t=((Date.now()-T0)/1000)%12,col=getComputedStyle(document.body).color;x.clearRect(0,0,640,260);
+x.strokeStyle='#0b6e8a';x.lineWidth=1.5;for(var te=0;te<=t;te+=0.5){x.beginPath();x.arc(100+vp*te,120,100*(t-te),0,7);x.stroke()}
+var sx=100+vp*t;x.fillStyle='#d6452b';x.beginPath();x.arc(sx,120,8,0,7);x.fill();
+x.fillStyle=col;x.font='600 13px system-ui';x.fillText('Observer B',10,245);x.fillText('Observer A',560,245);x.beginPath();x.arc(30,215,8,0,7);x.arc(610,215,8,0,7);x.fill();requestAnimationFrame(fr)}fr();
+function stop(){if(on){try{osc.stop()}catch(e){}on=false;$('hear').textContent='Hear it pass'}}
+$('hear').onclick=function(){if(on)return;var v=+$('sp').value;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();osc=ac.createOscillator();var g=ac.createGain(),n=ac.currentTime;osc.connect(g);g.connect(ac.destination);g.gain.value=0.1;
+osc.frequency.setValueAtTime(500*340/(340-v),n);osc.frequency.setValueAtTime(500*340/(340-v),n+1.2);osc.frequency.linearRampToValueAtTime(500*340/(340+v),n+1.5);osc.start(n);osc.stop(n+2.7);on=true;this.textContent='Playing…';var b=this;osc.onended=function(){on=false;b.textContent='Hear it pass'}}catch(e){this.textContent='Sound not available'}};
+document.querySelectorAll('[data-nav],a[href]').forEach(function(b){b.addEventListener('click',stop)});window.addEventListener('pagehide',stop)})();</script>
+</body></html>
