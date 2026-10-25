@@ -18,7 +18,7 @@ s.querySelectorAll('.bucket').forEach(function(b){b.addEventListener('click',fun
 var n=s.querySelectorAll('.chip.right').length,m=s.querySelectorAll('.chip').length;s.querySelector('.fb').textContent=n+' of '+m+' sorted correctly. Tap a red item to try again.'})})});
 document.querySelectorAll('.hs').forEach(function(h){function f(){document.querySelectorAll('.hs').forEach(function(x){x.classList.remove('on')});h.classList.add('on');var p=document.getElementById(h.dataset.p);p.innerHTML=h.dataset.info}
 h.addEventListener('click',f);h.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();f()}})});
-document.querySelectorAll('.checks input').forEach(function(c,i){c.checked=!!S.checks[i];c.addEventListener('change',function(){S.checks[i]=c.checked;var all=document.querySelectorAll('.checks input'),n=[].filter.call(all,function(x){return x.checked}).length;S.done=n===all.length;save()})});
+document.querySelectorAll('.checks input').forEach(function(c,i){c.checked=!!S.checks[i];c.addEventListener('change',function(){S.checks[i]=c.checked;var all=document.querySelectorAll('.checks input'),n=[].filter.call(all,function(x){return x.checked}).length;S.done=n===all.length;S.n=n;S.total=all.length;save()})});
 document.querySelectorAll('.again').forEach(function(b){b.addEventListener('click',function(){location.reload()})});
-go(S.step);tally();
+S.total=document.querySelectorAll(".checks input").length;go(S.step);tally();
 })();
