@@ -36,6 +36,23 @@
 <g class="hs" tabindex="0" role="button" aria-label="Space beside the flame" data-p="info" data-info="<b>Radiation.</b> You feel heat on your hand beside the flame with nothing touching it. Electromagnetic waves carry the energy, so no particles are needed. This is also how the Sun warms Earth."><rect class="hl" x="30" y="200" width="110" height="80" fill="transparent" stroke="transparent"/><text x="40" y="245">Heat on</text><text x="40" y="262">your hand</text></g>
 </svg>
 <div class="card" id="info" aria-live="polite">Tap a part of the picture to see which type of heat transfer happens there.</div>
+<h3>Look closer: a convection current</h3>
+<p>Heat the water on one side and watch the dots. Red dots are warm water. Blue dots are cool water. Tap the labels too.</p>
+<svg class="scene" viewBox="0 0 640 265" role="group" aria-label="Beaker of water heated on the left. Warm water rises on the left, cool water sinks on the right, forming a convection current.">
+<rect x="190" y="50" width="260" height="160" rx="6" fill="#8fb8d8" fill-opacity=".25" stroke="currentColor" stroke-width="3"/>
+<path d="M205 190 V80 M205 80 l-6 10 M205 80 l6 10" stroke="#d6452b" stroke-width="3" fill="none"/>
+<path d="M235 62 H405 M405 62 l-10 -6 M405 62 l-10 6" stroke="#8a6d6d" stroke-width="3" fill="none"/>
+<path d="M435 80 V190 M435 190 l-6 -10 M435 190 l6 -10" stroke="#3b6fd0" stroke-width="3" fill="none"/>
+<path d="M405 198 H235 M235 198 l10 -6 M235 198 l10 6" stroke="#8a6d6d" stroke-width="3" fill="none"/>
+<g id="cp"></g>
+<g class="hs" tabindex="0" role="button" aria-label="Warm water rises" data-p="cinfo" data-info="<b>Warm water rises.</b> Heated water particles move faster and spread apart, so the warm water is less dense than the water around it. It floats upwards."><rect class="hl" x="10" y="60" width="230" height="140" fill="transparent" stroke="transparent"/><text x="14" y="125">Warm water</text><text x="14" y="143">rises</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Cool water sinks" data-p="cinfo" data-info="<b>Cool water sinks.</b> Cooler water is denser, so it sinks. It flows along the bottom towards the heater to take the place of the rising water, and the loop repeats. This moving loop is a <b>convection current</b>."><rect class="hl" x="405" y="60" width="225" height="140" fill="transparent" stroke="transparent"/><text x="470" y="125">Cool water</text><text x="470" y="143">sinks</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Heat source" data-p="cinfo" data-info="<b>Heat source.</b> Thermal energy flows into the water here. Convection can only happen in a fluid (a liquid or a gas), because the particles need to be free to move and carry the energy with them."><rect class="hl" x="190" y="214" width="130" height="46" fill="transparent" stroke="transparent"/><path d="M215 255 q10 -28 22 -8 q8 -26 20 0 q12 -22 20 6 z" fill="#f08a3c"/><text x="278" y="244">Heat source</text></g>
+</svg>
+<p><button class="btn main" id="ch">Heater: off</button></p>
+<div class="card" id="cinfo" aria-live="polite">Switch the heater on, then tap a label.</div>
+<div class="cb draw"><b>🎨 Draw &amp; label</b>Sketch a beaker of water with a heat source under one side. Draw a loop of arrows for the convection current. Label where the water is warm and rising, and where it is cool and sinking.</div>
+
 <h3>Key terms: tap to reveal</h3>
 <div class="flips">
 <button class="btn flip rev" data-t="k1">conduction<small></small></button>
@@ -56,9 +73,23 @@
 <div class="sort"><div class="opts">
 <button class="chip" data-t="c">Copper pan</button><button class="chip" data-t="i">Plastic spatula</button><button class="chip" data-t="c">Silver spoon</button><button class="chip" data-t="i">Wooden spoon</button><button class="chip" data-t="i">Glass wool</button><button class="chip" data-t="c">Iron nail</button></div>
 <div class="buckets"><button class="bucket" data-b="c"><b>Good conductor</b><div></div></button><button class="bucket" data-b="i"><b>Insulator</b><div></div></button></div><p class="fb"></p></div>
-<div class="card"><h3>Science in society</h3><p>Double-glazed windows, insulated drink bottles and space blankets all slow heat transfer.</p></div>
-<div class="cb research"><b>🔍 Research task</b>Pick one of those technologies. Find out which type of transfer (conduction, convection or radiation) it reduces and how. Write 2–3 sentences.</div>
 <div class="cb write"><b>✏️ In your workbook</b>Explain why a saucepan has a metal base but a plastic handle.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Go further</button></div></section>
+
+<section class="step" data-phase="Go further">
+<h2>Go further: stopping heat transfer</h2>
+<p>People use science to slow down unwanted heat transfer. Tap each card to read more.</p>
+<div class="flips"><button class="btn flip rev" data-t="g1">Double-glazed windows</button><button class="btn flip rev" data-t="g2">Insulated drink bottles</button><button class="btn flip rev" data-t="g3">Space blankets</button><button class="btn flip rev" data-t="g4">Thermal-imaging cameras</button></div>
+<div class="info ans" id="g1" hidden><b>Double-glazed windows.</b> Two panes with a gap of trapped air or gas between them. Gases are poor conductors, and the narrow gap stops convection currents, so less heat passes through.</div>
+<div class="info ans" id="g2" hidden><b>Insulated drink bottles.</b> A gap between two walls with most of the air removed. With few particles, there is very little conduction or convection, and shiny walls reflect radiation.</div>
+<div class="info ans" id="g3" hidden><b>Space blankets.</b> A thin, shiny layer reflects radiated heat back to the body, so it helps to keep a person warm.</div>
+<div class="info ans" id="g4" hidden><b>Thermal-imaging cameras.</b> Warm objects give off more infrared radiation. The camera detects it and shows hotter and cooler areas in different colours.</div>
+<div class="task"><h3>Thermal insulation technologies</h3>
+<p>With a partner, study a set of short sources (images, articles, infographics or product descriptions) about these technologies. For each one:</p>
+<ul><li>identify whether it mainly reduces conduction, convection or radiation</li><li>explain how it does this</li></ul>
+<p>Summarise your findings in a comparison chart. Then share one example with the class, explaining how scientific knowledge of heat transfer informed the design.</p>
+<p><b>Support:</b> use highlighted key ideas and the starter “This technology reduces heat transfer by…”. <b>Extend:</b> propose an innovation that could further reduce unwanted heat loss or gain.</p></div>
+<div class="cb research"><b>🔍 Research task</b>Find one more product that reduces heat transfer. Note which type of heat transfer it reduces and how.</div>
 <div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Evaluate</button></div></section>
 
 <section class="step ev" data-phase="Evaluate">
@@ -67,9 +98,10 @@
 <div class="card quiz" data-a="0" data-why="Warmer fluid is less dense, so it rises." data-hint="Think about density."><p><b>2.</b> Why does warm water rise in a pot?</p><div class="opts"><button class="opt">It becomes less dense</button><button class="opt">It becomes heavier</button><button class="opt">It stops moving</button></div><p class="fb"></p></div>
 <div class="card quiz" data-a="1" data-why="Radiation needs no particles, so it crosses space."><p><b>3.</b> How does the Sun’s energy reach Earth?</p><div class="opts"><button class="opt">Conduction</button><button class="opt">Radiation</button><button class="opt">Convection</button></div><p class="fb"></p></div>
 <div class="card quiz" data-a="2" data-why="Low thermal conductivity means heat passes through slowly, so the handle stays cooler."><p><b>4.</b> Why is plastic used for pan handles?</p><div class="opts"><button class="opt">It melts easily</button><button class="opt">It conducts heat quickly</button><button class="opt">It has low thermal conductivity</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="Cooler water is denser, so it sinks on the side away from the heater and then flows back towards it. This loop is a convection current." data-hint="Think about where the water is coolest."><p><b>5.</b> In a heated beaker, where does the water sink?</p><div class="opts"><button class="opt">Directly above the heater</button><button class="opt">On the cool side, away from the heater</button><button class="opt">Nowhere, it all stays still</button></div><p class="fb"></p></div>
 <div class="cb write"><b>✏️ Goal review</b>Write two sentences: how does the Sun’s energy reach Earth, and why is this not conduction or convection?</div>
 <div class="card checks"><h3>Workbook checklist</h3>
-<label><input type="checkbox">My spoon prediction and reason</label><label><input type="checkbox">My sketch of particles passing energy along a rod</label><label><input type="checkbox">My three-column table</label><label><input type="checkbox">My pot sketch with three coloured arrows</label><label><input type="checkbox">My pan handle explanation</label><label><input type="checkbox">My goal review sentences</label></div>
+<label><input type="checkbox">My spoon prediction and reason</label><label><input type="checkbox">My sketch of particles passing energy along a rod</label><label><input type="checkbox">My three-column table</label><label><input type="checkbox">My pot sketch with three coloured arrows</label><label><input type="checkbox">My pan handle explanation</label><label><input type="checkbox">My convection current sketch</label><label><input type="checkbox">My insulation technology comparison chart</label><label><input type="checkbox">My goal review sentences</label></div>
 <div class="nav"><button class="btn" data-nav="-1">Back</button><a class="btn main" href="index.html" style="text-decoration:none">Back to all lessons</a></div></section>
 </div>
 <script src="assets/lesson.js"></script>
@@ -81,4 +113,10 @@ function t(){if(on)e[0]=1;var n=e.slice();for(var i=0;i<N;i++){var a=e[i-1]===un
 x.clearRect(0,0,640,130);x.fillStyle=getComputedStyle(document.body).color;x.font='600 13px system-ui';x.fillText('Heated end',20,18);x.fillText('Cool end',560,18);
 for(var i=0;i<N;i++){var s=e[i]*7,cx=45+i*50+(Math.random()-.5)*s,cy=65+(Math.random()-.5)*s;x.beginPath();x.arc(cx,cy,16,0,7);x.fillStyle='rgb('+(70+Math.round(e[i]*185))+','+(110-Math.round(e[i]*70))+','+(190-Math.round(e[i]*150))+')';x.fill()}
 requestAnimationFrame(t)}t()})();</script>
+<script>(function(){var g=document.getElementById('cp'),b=document.getElementById('ch'),N=24,C=[],on=false,ph=0,last=Date.now(),W=220,H=120,ns='http://www.w3.org/2000/svg';
+for(var i=0;i<N;i++){var c=document.createElementNS(ns,'circle');c.setAttribute('r',5);g.appendChild(c);C.push(c)}
+b.onclick=function(){on=!on;b.textContent='Heater: '+(on?'on':'off')};
+function pos(u){var p=u*2*(W+H),x,y,f;if(p<H){x=0;y=H-p;f=1}else if((p-=H)<W){x=p;y=0;f=1-p/W}else if((p-=W)<H){x=W;y=p;f=0}else{p-=H;x=W-p;y=H;f=p/W}return[215+x,72+y,f]}
+function fr(){var n=Date.now(),dt=(n-last)/1000;last=n;if(on)ph=(ph+dt*0.05)%1;for(var i=0;i<N;i++){var q=pos((i/N+ph)%1),j=on?0:Math.sin(n/200+i*3)*1.5,k=on?0:Math.cos(n/230+i*5)*1.5,f=on?q[2]:0.15;
+C[i].setAttribute('cx',q[0]+j);C[i].setAttribute('cy',q[1]+k);C[i].setAttribute('fill','rgb('+Math.round(60+154*f)+','+Math.round(120-51*f)+','+Math.round(220-177*f)+')')}requestAnimationFrame(fr)}fr()})();</script>
 </body></html>
