@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.6 How we hear · Good Science 9</title><link rel="stylesheet" href="assets/style.css">
+<style>.sl{display:grid;grid-template-columns:150px 1fr 110px;gap:10px;align-items:center;margin:6px 0}.sl input{width:100%}.chainx{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}.chainx span{border:2px solid var(--ink);border-radius:8px;padding:6px 10px;font-weight:700;background:var(--card)}</style></head>
+<body data-lesson="9-6"><div class="wrap">
+<div class="top"><div class="row"><a href="index.html">← All lessons</a><span><span class="phase"></span> · <span class="pct">0%</span></span></div><div class="bar"><i></i></div></div>
+
+<section class="step" data-phase="Engage">
+<h1>9.6 How we hear</h1>
+<div class="goal"><b>Goal:</b> explain how the ear works in relation to sound energy.<br><small>Textbook: Good Science 9, pp. 210–213.</small></div>
+<div class="sc"><b>Success criteria</b><ul><li><span class="tg ">Must</span>I can explain how the ear responds to sound.</li><li><span class="tg s">Should</span>I can name the outer, middle and inner ear and two key structures, such as the eardrum and cochlea.</li><li><span class="tg c">Could</span>I can explain how the features of sound waves relate to hearing.</li></ul></div>
+<div class="card"><h3>Predict first</h3><p>A dog whistle makes a dog run to its owner, but people nearby hear nothing. Why?</p>
+<div class="quiz" data-a="1" data-why="Humans hear roughly 20 Hz to 20 000 Hz. The whistle’s frequency is above that, but within a dog’s range." data-hint="Think about frequency, not volume."><div class="opts"><button class="opt">The whistle is too quiet for people</button><button class="opt">Its frequency is above the human hearing range</button><button class="opt">Sound can’t travel to people</button></div><p class="fb"></p></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Write your prediction and a reason.</div>
+<div class="nav"><span></span><button class="btn main" data-nav="1">Explore</button></div></section>
+
+<section class="step" data-phase="Explore">
+<h2>Find your hearing range</h2>
+<p><b>Before you start:</b> turn your device volume down low and put headphones on only if your teacher says so. Press Play, then slowly slide the pitch. Press Stop when you finish.</p>
+<div class="sl"><label for="hz">Pitch</label><input id="hz" type="range" min="0" max="100" value="57"><span id="hv"></span></div>
+<p><button class="btn main" id="play">Play tone</button> <span class="tag" id="rg"></span></p>
+<p class="tag">Phone and laptop speakers can’t make very low notes, so you may only find your highest pitch. Hearing at high pitches can differ between people and can decline with age.</p>
+<div class="cb write"><b>✏️ In your workbook</b>Record the highest frequency you can hear. Compare with a partner and note why results might differ.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Explain</button></div></section>
+
+<section class="step" data-phase="Explain">
+<h2>The ear, step by step</h2>
+<p>The ear has three sections: outer, middle and inner. Tap each part.</p>
+<svg class="scene" viewBox="0 0 640 260" role="group" aria-label="Ear diagram with outer, middle and inner sections. Tap parts to learn their jobs.">
+<rect x="10" y="30" width="190" height="210" fill="#8fb8d8" opacity=".22"/><rect x="200" y="30" width="160" height="210" fill="#d6a84a" opacity=".22"/><rect x="360" y="30" width="270" height="210" fill="#6ac19a" opacity=".22"/>
+<text x="60" y="24">Outer ear</text><text x="235" y="24">Middle ear</text><text x="460" y="24">Inner ear</text>
+<g class="hs" tabindex="0" role="button" aria-label="Pinna" data-p="inf" data-info="<b>Pinna.</b> The visible part of the outer ear. It collects sound waves and funnels them into the ear canal."><rect class="hl" x="30" y="60" width="60" height="140" fill="transparent" stroke="transparent"/><path d="M90 80 q-60 20 -42 70 q14 36 42 44" fill="none" stroke="currentColor" stroke-width="4"/><text x="30" y="225">Pinna</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Ear canal" data-p="inf" data-info="<b>Ear canal.</b> A short tube that carries the sound waves to the eardrum."><rect class="hl" x="92" y="105" width="105" height="45" fill="transparent" stroke="transparent"/><path d="M92 112 H196 M92 144 H196" stroke="currentColor" stroke-width="4"/><text x="110" y="170">Ear canal</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Eardrum" data-p="inf" data-info="<b>Eardrum (a membrane).</b> A thin sheet of tissue that vibrates when sound waves hit it. Sound waves in the air become vibrations of the membrane."><rect class="hl" x="190" y="90" width="22" height="75" fill="transparent" stroke="transparent"/><line x1="201" y1="95" x2="201" y2="160" stroke="#d6452b" stroke-width="6"/><text x="165" y="185">Eardrum</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Ossicles" data-p="inf" data-info="<b>Ossicles.</b> Three tiny bones in the middle ear. They pass the vibrations on and make them stronger before they reach the inner ear."><rect class="hl" x="225" y="100" width="115" height="55" fill="transparent" stroke="transparent"/><circle cx="245" cy="127" r="11" fill="#c99a00"/><circle cx="283" cy="127" r="8" fill="#c99a00"/><circle cx="315" cy="127" r="6" fill="#c99a00"/><path d="M256 127 H275 M291 127 H309" stroke="#c99a00" stroke-width="3"/><text x="240" y="170">Ossicles</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Cochlea" data-p="inf" data-info="<b>Cochlea.</b> A fluid-filled spiral in the inner ear. Vibrations make the fluid move, which bends tiny hair cells. The hair cells change the movement into electrical signals."><rect class="hl" x="365" y="70" width="100" height="110" fill="transparent" stroke="transparent"/><path d="M420 85 a38 38 0 1 1 -38 38 a24 24 0 1 1 24 -24 a11 11 0 1 1 -11 11" fill="none" stroke="#1f7a4d" stroke-width="5"/><text x="385" y="200">Cochlea</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Auditory nerve" data-p="inf" data-info="<b>Auditory nerve.</b> Carries the electrical signals to the brain, which interprets them as sound."><rect class="hl" x="470" y="100" width="150" height="45" fill="transparent" stroke="transparent"/><path d="M470 123 H590 M590 123 l-8 -5 M590 123 l-8 5" stroke="#7d4cc2" stroke-width="4" fill="none"/><text x="480" y="160">Nerve to brain</text></g>
+</svg>
+<div class="card" id="inf" aria-live="polite">Tap a part of the ear to see its job.</div>
+<p>Energy changes form on the way through:</p>
+<div class="chainx"><span>Sound wave (air)</span>→<span>Vibrating eardrum and bones</span>→<span>Moving fluid</span>→<span>Electrical signal</span></div>
+<div class="flips"><button class="btn flip rev" data-t="k1">pinna</button><button class="btn flip rev" data-t="k2">membrane</button><button class="btn flip rev" data-t="k3">cochlea</button><button class="btn flip rev" data-t="k4">audiogram</button><button class="btn flip rev" data-t="k5">infrasound</button><button class="btn flip rev" data-t="k6">ultrasound</button></div>
+<div class="ans" id="k1" hidden>Pinna: the outer part of the ear that collects sound.</div>
+<div class="ans" id="k2" hidden>Membrane: a thin sheet of tissue, such as the eardrum.</div>
+<div class="ans" id="k3" hidden>Cochlea: the spiral in the inner ear that changes vibrations into nerve signals.</div>
+<div class="ans" id="k4" hidden>Audiogram: a graph showing the quietest sounds a person can hear at different frequencies.</div>
+<div class="ans" id="k5" hidden>Infrasound: sound below the range of human hearing, under about 20 Hz.</div>
+<div class="ans" id="k6" hidden>Ultrasound: sound above the range of human hearing, over about 20 000 Hz.</div>
+<div class="cb draw"><b>🎨 Draw &amp; label</b>Sketch the ear and label the pinna, ear canal, eardrum, ossicles, cochlea and nerve. Shade the outer, middle and inner sections in three colours.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Elaborate</button></div></section>
+
+<section class="step" data-phase="Elaborate">
+<h2>Put it in order</h2>
+<p>Tap the steps in the order that sound travels, starting with the first.</p>
+<div class="order"><div class="opts" id="oc">
+<button class="btn oc" data-n="4">Fluid in the cochlea moves</button><button class="btn oc" data-n="1">Sound waves enter the ear canal</button><button class="btn oc" data-n="6">Auditory nerve sends signals to the brain</button><button class="btn oc" data-n="2">Eardrum vibrates</button><button class="btn oc" data-n="5">Hair cells make electrical signals</button><button class="btn oc" data-n="3">Ossicles pass on and amplify the vibrations</button></div>
+<ol id="oo"></ol><p class="fb" id="of"></p><button class="btn" id="or">Try again</button></div>
+<div class="cb write"><b>✏️ In your workbook</b>Draw a flow chart with six boxes for this sequence. Under it write the three energy changes: sound to mechanical, mechanical to fluid motion, fluid motion to electrical.</div>
+<h3>Which section?</h3><p>Tap an item, then its section.</p>
+<div class="sort"><div class="opts"><button class="chip" data-t="o">Pinna</button><button class="chip" data-t="o">Ear canal</button><button class="chip" data-t="m">Ossicles</button><button class="chip" data-t="i">Cochlea</button><button class="chip" data-t="i">Hair cells</button></div>
+<div class="buckets"><button class="bucket" data-b="o"><b>Outer ear</b><div></div></button><button class="bucket" data-b="m"><b>Middle ear</b><div></div></button><button class="bucket" data-b="i"><b>Inner ear</b><div></div></button></div><p class="fb"></p></div>
+<div class="cb write"><b>✏️ In your workbook</b>Choose one structure in the middle ear. In a short paragraph explain how it makes the vibrations stronger and link it to amplitude.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Go further</button></div></section>
+
+<section class="step" data-phase="Go further">
+<h2>Go further: protecting and restoring hearing</h2>
+<p>Tap each card to read more.</p>
+<div class="flips"><button class="btn flip rev" data-t="g1">Hearing loss</button><button class="btn flip rev" data-t="g2">Cochlear implants</button><button class="btn flip rev" data-t="g3">Animal hearing</button></div>
+<div class="info ans" id="g1" hidden><b>Hearing loss.</b> Very loud sounds, or loud sounds over a long time, can damage the hair cells in the cochlea. They do not grow back. The louder the sound, the shorter the time it takes to cause damage. Earmuffs, earplugs and turning the volume down all help.</div>
+<div class="info ans" id="g2" hidden><b>Cochlear implants.</b> If the hair cells are damaged, an implant can help. A microphone picks up sound, a processor turns it into electrical signals, and electrodes in the cochlea pass the signals to the auditory nerve.</div>
+<div class="info ans" id="g3" hidden><b>Animal hearing.</b> Humans hear about 20 Hz to 20 000 Hz. Dogs can hear higher notes, bats use ultrasound far higher still, and elephants use infrasound to communicate over long distances.</div>
+<div class="task"><h3>Public awareness poster</h3>
+<p>Choose one loud sound: concert speakers, fireworks, headphones at full volume or construction machinery. Research it, then design a poster to help people prevent hearing loss. Include:</p>
+<ul><li>a labelled diagram of the ear showing how it processes sound</li><li>an explanation of how the ear detects sound, from vibration to nerve signal</li><li>how your chosen sound damages the ear, and which part is affected</li><li>the impact on hearing, such as trouble with certain frequencies or permanent damage</li><li>prevention tips: safe listening habits, ear protection and hearing check-ups</li></ul>
+<p>Include the decibel level of your sound, from a reliable source.</p>
+<p><b>Support:</b> start from a labelled ear diagram and a model template. <b>Extend:</b> evaluate how cochlear implants or digital hearing aids rely on the science of sound.</p></div>
+<div class="cb research"><b>🔍 Research task</b>Find the decibel level of your chosen sound and the safe listening time for it. Note your source.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Evaluate</button></div></section>
+
+<section class="step ev" data-phase="Evaluate">
+<h2>Check your understanding</h2><p class="score tag"></p>
+<div class="card quiz" data-a="2" data-why="The pinna collects sound and funnels it into the ear canal."><p><b>1.</b> Which part collects sound waves?</p><div class="opts"><button class="opt">Cochlea</button><button class="opt">Eardrum</button><button class="opt">Pinna</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="The ossicles pass vibrations to the inner ear and make them stronger."><p><b>2.</b> What do the ossicles do?</p><div class="opts"><button class="opt">Turn vibrations into nerve signals</button><button class="opt">Pass on and amplify vibrations</button><button class="opt">Collect sound</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="0" data-why="Hair cells in the cochlea change the movement of fluid into electrical signals."><p><b>3.</b> Where are vibrations changed into electrical signals?</p><div class="opts"><button class="opt">Cochlea</button><button class="opt">Ear canal</button><button class="opt">Ossicles</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="A typical human hears about 20 Hz to 20 000 Hz."><p><b>4.</b> The typical range of human hearing is…</p><div class="opts"><button class="opt">2 Hz to 2000 Hz</button><button class="opt">20 Hz to 20 000 Hz</button><button class="opt">200 Hz to 2 000 000 Hz</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="0" data-why="Looking back at 9.5: the source is getting closer, so the waves are bunched up and the frequency you detect is higher."><p><b>5. Looking back.</b> A siren is moving towards you. The pitch you hear is…</p><div class="opts"><button class="opt">Higher than the siren makes</button><button class="opt">Lower than the siren makes</button><button class="opt">The same as the siren makes</button></div><p class="fb"></p></div>
+<div class="cb write"><b>✏️ Goal review</b>Write a paragraph tracing the energy from sound wave to nerve signal. Use: eardrum, ossicles, cochlea, electrical.</div>
+<div class="card checks"><h3>Workbook checklist</h3>
+<label><input type="checkbox">My dog whistle prediction</label><label><input type="checkbox">My highest-frequency result and comparison</label><label><input type="checkbox">My labelled and shaded ear diagram</label><label><input type="checkbox">My six-box flow chart and energy changes</label><label><input type="checkbox">My middle-ear amplifier paragraph</label><label><input type="checkbox">My poster plan or finished poster</label><label><input type="checkbox">My decibel research with source</label><label><input type="checkbox">My goal review paragraph</label></div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><a class="btn main" href="index.html" style="text-decoration:none">Back to all lessons</a></div></section>
+</div>
+<script src="assets/lesson.js"></script>
+<script>(function(){var $=function(i){return document.getElementById(i)},ac,osc,gn,on=false;
+function F(){return Math.round(20*Math.pow(1000,+$('hz').value/100))}
+function upd(){var f=F();$('hv').textContent=f+' Hz';$('rg').textContent=f<20?'below human hearing (infrasound)':f>20000?'above human hearing (ultrasound)':'within the typical human range';if(on)osc.frequency.value=f}
+function stop(){if(on){try{osc.stop()}catch(e){}on=false;$('play').textContent='Play tone'}}
+$('play').onclick=function(){if(on){stop();return}try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();osc=ac.createOscillator();gn=ac.createGain();gn.gain.value=0.05;osc.connect(gn);gn.connect(ac.destination);on=true;upd();osc.start();this.textContent='Stop tone'}catch(e){on=false;this.textContent='Sound not available'}};
+$('hz').oninput=upd;upd();document.querySelectorAll('[data-nav],a[href]').forEach(function(b){b.addEventListener('click',stop)});window.addEventListener('pagehide',stop);
+var nx=1;function reset(){nx=1;$('oo').innerHTML='';$('of').textContent='';$('of').className='fb';document.querySelectorAll('.oc').forEach(function(b){b.disabled=false;b.classList.remove('wrong')})}
+document.querySelectorAll('.oc').forEach(function(b){b.onclick=function(){if(+b.dataset.n===nx){var li=document.createElement('li');li.textContent=b.textContent;$('oo').appendChild(li);b.disabled=true;nx++;$('of').className='fb ok';$('of').textContent=nx>6?'Complete. That is the whole pathway from sound wave to brain.':'Correct. What comes next?'}else{b.classList.add('wrong');$('of').className='fb no';$('of').textContent='Not yet. Think about what happens straight after step '+(nx-1||'the start')+'.';setTimeout(function(){b.classList.remove('wrong')},700)}}});$('or').onclick=reset})();</script>
+</body></html>

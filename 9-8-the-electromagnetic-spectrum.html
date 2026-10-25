@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.8 The electromagnetic spectrum · Good Science 9</title><link rel="stylesheet" href="assets/style.css">
+<style>.sl{display:grid;grid-template-columns:150px 1fr 10px;gap:10px;align-items:center;margin:6px 0}.sl input{width:100%}.rd{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}.rd div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px}.rd b{display:block;font-size:1.1rem;color:var(--accent)}.strip{height:26px;border-radius:6px;border:1px solid var(--line);background:linear-gradient(90deg,#5b7fa6,#7c6bc4,#c2543d,#e0c040,#3aa86a,#4a6fd0,#8e44ad,#2c8aa6,#222)}.ebar{height:12px;background:var(--line);border-radius:6px;overflow:hidden;margin-top:4px}.ebar i{display:block;height:100%;background:var(--hot);width:0}</style></head>
+<body data-lesson="9-8"><div class="wrap">
+<div class="top"><div class="row"><a href="index.html">← All lessons</a><span><span class="phase"></span> · <span class="pct">0%</span></span></div><div class="bar"><i></i></div></div>
+
+<section class="step" data-phase="Engage">
+<h1>9.8 The electromagnetic spectrum</h1>
+<div class="goal"><b>Goal:</b> compare the waves of the electromagnetic spectrum, including their uses and properties.<br><small>Textbook: Good Science 9, pp. 218–219.</small></div>
+<div class="sc"><b>Success criteria</b><ul><li><span class="tg ">Must</span>I can list at least five regions of the electromagnetic spectrum.</li><li><span class="tg s">Should</span>I can order the spectrum from longest to shortest wavelength and explain the trend in frequency and energy.</li><li><span class="tg c">Could</span>I can link high-frequency waves, such as gamma rays, to their potential for damage by referring to energy.</li></ul></div>
+<div class="card"><h3>Predict first</h3><p>Visible light is a mix of colours, from red to violet. Which end carries the most energy?</p>
+<div class="quiz" data-a="1" data-why="Violet has the shortest wavelength of visible light, so the highest frequency and the most energy." data-hint="Shorter wavelength means higher frequency. Which colour has the shortest wavelength?"><div class="opts"><button class="opt">The red end</button><button class="opt">The violet end</button><button class="opt">They all carry the same</button></div><p class="fb"></p></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Write your prediction and a reason.</div>
+<div class="nav"><span></span><button class="btn main" data-nav="1">Explore</button></div></section>
+
+<section class="step" data-phase="Explore">
+<h2>Slide along the spectrum</h2>
+<p>Each step on the slider makes the wavelength about 100 000 times shorter than the last. Slide from radio waves to gamma rays. Sizes are approximate and the regions overlap a little at their edges.</p>
+<div class="strip" aria-hidden="true"></div>
+<div class="sl"><label for="sp">Wavelength</label><input id="sp" type="range" min="0" max="100" value="55"><span></span></div>
+<div class="rd"><div>Type of wave<b id="rn"></b></div><div>Wavelength<b id="rw"></b></div><div>Frequency<b id="rf"></b></div><div>Size comparison<b id="rz" style="font-size:.95rem"></b></div></div>
+<div>Energy of each photon<div class="ebar"><i id="eb"></i></div></div>
+<div id="sw" style="height:18px;border-radius:6px;margin-top:10px"></div>
+<p class="tag">All electromagnetic waves travel at about 300 000 km/s in a vacuum, so v = f × λ means a shorter wavelength has a higher frequency.</p>
+<div class="cb write"><b>✏️ In your workbook</b>Record the wavelength and frequency you see for three different types of wave. Complete: “As wavelength decreases, frequency ________ and energy ________.”</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Explain</button></div></section>
+
+<section class="step" data-phase="Explain">
+<h2>The seven regions</h2>
+<p>Tap a region to see its properties and uses.</p>
+<svg class="scene" viewBox="0 0 640 250" role="group" aria-label="The electromagnetic spectrum. Tap a region.">
+<defs><linearGradient id="vg" x1="0" x2="1"><stop offset="0" stop-color="#8b2be2"/><stop offset=".25" stop-color="#3b4bd8"/><stop offset=".5" stop-color="#3aa86a"/><stop offset=".75" stop-color="#e8c030"/><stop offset="1" stop-color="#d63b2b"/></linearGradient></defs>
+<text x="10" y="22">Long wavelength</text><text x="630" y="22" text-anchor="end">Short wavelength</text>
+<g class="hs" tabindex="0" role="button" aria-label="Radio waves" data-p="inf" data-info="<b>Radio waves.</b> Longest wavelength, lowest frequency, lowest energy. Used for broadcasting, mobile communication and satellite signals. Long wavelengths travel long distances without interruption."><rect class="hl" x="10" y="40" width="84" height="80" rx="6" fill="#5b7fa6"/><text x="52" y="85" text-anchor="middle" style="fill:#fff">Radio</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Microwaves" data-p="inf" data-info="<b>Microwaves.</b> Used to cook food, because they heat water in food, and for communication and satellite transmissions."><rect class="hl" x="98" y="40" width="84" height="80" rx="6" fill="#7c6bc4"/><text x="140" y="85" text-anchor="middle" style="fill:#fff">Microwave</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Infrared" data-p="inf" data-info="<b>Infrared.</b> We feel it as heat. Used in remote controls and thermal cameras. Hot objects give off more of it."><rect class="hl" x="186" y="40" width="84" height="80" rx="6" fill="#c2543d"/><text x="228" y="85" text-anchor="middle" style="fill:#fff">Infrared</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Visible light" data-p="inf" data-info="<b>Visible light.</b> The only part our eyes can detect. Red has the longest wavelength and violet the shortest."><rect class="hl" x="274" y="40" width="84" height="80" rx="6" fill="url(#vg)"/><text x="316" y="85" text-anchor="middle" style="fill:#fff">Visible</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Ultraviolet" data-p="inf" data-info="<b>Ultraviolet (UV).</b> Higher energy than visible light. Used to detect blood and other substances in forensics. Too much damages skin and eyes, so we use sunscreen and UV-blocking materials."><rect class="hl" x="362" y="40" width="84" height="80" rx="6" fill="#8e44ad"/><text x="404" y="85" text-anchor="middle" style="fill:#fff">Ultraviolet</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="X-rays" data-p="inf" data-info="<b>X-rays.</b> High energy. Bones absorb more X-rays than soft tissue, so X-ray images show bones clearly. Exposure is limited because X-rays can damage cells."><rect class="hl" x="450" y="40" width="84" height="80" rx="6" fill="#2c8aa6"/><text x="492" y="85" text-anchor="middle" style="fill:#fff">X-rays</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Gamma rays" data-p="inf" data-info="<b>Gamma rays.</b> Shortest wavelength, highest frequency, highest energy. Can pass through and damage cells, which makes them useful for treating cancer and sterilising equipment, but dangerous without careful control."><rect class="hl" x="538" y="40" width="84" height="80" rx="6" fill="#333"/><text x="580" y="85" text-anchor="middle" style="fill:#fff">Gamma</text></g>
+<path d="M10 150 H620 M620 150 l-9 -5 M620 150 l-9 5" stroke="currentColor" stroke-width="2" fill="none"/><text x="10" y="170">Wavelength decreases</text>
+<path d="M10 195 H620 M620 195 l-9 -5 M620 195 l-9 5" stroke="currentColor" stroke-width="2" fill="none"/><text x="10" y="215">Frequency increases</text>
+<path d="M10 235 H620 M620 235 l-9 -4 M620 235 l-9 4" stroke="currentColor" stroke-width="2" fill="none"/><text x="10" y="248" style="font-size:12px">Energy increases</text>
+</svg>
+<div class="card" id="inf" aria-live="polite">Tap a region. A <b>photon</b> is a tiny packet of electromagnetic energy with no mass and no charge.</div>
+<div class="flips"><button class="btn flip rev" data-t="k1">electromagnetic spectrum</button><button class="btn flip rev" data-t="k2">photon</button><button class="btn flip rev" data-t="k3">UV</button></div>
+<div class="ans" id="k1" hidden>Electromagnetic spectrum: the full range of electromagnetic waves, ordered by wavelength and frequency.</div>
+<div class="ans" id="k2" hidden>Photon: a tiny packet of electromagnetic energy. It has no mass or charge and travels at the speed of light.</div>
+<div class="ans" id="k3" hidden>UV: ultraviolet radiation, with a shorter wavelength and more energy than visible light.</div>
+<div class="cb draw"><b>🎨 Draw &amp; label</b>Draw the spectrum as a line with seven regions in order. Add three arrows labelled wavelength, frequency and energy, showing which way each increases.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Elaborate</button></div></section>
+
+<section class="step" data-phase="Elaborate">
+<h2>Put them in order</h2>
+<p>Tap the waves from <b>longest</b> wavelength to shortest.</p>
+<div class="order"><div class="opts">
+<button class="btn oc" data-n="5">Ultraviolet</button><button class="btn oc" data-n="2">Microwaves</button><button class="btn oc" data-n="7">Gamma rays</button><button class="btn oc" data-n="1">Radio waves</button><button class="btn oc" data-n="4">Visible light</button><button class="btn oc" data-n="6">X-rays</button><button class="btn oc" data-n="3">Infrared</button></div>
+<ol id="oo"></ol><p class="fb" id="of"></p><button class="btn" id="or">Try again</button></div>
+<h3>Energy and safety</h3><p>Tap a wave, then tap its box.</p>
+<div class="sort"><div class="opts"><button class="chip" data-t="l">Radio waves</button><button class="chip" data-t="h">X-rays</button><button class="chip" data-t="l">Infrared</button><button class="chip" data-t="h">Gamma rays</button><button class="chip" data-t="l">Microwaves</button><button class="chip" data-t="h">Ultraviolet</button></div>
+<div class="buckets"><button class="bucket" data-b="l"><b>Lower energy</b><div></div></button><button class="bucket" data-b="h"><b>Higher energy: can damage cells</b><div></div></button></div><p class="fb"></p></div>
+<div class="cb write"><b>✏️ In your workbook</b>Pick three regions. For each record: (1) its position, high or low frequency, (2) one use, (3) why its properties suit that use. Example: radio waves have long wavelengths, so they travel far without interruption.</div>
+<div class="cb write"><b>✏️ Written response</b>Explain how changing the wavelength and frequency of electromagnetic waves determines their uses in everyday life. First annotate the question, then write a success checklist, then write your answer and highlight each checklist item in it.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Go further</button></div></section>
+
+<section class="step" data-phase="Go further">
+<h2>Go further: waves, risks and technology</h2>
+<p>Tap each card to read more.</p>
+<div class="flips"><button class="btn flip rev" data-t="g1">X-rays and gamma rays</button><button class="btn flip rev" data-t="g2">Staying safe</button><button class="btn flip rev" data-t="g3">Looking at the universe</button></div>
+<div class="info ans" id="g1" hidden><b>X-rays and gamma rays.</b> They are not the same thing, and they are not equally dangerous. Both are high energy, but gamma rays usually have shorter wavelengths and more energy. Both are used in medicine under careful control.</div>
+<div class="info ans" id="g2" hidden><b>Staying safe.</b> The more energy a wave carries, the more care is needed. Sunscreen and UV-blocking clothing protect from UV. Lead aprons and short exposure times protect people during X-rays.</div>
+<div class="info ans" id="g3" hidden><b>Looking at the universe.</b> Telescopes detect radio waves, infrared, visible light, UV, X-rays and gamma rays. Each type shows different features of stars and galaxies.</div>
+<div class="task"><h3>Electromagnetic wave cube</h3>
+<p>Choose one type of electromagnetic wave and research it. Make a cube from a cardboard or paper template, with a different focus on each side:</p>
+<ul><li><b>Side 1:</b> name and position on the spectrum</li><li><b>Side 2:</b> wavelength, frequency and energy, and how these affect its behaviour</li><li><b>Side 3:</b> a diagram or real image</li><li><b>Side 4:</b> a use in society, and why its properties suit it</li><li><b>Side 5:</b> a danger or limitation, such as health risks</li><li><b>Side 6:</b> a catchy phrase about its importance</li></ul>
+<p><b>Support:</b> use sentence starters on the cube template. <b>Extend:</b> write an evaluation of a real decision about your wave, such as regulating X-ray exposure, and justify the benefits and risks with evidence.</p></div>
+<div class="cb research"><b>🔍 Research task</b>Find one technology that depends on your chosen wave. Note how its properties make it suitable.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Evaluate</button></div></section>
+
+<section class="step ev" data-phase="Evaluate">
+<h2>Check your understanding</h2><p class="score tag"></p>
+<div class="card quiz" data-a="2" data-why="Gamma rays have the shortest wavelength, highest frequency and most energy."><p><b>1.</b> Which wave has the highest energy?</p><div class="opts"><button class="opt">Radio waves</button><button class="opt">Visible light</button><button class="opt">Gamma rays</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="0" data-why="Radio waves have the longest wavelength on the spectrum."><p><b>2.</b> Which wave has the longest wavelength?</p><div class="opts"><button class="opt">Radio waves</button><button class="opt">Infrared</button><button class="opt">Ultraviolet</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="Shorter wavelength means higher frequency and more energy."><p><b>3.</b> As wavelength decreases, energy…</p><div class="opts"><button class="opt">Decreases</button><button class="opt">Increases</button><button class="opt">Stays the same</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="Bones absorb more X-rays than soft tissue, so they show up clearly on the image."><p><b>4.</b> Why do X-ray images show bones clearly?</p><div class="opts"><button class="opt">Bones reflect X-rays</button><button class="opt">Bones absorb more X-rays than soft tissue</button><button class="opt">Soft tissue blocks all X-rays</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="2" data-why="Looking back at 9.2: electromagnetic waves, including light, need no medium and can cross the vacuum of space."><p><b>5. Looking back.</b> Why can sunlight reach Earth through space?</p><div class="opts"><button class="opt">Space is full of air</button><button class="opt">Light is a mechanical wave</button><button class="opt">Electromagnetic waves need no medium</button></div><p class="fb"></p></div>
+<div class="cb write"><b>✏️ Goal review</b>Write one sentence on why high-frequency waves such as UV or X-rays are useful but need safety precautions. Refer to energy.</div>
+<div class="card checks"><h3>Workbook checklist</h3>
+<label><input type="checkbox">My prediction about visible light</label><label><input type="checkbox">My three-region results and trend sentence</label><label><input type="checkbox">My labelled spectrum with three arrows</label><label><input type="checkbox">My three-region comparison</label><label><input type="checkbox">My annotated question, checklist and written response</label><label><input type="checkbox">My cube project or plan</label><label><input type="checkbox">My technology research</label><label><input type="checkbox">My goal review sentence</label></div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><a class="btn main" href="index.html" style="text-decoration:none">Back to all lessons</a></div></section>
+</div>
+<script src="assets/lesson.js"></script>
+<script>(function(){var $=function(i){return document.getElementById(i)};
+var R=[["Radio waves","a house to a hill"],["Microwaves","a grain of rice to an arm"],["Infrared","a pinhead to a bacterium"],["Visible light","about a bacterium"],["Ultraviolet","about a virus"],["X-rays","about an atom"],["Gamma rays","about an atomic nucleus"]];
+function rgb(n){var r,g,b;if(n<440){r=(440-n)/60;g=0;b=1}else if(n<490){r=0;g=(n-440)/50;b=1}else if(n<510){r=0;g=1;b=(510-n)/20}else if(n<580){r=(n-510)/70;g=1;b=0}else if(n<645){r=1;g=(645-n)/65;b=0}else{r=1;g=0;b=0}return 'rgb('+Math.round(r*255)+','+Math.round(g*255)+','+Math.round(b*255)+')'}
+function u(){var v=+$('sp').value,l=Math.pow(10,3-16*v/100),f=3e8/l,k=l>=1?0:l>=1e-3?1:l>=7e-7?2:l>=4e-7?3:l>=1e-8?4:l>=1e-11?5:6;
+var w=l>=1?[l,'m']:l>=1e-3?[l*1e3,'mm']:l>=1e-6?[l*1e6,'µm']:l>=1e-9?[l*1e9,'nm']:[l*1e12,'pm'];var e=f.toExponential(1).split('e');
+$('rn').textContent=R[k][0];$('rw').textContent=(+w[0].toPrecision(2))+' '+w[1];$('rf').innerHTML=e[0]+' × 10<sup>'+(+e[1])+'</sup> Hz';$('rz').textContent=R[k][1];$('eb').style.width=Math.max(3,v)+'%';
+$('sw').style.background=k===3?rgb(l*1e9):'transparent'}
+$('sp').oninput=u;u();
+var nx=1,N=7;function reset(){nx=1;$('oo').innerHTML='';$('of').textContent='';$('of').className='fb';document.querySelectorAll('.oc').forEach(function(b){b.disabled=false;b.classList.remove('wrong')})}
+document.querySelectorAll('.oc').forEach(function(b){b.onclick=function(){if(+b.dataset.n===nx){var li=document.createElement('li');li.textContent=b.textContent;$('oo').appendChild(li);b.disabled=true;nx++;$('of').className='fb ok';$('of').textContent=nx>N?'Complete. Longest to shortest wavelength is also lowest to highest energy.':'Correct. What comes next?'}else{b.classList.add('wrong');$('of').className='fb no';$('of').textContent='Not yet. Which has the next longest wavelength?';setTimeout(function(){b.classList.remove('wrong')},700)}}});$('or').onclick=reset})();</script>
+</body></html>
