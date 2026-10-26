@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.10 How we see · Good Science 9</title><link rel="stylesheet" href="assets/style.css">
+<style>.sl{display:grid;grid-template-columns:150px 1fr 90px;gap:10px;align-items:center;margin:6px 0}.sl input{width:100%}.rd{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}.rd div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px}.rd b{display:block;font-size:1.1rem;color:var(--accent)}.chainx{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}.chainx span{border:2px solid var(--ink);border-radius:8px;padding:6px 10px;font-weight:700;background:var(--card)}</style></head>
+<body data-lesson="9-10"><div class="wrap">
+<div class="top"><div class="row"><a href="index.html">← All lessons</a><span><span class="phase"></span> · <span class="pct">0%</span></span></div><div class="bar"><i></i></div></div>
+
+<section class="step" data-phase="Engage">
+<h1>9.10 How we see</h1>
+<div class="goal"><b>Goal:</b> describe how the eye responds to light energy.<br><small>Textbook: Good Science 9, pp. 224–227.</small></div>
+<div class="sc"><b>Success criteria</b><ul><li><span class="tg ">Must</span>I can identify the three main light-focusing parts of the eye.</li><li><span class="tg s">Should</span>I can sequence the path of light and explain the roles of the cornea and lens in focusing.</li><li><span class="tg c">Could</span>I can analyse how the eye adjusts to changing light levels or distances.</li></ul></div>
+<div class="card"><h3>Predict first</h3><p>You walk from a bright playground into a dim hall. What happens to the black circle (pupil) in the middle of your eye?</p>
+<div class="quiz" data-a="0" data-why="The pupil gets bigger to let in more light. In bright light it gets smaller to protect the retina." data-hint="In dim light, does the eye need to let in more light or less?"><div class="opts"><button class="opt">It gets bigger</button><button class="opt">It gets smaller</button><button class="opt">It stays the same</button></div><p class="fb"></p></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Write your prediction and a reason. Then try it: cover one eye for a minute, uncover it and watch your partner’s pupil. Record what you see.</div>
+<div class="nav"><span></span><button class="btn main" data-nav="1">Explore</button></div></section>
+
+<section class="step" data-phase="Explore">
+<h2>The pupil and the light</h2>
+<p>Change the brightness and watch the pupil. The coloured ring is the iris, a muscle that controls the pupil’s size.</p>
+<canvas id="pu" width="640" height="220" aria-label="Front view of an eye. The pupil changes size with the light level."></canvas>
+<div class="sl"><label for="br">Light level</label><input id="br" type="range" min="0" max="100" value="50"><span id="bv"></span></div>
+<div class="rd"><div>Pupil<b id="ps"></b></div><div>Light entering<b id="pl"></b></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Finish: “In bright light the iris makes the pupil ________ so that ________. In dim light the pupil ________ so that ________.”</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Explain</button></div></section>
+
+<section class="step" data-phase="Explain">
+<h2>Inside the eye</h2>
+<p>Tap each part. Light enters at the left.</p>
+<svg class="scene" viewBox="0 0 640 260" role="group" aria-label="Side view of the eye. Tap parts to learn their jobs.">
+<ellipse cx="350" cy="130" rx="190" ry="105" fill="#f4f4ee" fill-opacity=".6" stroke="currentColor" stroke-width="3"/>
+<g class="hs" tabindex="0" role="button" aria-label="Cornea" data-p="inf" data-info="<b>Cornea.</b> The clear curved front of the eye. It does most of the bending (refraction) of light."><rect class="hl" x="130" y="70" width="50" height="120" fill="transparent" stroke="transparent"/><path d="M165 70 Q135 130 165 190" fill="none" stroke="#3b6fd0" stroke-width="6"/><text x="100" y="215">Cornea</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Iris and pupil" data-p="inf" data-info="<b>Iris and pupil.</b> The pupil is the gap that lets light in. The iris is a muscle that makes the pupil bigger in dim light and smaller in bright light."><rect class="hl" x="185" y="55" width="30" height="150" fill="transparent" stroke="transparent"/><path d="M200 60 V105 M200 155 V200" stroke="#8a5a2b" stroke-width="8"/><text x="170" y="45">Iris and pupil</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Lens" data-p="inf" data-info="<b>Lens.</b> A flexible clear structure that changes shape to fine-tune the focus, so the light forms a sharp image on the retina."><rect class="hl" x="225" y="80" width="50" height="100" fill="transparent" stroke="transparent"/><ellipse cx="250" cy="130" rx="16" ry="45" fill="#3b6fd0" fill-opacity=".35" stroke="#3b6fd0" stroke-width="3"/><text x="232" y="205">Lens</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Lens muscles" data-p="inf" data-info="<b>Lens muscles (ciliary muscles).</b> They change the shape of the lens. Contracting makes it thicker for near objects. Relaxing makes it thinner for distant objects."><rect class="hl" x="228" y="40" width="45" height="38" fill="transparent" stroke="transparent"/><path d="M250 76 V50 M250 184 V210" stroke="#c99a00" stroke-width="6"/><text x="272" y="62">Lens muscle</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Retina" data-p="inf" data-info="<b>Retina.</b> The light-sensitive layer at the back of the eye. Rods and cones here change light energy into electrical signals."><rect class="hl" x="470" y="50" width="70" height="160" fill="transparent" stroke="transparent"/><path d="M505 45 Q555 130 505 215" fill="none" stroke="#d6452b" stroke-width="6"/><text x="470" y="240">Retina</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Optic nerve" data-p="inf" data-info="<b>Optic nerve.</b> Carries the electrical signals from the retina to the brain, which builds the picture you see."><rect class="hl" x="535" y="115" width="95" height="40" fill="transparent" stroke="transparent"/><path d="M538 135 H615 M615 135 l-8 -5 M615 135 l-8 5" stroke="#7d4cc2" stroke-width="5" fill="none"/><text x="540" y="170">Optic nerve</text></g>
+<path d="M20 100 L190 120 L250 126 L505 130 M20 160 L190 140 L250 134 L505 130" stroke="#e0a800" stroke-width="3" fill="none"/>
+</svg>
+<div class="card" id="inf" aria-live="polite">Tap a part of the eye. The light-focusing parts are the cornea and the lens.</div>
+<div class="chainx"><span>Cornea</span>→<span>Pupil</span>→<span>Lens</span>→<span>Retina</span>→<span>Optic nerve</span>→<span>Brain</span></div>
+<div class="flips"><button class="btn flip rev" data-t="k1">retina</button><button class="btn flip rev" data-t="k2">rods</button><button class="btn flip rev" data-t="k3">cones</button><button class="btn flip rev" data-t="k4">short-sighted</button><button class="btn flip rev" data-t="k5">long-sighted</button></div>
+<div class="ans" id="k1" hidden>Retina: the layer at the back of the eye that detects light.</div>
+<div class="ans" id="k2" hidden>Rods: light-sensitive cells that work in dim light and detect shades of grey.</div>
+<div class="ans" id="k3" hidden>Cones: light-sensitive cells that detect colour in bright light.</div>
+<div class="ans" id="k4" hidden>Short-sighted: distant objects look blurry, because light focuses in front of the retina.</div>
+<div class="ans" id="k5" hidden>Long-sighted: near objects look blurry, because light would focus behind the retina.</div>
+<div class="cb draw"><b>🎨 Draw &amp; label</b>Draw a cross-section of the eye. Label the cornea, pupil, lens, lens muscle, retina and optic nerve. Write “refraction” by the cornea and the lens.</div>
+<div class="cb write"><b>✏️ In your workbook</b>Build a six-box flow chart of the path of light, and mark where light energy is changed into electrical nerve impulses.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Elaborate</button></div></section>
+
+<section class="step" data-phase="Elaborate">
+<h2>Focusing near and far</h2>
+<p>Slide the object closer or further away. Watch the lens change shape.</p>
+<canvas id="fo" width="640" height="240" aria-label="Lens changing shape to focus on near and distant objects"></canvas>
+<div class="sl"><label for="ds">Object distance</label><input id="ds" type="range" min="0" max="100" value="100"><span id="dv"></span></div>
+<div class="rd"><div>Lens shape<b id="ls"></b></div><div>Lens muscle<b id="lm"></b></div><div>Light bending<b id="lb"></b></div></div>
+<div class="cb draw"><b>🎨 Draw &amp; label</b>Draw an eye focusing on a distant object, then on a nearby object. Show the lens shape and the lens muscle each time.</div>
+<h3>Rods or cones?</h3><p>Tap an item, then its box.</p>
+<div class="sort"><div class="opts"><button class="chip" data-t="c">Detect colour</button><button class="chip" data-t="r">Work in dim light</button><button class="chip" data-t="r">Detect shades of grey</button><button class="chip" data-t="c">Need bright light</button></div>
+<div class="buckets"><button class="bucket" data-b="r"><b>Rods</b><div></div></button><button class="bucket" data-b="c"><b>Cones</b><div></div></button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="A short-sighted eye focuses light in front of the retina. A concave lens spreads the rays slightly first, which moves the focus back onto the retina." data-hint="Short sight needs the rays spread out a little before they enter the eye."><p><b>Correcting sight.</b> Which lens helps a short-sighted person?</p><div class="opts"><button class="opt">Convex</button><button class="opt">Concave</button><button class="opt">Flat</button></div><p class="fb"></p></div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Go further</button></div></section>
+
+<section class="step" data-phase="Go further">
+<h2>Go further: eye conditions and technology</h2>
+<p>Tap each card to read more.</p>
+<div class="flips"><button class="btn flip rev" data-t="g1">Short and long sight</button><button class="btn flip rev" data-t="g2">Colour and blue light</button><button class="btn flip rev" data-t="g3">Modern vision technology</button></div>
+<div class="info ans" id="g1" hidden><b>Short and long sight.</b> If the eyeball is too long or the lens bends light too strongly, the image forms in front of the retina (short sight). If the eye is too short, or the lens is too weak, the image would form behind it (long sight). Glasses add a lens that fixes where the light focuses.</div>
+<div class="info ans" id="g2" hidden><b>Colour and blue light.</b> We see a red apple because it reflects red light and absorbs most other colours. Some screen filters block a percentage of blue light that reaches the eye, which may reduce eye strain.</div>
+<div class="info ans" id="g3" hidden><b>Modern vision technology.</b> Contact lenses work like glasses but sit on the eye. Laser eye surgery reshapes the cornea so it bends light correctly. Both rely on the science of refraction.</div>
+<div class="task"><h3>Eye conditions and corrective lenses</h3>
+<p>Research myopia (short sight) or hyperopia (long sight) and create a presentation that:</p>
+<ul><li>describes how the eye responds to light in your chosen condition</li><li>explains how a concave or convex lens corrects it, with a diagram</li><li>highlights how technology such as spectacles helps people with vision impairments</li></ul>
+<p><b>Support:</b> answer guiding questions: What part is not focusing correctly? Does the lens need to spread light out or bring it together? <b>Extend:</b> analyse how contact lenses and laser eye surgery use science to improve or restore vision.</p></div>
+<div class="cb research"><b>🔍 Research task</b>Find out how a camera is similar to the eye. Name the camera part that matches the lens, the pupil and the retina.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Evaluate</button></div></section>
+
+<section class="step ev" data-phase="Evaluate">
+<h2>Check your understanding</h2><p class="score tag"></p>
+<div class="card quiz" data-a="2" data-why="The retina contains the rods and cones that detect light."><p><b>1.</b> Which part detects light and sends signals to the brain?</p><div class="opts"><button class="opt">Cornea</button><button class="opt">Lens</button><button class="opt">Retina</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="For near objects the lens muscle contracts and the lens becomes thicker, bending light more."><p><b>2.</b> To focus on a near object, the lens becomes…</p><div class="opts"><button class="opt">Thinner</button><button class="opt">Thicker</button><button class="opt">Unchanged</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="0" data-why="Cones detect colour and work best in bright light."><p><b>3.</b> Which cells detect colour?</p><div class="opts"><button class="opt">Cones</button><button class="opt">Rods</button><button class="opt">The iris</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="2" data-why="In bright light the pupil gets smaller so less light enters and the retina is protected."><p><b>4.</b> In bright light the pupil…</p><div class="opts"><button class="opt">Gets bigger</button><button class="opt">Stays the same</button><button class="opt">Gets smaller</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="Looking back at 9.6: the cochlea changes vibrations into electrical signals, and the retina changes light into electrical signals. Both send them to the brain along nerves."><p><b>5. Looking back.</b> How is the last step of seeing similar to the last step of hearing?</p><div class="opts"><button class="opt">Both use mechanical waves</button><button class="opt">Both change wave energy into electrical signals</button><button class="opt">Both use the same nerve</button></div><p class="fb"></p></div>
+<div class="cb write"><b>✏️ Goal review</b>Write one sentence comparing the final step of hearing with the final step of seeing. Focus on the change into electrical nerve impulses.</div>
+<div class="card checks"><h3>Workbook checklist</h3>
+<label><input type="checkbox">My pupil prediction and observation</label><label><input type="checkbox">My bright and dim light sentences</label><label><input type="checkbox">My labelled eye diagram</label><label><input type="checkbox">My six-box flow chart of the path of light</label><label><input type="checkbox">My near and far focusing diagrams</label><label><input type="checkbox">My eye condition presentation plan</label><label><input type="checkbox">My camera and eye research</label><label><input type="checkbox">My goal review sentence</label></div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><a class="btn main" href="index.html" style="text-decoration:none">Back to all lessons</a></div></section>
+</div>
+<script src="assets/lesson.js"></script>
+<script>(function(){var $=function(i){return document.getElementById(i)},p=$('pu').getContext('2d'),f=$('fo').getContext('2d');
+function pu(){var b=+$('br').value,r=44-b*0.32,col=getComputedStyle(document.body).color;p.clearRect(0,0,640,220);
+p.fillStyle='#fdfdf8';p.beginPath();p.ellipse(320,110,230,95,0,0,7);p.fill();p.strokeStyle=col;p.lineWidth=3;p.stroke();
+p.fillStyle='#3b7a9c';p.beginPath();p.arc(320,110,72,0,7);p.fill();p.fillStyle='#111';p.beginPath();p.arc(320,110,r,0,7);p.fill();
+p.fillStyle='rgba(255,255,255,.6)';p.beginPath();p.arc(300,92,8,0,7);p.fill();
+$('bv').textContent=b<35?'dim':b<70?'medium':'bright';$('ps').textContent=b<35?'large':b<70?'medium':'small';$('pl').textContent=b<35?'more let in':b<70?'some let in':'less let in';requestAnimationFrame(pu)}pu();
+function fo(){var s=+$('ds').value/100,t=18+(1-s)*22,col=getComputedStyle(document.body).color;f.clearRect(0,0,640,240);
+f.strokeStyle=col;f.lineWidth=2;f.beginPath();f.moveTo(0,120);f.lineTo(640,120);f.setLineDash([4,4]);f.stroke();f.setLineDash([]);
+var ox=60+s*0;f.fillStyle='#d6452b';f.fillRect(ox-6,84,12,36);f.font='600 12px system-ui';f.fillStyle=col;f.fillText('object',ox-18,138);
+var lx=300;f.fillStyle='rgba(59,111,208,.4)';f.strokeStyle='#3b6fd0';f.lineWidth=3;f.beginPath();f.ellipse(lx,120,t,70,0,0,7);f.fill();f.stroke();
+f.strokeStyle='#c99a00';f.lineWidth=5;f.beginPath();f.moveTo(lx,40);f.lineTo(lx,25);f.moveTo(lx,200);f.lineTo(lx,215);f.stroke();
+f.strokeStyle='#d6452b';f.lineWidth=6;f.beginPath();f.arc(560,120,70,-1.0,1.0);f.stroke();f.fillStyle=col;f.fillText('retina',545,205);
+var ex=560-Math.sqrt(70*70-0)+ (70-Math.sqrt(70*70-36*36)),fx=ex;f.strokeStyle='#e0a800';f.lineWidth=2.5;
+[[84,0],[120,0]].forEach(function(a){});
+f.beginPath();f.moveTo(ox,84);f.lineTo(lx,84);f.lineTo(fx,120+(36)*0);f.moveTo(ox,84);f.lineTo(lx,120);f.lineTo(fx,120);f.stroke();
+$('dv').textContent=s>0.6?'far':s>0.3?'middle':'near';$('ls').textContent=s>0.6?'thin':s>0.3?'medium':'thick';$('lm').textContent=s>0.6?'relaxed':s>0.3?'part contracted':'contracted';$('lb').textContent=s>0.6?'less':s>0.3?'some':'more';requestAnimationFrame(fo)}fo();
+})();</script>
+</body></html>

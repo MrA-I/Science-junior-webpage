@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.9 Light waves · Good Science 9</title><link rel="stylesheet" href="assets/style.css">
+<style>.sl{display:grid;grid-template-columns:150px 1fr 70px;gap:10px;align-items:center;margin:6px 0}.sl input{width:100%}.rd{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}.rd div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px}.rd b{display:block;font-size:1.15rem;color:var(--accent)}.calc input{width:120px;border:2px solid var(--ink);border-radius:8px;padding:6px;font:inherit;background:var(--card);color:var(--ink)}.btn.sel{background:var(--ink);color:var(--bg)}</style></head>
+<body data-lesson="9-9"><div class="wrap">
+<div class="top"><div class="row"><a href="index.html">← All lessons</a><span><span class="phase"></span> · <span class="pct">0%</span></span></div><div class="bar"><i></i></div></div>
+
+<section class="step" data-phase="Engage">
+<h1>9.9 Light waves</h1>
+<div class="goal"><b>Goal:</b> describe the properties of light and its applications.<br><small>Textbook: Good Science 9, pp. 220–223.</small></div>
+<div class="sc"><b>Success criteria</b><ul><li><span class="tg ">Must</span>I can define reflection and refraction.</li><li><span class="tg s">Should</span>I can draw and label diagrams showing the path of light in reflection and refraction.</li><li><span class="tg c">Could</span>I can analyse how refraction is used in a technology such as glasses or cameras.</li></ul></div>
+<div class="card"><h3>Predict first</h3><p>A pencil stands in a glass of water. From the side, it looks bent at the water’s surface. What is happening to the light?</p>
+<div class="quiz" data-a="2" data-why="Light changes speed and direction when it passes from water into air. This bending is called refraction." data-hint="The light travels from one material into another. What is that called?"><div class="opts"><button class="opt">It is absorbed</button><button class="opt">It is reflected back</button><button class="opt">It bends as it changes material</button></div><p class="fb"></p></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Write your prediction and one reason.</div>
+<div class="nav"><span></span><button class="btn main" data-nav="1">Explore</button></div></section>
+
+<section class="step" data-phase="Explore">
+<h2>Ray lab</h2>
+<p>Choose a material, then slide the angle of the incoming ray. Angles are measured from the dotted <b>normal</b>, a line at right angles to the surface.</p>
+<div class="opts" id="md"><button class="btn sel" data-m="m">Mirror</button><button class="btn" data-m="w">Air to water</button><button class="btn" data-m="g">Air to glass</button><button class="btn" data-m="d">Air to diamond</button></div>
+<canvas id="rl" width="640" height="300" aria-label="Ray of light hitting a surface, with the normal. The ray reflects or bends depending on the material."></canvas>
+<div class="sl"><label for="ang">Angle of incidence</label><input id="ang" type="range" min="0" max="80" step="5" value="40"><span id="av"></span></div>
+<div class="rd"><div>Angle of incidence<b id="ri"></b></div><div id="rl2">Angle of reflection<b id="rr"></b></div><div>Speed of light<b id="rs"></b></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Make a table: material, angle of incidence, angle of reflection or refraction. Record three angles for the mirror and for water. Write: “In the mirror the two angles are ________. Entering water, the ray bends ________ the normal.”</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Explain</button></div></section>
+
+<section class="step" data-phase="Explain">
+<h2>What light can do</h2>
+<svg class="scene" viewBox="0 0 640 260" role="group" aria-label="Light ray hitting the surface of water: normal, incident ray, reflected ray and refracted ray.">
+<rect x="20" y="130" width="600" height="120" fill="#8fb8d8" fill-opacity=".3"/><line x1="20" y1="130" x2="620" y2="130" stroke="currentColor" stroke-width="3"/>
+<line x1="320" y1="20" x2="320" y2="240" stroke="currentColor" stroke-dasharray="6 5"/>
+<g class="hs" tabindex="0" role="button" aria-label="Normal" data-p="inf" data-info="<b>Normal.</b> A line at right angles to the surface where the ray hits. All angles are measured from it."><rect class="hl" x="310" y="15" width="20" height="50" fill="transparent" stroke="transparent"/><text x="332" y="32">Normal</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Incident ray" data-p="inf" data-info="<b>Incident ray.</b> The ray arriving at the surface. The <b>angle of incidence</b> is the angle between this ray and the normal."><rect class="hl" x="190" y="30" width="135" height="105" fill="transparent" stroke="transparent"/><path d="M200 40 L320 130" stroke="#e0a800" stroke-width="4"/><text x="200" y="35">Incident ray</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Reflected ray" data-p="inf" data-info="<b>Reflected ray.</b> The ray bouncing off the surface. The <b>angle of reflection</b> equals the angle of incidence. This is the law of reflection."><rect class="hl" x="318" y="30" width="135" height="105" fill="transparent" stroke="transparent"/><path d="M320 130 L440 40" stroke="#e0a800" stroke-width="4"/><text x="400" y="35">Reflected ray</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Refracted ray" data-p="inf" data-info="<b>Refracted ray.</b> The ray that passes into the water. Light slows down in water, so it bends towards the normal. This bending is <b>refraction</b>."><rect class="hl" x="318" y="128" width="100" height="110" fill="transparent" stroke="transparent"/><path d="M320 130 L385 235" stroke="#e0a800" stroke-width="4"/><text x="395" y="225">Refracted ray</text></g>
+</svg>
+<div class="card" id="inf" aria-live="polite">Tap a part of the diagram.</div>
+<h3>Four things light can do at a surface</h3>
+<div class="flips">
+<button class="btn flip hs" data-p="bh" data-info="<b>Absorption.</b> The material takes in the light energy, usually warming up. A black T-shirt absorbs most light."><b>Absorption</b></button>
+<button class="btn flip hs" data-p="bh" data-info="<b>Reflection.</b> Light bounces off a surface. Smooth, shiny surfaces such as mirrors give clear images."><b>Reflection</b></button>
+<button class="btn flip hs" data-p="bh" data-info="<b>Refraction.</b> Light bends as it passes into a different material, because its speed changes."><b>Refraction</b></button>
+<button class="btn flip hs" data-p="bh" data-info="<b>Scattering.</b> Light bounces off tiny particles in many directions, as sunlight does in the air."><b>Scattering</b></button></div>
+<div class="card" id="bh" aria-live="polite">Tap one.</div>
+<div class="flips"><button class="btn flip rev" data-t="k1">transparent</button><button class="btn flip rev" data-t="k2">translucent</button><button class="btn flip rev" data-t="k3">opaque</button><button class="btn flip rev" data-t="k4">convex and concave</button></div>
+<div class="ans" id="k1" hidden>Transparent: lets light through so you can see clearly, such as clear glass.</div>
+<div class="ans" id="k2" hidden>Translucent: lets some light through, but you cannot see clearly, such as frosted glass.</div>
+<div class="ans" id="k3" hidden>Opaque: lets no light through, such as a brick wall.</div>
+<div class="ans" id="k4" hidden>Convex surfaces curve outwards. Concave surfaces curve inwards, like a cave.</div>
+<div class="cb draw"><b>🎨 Draw &amp; label</b>Draw (1) a ray hitting a flat mirror and (2) a ray passing from air into water. Include the normal, angle of incidence, angle of reflection, and show the ray bending towards the normal in water.</div>
+<div class="cb write"><b>✏️ In your workbook</b>Define absorption, reflection, refraction and scattering in your own words.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Elaborate</button></div></section>
+
+<section class="step" data-phase="Elaborate">
+<h2>Lenses and mirrors</h2>
+<p>Parallel rays hit each shape. Tap a shape to see what it does to the light.</p>
+<div class="opts" id="ld"><button class="btn sel" data-k="cx">Convex lens</button><button class="btn" data-k="cv">Concave lens</button><button class="btn" data-k="cm">Concave mirror</button></div>
+<canvas id="ln" width="640" height="300" aria-label="Parallel rays meeting a lens or mirror"></canvas>
+<div class="card" id="lt" aria-live="polite"></div>
+<div class="cb draw"><b>🎨 Draw &amp; label</b>Sketch parallel rays hitting a convex lens and a concave lens. Show where the rays meet, or seem to come from.</div>
+<h3>Which material?</h3><p>Tap a material, then its box.</p>
+<div class="sort"><div class="opts"><button class="chip" data-t="t">Clear glass</button><button class="chip" data-t="r">Frosted glass</button><button class="chip" data-t="o">Brick wall</button><button class="chip" data-t="t">Water</button><button class="chip" data-t="r">Baking paper</button><button class="chip" data-t="o">Aluminium foil</button></div>
+<div class="buckets" style="grid-template-columns:repeat(3,1fr)"><button class="bucket" data-b="t"><b>Transparent</b><div></div></button><button class="bucket" data-b="r"><b>Translucent</b><div></div></button><button class="bucket" data-b="o"><b>Opaque</b><div></div></button></div><p class="fb"></p></div>
+<div class="card calc" data-a="200000"><p><b>Calculate.</b> Light travels at 300 000 km/s in a vacuum. The speed in a material = 300 000 ÷ refractive index. Glass has a refractive index of 1.5. Find the speed of light in glass.</p><input type="number" step="any" aria-label="Speed"> km/s <button class="btn go">Check</button><p class="fb"></p></div>
+<div class="card calc" data-a="240000"><p><b>Calculate.</b> A clear plastic has a refractive index of 1.25. Find the speed of light in it.</p><input type="number" step="any" aria-label="Speed"> km/s <button class="btn go">Check</button><p class="fb"></p></div>
+<div class="cb write"><b>✏️ In your workbook</b>Use your ray lab results and these calculations to explain: the higher the refractive index, the ________ the light travels and the ________ it bends.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Go further</button></div></section>
+
+<section class="step" data-phase="Go further">
+<h2>Go further: light at work</h2>
+<p>Tap each card to read more.</p>
+<div class="flips"><button class="btn flip rev" data-t="g1">Glasses and cameras</button><button class="btn flip rev" data-t="g2">Optical fibres</button><button class="btn flip rev" data-t="g3">The colour of the sky</button></div>
+<div class="info ans" id="g1" hidden><b>Glasses and cameras.</b> Lenses use refraction to bend light so it forms a sharp image, on the retina in the eye or on the sensor in a camera. The curve of the lens decides where the rays meet.</div>
+<div class="info ans" id="g2" hidden><b>Optical fibres.</b> Thin glass strands carry light signals long distances. The light keeps reflecting off the inside walls, so it follows the fibre instead of escaping.</div>
+<div class="info ans" id="g3" hidden><b>The colour of the sky.</b> Air scatters short-wavelength blue light much more than red light, so the daytime sky looks blue. At sunset the light passes through more air and the blue is scattered away, so more red reaches you.</div>
+<div class="task"><h3>Properties of light concept map</h3>
+<p>Make a concept map with “Properties of light” in the centre. Branch out to absorption, reflection, refraction and scattering. For each:</p>
+<ul><li>write a short description</li><li>draw a small diagram</li><li>add one everyday example or technology</li></ul>
+<p><b>Support:</b> use a partly completed map. <b>Extend:</b> explain how societal needs, such as the need for clear vision or fast communication, have driven the development of light technologies.</p></div>
+<div class="cb research"><b>🔍 Research task</b>Find one device that uses reflection and one that uses refraction. Say how each one works.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Evaluate</button></div></section>
+
+<section class="step ev" data-phase="Evaluate">
+<h2>Check your understanding</h2><p class="score tag"></p>
+<div class="card quiz" data-a="1" data-why="Angles are always measured from the normal, not from the surface."><p><b>1.</b> The angle of incidence is measured between the ray and…</p><div class="opts"><button class="opt">The surface</button><button class="opt">The normal</button><button class="opt">The reflected ray</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="0" data-why="Light slows down in water, so it bends towards the normal."><p><b>2.</b> Light passes from air into water. It bends…</p><div class="opts"><button class="opt">Towards the normal</button><button class="opt">Away from the normal</button><button class="opt">It does not bend</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="2" data-why="A convex lens bends parallel rays inwards so they meet at a focus."><p><b>3.</b> A convex lens makes parallel rays…</p><div class="opts"><button class="opt">Spread apart</button><button class="opt">Stay parallel</button><button class="opt">Come together</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="A translucent material lets some light through but you cannot see clearly through it."><p><b>4.</b> Frosted glass is…</p><div class="opts"><button class="opt">Transparent</button><button class="opt">Translucent</button><button class="opt">Opaque</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="0" data-why="Looking back at 9.8: red has the longest wavelength of visible light, and violet the shortest."><p><b>5. Looking back.</b> Which colour of visible light has the longest wavelength?</p><div class="opts"><button class="opt">Red</button><button class="opt">Green</button><button class="opt">Violet</button></div><p class="fb"></p></div>
+<div class="cb write"><b>✏️ Goal review</b>Does a magnifying glass use reflection or refraction? Justify your choice by describing what happens to the light rays.</div>
+<div class="card checks"><h3>Workbook checklist</h3>
+<label><input type="checkbox">My pencil in water prediction</label><label><input type="checkbox">My ray lab table and sentences</label><label><input type="checkbox">My reflection and refraction diagrams</label><label><input type="checkbox">My four definitions</label><label><input type="checkbox">My lens ray diagrams</label><label><input type="checkbox">My two speed calculations</label><label><input type="checkbox">My concept map</label><label><input type="checkbox">My goal review answer</label></div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><a class="btn main" href="index.html" style="text-decoration:none">Back to all lessons</a></div></section>
+</div>
+<script src="assets/lesson.js"></script>
+<script>(function(){var $=function(i){return document.getElementById(i)},Mo='m',N={w:1.33,g:1.5,d:2.42},c=$('rl'),x=c.getContext('2d');
+function ray(a,b,c2,d,col,w,al){x.globalAlpha=al||1;x.strokeStyle=col;x.lineWidth=w||3;x.beginPath();x.moveTo(a,b);x.lineTo(c2,d);x.stroke();x.globalAlpha=1}
+function arc(r,a1,a2,t,tx,ty){x.strokeStyle='#d6452b';x.lineWidth=2;x.beginPath();x.arc(320,150,r,a1,a2);x.stroke();x.fillStyle='#d6452b';x.font='700 13px system-ui';x.fillText(t,tx,ty)}
+function d(){var a=+$('ang').value,t=a*Math.PI/180,L=150,col=getComputedStyle(document.body).color;x.clearRect(0,0,640,300);
+x.fillStyle=Mo==='m'?'rgba(150,150,150,.4)':'rgba(80,160,220,.25)';x.fillRect(0,150,640,Mo==='m'?10:150);
+x.strokeStyle=col;x.lineWidth=2;x.beginPath();x.moveTo(0,150);x.lineTo(640,150);x.stroke();x.setLineDash([5,5]);x.beginPath();x.moveTo(320,10);x.lineTo(320,290);x.stroke();x.setLineDash([]);
+x.fillStyle=col;x.font='600 12px system-ui';x.fillText('normal',326,22);
+ray(320-L*Math.sin(t),150-L*Math.cos(t),320,150,'#e0a800');
+var rl;if(Mo==='m'){ray(320,150,320+L*Math.sin(t),150-L*Math.cos(t),'#e0a800');rl=a;arc(45,-Math.PI/2,-Math.PI/2+t,'r',345,118)}
+else{var n=N[Mo],tt=Math.asin(Math.sin(t)/n);ray(320,150,320+L*Math.sin(tt),150+L*Math.cos(tt),'#e0a800');ray(320,150,320+L*Math.sin(t),150-L*Math.cos(t),'#e0a800',2,.25);rl=tt*180/Math.PI;arc(45,Math.PI/2-tt,Math.PI/2,'r',335,205)}
+arc(60,-Math.PI/2-t,-Math.PI/2,'i',280,100);
+$('av').textContent=a+'°';$('ri').textContent=a+'°';$('rr').textContent=Math.round(rl*10)/10+'°';$('rl2').firstChild.textContent=Mo==='m'?'Angle of reflection':'Angle of refraction';$('rs').textContent=Mo==='m'?'300 000 km/s':Math.round(300000/N[Mo])+' km/s in the material';
+requestAnimationFrame(d)}d();
+$('md').querySelectorAll('button').forEach(function(b){b.onclick=function(){Mo=b.dataset.m;$('md').querySelectorAll('button').forEach(function(z){z.classList.toggle('sel',z===b)})}});
+var K='cx',e=$('ln').getContext('2d'),T={cx:'<b>Convex lens.</b> Thicker in the middle. It refracts parallel rays inwards so they meet at the focus. Used in magnifying glasses, cameras and to correct long sight.',cv:'<b>Concave lens.</b> Thinner in the middle. It spreads parallel rays apart, as if they came from a point behind the lens. Used to correct short sight.',cm:'<b>Concave mirror.</b> A mirror that curves inwards. It reflects parallel rays so they meet at the focus. Used in torches and telescopes.'};
+function ll(){var Y=[90,120,180,210],f=130,col=getComputedStyle(document.body).color;e.clearRect(0,0,640,300);e.strokeStyle=col;e.lineWidth=1;e.setLineDash([4,4]);e.beginPath();e.moveTo(0,150);e.lineTo(640,150);e.stroke();e.setLineDash([]);
+e.lineWidth=3;if(K==='cx'){e.beginPath();e.ellipse(320,150,14,95,0,0,7);e.stroke()}else if(K==='cv'){e.beginPath();e.moveTo(304,55);e.quadraticCurveTo(326,150,304,245);e.lineTo(336,245);e.quadraticCurveTo(314,150,336,55);e.closePath();e.stroke()}else{e.beginPath();e.moveTo(500,50);e.quadraticCurveTo(570,150,500,250);e.stroke()}
+function L(a,b,c2,d2,dash){e.strokeStyle=dash?'#999':'#e0a800';e.lineWidth=dash?1.5:2.5;e.setLineDash(dash?[4,4]:[]);e.beginPath();e.moveTo(a,b);e.lineTo(c2,d2);e.stroke();e.setLineDash([])}
+Y.forEach(function(y){if(K==='cx'){L(30,y,320,y);L(320,y,620,y+(150-y)*300/f)}else if(K==='cv'){L(30,y,320,y);L(320,y,620,y+(y-150)*300/f);L(320,y,320-f,150,1)}else{L(30,y,520,y);L(520,y,280,y+(150-y)*2)}});
+e.fillStyle='#d6452b';e.beginPath();e.arc(K==='cx'?450:K==='cv'?190:400,150,5,0,7);e.fill();e.fillStyle=col;e.font='600 12px system-ui';e.fillText(K==='cv'?'virtual focus':'focus',(K==='cx'?450:K==='cv'?190:400)-20,172);$('lt').innerHTML=T[K]}
+$('ld').querySelectorAll('button').forEach(function(b){b.onclick=function(){K=b.dataset.k;$('ld').querySelectorAll('button').forEach(function(z){z.classList.toggle('sel',z===b)});ll()}});ll();
+document.querySelectorAll('.calc').forEach(function(k){var i=k.querySelector('input'),f=k.querySelector('.fb');k.querySelector('.go').onclick=function(){var v=parseFloat(i.value),ok=Math.abs(v-+k.dataset.a)<1e-6;f.className='fb '+(ok?'ok':'no');f.textContent=ok?'Correct.':(isNaN(v)?'Enter a number first.':'Not quite. Divide 300 000 by the refractive index.')}})})();</script>
+</body></html>
