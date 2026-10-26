@@ -44,3 +44,11 @@ svg text{fill:var(--ink);font:600 13px var(--sans)}.hs{cursor:pointer}.hs:hover 
 
 .lcard{position:relative}.lcard b{padding-right:32px}.tick{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:50%;background:var(--good);color:#fff;display:grid;place-items:center;font-weight:700}
 .order li{margin:4px 0}.oc.wrong{border-color:var(--bad);background:var(--badbg)}
+
+@keyframes hsg{0%,100%{filter:drop-shadow(0 0 0 transparent)}50%{filter:drop-shadow(0 0 5px var(--accent))}}
+@keyframes hso{0%,100%{stroke-opacity:.25}50%{stroke-opacity:.9}}
+@keyframes hsb{0%,100%{box-shadow:0 0 0 0 transparent}50%{box-shadow:0 0 10px 2px var(--accent)}}
+svg .hs:not(.seen){animation:hsg 2.4s ease-in-out infinite}
+.hs:not(.on):not(:hover):not(.seen) .hl[stroke="transparent"]{stroke:var(--accent);stroke-width:2;stroke-dasharray:5 4;animation:hso 2.4s ease-in-out infinite}
+.btn.hs:not(.seen){animation:hsb 2.4s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.hs,.hs .hl{animation:none!important}.hs:not(.on):not(:hover):not(.seen) .hl[stroke="transparent"]{stroke-opacity:.5}}
