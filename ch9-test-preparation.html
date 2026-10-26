@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 9 test preparation · Good Science 9</title><link rel="stylesheet" href="assets/style.css">
+<style>.ph{border:2px dashed var(--accent);border-radius:10px;padding:14px 18px;margin:0 0 16px;background:var(--card)}table{border-collapse:collapse;width:100%;background:var(--card)}th,td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left}.cf button{border:2px solid var(--line);background:var(--card);border-radius:999px;padding:3px 12px;font-weight:600;cursor:pointer}.cf button[aria-pressed=true].r{background:var(--badbg);border-color:var(--bad)}.cf button[aria-pressed=true].a{background:var(--write);border-color:var(--writeb)}.cf button[aria-pressed=true].g{background:var(--goodbg);border-color:var(--good)}</style></head>
+<body><div class="wrap">
+<div class="top"><div class="row"><a href="index.html">← All lessons</a><a href="ch9-summary.html">Chapter 9 summary →</a></div></div>
+<div style="padding-top:20px"><h1>Chapter 9 test preparation</h1></div>
+<div class="ph"><h2>Practice questions: coming soon</h2>
+<p>Practice questions are not ready yet. Your teacher will add them here. Planned sections:</p>
+<ul><li>Quick-fire multiple choice for each lesson</li><li>Short answer and calculation questions</li><li>Diagram practice, such as waves, the ear, the eye and ray diagrams</li><li>A full practice test with answers to check against</li></ul></div>
+
+<div class="card"><h2>What you can do now</h2><ul>
+<li>Read the <a href="ch9-summary.html">Chapter 9 summary</a>, then cover it and try the recall questions.</li>
+<li>Redo the self-marking questions at the end of each lesson. Open any lesson from the <a href="index.html">lesson list</a>.</li>
+<li>Check your workbook against each lesson’s success criteria. Fill in any gaps.</li>
+<li>Practise the calculations: v = f × λ, depth = v × t ÷ 2, and speed of light in a material.</li>
+<li>Practise drawing: transverse and longitudinal waves, the ear, the eye, and reflection and refraction rays.</li></ul></div>
+
+<div class="card"><h2>How confident am I?</h2>
+<p>Rate yourself on each lesson. Red means “I need to revisit this”. Amber means “nearly there”. Green means “I can do this without help”. Your ratings are saved on this device only.</p>
+<table aria-label="Confidence by lesson"><tbody id="tb"></tbody></table>
+<p class="tag" id="sum"></p><p><button class="btn" id="clr">Clear my ratings</button></p></div>
+</div>
+<script>(function(){var L=[["9-1","9.1 Energy and matter","9-1-energy-and-matter.html"],["9-2","9.2 Wave types","9-2-wave-types.html"],["9-3","9.3 Features of waves","9-3-features-of-waves.html"],["9-4","9.4 Sound energy","9-4-sound-energy.html"],["9-5","9.5 The Doppler effect","9-5-the-doppler-effect.html"],["9-6","9.6 How we hear","9-6-how-we-hear.html"],["9-7","9.7 First Nations peoples’ use of sound","9-7-first-nations-use-of-sound.html"],["9-8","9.8 The electromagnetic spectrum","9-8-the-electromagnetic-spectrum.html"],["9-9","9.9 Light waves","9-9-light-waves.html"],["9-10","9.10 How we see","9-10-how-we-see.html"],["9-11","9.11 Medical uses of sound","9-11-medical-uses-of-sound.html"]],S={},K='ch9:confidence';
+try{S=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
+function draw(){var h='',g=0;L.forEach(function(l){var v=S[l[0]];if(v==='g')g++;h+='<tr><td><a href="'+l[2]+'">'+l[1]+'</a></td><td class="cf">'+[['r','Red'],['a','Amber'],['g','Green']].map(function(o){return '<button class="'+o[0]+'" data-l="'+l[0]+'" data-v="'+o[0]+'" aria-pressed="'+(v===o[0])+'">'+o[1]+'</button>'}).join(' ')+'</td></tr>'});
+document.getElementById('tb').innerHTML=h;document.getElementById('sum').textContent=g+' of '+L.length+' lessons rated green';
+document.querySelectorAll('.cf button').forEach(function(b){b.onclick=function(){S[b.dataset.l]=S[b.dataset.l]===b.dataset.v?'':b.dataset.v;save();draw()}})}
+document.getElementById('clr').onclick=function(){S={};save();draw()};draw()})();</script>
+</body></html>
