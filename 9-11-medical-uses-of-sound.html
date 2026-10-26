@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>9.11 Medical uses of sound · Good Science 9</title><link rel="stylesheet" href="assets/style.css">
+<style>.sl{display:grid;grid-template-columns:150px 1fr 90px;gap:10px;align-items:center;margin:6px 0}.sl input{width:100%}.rd{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}.rd div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px}.rd b{display:block;font-size:1.1rem;color:var(--accent)}.calc input{width:110px;border:2px solid var(--ink);border-radius:8px;padding:6px;font:inherit;background:var(--card);color:var(--ink)}.chainx{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0}.chainx span{border:2px solid var(--ink);border-radius:8px;padding:6px 10px;font-weight:700;background:var(--card)}</style></head>
+<body data-lesson="9-11"><div class="wrap">
+<div class="top"><div class="row"><a href="index.html">← All lessons</a><span><span class="phase"></span> · <span class="pct">0%</span></span></div><div class="bar"><i></i></div></div>
+
+<section class="step" data-phase="Engage">
+<h1>9.11 Medical uses of sound</h1>
+<div class="goal"><b>Goal:</b> describe examples of the medical uses of sound energy.<br><small>Key idea: Scale and measurement. Textbook: Good Science 9, pp. 228–229.</small></div>
+<div class="sc"><b>Success criteria</b><ul><li><span class="tg ">Must</span>I can give examples of how sound energy is used in medicine.</li><li><span class="tg s">Should</span>I can define ultrasound and explain why it is a safe diagnostic tool.</li><li><span class="tg c">Could</span>I can analyse how the high frequency of ultrasound lets us image very small structures.</li></ul></div>
+<div class="card"><h3>Predict first</h3><p>A doctor moves a small probe over a patient’s skin and an image of an organ appears on a screen. How is the picture made?</p>
+<div class="quiz" data-a="1" data-why="The probe sends out sound pulses, and echoes bounce back from the boundaries between different tissues. A computer builds the picture from the echoes." data-hint="Think about how a bat or a ship’s sonar finds objects."><div class="opts"><button class="opt">X-rays pass through the body</button><button class="opt">Sound echoes reflect back from inside the body</button><button class="opt">Visible light shines through the skin</button></div><p class="fb"></p></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Write your prediction and a reason. Add a question you have about how the image is built.</div>
+<div class="nav"><span></span><button class="btn main" data-nav="1">Explore</button></div></section>
+
+<section class="step" data-phase="Explore">
+<h2>Echo scanner</h2>
+<p>Send a pulse into the body. It reflects off three boundaries, A, B and C. Watch the echoes return and read how long each one took. The animation is slowed down. Sound travels at about 1500 m/s in soft tissue.</p>
+<canvas id="us" width="640" height="260" aria-label="Probe sending a sound pulse into the body, with echoes returning from three boundaries"></canvas>
+<p><button class="btn main" id="send">Send pulse</button></p>
+<div class="rd"><div>Boundary A<b id="e0">press Send</b></div><div>Boundary B<b id="e1">press Send</b></div><div>Boundary C<b id="e2">press Send</b></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Record the three echo times. Explain which boundary is deepest and how you can tell. Then use depth = speed × time ÷ 2 to find the depth of each. Why do you divide by 2?</div>
+<button class="btn rev" data-t="ex">Check my depths</button><div class="ans" id="ex" hidden>A is about 2 cm, B about 5 cm and C about 8 cm. For example, B: 1500 × 0.0000667 ÷ 2 ≈ 0.05 m. You divide by 2 because the echo travels to the boundary and back.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Explain</button></div></section>
+
+<section class="step" data-phase="Explain">
+<h2>How ultrasound imaging works</h2>
+<p><b>Ultrasound</b> is sound with a frequency above the range of human hearing. Tap the diagram.</p>
+<svg class="scene" viewBox="0 0 640 240" role="group" aria-label="Ultrasound probe on skin with gel, tissue boundaries and a screen. Tap parts.">
+<rect x="40" y="90" width="330" height="130" fill="#d99a8a" fill-opacity=".3" stroke="currentColor" stroke-width="2"/>
+<path d="M60 150 Q200 135 350 160 M60 195 Q220 190 350 205" stroke="currentColor" stroke-dasharray="5 4" fill="none"/>
+<g class="hs" tabindex="0" role="button" aria-label="Probe" data-p="inf" data-info="<b>The probe.</b> It contains a <b>transmitter</b> that sends out short pulses of high-frequency sound, and a <b>receiver</b> that detects the echoes."><rect class="hl" x="150" y="20" width="80" height="55" fill="transparent" stroke="transparent"/><rect x="160" y="25" width="60" height="40" rx="6" fill="#7d4cc2"/><text x="235" y="48">Probe</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Gel" data-p="inf" data-info="<b>Gel.</b> Air reflects most ultrasound, so a gap of air between the probe and the skin would block the sound. Gel fills the gap so the sound passes into the body."><rect class="hl" x="140" y="65" width="100" height="28" fill="transparent" stroke="transparent"/><rect x="150" y="68" width="80" height="14" fill="#7fd1c7"/><text x="245" y="80">Gel</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Tissue boundaries" data-p="inf" data-info="<b>Tissue boundaries.</b> Part of the sound is <b>reflected</b> wherever it meets a different tissue, such as the edge of an organ. The rest carries on deeper. Different tissues reflect different amounts, giving different shades in the image."><rect class="hl" x="50" y="130" width="310" height="85" fill="transparent" stroke="transparent"/><text x="60" y="235">Tissue boundaries reflect echoes</text></g>
+<g class="hs" tabindex="0" role="button" aria-label="Screen" data-p="inf" data-info="<b>The screen.</b> A computer uses the time each echo takes (for depth) and how strong it is (for the shade of grey) to build up the picture."><rect class="hl" x="430" y="50" width="180" height="130" fill="transparent" stroke="transparent"/><rect x="440" y="60" width="160" height="110" rx="8" fill="#222"/><path d="M480 140 Q520 90 560 140" stroke="#bbb" stroke-width="3" fill="none"/><text x="470" y="195">Screen</text></g>
+</svg>
+<div class="card" id="inf" aria-live="polite">Tap a part of the diagram.</div>
+<div class="chainx"><span>Transmitter sends pulse</span>→<span>Sound reflects off tissue boundaries</span>→<span>Receiver detects echoes</span>→<span>Computer builds image</span></div>
+<div class="card"><h3>Why use ultrasound?</h3><p>Ultrasound is a mechanical wave. It carries much less energy than X-rays, so it does not damage cells at diagnostic levels, which is why it is used to look at unborn babies.</p></div>
+<h3>Other medical uses</h3>
+<div class="flips">
+<button class="btn flip hs" data-p="ou" data-info="<b>Doppler flow meter.</b> Sound reflects off moving red blood cells. The change in frequency (the Doppler effect from 9.5) shows how fast the blood is flowing and in which direction."><b>Doppler flow meter</b></button>
+<button class="btn flip hs" data-p="ou" data-info="<b>Therapeutic ultrasound.</b> Therapeutic means used to treat. Sound waves can warm tissue deep in the body to increase blood flow and speed up healing."><b>Therapeutic ultrasound</b></button>
+<button class="btn flip hs" data-p="ou" data-info="<b>Surgical aspirator.</b> A neurosurgeon can use a tool that vibrates at ultrasonic frequencies to break up tumour tissue, which is then suctioned away."><b>Surgical aspirator</b></button></div>
+<div class="card" id="ou" aria-live="polite">Tap one.</div>
+<div class="flips"><button class="btn flip rev" data-t="k1">transmitter</button><button class="btn flip rev" data-t="k2">receiver</button><button class="btn flip rev" data-t="k3">reflect</button><button class="btn flip rev" data-t="k4">therapeutic</button><button class="btn flip rev" data-t="k5">neurosurgeon</button></div>
+<div class="ans" id="k1" hidden>Transmitter: the part that sends out waves.</div><div class="ans" id="k2" hidden>Receiver: the part that detects waves.</div><div class="ans" id="k3" hidden>Reflect: bounce back from a surface.</div><div class="ans" id="k4" hidden>Therapeutic: used to treat or heal.</div><div class="ans" id="k5" hidden>Neurosurgeon: a doctor who operates on the brain and nervous system.</div>
+<div class="cb draw"><b>🎨 Draw &amp; label</b>Sketch an ultrasound scan with the probe, gel, two tissue layers and the echoes. Show a short pulse going in and echoes coming back.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Elaborate</button></div></section>
+
+<section class="step" data-phase="Elaborate">
+<h2>Scale and measurement</h2>
+<p>Ultrasound can only show detail about as small as its wavelength. Change the probe’s frequency. Speed in tissue is 1500 m/s.</p>
+<div class="sl"><label for="fq">Probe frequency</label><input id="fq" type="range" min="2" max="10" step="2" value="4"><span id="fv"></span></div>
+<div class="rd"><div>Wavelength<b id="wl"></b></div><div>Smallest detail<b id="sd"></b></div><div>Depth it can reach<b id="dr"></b></div></div>
+<div class="cb write"><b>✏️ In your workbook</b>Complete: “A higher frequency gives a ________ wavelength, so the scan can show ________ structures, but the waves do not travel as ________ into the body.”</div>
+<div class="card calc" data-a="3"><p><b>Calculate.</b> An echo returns after 40 µs (0.000040 s). Sound travels at 1500 m/s. Find the depth of the boundary in cm. Use depth = speed × time ÷ 2.</p><input type="number" step="any" aria-label="Depth"> cm <button class="btn go">Check</button><p class="fb"></p></div>
+<div class="card calc" data-a="80"><p><b>Calculate.</b> A boundary is 6 cm deep. How long in µs does the echo take to return? Use time = 2 × depth ÷ speed.</p><input type="number" step="any" aria-label="Time"> µs <button class="btn go">Check</button><p class="fb"></p></div>
+<div class="card calc" data-a="0.3"><p><b>Calculate.</b> A probe has a frequency of 5 MHz (5 000 000 Hz). Find the wavelength in mm. Use λ = v ÷ f, then convert metres to mm.</p><input type="number" step="any" aria-label="Wavelength"> mm <button class="btn go">Check</button><p class="fb"></p></div>
+<h3>Find out or treat?</h3><p>Tap an item, then its box.</p>
+<div class="sort"><div class="opts"><button class="chip" data-t="d">Imaging an organ</button><button class="chip" data-t="d">Measuring blood flow</button><button class="chip" data-t="t">Speeding up healing</button><button class="chip" data-t="t">Breaking up tumour tissue</button></div>
+<div class="buckets"><button class="bucket" data-b="d"><b>Diagnostic: finding out what is wrong</b><div></div></button><button class="bucket" data-b="t"><b>Therapeutic: treating</b><div></div></button></div><p class="fb"></p></div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Go further</button></div></section>
+
+<section class="step" data-phase="Go further">
+<h2>Go further: sound in healthcare</h2>
+<p>Tap each card to read more.</p>
+<div class="flips"><button class="btn flip rev" data-t="g1">Hearing tests</button><button class="btn flip rev" data-t="g2">Echocardiograms</button><button class="btn flip rev" data-t="g3">Limits and access</button></div>
+<div class="info ans" id="g1" hidden><b>Hearing tests.</b> Audiometry uses sounds of different frequencies and volumes to find the quietest sounds a person can hear. The results are plotted on an audiogram (see 9.6).</div>
+<div class="info ans" id="g2" hidden><b>Echocardiograms.</b> Ultrasound scans of the heart show its size, its valves and how it moves. Doppler ultrasound adds information about blood flow.</div>
+<div class="info ans" id="g3" hidden><b>Limits and access.</b> Ultrasound images can be hard to interpret and need a trained operator. Machines are costly, so access can be harder in remote communities.</div>
+<div class="task"><h3>How sound wave devices work</h3>
+<p>In a small group, research one medical use of sound waves: ultrasound imaging, echocardiograms, Doppler ultrasound or audiometry. Prepare:</p>
+<ul><li>a short explanation of how it works</li><li>a diagram showing how the sound waves are used</li><li>key features and real-world uses</li></ul>
+<p>Share it as a 2-minute explanation or mini-poster. Then complete a comparison chart of the different sound-based diagnostic tools.</p>
+<p><b>Support:</b> use the starter “This device works because sound waves…” and prompting questions. <b>Extend:</b> evaluate how the technology improves patient outcomes, and propose one limitation or ethical consideration.</p></div>
+<div class="cb research"><b>🔍 Research task</b>Complete the Masterclass steps on pages 234–235 of your textbook to show what you have learned in this chapter.</div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><button class="btn main" data-nav="1">Evaluate</button></div></section>
+
+<section class="step ev" data-phase="Evaluate">
+<h2>Check your understanding</h2><p class="score tag"></p>
+<div class="card quiz" data-a="2" data-why="Ultrasound is sound above about 20 000 Hz, beyond human hearing."><p><b>1.</b> What is ultrasound?</p><div class="opts"><button class="opt">Sound below 20 Hz</button><button class="opt">Very loud sound</button><button class="opt">Sound above the range of human hearing</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="Echoes reflect off boundaries between tissues. The time they take shows the depth, and their strength sets the shade."><p><b>2.</b> How is an ultrasound image formed?</p><div class="opts"><button class="opt">By light passing through tissue</button><button class="opt">By sound reflecting off tissue boundaries</button><button class="opt">By heat from the probe</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="0" data-why="Looking back at 9.2: sound is a mechanical wave and needs a medium. Gel removes the air gap, which would reflect the sound away."><p><b>3. Looking back.</b> Why is gel put on the skin?</p><div class="opts"><button class="opt">To remove air gaps that block the sound</button><button class="opt">To make the sound louder</button><button class="opt">To keep the probe cool</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="1" data-why="Looking back at 9.5: a Doppler flow meter measures the change in frequency of sound reflected from moving blood cells."><p><b>4.</b> What does a Doppler flow meter measure?</p><div class="opts"><button class="opt">Blood temperature</button><button class="opt">Speed and direction of blood flow</button><button class="opt">The length of a bone</button></div><p class="fb"></p></div>
+<div class="card quiz" data-a="2" data-why="Ultrasound uses sound waves with much less energy than X-rays, so it does not damage cells at diagnostic levels."><p><b>5.</b> Why is ultrasound often chosen instead of X-rays for scanning?</p><div class="opts"><button class="opt">It is higher in energy</button><button class="opt">It uses light</button><button class="opt">It carries much less energy</button></div><p class="fb"></p></div>
+<div class="cb write"><b>✏️ Goal review</b>Write one sentence explaining why ultrasound is used for diagnosis instead of high-energy radiation such as X-rays. Refer to energy.</div>
+<div class="card checks"><h3>Workbook checklist</h3>
+<label><input type="checkbox">My ultrasound prediction and question</label><label><input type="checkbox">My echo times and depth working</label><label><input type="checkbox">My labelled ultrasound scan sketch</label><label><input type="checkbox">My frequency and wavelength sentence</label><label><input type="checkbox">My three calculations</label><label><input type="checkbox">My sound device research</label><label><input type="checkbox">My Masterclass steps</label><label><input type="checkbox">My goal review sentence</label></div>
+<div class="nav"><button class="btn" data-nav="-1">Back</button><a class="btn main" href="index.html" style="text-decoration:none">Back to all lessons</a></div></section>
+</div>
+<script src="assets/lesson.js"></script>
+<script>(function(){var $=function(i){return document.getElementById(i)},c=$('us').getContext('2d'),Y=[88,160,232],D=[2,5,8],N=['A','B','C'],T0=null,dn=[0,0,0],V=160;
+$('send').onclick=function(){T0=Date.now();dn=[0,0,0];for(var i=0;i<3;i++)$('e'+i).textContent='waiting…'};
+function ln(y,col,w){c.strokeStyle=col;c.lineWidth=w;c.beginPath();c.moveTo(240,y);c.lineTo(400,y);c.stroke()}
+function fr(){var col=getComputedStyle(document.body).color;c.clearRect(0,0,640,260);c.fillStyle='rgba(217,154,138,.3)';c.fillRect(0,40,640,220);c.fillStyle='#7d4cc2';c.fillRect(290,12,60,24);c.fillStyle=col;c.font='600 12px system-ui';c.fillText('probe',360,28);
+Y.forEach(function(y,i){c.strokeStyle=col;c.lineWidth=1;c.setLineDash([5,4]);c.beginPath();c.moveTo(40,y);c.lineTo(580,y);c.stroke();c.setLineDash([]);c.fillText(N[i],596,y+4)});
+if(T0){var t=(Date.now()-T0)/1000,yp=40+V*t;if(yp<=250)ln(yp,'#d6452b',4);
+Y.forEach(function(y,i){var th=(y-40)/V;if(t>th){var ye=y-V*(t-th);if(ye>=40)ln(ye,'#3b6fd0',3);else if(!dn[i]){dn[i]=1;$('e'+i).textContent=(2*D[i]/1500*1e6).toFixed(1)+' µs'}}})}
+requestAnimationFrame(fr)}fr();
+function u(){var f=+$('fq').value,l=1500/(f*1e6)*1000;$('fv').textContent=f+' MHz';$('wl').textContent=l.toFixed(2)+' mm';$('sd').textContent='about '+l.toFixed(2)+' mm';$('dr').textContent=f<=4?'deeper':f<=6?'medium':'shallower'}
+$('fq').oninput=u;u();
+document.querySelectorAll('.calc').forEach(function(k){var i=k.querySelector('input'),f=k.querySelector('.fb');k.querySelector('.go').onclick=function(){var v=parseFloat(i.value),ok=Math.abs(v-+k.dataset.a)<1e-6;f.className='fb '+(ok?'ok':'no');f.textContent=ok?'Correct.':(isNaN(v)?'Enter a number first.':'Not quite. Check the formula, and the units.')}})})();</script>
+</body></html>
