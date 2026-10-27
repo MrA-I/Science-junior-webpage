@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 6: How we hear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+:root{
+  --bg:#eef3f1;--surface:#ffffff;--ink:#1c2b3a;--muted:#51616f;--line:#cfdad6;--soft:#e3ebe8;
+  --focus:#d99a00;--good:#2d7a46;--bad:#b3261e;--book:#fff4d6;--bookline:#d99a00;
+  --hot:#cf4a1f;--cold:#2f6fb0;--cond:#7a4fb0;--conv:#0f7d74;--rad:#b0336e;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--body:"Atkinson Hyperlegible",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.5 var(--body)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:900px;margin:0 auto;padding:18px 16px 36px}
+.back{display:inline-block;font:700 1rem var(--body);color:var(--ink);text-decoration:underline;text-underline-offset:3px;padding:8px 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.top .t{font:800 1.3rem var(--display)}
+.prog{display:flex;gap:6px;align-items:center;font-size:.95rem;color:var(--muted)}
+.bar{width:160px;height:10px;border-radius:99px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:99px;transition:width .3s}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.part{font:700 .85rem var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 4px}
+h1{font:800 clamp(1.8rem,4vw,2.4rem)/1.1 var(--display);margin:0 0 12px}
+h2{font:800 1.6rem/1.2 var(--display);margin:0 0 12px}
+p{margin:0 0 12px}
+.big{font-size:1.15rem}
+.defn{border:3px solid var(--mc,var(--ink));border-radius:14px;padding:12px 16px;margin:0 0 14px;font-size:1.1rem}
+.defn b{color:var(--mc,var(--ink))}
+ul.pts{margin:0 0 12px;padding-left:22px}
+ul.pts li{margin-bottom:6px}
+.scene{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:8px;margin:0 0 12px}
+.scene svg{display:block;width:100%;height:auto;max-height:340px}
+.btn{font:700 1.05rem var(--body);color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;min-height:48px;padding:8px 20px;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--surface)}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.scene .row{margin:8px 4px 4px}
+.look{font-size:1rem;color:var(--muted)}
+.rule{background:var(--book);border:2px solid var(--bookline);border-radius:14px;padding:12px 16px;font-weight:700}
+.book{display:flex;gap:12px;align-items:flex-start;background:var(--book);border:2px dashed var(--bookline);border-radius:14px;padding:12px 16px;margin-top:16px}
+.book .ic{font-size:1.5rem;line-height:1}
+.book .h{font-weight:700;display:block}
+.choices{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 4px}
+.choice{font:700 1.05rem var(--body);color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:14px;min-height:52px;padding:10px 18px;cursor:pointer}
+.choice[aria-pressed="true"]{border-color:var(--ink);background:var(--surface)}
+.choice.ok{border-color:var(--good);box-shadow:inset 0 0 0 2px var(--good)}
+.choice.no{border-color:var(--bad)}
+.fb{margin:8px 0 0;font-size:1.05rem}
+.fb.ok b{color:var(--good)}.fb.no b{color:var(--bad)}
+.fill .sent{font-size:1.2rem;line-height:2.4;margin:0 0 6px}
+.blank{display:inline-block;min-width:120px;min-height:44px;vertical-align:middle;border:none;border-bottom:3px solid var(--ink);background:var(--soft);border-radius:8px 8px 0 0;font:700 1.1rem var(--body);color:var(--ink);padding:4px 12px;cursor:pointer;text-align:center}
+.blank.ok{border-bottom-color:var(--good);color:var(--good)}
+.blank.no{border-bottom-color:var(--bad);color:var(--bad)}
+.bank{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.bank .lab{width:100%;font-size:.95rem;color:var(--muted)}
+.chip{font:700 1.05rem var(--body);background:var(--surface);color:var(--ink);border:2px solid var(--ink);border-radius:12px;min-height:48px;padding:6px 18px;cursor:pointer}
+.chip:disabled{opacity:.3}
+.match{display:grid;gap:12px}
+.match .m{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg)}
+.match .m p{margin:0 0 4px;font-weight:700}
+.reveal{margin-top:12px}
+.reveal>summary{display:inline-flex;gap:6px;list-style:none;cursor:pointer;font:700 .9rem var(--body);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;min-height:38px;align-items:center}
+.reveal>summary::-webkit-details-marker{display:none}
+.reveal>summary::before{content:"▸"}.reveal[open]>summary::before{content:"▾"}
+.reveal .body{margin-top:8px;padding:8px 14px;border-left:3px solid var(--line);font-size:1.05rem}
+.checklist{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px}
+.checklist label{display:flex;gap:12px;align-items:flex-start;cursor:pointer;min-height:48px;padding:6px 0;font-size:1.1rem}
+.checklist input{width:26px;height:26px;margin-top:3px;accent-color:var(--good);flex:none}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+footer{margin-top:24px;color:var(--muted);font-size:.9rem;text-align:center}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+.two .defn{margin:0}
+@media (max-width:600px){.two{grid-template-columns:1fr}}
+.tbl{width:100%;border-collapse:collapse;margin:0 0 12px;font-size:1.05rem}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--soft)}
+.formula{font:800 1.6rem var(--display);text-align:center;margin:6px 0 12px}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;line-height:1.15}
+.frac>span:first-child{border-bottom:2px solid currentColor;padding:0 4px}
+.frac>span:last-child{padding:0 4px}
+</style>
+</head>
+<body data-key="y9et-m6-v1">
+<div class="wrap">
+  <a class="back" href="./">← My lessons</a>
+  <div class="top">
+    <span class="t">Lesson 6: How we hear</span>
+    <span class="prog"><span id="pn">Step 1 of 13</span><span class="bar"><i id="pb"></i></span></span>
+  </div>
+<section class="step">
+    <div class="card">
+      <h1>Lesson 6: How we hear</h1>
+      <p class="big"><b>My goal:</b> I can explain how the ear changes sound into signals for the brain.</p>
+      <p>Today you will learn these new words:</p>
+      <ul class="pts">
+        <li><b>eardrum</b></li>
+        <li><b>ossicles</b></li>
+        <li><b>cochlea</b></li>
+        <li><b>auditory nerve</b></li>
+      </ul>
+      <p class="rule">Write every answer in your book. Ticking on the screen is not enough.</p>
+      <p>Press <b>Next</b> to start.</p>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Getting started</p>
+      <h2>The dog whistle</h2>
+      <div class="scene">
+        <svg viewBox="0 0 480 170" role="img" aria-label="A person blows a dog whistle. A dog runs to them. Another person nearby hears nothing.">
+          <g font-size="16" font-weight="700" text-anchor="middle">
+            <circle style="fill:var(--surface);stroke:var(--ink)" cx="70" cy="50" r="20" stroke-width="3"/>
+            <path style="fill:none;stroke:var(--ink)" stroke-width="3" d="M70 70 V120 M70 85 L95 60 M70 85 L45 105 M70 120 L50 155 M70 120 L90 155"/>
+            <rect style="fill:var(--focus);stroke:var(--ink)" x="88" y="44" width="22" height="9" rx="3" stroke-width="2"/>
+            <path style="fill:none;stroke:var(--hot)" stroke-width="3" d="M122 36 q8 12 0 24 M134 30 q12 18 0 36 M146 24 q16 24 0 48"/>
+            <g transform="translate(480 0) scale(-1 1)">
+            <ellipse style="fill:var(--muted)" cx="240" cy="130" rx="38" ry="16"/>
+            <circle style="fill:var(--muted)" cx="282" cy="112" r="14"/>
+            <path style="fill:var(--muted)" d="M282 100 l6 -14 l6 16z"/>
+            <path style="fill:none;stroke:var(--muted)" stroke-width="5" d="M215 140 v16 M262 140 v16 M204 126 q-14 -10 -6 -22"/>
+            </g>
+            <text x="245" y="92" style="fill:var(--ink)">Dog</text>
+            <circle style="fill:var(--surface);stroke:var(--ink)" cx="410" cy="50" r="20" stroke-width="3"/>
+            <path style="fill:none;stroke:var(--ink)" stroke-width="3" d="M410 70 V120 M410 85 L388 105 M410 85 L432 105 M410 120 L392 155 M410 120 L428 155"/>
+            <text x="410" y="20" style="fill:var(--ink)">?</text>
+          </g>
+        </svg>
+      </div>
+      <p>A dog whistle makes a dog run to its owner. People nearby hear nothing.</p>
+      <p><b>Why can't the people hear it?</b></p>
+      <div class="pick" data-correct="1" data-ok="People hear about 20 Hz to 20 000 Hz. The whistle is higher than that." data-no="Not quite. The dog can hear it, so it is loud enough. What else is different about this sound?">
+        <div class="choices"><button class="choice" type="button">It is too quiet for people</button><button class="choice" type="button">Its frequency is too high for people</button><button class="choice" type="button">Sound cannot reach the people</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>People cannot hear a dog whistle because ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Hearing range</p>
+      <h2>What can people hear?</h2>
+      <div class="defn">People can hear sounds from about <b>20 Hz</b> to <b>20 000 Hz</b>. This is the human <b>hearing range</b>.</div>
+      <div class="scene">
+        <svg id="svgRange" viewBox="0 0 640 230" role="img" aria-label="A sound wave changes from low frequency to high frequency. A pointer moves along a scale from 10 Hz to 40 000 Hz. The middle part of the scale is the human hearing range."></svg>
+        <div class="row"><button class="btn primary" type="button" id="rangeGo">Start the sound</button><button class="btn" type="button" id="rangeStop">Stop</button></div>
+      </div>
+      <ul class="pts">
+        <li>Below 20 Hz is <b>infrasound</b>. It is too low for people to hear.</li>
+        <li>Above 20 000 Hz is <b>ultrasound</b>. It is too high for people to hear.</li>
+        <li>Dogs can hear higher sounds than people.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Can a person hear it?</h2>
+      <p>People hear from about 20 Hz to 20 000 Hz.</p>
+      <div class="match">
+        <div class="m pick" data-correct="1" data-ok="10 Hz is below 20 Hz. It is infrasound." data-no="Not quite. Is 10 Hz inside the range?">
+          <p>A sound at 10 Hz</p>
+          <div class="choices"><button class="choice" type="button">Can hear it</button><button class="choice" type="button">Cannot hear it</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="1000 Hz is between 20 Hz and 20 000 Hz." data-no="Not quite. Is 1000 Hz between 20 Hz and 20 000 Hz?">
+          <p>A sound at 1000 Hz</p>
+          <div class="choices"><button class="choice" type="button">Can hear it</button><button class="choice" type="button">Cannot hear it</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="30 000 Hz is above 20 000 Hz. It is ultrasound." data-no="Not quite. Compare 30 000 Hz with 20 000 Hz.">
+          <p>A sound at 30 000 Hz</p>
+          <div class="choices"><button class="choice" type="button">Can hear it</button><button class="choice" type="button">Cannot hear it</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>People can hear from about ______ Hz to ______ Hz. Then write each sound and "can hear" or "cannot hear".</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Parts of the ear</p>
+      <h2>Three sections</h2>
+      <div class="defn">The ear has three sections: the <b>outer ear</b>, the <b>middle ear</b> and the <b>inner ear</b>.</div>
+      <div class="scene">
+        <svg viewBox="0 0 660 240" role="img" aria-label="Diagram of the ear. Outer ear: pinna and ear canal. Middle ear: eardrum and ossicles. Inner ear: cochlea and the auditory nerve going to the brain.">
+          <g font-size="16" font-weight="700" text-anchor="middle">
+            <rect style="fill:var(--cold)" opacity=".18" x="10" y="34" width="190" height="196"/>
+            <rect style="fill:var(--focus)" opacity=".22" x="200" y="34" width="150" height="196"/>
+            <rect style="fill:var(--conv)" opacity=".18" x="350" y="34" width="300" height="196"/>
+            <text x="105" y="24" style="fill:var(--ink)">Outer ear</text>
+            <text x="275" y="24" style="fill:var(--ink)">Middle ear</text>
+            <text x="500" y="24" style="fill:var(--ink)">Inner ear</text>
+            <path style="fill:none;stroke:var(--ink)" stroke-width="4" d="M90 70 q-60 20 -42 72 q14 36 42 46"/>
+            <path style="fill:none;stroke:var(--ink)" stroke-width="4" d="M92 112 H196 M92 144 H196"/>
+            <line style="stroke:var(--hot)" x1="201" y1="95" x2="201" y2="162" stroke-width="6"/>
+            <g style="fill:var(--focus);stroke:var(--ink)" stroke-width="1.5"><circle cx="235" cy="128" r="11"/><circle cx="275" cy="128" r="8"/><circle cx="310" cy="128" r="6"/></g>
+            <path style="fill:none;stroke:var(--focus)" stroke-width="4" d="M246 128 H267 M283 128 H304 M316 128 H352"/>
+            <path style="fill:none;stroke:var(--conv)" stroke-width="5" d="M410 88 a38 38 0 1 1 -38 38 a24 24 0 1 1 24 -24 a11 11 0 1 1 -11 11"/>
+            <path style="fill:none;stroke:var(--cond)" stroke-width="4" d="M452 126 H580 M580 126 l-9 -6 M580 126 l-9 6"/>
+            <text x="618" y="132" style="fill:var(--ink)">Brain</text>
+            <text x="55" y="215" style="fill:var(--ink)">Pinna</text>
+            <text x="145" y="100" style="fill:var(--ink)">Ear canal</text>
+            <text x="201" y="190" style="fill:var(--ink)">Eardrum</text>
+            <text x="275" y="160" style="fill:var(--ink)">Ossicles</text>
+            <text x="405" y="200" style="fill:var(--ink)">Cochlea</text>
+            <text x="520" y="160" style="fill:var(--ink)">Auditory nerve</text>
+          </g>
+        </svg>
+      </div>
+      <ul class="pts">
+        <li><b>Outer ear:</b> the pinna and the ear canal.</li>
+        <li><b>Middle ear:</b> the eardrum and three tiny bones called the <b>ossicles</b>.</li>
+        <li><b>Inner ear:</b> the cochlea. The auditory nerve goes from here to the brain.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Which section?</h2>
+      <p>Choose the section for each part.</p>
+      <div class="match">
+        <div class="m pick" data-correct="0" data-ok="The pinna is the part you can see. It is in the outer ear." data-no="Not quite. The pinna is the part on the side of your head.">
+          <p>Pinna</p>
+          <div class="choices"><button class="choice" type="button">Outer ear</button><button class="choice" type="button">Middle ear</button><button class="choice" type="button">Inner ear</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="The three tiny bones are just behind the eardrum, in the middle ear." data-no="Not quite. Look at the diagram again. Find the three tiny bones.">
+          <p>Ossicles</p>
+          <div class="choices"><button class="choice" type="button">Outer ear</button><button class="choice" type="button">Middle ear</button><button class="choice" type="button">Inner ear</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="2" data-ok="The cochlea is the spiral deep inside, in the inner ear." data-no="Not quite. The cochlea is the spiral. Where is it on the diagram?">
+          <p>Cochlea</p>
+          <div class="choices"><button class="choice" type="button">Outer ear</button><button class="choice" type="button">Middle ear</button><button class="choice" type="button">Inner ear</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Draw the ear. Label the pinna, ear canal, eardrum, ossicles, cochlea and auditory nerve. Shade the outer, middle and inner ear in three colours.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">How the ear works</p>
+      <h2>Sound through the ear</h2>
+      <div class="scene">
+        <svg id="svgEar" viewBox="0 0 660 280" role="img" aria-label="A sound wave goes into the ear canal. The eardrum vibrates. The ossicles pass on the vibration and make it stronger. Fluid in the cochlea moves. Hair cells make electrical signals. The auditory nerve carries the signals to the brain."></svg>
+        <div class="row"><button class="btn primary" type="button" id="earGo">Start the sound</button><button class="btn" type="button" id="earStop">Stop</button></div>
+      </div>
+      <ul class="pts">
+        <li>The sound wave makes the <b>eardrum</b> vibrate.</li>
+        <li>The <b>ossicles</b> pass on the vibrations and make them stronger.</li>
+        <li>Fluid in the <b>cochlea</b> moves. Tiny hair cells change this into <b>electrical signals</b>.</li>
+        <li>The <b>auditory nerve</b> carries the signals to the brain.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Parts of the ear in order</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">1. Sound waves go down the ear <button class="blank" type="button" data-answer="canal"></button>.</p>
+        <p class="sent">2. The <button class="blank" type="button" data-answer="eardrum"></button> vibrates.</p>
+        <p class="sent">3. The <button class="blank" type="button" data-answer="ossicles"></button> pass on the vibrations.</p>
+        <p class="sent">4. Fluid in the <button class="blank" type="button" data-answer="cochlea"></button> moves.</p>
+        <p class="sent">5. Hair cells make <button class="blank" type="button" data-answer="electrical"></button> signals.</p>
+        <p class="sent">6. The auditory <button class="blank" type="button" data-answer="nerve"></button> carries signals to the brain.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">cochlea</button><button class="chip" type="button">nerve</button><button class="chip" type="button">canal</button><button class="chip" type="button">electrical</button><button class="chip" type="button">eardrum</button><button class="chip" type="button">ossicles</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Draw a flow chart with six boxes. Write one sentence in each box, in order.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Energy changes</p>
+      <h2>What reaches the brain?</h2>
+      <div class="defn">The energy changes form as it goes through the ear.</div>
+        <table class="tbl">
+          <tr><th>Where</th><th>What the energy is</th></tr>
+          <tr><td>Ear canal</td><td>A sound wave in the air</td></tr>
+          <tr><td>Eardrum and ossicles</td><td>Vibrations</td></tr>
+          <tr><td>Cochlea</td><td>Moving fluid</td></tr>
+          <tr><td>Auditory nerve</td><td><b>?</b></td></tr>
+        </table>
+      <p><b>What does the auditory nerve carry to the brain?</b></p>
+      <div class="pick" data-correct="2" data-ok="The hair cells change the movement into electrical signals. The nerve carries these to the brain." data-no="Not quite. Think back to the hair cells in the cochlea. What do they make?">
+        <div class="choices"><button class="choice" type="button">Sound waves</button><button class="choice" type="button">Moving fluid</button><button class="choice" type="button">Electrical signals</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>sound wave → ______ → moving fluid → ______ signals</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">The middle ear</p>
+      <h2>The ossicles</h2>
+      <div class="defn">The <b>ossicles</b> are three tiny bones: the <b>hammer</b>, the <b>anvil</b> and the <b>stirrup</b>. They make the vibrations stronger.</div>
+      <ul class="pts">
+        <li>Stronger vibrations carry more energy.</li>
+        <li>The ossicles do not change the frequency.</li>
+      </ul>
+      <p><b>The ossicles make the vibrations stronger. What happens to the amplitude?</b></p>
+      <div class="pick" data-correct="0" data-ok="Stronger vibrations carry more energy, so the amplitude goes up." data-no="Not quite. A stronger vibration is a bigger vibration. Think back to amplitude in Lesson 3.">
+        <div class="choices"><button class="choice" type="button">It goes up</button><button class="choice" type="button">It goes down</button><button class="choice" type="button">It stays the same</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>The three ossicles are the hammer, the ______ and the ______. They make the vibrations stronger, so the amplitude ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Looking after your ears</p>
+      <h2>Hearing loss</h2>
+      <div class="defn" style="--mc:var(--hot)">Very loud sounds can damage the <b>hair cells</b> in the cochlea. They do not grow back.</div>
+      <ul class="pts">
+        <li>The louder the sound, the faster it can cause damage.</li>
+        <li>Earmuffs and earplugs help protect your ears.</li>
+      </ul>
+      <p><b>Which one helps protect your hearing?</b></p>
+      <div class="pick" data-correct="1" data-ok="A lower volume is less likely to damage the hair cells." data-no="Not quite. Which one makes the sound less loud in your ears?">
+        <div class="choices"><button class="choice" type="button">Sit next to the speakers</button><button class="choice" type="button">Turn the volume down</button><button class="choice" type="button">Use one earbud on full</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Loud sounds can damage the ______ cells in the cochlea. One way to protect my hearing is ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Key words</p>
+      <h2>How we hear</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">The <button class="blank" type="button" data-answer="pinna"></button> collects sound.</p>
+        <p class="sent">The <button class="blank" type="button" data-answer="eardrum"></button> is a thin sheet of skin that vibrates.</p>
+        <p class="sent">The three tiny bones are the <button class="blank" type="button" data-answer="ossicles"></button>.</p>
+        <p class="sent">Hair cells in the <button class="blank" type="button" data-answer="cochlea"></button> make electrical signals.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">ossicles</button><button class="chip" type="button">cochlea</button><button class="chip" type="button">pinna</button><button class="chip" type="button">eardrum</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Copy the four sentences.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <h2>Well done!</h2>
+      <p>Tick each one you can do now.</p>
+      <ul class="checklist">
+        <li><label><input type="checkbox"> I can say the human hearing range.</label></li>
+        <li><label><input type="checkbox"> I can name the outer, middle and inner ear.</label></li>
+        <li><label><input type="checkbox"> I can put the parts of the ear in order.</label></li>
+        <li><label><input type="checkbox"> I can say that the auditory nerve carries electrical signals to the brain.</label></li>
+      </ul>
+      <p class="rule">Show your teacher your book.</p>
+    </div>
+  </section>
+
+  <div class="pager">
+    <button class="btn" type="button" id="prev">← Back</button>
+    <button class="btn primary" type="button" id="next">Next →</button>
+  </div>
+  <footer>Year 9 Science · Energy transfer · Lesson 6</footer>
+</div>
+<script>(function(){const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const NS="http://www.w3.org/2000/svg";const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;const KEY=document.body.dataset.key;const store={get(k){try{return JSON.parse(localStorage.getItem(KEY+k))}catch(e){return null}},set(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}};function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}function hex(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");return[0,2,4].map(i=>parseInt(h.substr(i,2),16))}function mix(a,b,t){const pa=hex(a),pb=hex(b);return"rgb("+pa.map((x,i)=>Math.round(x+(pb[i]-x)*t)).join(",")+")"}function label(svg,x,y,t,anchor,fill,size){const e=el("text",{x:x,y:y,"text-anchor":anchor||"middle","font-family":"Atkinson Hyperlegible, system-ui, sans-serif","font-size":size||15,"font-weight":700,fill:fill||css("--ink")},svg);e.textContent=t;return e}function anim(fn){let raf=null,last=null;function loop(ts){const now=ts/1e3,dt=Math.min(.05,now-(last||now));last=now;fn(dt,now);raf=requestAnimationFrame(loop)}return{start(){if(reduce){fn(0,0);return}if(!raf){last=null;raf=requestAnimationFrame(loop)}},stop(){if(raf){cancelAnimationFrame(raf);raf=null}},get on(){return!!raf}}}window.K={$,$$,el,css,mix,label,anim,reduce};const steps=$$(".step");let cur=0;function go(i){cur=Math.max(0,Math.min(steps.length-1,i));steps.forEach((s,j)=>s.hidden=j!==cur);$("#pn").textContent="Step "+(cur+1)+" of "+steps.length;$("#pb").style.width=(cur+1)/steps.length*100+"%";$("#prev").disabled=cur===0;$("#next").hidden=cur===steps.length-1;store.set("step",cur);window.scrollTo({top:0,behavior:"auto"});document.dispatchEvent(new CustomEvent("stepchange",{detail:cur}))}$("#prev").onclick=()=>go(cur-1);$("#next").onclick=()=>go(cur+1);$$(".pick").forEach(box=>{const btns=[...box.querySelectorAll(":scope > .choices .choice")],fb=box.querySelector(":scope > .fb"),ok=+box.dataset.correct;btns.forEach((b,i)=>b.onclick=()=>{btns.forEach((x,j)=>{x.setAttribute("aria-pressed",j===i);x.classList.remove("ok","no")});b.classList.add(i===ok?"ok":"no");fb.hidden=false;fb.className="fb "+(i===ok?"ok":"no");fb.innerHTML=i===ok?"<b>✓ Yes!</b> "+box.dataset.ok:"<b>✗</b> "+box.dataset.no})});$$(".fill").forEach(box=>{const blanks=[...box.querySelectorAll(".blank")],chips=[...box.querySelectorAll(".chip")],fb=box.querySelector(".fb");function sync(){chips.forEach((c,i)=>{c.disabled=blanks.some(b=>b.dataset.src===String(i))})}function empty(b){b.textContent="";delete b.dataset.src;b.classList.remove("ok","no")}chips.forEach((c,i)=>c.onclick=()=>{const e=blanks.find(b=>!b.textContent);if(!e)return;e.textContent=c.textContent;e.dataset.src=i;e.classList.remove("ok","no");fb.hidden=true;sync()});blanks.forEach(b=>b.onclick=()=>{empty(b);fb.hidden=true;sync()});box.querySelector("[data-clear]").onclick=()=>{blanks.forEach(empty);fb.hidden=true;sync()};box.querySelector("[data-check]").onclick=()=>{if(blanks.some(b=>!b.textContent)){fb.hidden=false;fb.className="fb no";fb.innerHTML="<b>Fill every gap first.</b> Tap a word below.";return}let all=true;blanks.forEach(b=>{const r=b.textContent===b.dataset.answer;b.classList.toggle("ok",r);b.classList.toggle("no",!r);if(!r)all=false});fb.hidden=false;fb.className="fb "+(all?"ok":"no");fb.innerHTML=all?"<b>✓ All correct!</b> Now write it in your book.":"<b>✗ Not yet.</b> Tap a red word to take it out, then try again."}});window.addEventListener("load",()=>{const sv=store.get("step");go(typeof sv==="number"?sv:0)})})();</script>
+<script>(function(){const{$,$$,el,css,label,anim,reduce}=K;const all=[];
+const range=function(){const svg=$("#svgRange");let t=0,wave,ptr,txt,hz;const X0=40,X1=600,L0=1,L1=Math.log10(40000);const xOf=f=>X0+(Math.log10(f)-L0)/(L1-L0)*(X1-X0);
+function rnd(f){return f<100?Math.round(f):Math.round(f/Math.pow(10,Math.floor(Math.log10(f))-1))*Math.pow(10,Math.floor(Math.log10(f))-1)}function fmt(v){return v>=10000?String(v).replace(/\B(?=(\d{3})+(?!\d))/g," "):String(v)}
+function build(){svg.innerHTML="";const a=xOf(20),b=xOf(20000);el("rect",{x:X0,y:150,width:a-X0,height:26,fill:css("--muted"),opacity:.35},svg);el("rect",{x:a,y:150,width:b-a,height:26,fill:css("--good"),opacity:.45},svg);el("rect",{x:b,y:150,width:X1-b,height:26,fill:css("--muted"),opacity:.35},svg);el("rect",{x:X0,y:150,width:X1-X0,height:26,fill:"none",stroke:css("--ink"),"stroke-width":2},svg);label(svg,(a+b)/2,168,"People can hear","middle",css("--ink"),14);label(svg,a,198,"20 Hz","middle",css("--ink"),14);label(svg,b,198,"20 000 Hz","middle",css("--ink"),14);label(svg,X0+2,222,"Too low","start",css("--muted"),14);label(svg,X1-2,222,"Too high","end",css("--muted"),14);wave=el("path",{fill:"none",stroke:css("--cold"),"stroke-width":3},svg);ptr=el("path",{fill:css("--hot")},svg);hz=label(svg,320,28,"","middle",css("--ink"),18);txt=label(svg,320,48,"","middle",css("--muted"),15);draw()}
+function draw(){const s=(1-Math.cos(t*Math.PI/5))/2,lf=L0+s*(L1-L0),f=Math.pow(10,lf),x=xOf(f);const n=1.5+(lf-L0)*4.2;let d="";for(let i=0;i<=280;i++){const xx=X0+i*2,y=100+28*Math.sin(2*Math.PI*n*(i/280)-t*4);d+=(i?"L":"M")+xx.toFixed(1)+" "+y.toFixed(1)}wave.setAttribute("d",d);ptr.setAttribute("d",`M${x} 148 l-9 -14 h18 z`);const v=rnd(f);hz.textContent=fmt(v)+" Hz";txt.textContent=v<20?"Infrasound: too low to hear":v>20000?"Ultrasound: too high to hear":"People can hear this"}
+const a=anim(dt=>{t+=dt;draw()});build();return{start(){if(reduce){t=2.6;draw();return}a.start()},stop(){a.stop()}}}();all.push(range);$("#rangeGo").onclick=range.start;$("#rangeStop").onclick=range.stop;
+const ear=function(){const svg=$("#svgEar");let t=0,drum,oss=[],coch,hairs=[],dots=[],arcs=[],cap;const names=["1. Sound waves go down the ear canal","2. The eardrum vibrates","3. The ossicles make the vibrations stronger","4. Fluid in the cochlea moves","5. Hair cells make electrical signals","6. The auditory nerve carries signals to the brain"];
+function build(){svg.innerHTML="";el("rect",{x:10,y:34,width:190,height:186,fill:css("--cold"),opacity:.18},svg);el("rect",{x:200,y:34,width:150,height:186,fill:css("--focus"),opacity:.22},svg);el("rect",{x:350,y:34,width:300,height:186,fill:css("--conv"),opacity:.18},svg);label(svg,105,24,"Outer ear","middle",css("--ink"),15);label(svg,275,24,"Middle ear","middle",css("--ink"),15);label(svg,500,24,"Inner ear","middle",css("--ink"),15);
+el("path",{d:"M90 70 q-60 20 -42 72 q14 36 42 46",fill:"none",stroke:css("--ink"),"stroke-width":4},svg);el("path",{d:"M92 112 H196 M92 144 H196",fill:"none",stroke:css("--ink"),"stroke-width":4},svg);
+for(let i=0;i<3;i++)arcs.push(el("path",{fill:"none",stroke:css("--cold"),"stroke-width":3},svg));
+drum=el("path",{fill:"none",stroke:css("--hot"),"stroke-width":6},svg);
+const link=el("path",{d:"M246 128 H267 M283 128 H304 M316 128 H352",fill:"none",stroke:css("--focus"),"stroke-width":4},svg);oss=[[235,11],[275,8],[310,6]].map(([x,r])=>({x,c:el("circle",{cx:x,cy:128,r:r,fill:css("--focus"),stroke:css("--ink"),"stroke-width":1.5},svg)}));oss.link=link;
+coch=el("path",{d:"M410 88 a38 38 0 1 1 -38 38 a24 24 0 1 1 24 -24 a11 11 0 1 1 -11 11",fill:"none",stroke:css("--conv"),"stroke-width":5,"stroke-dasharray":"10 6"},svg);
+for(let i=0;i<5;i++)hairs.push(el("line",{x1:412+i*6,y1:134,x2:412+i*6,y2:146,stroke:css("--conv"),"stroke-width":3},svg));el("path",{d:"M440 146 L466 172",fill:"none",stroke:css("--muted"),"stroke-width":2},svg);label(svg,494,188,"Hair cells","middle",css("--muted"),14);
+el("path",{d:"M452 126 H580 M580 126 l-9 -6 M580 126 l-9 6",fill:"none",stroke:css("--cond"),"stroke-width":4},svg);label(svg,618,132,"Brain","middle",css("--ink"),15);
+for(let i=0;i<3;i++)dots.push(el("circle",{cx:452,cy:126,r:7,fill:css("--rad"),opacity:0},svg));
+label(svg,145,100,"Ear canal","middle",css("--muted"),14);label(svg,201,200,"Eardrum","middle",css("--muted"),14);label(svg,275,160,"Ossicles","middle",css("--muted"),14);label(svg,405,206,"Cochlea","middle",css("--muted"),14);label(svg,516,152,"Auditory nerve","middle",css("--muted"),14);
+cap=label(svg,330,256,"","middle",css("--ink"),17);draw()}
+function draw(){const T=t%8.4,st=Math.min(5,Math.floor(T/1.4)),p=(T%1.4)/1.4;cap.textContent=names[st];
+arcs.forEach((a,i)=>{const x=30+((T*90+i*55)%170);const on=st<=1;a.setAttribute("d",`M${x} 108 q10 20 0 40`);a.setAttribute("opacity",on?(1-(x-30)/190).toFixed(2):0)});
+const dA=st>=1?6*Math.sin(t*30):0;drum.setAttribute("d",`M201 95 Q${201+dA} 128 201 162`);
+const oA=st>=2?[2,4,7]:[0,0,0];oss.forEach((o,i)=>o.c.setAttribute("cx",o.x+oA[i]*Math.sin(t*30)));
+coch.setAttribute("stroke-dashoffset",st>=3?(-t*40).toFixed(1):0);
+hairs.forEach((h,i)=>{const on=st>=4;h.setAttribute("stroke",on&&Math.sin(t*20+i)>0?css("--rad"):css("--conv"));h.setAttribute("x2",412+i*6+(on?2.5*Math.sin(t*25+i):0))});
+dots.forEach((d,i)=>{if(st>=5){const x=452+((p*128+i*42)%128);d.setAttribute("cx",x);d.setAttribute("opacity",1)}else d.setAttribute("opacity",0)})}
+const a=anim(dt=>{t+=dt;draw()});build();return{start(){if(reduce){t=7.7;draw();return}a.start()},stop(){a.stop()}}}();all.push(ear);$("#earGo").onclick=ear.start;$("#earStop").onclick=ear.stop;
+document.addEventListener("stepchange",()=>all.forEach(x=>x.stop()))})();</script>
+</body>
+</html>

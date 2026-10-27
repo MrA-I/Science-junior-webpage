@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 11: Medical uses of sound</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+:root{
+  --bg:#eef3f1;--surface:#ffffff;--ink:#1c2b3a;--muted:#51616f;--line:#cfdad6;--soft:#e3ebe8;
+  --focus:#d99a00;--good:#2d7a46;--bad:#b3261e;--book:#fff4d6;--bookline:#d99a00;
+  --hot:#cf4a1f;--cold:#2f6fb0;--cond:#7a4fb0;--conv:#0f7d74;--rad:#b0336e;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--body:"Atkinson Hyperlegible",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.5 var(--body)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:900px;margin:0 auto;padding:18px 16px 36px}
+.back{display:inline-block;font:700 1rem var(--body);color:var(--ink);text-decoration:underline;text-underline-offset:3px;padding:8px 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.top .t{font:800 1.3rem var(--display)}
+.prog{display:flex;gap:6px;align-items:center;font-size:.95rem;color:var(--muted)}
+.bar{width:160px;height:10px;border-radius:99px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:99px;transition:width .3s}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.part{font:700 .85rem var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 4px}
+h1{font:800 clamp(1.8rem,4vw,2.4rem)/1.1 var(--display);margin:0 0 12px}
+h2{font:800 1.6rem/1.2 var(--display);margin:0 0 12px}
+p{margin:0 0 12px}
+.big{font-size:1.15rem}
+.defn{border:3px solid var(--mc,var(--ink));border-radius:14px;padding:12px 16px;margin:0 0 14px;font-size:1.1rem}
+.defn b{color:var(--mc,var(--ink))}
+ul.pts{margin:0 0 12px;padding-left:22px}
+ul.pts li{margin-bottom:6px}
+.scene{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:8px;margin:0 0 12px}
+.scene svg{display:block;width:100%;height:auto;max-height:340px}
+.btn{font:700 1.05rem var(--body);color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;min-height:48px;padding:8px 20px;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--surface)}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.scene .row{margin:8px 4px 4px}
+.look{font-size:1rem;color:var(--muted)}
+.rule{background:var(--book);border:2px solid var(--bookline);border-radius:14px;padding:12px 16px;font-weight:700}
+.book{display:flex;gap:12px;align-items:flex-start;background:var(--book);border:2px dashed var(--bookline);border-radius:14px;padding:12px 16px;margin-top:16px}
+.book .ic{font-size:1.5rem;line-height:1}
+.book .h{font-weight:700;display:block}
+.choices{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 4px}
+.choice{font:700 1.05rem var(--body);color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:14px;min-height:52px;padding:10px 18px;cursor:pointer}
+.choice[aria-pressed="true"]{border-color:var(--ink);background:var(--surface)}
+.choice.ok{border-color:var(--good);box-shadow:inset 0 0 0 2px var(--good)}
+.choice.no{border-color:var(--bad)}
+.fb{margin:8px 0 0;font-size:1.05rem}
+.fb.ok b{color:var(--good)}.fb.no b{color:var(--bad)}
+.fill .sent{font-size:1.2rem;line-height:2.4;margin:0 0 6px}
+.blank{display:inline-block;min-width:120px;min-height:44px;vertical-align:middle;border:none;border-bottom:3px solid var(--ink);background:var(--soft);border-radius:8px 8px 0 0;font:700 1.1rem var(--body);color:var(--ink);padding:4px 12px;cursor:pointer;text-align:center}
+.blank.ok{border-bottom-color:var(--good);color:var(--good)}
+.blank.no{border-bottom-color:var(--bad);color:var(--bad)}
+.bank{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.bank .lab{width:100%;font-size:.95rem;color:var(--muted)}
+.chip{font:700 1.05rem var(--body);background:var(--surface);color:var(--ink);border:2px solid var(--ink);border-radius:12px;min-height:48px;padding:6px 18px;cursor:pointer}
+.chip:disabled{opacity:.3}
+.match{display:grid;gap:12px}
+.match .m{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg)}
+.match .m p{margin:0 0 4px;font-weight:700}
+.reveal{margin-top:12px}
+.reveal>summary{display:inline-flex;gap:6px;list-style:none;cursor:pointer;font:700 .9rem var(--body);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;min-height:38px;align-items:center}
+.reveal>summary::-webkit-details-marker{display:none}
+.reveal>summary::before{content:"▸"}.reveal[open]>summary::before{content:"▾"}
+.reveal .body{margin-top:8px;padding:8px 14px;border-left:3px solid var(--line);font-size:1.05rem}
+.checklist{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px}
+.checklist label{display:flex;gap:12px;align-items:flex-start;cursor:pointer;min-height:48px;padding:6px 0;font-size:1.1rem}
+.checklist input{width:26px;height:26px;margin-top:3px;accent-color:var(--good);flex:none}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+footer{margin-top:24px;color:var(--muted);font-size:.9rem;text-align:center}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+.two .defn{margin:0}
+@media (max-width:600px){.two{grid-template-columns:1fr}}
+.tbl{width:100%;border-collapse:collapse;margin:0 0 12px;font-size:1.05rem}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--soft)}
+.formula{font:800 1.6rem var(--display);text-align:center;margin:6px 0 12px}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;line-height:1.15}
+.frac>span:first-child{border-bottom:2px solid currentColor;padding:0 4px}
+.frac>span:last-child{padding:0 4px}
+</style>
+</head>
+<body data-key="y9et-m11-v1">
+<div class="wrap">
+  <a class="back" href="./">← My lessons</a>
+  <div class="top">
+    <span class="t">Lesson 11: Medical uses of sound</span>
+    <span class="prog"><span id="pn">Step 1 of 13</span><span class="bar"><i id="pb"></i></span></span>
+  </div>
+<section class="step">
+    <div class="card">
+      <h1>Lesson 11: Medical uses of sound</h1>
+      <p class="big"><b>My goal:</b> I can give examples of how sound is used in medicine.</p>
+      <p>Today you will learn these new words:</p>
+      <ul class="pts">
+        <li><b style="color:var(--cond)">ultrasound</b></li>
+        <li><b style="color:var(--cold)">echo</b></li>
+        <li><b style="color:var(--conv)">diagnostic</b> and <b style="color:var(--hot)">therapeutic</b></li>
+      </ul>
+      <p class="rule">Write every answer in your book. Ticking on the screen is not enough.</p>
+      <p>Press <b>Next</b> to start.</p>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Getting started</p>
+      <h2>The picture on the screen</h2>
+      <div class="scene">
+        <svg viewBox="0 0 460 190" role="img" aria-label="A doctor moves a small probe over a patient's skin. A picture of an organ appears on a screen.">
+          <rect style="fill:var(--hot)" opacity=".2" x="20" y="90" width="240" height="90" rx="10"/>
+          <text x="140" y="172" text-anchor="middle" font-size="15" font-weight="700" style="fill:var(--ink)">Patient's body</text>
+          <rect style="fill:var(--cond)" x="105" y="40" width="60" height="44" rx="8"/>
+          <rect style="fill:var(--muted)" x="128" y="12" width="14" height="30" rx="4"/>
+          <text x="180" y="62" text-anchor="start" font-size="15" font-weight="700" style="fill:var(--ink)">Probe</text>
+          <rect style="fill:var(--ink)" x="300" y="30" width="140" height="110" rx="10"/>
+          <path style="fill:none;stroke:var(--soft)" stroke-width="4" d="M330 115 Q370 55 410 115"/>
+          <text x="370" y="165" text-anchor="middle" font-size="15" font-weight="700" style="fill:var(--ink)">Screen</text>
+        </svg>
+      </div>
+      <p>A doctor moves a small probe over a patient's skin. A picture of an organ appears.</p>
+      <p><b>How is the picture made?</b></p>
+      <div class="pick" data-correct="1" data-ok="The probe sends out sound. Echoes bounce back from inside the body and make the picture." data-no="Not quite. Think about how a bat finds things in the dark.">
+        <div class="choices"><button class="choice" type="button">X-rays pass through</button><button class="choice" type="button">Sound echoes come back</button><button class="choice" type="button">Light shines through</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>The picture is made by ______ that bounce back from inside the body.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card" style="--mc:var(--cond)">
+      <p class="part">Key word</p>
+      <h2>What is ultrasound?</h2>
+      <div class="defn"><b>Ultrasound</b> is sound that is too high for humans to hear. Its frequency is above 20 000 Hz.</div>
+      <div class="scene">
+        <svg viewBox="0 0 540 150" role="img" aria-label="A frequency line. From 20 Hz to 20 000 Hz is the sound humans can hear. Above 20 000 Hz is ultrasound.">
+          <rect style="fill:var(--conv)" opacity=".35" x="40" y="50" width="300" height="40" rx="6"/>
+          <rect style="fill:var(--cond)" opacity=".45" x="340" y="50" width="170" height="40" rx="6"/>
+          <line style="stroke:var(--ink)" x1="40" y1="90" x2="520" y2="90" stroke-width="3"/>
+          <path style="fill:var(--ink)" d="M520 90 l-12 -7 v14z"/>
+          <line style="stroke:var(--ink)" x1="340" y1="42" x2="340" y2="100" stroke-width="3"/>
+          <g font-size="16" font-weight="700" text-anchor="middle" style="fill:var(--ink)">
+            <text x="190" y="76">Humans can hear</text>
+            <text x="425" y="76">Ultrasound</text>
+            <text x="340" y="122">20 000 Hz</text>
+            <text x="40" y="122">20 Hz</text>
+          </g>
+          <text x="520" y="122" text-anchor="end" font-size="14" font-weight="700" style="fill:var(--muted)">Higher frequency</text>
+        </svg>
+      </div>
+      <ul class="pts">
+        <li>Ultrasound is still sound. It is a vibration that needs a medium.</li>
+        <li>A medical probe uses about 2 000 000 Hz to 10 000 000 Hz.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Can you hear it?</h2>
+      <p>For each sound, choose if a human can hear it.</p>
+      <div class="match">
+        <div class="m pick" data-correct="0" data-ok="500 Hz is between 20 Hz and 20 000 Hz, so we can hear it." data-no="Not quite. Is 500 Hz above or below 20 000 Hz?">
+          <p>500 Hz</p>
+          <div class="choices"><button class="choice" type="button">Can hear</button><button class="choice" type="button">Ultrasound</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="40 000 Hz is above 20 000 Hz, so it is ultrasound." data-no="Not quite. Compare 40 000 Hz with 20 000 Hz.">
+          <p>40 000 Hz</p>
+          <div class="choices"><button class="choice" type="button">Can hear</button><button class="choice" type="button">Ultrasound</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="15 000 Hz is just below 20 000 Hz, so we can hear it." data-no="Not quite. Is 15 000 Hz above or below 20 000 Hz?">
+          <p>15 000 Hz</p>
+          <div class="choices"><button class="choice" type="button">Can hear</button><button class="choice" type="button">Ultrasound</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Ultrasound is sound above ______ Hz. Write each frequency and "can hear" or "ultrasound".</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card" style="--mc:var(--cold)">
+      <p class="part">How a scan works</p>
+      <h2>Echoes from inside the body</h2>
+      <div class="defn">An <b>echo</b> is sound that bounces back (reflects) from a surface.</div>
+      <div class="scene">
+        <svg id="svgEcho" viewBox="0 0 540 270" role="img" aria-label="A probe sends a pulse of sound down into the body. It meets three boundaries, A, B and C. An echo comes back from each one. The echo from the deepest boundary takes the longest."></svg>
+        <div class="row"><button class="btn primary" type="button" id="echoGo">Send a pulse</button><button class="btn" type="button" id="echoStop">Stop</button></div>
+      </div>
+      <p class="look">The animation is slowed down. A real echo takes less than one thousandth of a second. µs means a millionth of a second.</p>
+      <ul class="pts">
+        <li>The sound reflects where two different tissues meet. This is a <b>boundary</b>.</li>
+        <li>Some sound bounces back. The rest goes deeper.</li>
+        <li>A deeper boundary gives an echo that takes <b>longer</b> to come back.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Which boundary is deepest?</h2>
+      <p>The probe sends one pulse. Three echoes come back.</p>
+      <table class="tbl">
+        <tr><th>Boundary</th><th>Time for the echo to come back</th></tr>
+        <tr><td><b>X</b></td><td>60 µs</td></tr>
+        <tr><td><b>Y</b></td><td>100 µs</td></tr>
+        <tr><td><b>Z</b></td><td>20 µs</td></tr>
+      </table>
+      <p>µs means a millionth of a second.</p>
+      <p><b>Which boundary is deepest in the body?</b></p>
+      <div class="pick" data-correct="1" data-ok="Its echo took the longest time, so the sound went the furthest." data-no="Not quite. A deeper boundary means the sound travels further. Look at the times.">
+        <div class="choices"><button class="choice" type="button">X</button><button class="choice" type="button">Y</button><button class="choice" type="button">Z</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Boundary ______ is deepest because its echo took the ______ time.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">How a scan works</p>
+      <h2>The probe, the gel and the screen</h2>
+      <div class="scene">
+        <svg id="svgGel" viewBox="0 0 540 240" role="img" aria-label="A probe on the skin. With no gel, there is an air gap and the sound bounces back off the air. With gel, the sound goes into the body and an echo comes back. The screen shows a picture."></svg>
+        <div class="row"><button class="btn primary" type="button" id="gelGo">Add gel</button><button class="btn" type="button" id="gelOff">Take the gel away</button></div>
+      </div>
+      <p class="look" id="gelTxt">No gel. There is air between the probe and the skin.</p>
+      <ul class="pts">
+        <li>The probe has a <b>transmitter</b>. It sends out pulses of ultrasound.</li>
+        <li>The probe has a <b>receiver</b>. It detects the echoes.</li>
+        <li>Air reflects most of the sound. The <b>gel</b> fills the air gap so the sound gets in.</li>
+        <li>A computer uses the echoes to build the picture.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Steps of an ultrasound scan</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">1. The <button class="blank" type="button" data-answer="transmitter"></button> sends out a pulse of sound.</p>
+        <p class="sent">2. The sound <button class="blank" type="button" data-answer="reflects"></button> off tissue boundaries.</p>
+        <p class="sent">3. The <button class="blank" type="button" data-answer="receiver"></button> detects the echoes.</p>
+        <p class="sent">4. A <button class="blank" type="button" data-answer="computer"></button> builds the picture.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">receiver</button><button class="chip" type="button">computer</button><button class="chip" type="button">transmitter</button><button class="chip" type="button">reflects</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Draw four boxes with arrows. Write one step in each box.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Why ultrasound?</p>
+      <h2>Safe for a baby</h2>
+      <div class="two">
+        <div class="defn" style="--mc:var(--conv)"><b>Ultrasound</b> is a sound wave. At scan levels, ultrasound carries <b>low</b> energy. It does not harm cells.</div>
+        <div class="defn" style="--mc:var(--hot)"><b>X-rays</b> are electromagnetic waves. They carry <b>high</b> energy. They can harm cells.</div>
+      </div>
+      <p>This is why doctors use ultrasound to look at an unborn baby.</p>
+      <p><b>Why is ultrasound used to scan an unborn baby?</b></p>
+      <div class="pick" data-correct="2" data-ok="Ultrasound carries much less energy than X-rays, so it does not harm the baby's cells." data-no="Not quite. Compare how much energy each wave carries.">
+        <div class="choices"><button class="choice" type="button">It is louder</button><button class="choice" type="button">It uses light</button><button class="choice" type="button">It has low energy</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Ultrasound carries ______ energy. X-rays carry ______ energy. So ultrasound is safer for a baby.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card" style="--mc:var(--rad)">
+      <p class="part">Another use</p>
+      <h2>Doppler ultrasound</h2>
+      <div class="defn">A <b>Doppler flow meter</b> uses ultrasound to measure how fast blood flows, and which way.</div>
+      <div class="scene">
+        <svg id="svgDop" viewBox="0 0 540 250" role="img" aria-label="Sound is sent out to moving blood cells. When the blood flows towards the probe, the echo has a higher frequency. When the blood flows away, the echo has a lower frequency."></svg>
+        <div class="row"><button class="btn primary" type="button" id="dopTo">Blood flows towards the probe</button><button class="btn" type="button" id="dopAway">Blood flows away</button></div>
+      </div>
+      <ul class="pts">
+        <li>The probe always sends the same frequency.</li>
+        <li>The sound reflects off moving red blood cells.</li>
+        <li>The <b>echo</b> changes frequency. This is the Doppler effect from Lesson 5.</li>
+        <li>The change shows the speed and direction of the blood.</li>
+      </ul>
+      <p><b>What does a Doppler flow meter measure?</b></p>
+      <div class="pick" data-correct="0" data-ok="The change in frequency of the echo shows how fast the blood is moving." data-no="Not quite. The sound reflects off moving blood cells. What is moving?">
+        <div class="choices"><button class="choice" type="button">How fast blood flows</button><button class="choice" type="button">How hot blood is</button><button class="choice" type="button">How long a bone is</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>A Doppler flow meter measures the ______ and direction of blood flow.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Finding out or treating</p>
+      <h2>Diagnostic or therapeutic?</h2>
+      <div class="two">
+        <div class="defn" style="--mc:var(--conv)"><b>Diagnostic</b> means used to find out what is wrong.</div>
+        <div class="defn" style="--mc:var(--hot)"><b>Therapeutic</b> means used to treat or heal.</div>
+      </div>
+      <ul class="pts">
+        <li><b>Therapeutic ultrasound</b> warms tissue deep in the body. This helps it heal faster.</li>
+        <li>A <b>surgical aspirator</b> vibrates very fast. A brain surgeon uses it to break up a tumour (a lump of cells that should not be there). The pieces are sucked away.</li>
+      </ul>
+      <p>Choose the right word for each use.</p>
+      <div class="match">
+        <div class="m pick" data-correct="0" data-ok="A scan of an organ finds out what is wrong." data-no="Not quite. Is this finding a problem, or fixing it?">
+          <p>A scan of an organ</p>
+          <div class="choices"><button class="choice" type="button">Diagnostic</button><button class="choice" type="button">Therapeutic</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="Warming tissue to speed up healing is a treatment." data-no="Not quite. Is this finding a problem, or fixing it?">
+          <p>Warming an injury to help it heal</p>
+          <div class="choices"><button class="choice" type="button">Diagnostic</button><button class="choice" type="button">Therapeutic</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="Measuring blood flow finds out if something is wrong." data-no="Not quite. Is this finding a problem, or fixing it?">
+          <p>Measuring blood flow</p>
+          <div class="choices"><button class="choice" type="button">Diagnostic</button><button class="choice" type="button">Therapeutic</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="Breaking up a tumour is a treatment." data-no="Not quite. Is this finding a problem, or fixing it?">
+          <p>Breaking up a tumour</p>
+          <div class="choices"><button class="choice" type="button">Diagnostic</button><button class="choice" type="button">Therapeutic</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Draw two columns: Diagnostic and Therapeutic. Put each use in the right column.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Key words</p>
+      <h2>Medical uses of sound</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">Sound above 20 000 Hz is <button class="blank" type="button" data-answer="ultrasound"></button>.</p>
+        <p class="sent">Sound that bounces back is an <button class="blank" type="button" data-answer="echo"></button>.</p>
+        <p class="sent">Used to find out what is wrong means <button class="blank" type="button" data-answer="diagnostic"></button>.</p>
+        <p class="sent">Used to treat or heal means <button class="blank" type="button" data-answer="therapeutic"></button>.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">therapeutic</button><button class="chip" type="button">echo</button><button class="chip" type="button">ultrasound</button><button class="chip" type="button">diagnostic</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Copy the four sentences.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <h2>Well done!</h2>
+      <p>Tick each one you can do now.</p>
+      <ul class="checklist">
+        <li><label><input type="checkbox"> I can say what ultrasound is.</label></li>
+        <li><label><input type="checkbox"> I can say how echoes make an ultrasound picture.</label></li>
+        <li><label><input type="checkbox"> I can say why ultrasound is safe for a baby.</label></li>
+        <li><label><input type="checkbox"> I can give two other medical uses of sound.</label></li>
+      </ul>
+      <p class="rule">Show your teacher your book.</p>
+    </div>
+  </section>
+
+  <div class="pager">
+    <button class="btn" type="button" id="prev">← Back</button>
+    <button class="btn primary" type="button" id="next">Next →</button>
+  </div>
+  <footer>Year 9 Science · Energy transfer · Lesson 11</footer>
+</div>
+<script>(function(){const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const NS="http://www.w3.org/2000/svg";const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;const KEY=document.body.dataset.key;const store={get(k){try{return JSON.parse(localStorage.getItem(KEY+k))}catch(e){return null}},set(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}};function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}function hex(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");return[0,2,4].map(i=>parseInt(h.substr(i,2),16))}function mix(a,b,t){const pa=hex(a),pb=hex(b);return"rgb("+pa.map((x,i)=>Math.round(x+(pb[i]-x)*t)).join(",")+")"}function label(svg,x,y,t,anchor,fill,size){const e=el("text",{x:x,y:y,"text-anchor":anchor||"middle","font-family":"Atkinson Hyperlegible, system-ui, sans-serif","font-size":size||15,"font-weight":700,fill:fill||css("--ink")},svg);e.textContent=t;return e}function anim(fn){let raf=null,last=null;function loop(ts){const now=ts/1e3,dt=Math.min(.05,now-(last||now));last=now;fn(dt,now);raf=requestAnimationFrame(loop)}return{start(){if(reduce){fn(0,0);return}if(!raf){last=null;raf=requestAnimationFrame(loop)}},stop(){if(raf){cancelAnimationFrame(raf);raf=null}},get on(){return!!raf}}}window.K={$,$$,el,css,mix,label,anim,reduce};const steps=$$(".step");let cur=0;function go(i){cur=Math.max(0,Math.min(steps.length-1,i));steps.forEach((s,j)=>s.hidden=j!==cur);$("#pn").textContent="Step "+(cur+1)+" of "+steps.length;$("#pb").style.width=(cur+1)/steps.length*100+"%";$("#prev").disabled=cur===0;$("#next").hidden=cur===steps.length-1;store.set("step",cur);window.scrollTo({top:0,behavior:"auto"});document.dispatchEvent(new CustomEvent("stepchange",{detail:cur}))}$("#prev").onclick=()=>go(cur-1);$("#next").onclick=()=>go(cur+1);$$(".pick").forEach(box=>{const btns=[...box.querySelectorAll(":scope > .choices .choice")],fb=box.querySelector(":scope > .fb"),ok=+box.dataset.correct;btns.forEach((b,i)=>b.onclick=()=>{btns.forEach((x,j)=>{x.setAttribute("aria-pressed",j===i);x.classList.remove("ok","no")});b.classList.add(i===ok?"ok":"no");fb.hidden=false;fb.className="fb "+(i===ok?"ok":"no");fb.innerHTML=i===ok?"<b>✓ Yes!</b> "+box.dataset.ok:"<b>✗</b> "+box.dataset.no})});$$(".fill").forEach(box=>{const blanks=[...box.querySelectorAll(".blank")],chips=[...box.querySelectorAll(".chip")],fb=box.querySelector(".fb");function sync(){chips.forEach((c,i)=>{c.disabled=blanks.some(b=>b.dataset.src===String(i))})}function empty(b){b.textContent="";delete b.dataset.src;b.classList.remove("ok","no")}chips.forEach((c,i)=>c.onclick=()=>{const e=blanks.find(b=>!b.textContent);if(!e)return;e.textContent=c.textContent;e.dataset.src=i;e.classList.remove("ok","no");fb.hidden=true;sync()});blanks.forEach(b=>b.onclick=()=>{empty(b);fb.hidden=true;sync()});box.querySelector("[data-clear]").onclick=()=>{blanks.forEach(empty);fb.hidden=true;sync()};box.querySelector("[data-check]").onclick=()=>{if(blanks.some(b=>!b.textContent)){fb.hidden=false;fb.className="fb no";fb.innerHTML="<b>Fill every gap first.</b> Tap a word below.";return}let all=true;blanks.forEach(b=>{const r=b.textContent===b.dataset.answer;b.classList.toggle("ok",r);b.classList.toggle("no",!r);if(!r)all=false});fb.hidden=false;fb.className="fb "+(all?"ok":"no");fb.innerHTML=all?"<b>✓ All correct!</b> Now write it in your book.":"<b>✗ Not yet.</b> Tap a red word to take it out, then try again."}});window.addEventListener("load",()=>{const sv=store.get("step");go(typeof sv==="number"?sv:0)})})();</script>
+<script>(function(){const{$,$$,el,css,label,anim,reduce}=K;const echo=function(){const svg=$("#svgEcho");const Y=[100,160,220],T=["27 µs","67 µs","107 µs"],N=["A","B","C"],V=90,top=55;let t=-1,g,outs=[];function build(){svg.innerHTML="";el("rect",{x:20,y:top,width:500,height:205,rx:8,fill:css("--hot"),opacity:.15},svg);el("line",{x1:20,y1:top,x2:520,y2:top,stroke:css("--ink"),"stroke-width":2},svg);label(svg,24,top-8,"Skin","start",css("--muted"),14);el("rect",{x:240,y:12,width:60,height:top-14,rx:6,fill:css("--cond")},svg);label(svg,310,34,"Probe","start",css("--ink"),15);Y.forEach((y,i)=>{el("line",{x1:20,y1:y,x2:520,y2:y,stroke:css("--ink"),"stroke-width":1.5,"stroke-dasharray":"6 5"},svg);label(svg,516,y-8,"Boundary "+N[i],"end",css("--ink"),14);outs.push(label(svg,24,y-8,"","start",css("--cold"),14))});g=el("g",{},svg);draw()}function draw(){g.innerHTML="";if(t<0)return;const yp=top+V*t;if(yp<=258)el("line",{x1:225,y1:yp,x2:315,y2:yp,stroke:css("--hot"),"stroke-width":5,"stroke-linecap":"round"},g);Y.forEach((y,i)=>{const th=(y-top)/V;if(t>th){const ye=y-V*(t-th);if(ye>=top)el("line",{x1:230,y1:ye,x2:310,y2:ye,stroke:css("--cold"),"stroke-width":4,"stroke-linecap":"round",opacity:(1-.22*i).toFixed(2)},g);else outs[i].textContent="Echo "+N[i]+" back: "+T[i]}})}const a=anim(dt=>{t+=dt;draw();if(t>2*(Y[2]-top)/V+.6)a.stop()});build();return{start(){outs.forEach(o=>o.textContent="");if(reduce){outs.forEach((o,i)=>o.textContent="Echo "+N[i]+" back: "+T[i]);return}t=0;a.start()},stop(){a.stop()}}}();$("#echoGo").onclick=echo.start;$("#echoStop").onclick=echo.stop;const gel=function(){const svg=$("#svgGel");let on=false,t=0,gelR,airT,g,scr,img,st;const skin=90,bnd=170;function build(){svg.innerHTML="";el("rect",{x:20,y:skin,width:320,height:140,rx:8,fill:css("--hot"),opacity:.15},svg);el("line",{x1:20,y1:skin,x2:340,y2:skin,stroke:css("--ink"),"stroke-width":2},svg);el("path",{d:`M30 ${bnd} Q180 ${bnd-18} 330 ${bnd}`,fill:"none",stroke:css("--ink"),"stroke-width":1.5,"stroke-dasharray":"6 5"},svg);label(svg,330,bnd+26,"Tissue boundary","end",css("--muted"),14);label(svg,30,skin+22,"Skin","start",css("--muted"),14);gelR=el("rect",{x:130,y:66,width:100,height:skin-66,fill:css("--conv"),opacity:0},svg);el("rect",{x:140,y:14,width:80,height:52,rx:8,fill:css("--cond")},svg);label(svg,128,36,"Probe","end",css("--ink"),15);airT=label(svg,240,84,"Air gap","start",css("--muted"),14);el("rect",{x:380,y:30,width:140,height:110,rx:10,fill:css("--ink")},svg);img=el("path",{d:"M405 115 Q450 70 495 115",fill:"none",stroke:css("--surface"),"stroke-width":4,opacity:0},svg);st=label(svg,450,165,"No picture","middle",css("--ink"),15);g=el("g",{},svg);draw()}function draw(){gelR.setAttribute("opacity",on?.55:0);airT.textContent=on?"Gel":"Air gap";g.innerHTML="";const c=t%2.4,V=110;if(!on){const yd=66+V*c;if(yd<skin)el("line",{x1:150,y1:yd,x2:210,y2:yd,stroke:css("--hot"),"stroke-width":5,"stroke-linecap":"round"},g);else{const yu=skin-V*(c-(skin-66)/V);if(yu>66)el("line",{x1:150,y1:yu,x2:210,y2:yu,stroke:css("--hot"),"stroke-width":5,"stroke-linecap":"round"},g)}}else{const yd=66+V*c;if(yd<228)el("line",{x1:150,y1:yd,x2:210,y2:yd,stroke:css("--hot"),"stroke-width":5,"stroke-linecap":"round"},g);const tb=(bnd-10-66)/V;if(c>tb){const yu=bnd-10-V*(c-tb);if(yu>66)el("line",{x1:152,y1:yu,x2:208,y2:yu,stroke:css("--cold"),"stroke-width":4,"stroke-linecap":"round"},g)}}img.setAttribute("opacity",on?1:0);st.textContent=on?"Picture":"No picture"}const a=anim(dt=>{t+=dt;draw()});build();function set(v){on=v;t=0;draw();$("#gelTxt").textContent=on?"Gel fills the gap. The sound goes in, and an echo comes back from the boundary.":"No gel. The sound bounces back off the air gap. None gets into the body.";if(!reduce)a.start()}return{add(){set(true)},off(){set(false)},stop(){a.stop()}}}();$("#gelGo").onclick=gel.add;$("#gelOff").onclick=gel.off;const dop=function(){const svg=$("#svgDop");let dir=0,t=0,w1,w2,cells=[],txt,arrow;function wave(lam,ph){let d="";for(let x=150;x<=520;x+=4){const y=Math.sin(2*Math.PI*(x-ph)/lam)*14;d+=(x===150?"M":"L")+x+" "+y.toFixed(1)}return d}function build(){svg.innerHTML="";label(svg,140,46,"Sent out","end",css("--ink"),15);label(svg,140,106,"Echo","end",css("--ink"),15);w1=el("path",{d:"",fill:"none",stroke:css("--cond"),"stroke-width":3,transform:"translate(0 40)"},svg);w2=el("path",{d:"",fill:"none",stroke:css("--cold"),"stroke-width":3,transform:"translate(0 100)"},svg);txt=label(svg,520,140,"Press a button","end",css("--rad"),15);el("rect",{x:80,y:170,width:440,height:56,rx:20,fill:css("--hot"),opacity:.18,stroke:css("--hot"),"stroke-width":2},svg);el("rect",{x:20,y:172,width:50,height:52,rx:8,fill:css("--cond")},svg);label(svg,45,244,"Probe","middle",css("--ink"),14);label(svg,300,244,"Blood vessel","middle",css("--muted"),14);for(let i=0;i<9;i++)cells.push({x:100+i*48,y:190+(i%3)*10,c:el("ellipse",{cx:0,cy:0,rx:11,ry:7,fill:css("--hot")},svg)});arrow=el("path",{d:"",fill:"none",stroke:css("--ink"),"stroke-width":3},svg);draw()}function draw(){const lamE=dir===1?28:dir===-1?62:40;w1.setAttribute("d",wave(40,t*80));w2.setAttribute("d",wave(lamE,-t*80*lamE/40));cells.forEach(c=>{let x=c.x-dir*t*60;x=100+(((x-100)%432)+432)%432;c.c.setAttribute("cx",x);c.c.setAttribute("cy",c.y)});arrow.setAttribute("d",dir===1?"M330 158 H270 M270 158 l10 -6 M270 158 l10 6":dir===-1?"M270 158 H330 M330 158 l-10 -6 M330 158 l-10 6":"");txt.textContent=dir===1?"Towards: echo frequency is higher":dir===-1?"Away: echo frequency is lower":"Press a button"}const a=anim(dt=>{t+=dt;draw()});build();function set(d){dir=d;draw();if(reduce){t=.3;draw();return}a.start()}return{to(){set(1)},away(){set(-1)},stop(){a.stop()}}}();$("#dopTo").onclick=dop.to;$("#dopAway").onclick=dop.away;document.addEventListener("stepchange",()=>{echo.stop();gel.stop();dop.stop()})})();</script>
+</body>
+</html>

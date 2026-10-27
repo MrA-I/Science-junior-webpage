@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 9: Light waves</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+:root{
+  --bg:#eef3f1;--surface:#ffffff;--ink:#1c2b3a;--muted:#51616f;--line:#cfdad6;--soft:#e3ebe8;
+  --focus:#d99a00;--good:#2d7a46;--bad:#b3261e;--book:#fff4d6;--bookline:#d99a00;
+  --hot:#cf4a1f;--cold:#2f6fb0;--cond:#7a4fb0;--conv:#0f7d74;--rad:#b0336e;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--body:"Atkinson Hyperlegible",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.5 var(--body)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:900px;margin:0 auto;padding:18px 16px 36px}
+.back{display:inline-block;font:700 1rem var(--body);color:var(--ink);text-decoration:underline;text-underline-offset:3px;padding:8px 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.top .t{font:800 1.3rem var(--display)}
+.prog{display:flex;gap:6px;align-items:center;font-size:.95rem;color:var(--muted)}
+.bar{width:160px;height:10px;border-radius:99px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:99px;transition:width .3s}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.part{font:700 .85rem var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 4px}
+h1{font:800 clamp(1.8rem,4vw,2.4rem)/1.1 var(--display);margin:0 0 12px}
+h2{font:800 1.6rem/1.2 var(--display);margin:0 0 12px}
+p{margin:0 0 12px}
+.big{font-size:1.15rem}
+.defn{border:3px solid var(--mc,var(--ink));border-radius:14px;padding:12px 16px;margin:0 0 14px;font-size:1.1rem}
+.defn b{color:var(--mc,var(--ink))}
+ul.pts{margin:0 0 12px;padding-left:22px}
+ul.pts li{margin-bottom:6px}
+.scene{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:8px;margin:0 0 12px}
+.scene svg{display:block;width:100%;height:auto;max-height:340px}
+.btn{font:700 1.05rem var(--body);color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;min-height:48px;padding:8px 20px;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--surface)}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.scene .row{margin:8px 4px 4px}
+.look{font-size:1rem;color:var(--muted)}
+.rule{background:var(--book);border:2px solid var(--bookline);border-radius:14px;padding:12px 16px;font-weight:700}
+.book{display:flex;gap:12px;align-items:flex-start;background:var(--book);border:2px dashed var(--bookline);border-radius:14px;padding:12px 16px;margin-top:16px}
+.book .ic{font-size:1.5rem;line-height:1}
+.book .h{font-weight:700;display:block}
+.choices{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 4px}
+.choice{font:700 1.05rem var(--body);color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:14px;min-height:52px;padding:10px 18px;cursor:pointer}
+.choice[aria-pressed="true"]{border-color:var(--ink);background:var(--surface)}
+.choice.ok{border-color:var(--good);box-shadow:inset 0 0 0 2px var(--good)}
+.choice.no{border-color:var(--bad)}
+.fb{margin:8px 0 0;font-size:1.05rem}
+.fb.ok b{color:var(--good)}.fb.no b{color:var(--bad)}
+.fill .sent{font-size:1.2rem;line-height:2.4;margin:0 0 6px}
+.blank{display:inline-block;min-width:120px;min-height:44px;vertical-align:middle;border:none;border-bottom:3px solid var(--ink);background:var(--soft);border-radius:8px 8px 0 0;font:700 1.1rem var(--body);color:var(--ink);padding:4px 12px;cursor:pointer;text-align:center}
+.blank.ok{border-bottom-color:var(--good);color:var(--good)}
+.blank.no{border-bottom-color:var(--bad);color:var(--bad)}
+.bank{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.bank .lab{width:100%;font-size:.95rem;color:var(--muted)}
+.chip{font:700 1.05rem var(--body);background:var(--surface);color:var(--ink);border:2px solid var(--ink);border-radius:12px;min-height:48px;padding:6px 18px;cursor:pointer}
+.chip:disabled{opacity:.3}
+.match{display:grid;gap:12px}
+.match .m{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg)}
+.match .m p{margin:0 0 4px;font-weight:700}
+.reveal{margin-top:12px}
+.reveal>summary{display:inline-flex;gap:6px;list-style:none;cursor:pointer;font:700 .9rem var(--body);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;min-height:38px;align-items:center}
+.reveal>summary::-webkit-details-marker{display:none}
+.reveal>summary::before{content:"▸"}.reveal[open]>summary::before{content:"▾"}
+.reveal .body{margin-top:8px;padding:8px 14px;border-left:3px solid var(--line);font-size:1.05rem}
+.checklist{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px}
+.checklist label{display:flex;gap:12px;align-items:flex-start;cursor:pointer;min-height:48px;padding:6px 0;font-size:1.1rem}
+.checklist input{width:26px;height:26px;margin-top:3px;accent-color:var(--good);flex:none}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+footer{margin-top:24px;color:var(--muted);font-size:.9rem;text-align:center}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+.two .defn{margin:0}
+@media (max-width:600px){.two{grid-template-columns:1fr}}
+.tbl{width:100%;border-collapse:collapse;margin:0 0 12px;font-size:1.05rem}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--soft)}
+.formula{font:800 1.6rem var(--display);text-align:center;margin:6px 0 12px}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;line-height:1.15}
+.frac>span:first-child{border-bottom:2px solid currentColor;padding:0 4px}
+.frac>span:last-child{padding:0 4px}
+</style>
+</head>
+<body data-key="y9et-m9-v1">
+<div class="wrap">
+  <a class="back" href="./">← My lessons</a>
+  <div class="top">
+    <span class="t">Lesson 9: Light waves</span>
+    <span class="prog"><span id="pn">Step 1 of 13</span><span class="bar"><i id="pb"></i></span></span>
+  </div>
+<section class="step">
+    <div class="card">
+      <h1>Lesson 9: Light waves</h1>
+      <p class="big"><b>My goal:</b> I can say what reflection and refraction are.</p>
+      <p>Today you will learn these new words:</p>
+      <ul class="pts">
+        <li><b style="color:var(--cold)">reflection</b></li>
+        <li><b style="color:var(--conv)">refraction</b></li>
+        <li><b>normal</b></li>
+      </ul>
+      <p class="rule">Write every answer in your book. Ticking on the screen is not enough.</p>
+      <p>Press <b>Next</b> to start.</p>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Getting started</p>
+      <h2>The pencil in water</h2>
+      <div class="scene">
+        <svg viewBox="0 0 460 220" role="img" aria-label="A pencil stands in a glass of water. From the side, the pencil looks bent where it meets the water.">
+          <rect style="fill:var(--cold)" opacity=".25" x="150" y="100" width="160" height="100"/>
+          <path style="fill:none;stroke:var(--ink)" stroke-width="4" d="M150 30 V200 H310 V30"/>
+          <line style="stroke:var(--cold)" x1="150" y1="100" x2="310" y2="100" stroke-width="3"/>
+          <line style="stroke:var(--focus)" x1="110" y1="15" x2="230" y2="100" stroke-width="10" stroke-linecap="round"/>
+          <line style="stroke:var(--focus)" x1="230" y1="100" x2="295" y2="140" stroke-width="10" stroke-linecap="round"/>
+          <text x="92" y="38" text-anchor="end" font-size="16" font-weight="700" style="fill:var(--ink)">Pencil</text>
+          <text x="330" y="160" text-anchor="start" font-size="16" font-weight="700" style="fill:var(--ink)">Water</text>
+          <text x="330" y="70" text-anchor="start" font-size="16" font-weight="700" style="fill:var(--ink)">Air</text>
+        </svg>
+      </div>
+      <p>A pencil stands in a glass of water. From the side, it looks bent.</p>
+      <p><b>What is happening to the light?</b></p>
+      <div class="pick" data-correct="2" data-ok="Light changes direction when it goes from water into air. This bending is called refraction." data-no="Not quite. The light goes from one material into another. What could happen to it there?">
+        <div class="choices"><button class="choice" type="button">It is soaked up</button><button class="choice" type="button">It bounces back</button><button class="choice" type="button">It bends</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>The pencil looks bent because the light ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card" style="--mc:var(--cold)">
+      <p class="part">Reflection</p>
+      <h2>Light bounces off a mirror</h2>
+      <div class="defn"><b>Reflection</b> is when light bounces off a surface.</div>
+      <div class="scene">
+        <svg id="svgRefl" viewBox="0 0 540 230" role="img" aria-label="A ray of light hits a flat mirror and bounces off. A dotted line called the normal stands at right angles to the mirror. The angle in and the angle out are always the same."></svg>
+        <div class="row"><button class="btn primary" type="button" id="reflGo">Move the ray</button><button class="btn" type="button" id="reflStop">Stop</button></div>
+      </div>
+      <ul class="pts">
+        <li>The <b>normal</b> is a line at right angles to the mirror.</li>
+        <li>We measure the angles from the normal.</li>
+        <li>The angle in is called the <b>angle of incidence</b>.</li>
+        <li>The angle out is the <b>angle of reflection</b>. The two angles are always the same.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>The law of reflection</h2>
+      <div class="scene">
+        <svg viewBox="0 0 460 190" role="img" aria-label="A ray hits a mirror. The angle between the ray and the normal is 30 degrees. The reflected ray is not drawn yet.">
+          <rect style="fill:var(--muted)" x="40" y="150" width="380" height="10"/>
+          <line style="stroke:var(--ink)" x1="230" y1="20" x2="230" y2="150" stroke-width="2" stroke-dasharray="6 5"/>
+          <line style="stroke:var(--focus)" x1="165" y1="37" x2="230" y2="150" stroke-width="4"/>
+          <path style="fill:none;stroke:var(--hot)" stroke-width="2.5" d="M230 95 A55 55 0 0 0 202.5 102.4"/>
+          <text x="208" y="86" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--hot)">30°</text>
+          <text x="238" y="30" text-anchor="start" font-size="15" font-weight="700" style="fill:var(--ink)">Normal</text>
+          <text x="40" y="182" text-anchor="start" font-size="15" font-weight="700" style="fill:var(--ink)">Mirror</text>
+        </svg>
+      </div>
+      <p>The angle of incidence is 30°.</p>
+      <p><b>What is the angle of reflection?</b></p>
+      <div class="pick" data-correct="1" data-ok="The angle of reflection is always the same as the angle of incidence." data-no="Not quite. Look back at the mirror. How do the two angles compare?">
+        <div class="choices"><button class="choice" type="button">60°</button><button class="choice" type="button">30°</button><button class="choice" type="button">90°</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Draw the mirror, the normal and the ray. Write: The angle of reflection is ______°. It is the same as the angle of ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card" style="--mc:var(--conv)">
+      <p class="part">Refraction</p>
+      <h2>Light bends at a boundary</h2>
+      <div class="defn"><b>Refraction</b> is when light bends as it goes from one material into another.</div>
+      <div class="scene">
+        <svg id="svgRefr" viewBox="0 0 540 270" role="img" aria-label="A ray of light goes from air into a glass block and out again. It slows down in the glass. It bends where it goes in and where it comes out. Inside the glass it travels in a straight line."></svg>
+        <div class="row"><button class="btn primary" type="button" id="refrGo">Shine the light</button><button class="btn" type="button" id="refrStop">Stop</button></div>
+      </div>
+      <ul class="pts">
+        <li>Light slows down when it goes into glass or water.</li>
+        <li>The change in speed makes it bend.</li>
+        <li>It bends at the <b>boundary</b>, where the two materials meet. Inside the glass it goes straight.</li>
+        <li>Going into glass, it bends <b>towards</b> the normal.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Where does light bend?</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">Light bends at the <button class="blank" type="button" data-answer="boundary"></button> between two materials.</p>
+        <p class="sent">It bends because its <button class="blank" type="button" data-answer="speed"></button> changes.</p>
+        <p class="sent">Going into glass, it bends <button class="blank" type="button" data-answer="towards"></button> the normal.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">towards</button><button class="chip" type="button">boundary</button><button class="chip" type="button">speed</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Write all three sentences.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Test it</p>
+      <h2>The coin in the cup</h2>
+      <p>A coin sits in an empty cup. From where the eye is, you cannot see it.</p>
+      <div class="scene">
+        <svg id="svgCoin" viewBox="0 0 540 240" role="img" aria-label="A coin at the bottom of a cup. An eye looks over the edge. With no water, the wall of the cup blocks the light. With water, the light reaches the eye."></svg>
+        <div class="row"><button class="btn primary" type="button" id="coinGo">Pour in the water</button><button class="btn" type="button" id="coinReset">Start again</button></div>
+      </div>
+      <p class="look" id="coinTxt">The cup is empty. The cup wall blocks the light from the coin.</p>
+      <p><b>Press the button. Why can you see the coin now?</b></p>
+      <div class="pick" data-correct="0" data-ok="The light from the coin bends at the water surface, so it can get over the cup wall to your eye." data-no="Not quite. The coin did not move. Watch the path of the light at the water surface.">
+        <div class="choices"><button class="choice" type="button">The light bends at the water</button><button class="choice" type="button">The water lifts the coin up</button><button class="choice" type="button">The water makes the coin shine</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Draw the cup, the coin and the eye. Draw the light from the coin to the eye. Write: The light ______ at the water surface. This is called ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">What light can do</p>
+      <h2>Four things light can do</h2>
+      <p>When light hits something, it can do four things.</p>
+      <div class="two">
+        <div class="defn" style="--mc:var(--hot)"><b>Absorption:</b> the material takes in the light energy. It often warms up.</div>
+        <div class="defn" style="--mc:var(--cold)"><b>Reflection:</b> the light bounces off. A mirror gives a clear image.</div>
+        <div class="defn" style="--mc:var(--conv)"><b>Refraction:</b> the light bends as it goes into a new material.</div>
+        <div class="defn" style="--mc:var(--rad)"><b>Scattering:</b> tiny particles send the light off in many directions.</div>
+      </div>
+      <ul class="pts">
+        <li>A black T-shirt absorbs most light, so it gets hot in the sun.</li>
+        <li>Air scatters blue light the most. This is why the sky looks blue.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>What is the light doing?</h2>
+      <p>For each one, choose what the light does.</p>
+      <div class="match">
+        <div class="m pick" data-correct="1" data-ok="The light bounces off the smooth mirror." data-no="Not quite. You see yourself because the light comes back.">
+          <p>You see yourself in a mirror.</p>
+          <div class="choices"><button class="choice" type="button">Absorption</button><button class="choice" type="button">Reflection</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="The shirt takes in the light energy and warms up." data-no="Not quite. The shirt gets warm. Where did the energy go?">
+          <p>A black T-shirt gets hot in the sun.</p>
+          <div class="choices"><button class="choice" type="button">Absorption</button><button class="choice" type="button">Scattering</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="The light bends as it goes from water into air." data-no="Not quite. Think about the pencil at the start.">
+          <p>A pencil in water looks bent.</p>
+          <div class="choices"><button class="choice" type="button">Refraction</button><button class="choice" type="button">Reflection</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="Tiny particles in the air send blue light in all directions." data-no="Not quite. The air has tiny particles in it.">
+          <p>The sky looks blue.</p>
+          <div class="choices"><button class="choice" type="button">Absorption</button><button class="choice" type="button">Scattering</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Write each example. Next to it, write absorption, reflection, refraction or scattering.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Materials</p>
+      <h2>Transparent, translucent, opaque</h2>
+      <table class="tbl">
+        <tr><th>Word</th><th>What the light does</th><th>Example</th></tr>
+        <tr><td><b>Transparent</b></td><td>Goes through. You can see clearly.</td><td>Clear glass</td></tr>
+        <tr><td><b>Translucent</b></td><td>Some goes through. You cannot see clearly.</td><td>Frosted glass</td></tr>
+        <tr><td><b>Opaque</b></td><td>None goes through.</td><td>Brick wall</td></tr>
+      </table>
+      <p>Choose the word for each material.</p>
+      <div class="match">
+        <div class="m pick" data-correct="0" data-ok="You can see clearly through still water." data-no="Not quite. Can you see clearly through a glass of water?">
+          <p>Water</p>
+          <div class="choices"><button class="choice" type="button">Transparent</button><button class="choice" type="button">Translucent</button><button class="choice" type="button">Opaque</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="Some light gets through, but you cannot see clearly." data-no="Not quite. Hold it up to a window. What do you see?">
+          <p>Baking paper</p>
+          <div class="choices"><button class="choice" type="button">Transparent</button><button class="choice" type="button">Translucent</button><button class="choice" type="button">Opaque</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="2" data-ok="No light gets through the foil." data-no="Not quite. Does any light get through the foil?">
+          <p>Aluminium foil</p>
+          <div class="choices"><button class="choice" type="button">Transparent</button><button class="choice" type="button">Translucent</button><button class="choice" type="button">Opaque</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Water is ______. Baking paper is ______. Aluminium foil is ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Light at work</p>
+      <h2>Lenses</h2>
+      <div class="defn">A <b>lens</b> is a curved piece of glass or plastic. It bends light.</div>
+      <div class="scene">
+        <svg viewBox="0 0 540 210" role="img" aria-label="Left: a convex lens, thick in the middle, makes parallel rays come together at a point. Right: a concave lens, thin in the middle, makes parallel rays spread apart.">
+          <g style="stroke:var(--focus)" stroke-width="3" fill="none">
+            <path d="M20 55 H125 L215 100"/><path d="M20 80 H125 L215 100"/><path d="M20 120 H125 L215 100"/><path d="M20 145 H125 L215 100"/>
+            <path d="M300 55 H405 L515 20"/><path d="M300 80 H405 L515 70"/><path d="M300 120 H405 L515 130"/><path d="M300 145 H405 L515 180"/>
+          </g>
+          <ellipse style="fill:var(--cold);stroke:var(--cold)" fill-opacity=".3" cx="125" cy="100" rx="14" ry="62" stroke-width="3"/>
+          <path style="fill:var(--cold);stroke:var(--cold)" fill-opacity=".3" stroke-width="3" d="M390 38 Q408 100 390 162 H420 Q402 100 420 38 Z"/>
+          <circle style="fill:var(--hot)" cx="215" cy="100" r="6"/>
+          <text x="215" y="128" text-anchor="middle" font-size="14" font-weight="700" style="fill:var(--ink)">Focus</text>
+          <text x="125" y="198" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--ink)">Convex lens</text>
+          <text x="405" y="198" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--ink)">Concave lens</text>
+        </svg>
+      </div>
+      <ul class="pts">
+        <li>A <b>convex</b> lens is thick in the middle. It brings rays together.</li>
+        <li>A <b>concave</b> lens is thin in the middle. It spreads rays apart.</li>
+        <li>Glasses, cameras and magnifying glasses all use lenses.</li>
+      </ul>
+      <p><b>A magnifying glass is a convex lens. What does the light do?</b></p>
+      <div class="pick" data-correct="1" data-ok="The light goes through the curved glass and bends. This is refraction." data-no="Not quite. Can you see through a magnifying glass?">
+        <div class="choices"><button class="choice" type="button">It bounces off the lens</button><button class="choice" type="button">It goes through and bends</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Draw the convex lens and its rays. Write: In a magnifying glass, the light goes through the lens and ______. This is called ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Key words</p>
+      <h2>Light waves</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">Light bouncing off a surface is <button class="blank" type="button" data-answer="reflection"></button>.</p>
+        <p class="sent">Light bending into a new material is <button class="blank" type="button" data-answer="refraction"></button>.</p>
+        <p class="sent">We measure angles from the <button class="blank" type="button" data-answer="normal"></button>.</p>
+        <p class="sent">A material that lets no light through is <button class="blank" type="button" data-answer="opaque"></button>.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">normal</button><button class="chip" type="button">opaque</button><button class="chip" type="button">refraction</button><button class="chip" type="button">reflection</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Copy the four sentences.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <h2>Well done!</h2>
+      <p>Tick each one you can do now.</p>
+      <ul class="checklist">
+        <li><label><input type="checkbox"> I can say what reflection is.</label></li>
+        <li><label><input type="checkbox"> I can say what refraction is.</label></li>
+        <li><label><input type="checkbox"> I can say that the angle of incidence equals the angle of reflection.</label></li>
+        <li><label><input type="checkbox"> I can say that light bends at the boundary because its speed changes.</label></li>
+      </ul>
+      <p class="rule">Show your teacher your book.</p>
+    </div>
+  </section>
+
+  <div class="pager">
+    <button class="btn" type="button" id="prev">← Back</button>
+    <button class="btn primary" type="button" id="next">Next →</button>
+  </div>
+  <footer>Year 9 Science · Energy transfer · Lesson 9</footer>
+</div>
+<script>(function(){const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const NS="http://www.w3.org/2000/svg";const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;const KEY=document.body.dataset.key;const store={get(k){try{return JSON.parse(localStorage.getItem(KEY+k))}catch(e){return null}},set(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}};function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}function hex(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");return[0,2,4].map(i=>parseInt(h.substr(i,2),16))}function mix(a,b,t){const pa=hex(a),pb=hex(b);return"rgb("+pa.map((x,i)=>Math.round(x+(pb[i]-x)*t)).join(",")+")"}function label(svg,x,y,t,anchor,fill,size){const e=el("text",{x:x,y:y,"text-anchor":anchor||"middle","font-family":"Atkinson Hyperlegible, system-ui, sans-serif","font-size":size||15,"font-weight":700,fill:fill||css("--ink")},svg);e.textContent=t;return e}function anim(fn){let raf=null,last=null;function loop(ts){const now=ts/1e3,dt=Math.min(.05,now-(last||now));last=now;fn(dt,now);raf=requestAnimationFrame(loop)}return{start(){if(reduce){fn(0,0);return}if(!raf){last=null;raf=requestAnimationFrame(loop)}},stop(){if(raf){cancelAnimationFrame(raf);raf=null}},get on(){return!!raf}}}window.K={$,$$,el,css,mix,label,anim,reduce};const steps=$$(".step");let cur=0;function go(i){cur=Math.max(0,Math.min(steps.length-1,i));steps.forEach((s,j)=>s.hidden=j!==cur);$("#pn").textContent="Step "+(cur+1)+" of "+steps.length;$("#pb").style.width=(cur+1)/steps.length*100+"%";$("#prev").disabled=cur===0;$("#next").hidden=cur===steps.length-1;store.set("step",cur);window.scrollTo({top:0,behavior:"auto"});document.dispatchEvent(new CustomEvent("stepchange",{detail:cur}))}$("#prev").onclick=()=>go(cur-1);$("#next").onclick=()=>go(cur+1);$$(".pick").forEach(box=>{const btns=[...box.querySelectorAll(":scope > .choices .choice")],fb=box.querySelector(":scope > .fb"),ok=+box.dataset.correct;btns.forEach((b,i)=>b.onclick=()=>{btns.forEach((x,j)=>{x.setAttribute("aria-pressed",j===i);x.classList.remove("ok","no")});b.classList.add(i===ok?"ok":"no");fb.hidden=false;fb.className="fb "+(i===ok?"ok":"no");fb.innerHTML=i===ok?"<b>✓ Yes!</b> "+box.dataset.ok:"<b>✗</b> "+box.dataset.no})});$$(".fill").forEach(box=>{const blanks=[...box.querySelectorAll(".blank")],chips=[...box.querySelectorAll(".chip")],fb=box.querySelector(".fb");function sync(){chips.forEach((c,i)=>{c.disabled=blanks.some(b=>b.dataset.src===String(i))})}function empty(b){b.textContent="";delete b.dataset.src;b.classList.remove("ok","no")}chips.forEach((c,i)=>c.onclick=()=>{const e=blanks.find(b=>!b.textContent);if(!e)return;e.textContent=c.textContent;e.dataset.src=i;e.classList.remove("ok","no");fb.hidden=true;sync()});blanks.forEach(b=>b.onclick=()=>{empty(b);fb.hidden=true;sync()});box.querySelector("[data-clear]").onclick=()=>{blanks.forEach(empty);fb.hidden=true;sync()};box.querySelector("[data-check]").onclick=()=>{if(blanks.some(b=>!b.textContent)){fb.hidden=false;fb.className="fb no";fb.innerHTML="<b>Fill every gap first.</b> Tap a word below.";return}let all=true;blanks.forEach(b=>{const r=b.textContent===b.dataset.answer;b.classList.toggle("ok",r);b.classList.toggle("no",!r);if(!r)all=false});fb.hidden=false;fb.className="fb "+(all?"ok":"no");fb.innerHTML=all?"<b>✓ All correct!</b> Now write it in your book.":"<b>✗ Not yet.</b> Tap a red word to take it out, then try again."}});window.addEventListener("load",()=>{const sv=store.get("step");go(typeof sv==="number"?sv:0)})})();</script>
+<script>(function(){const{$,$$,el,css,label,anim,reduce}=K;const R=Math.PI/180;const refl=function(){const svg=$("#svgRefl"),cx=270,cy=180,L=150;let t=0,g;function build(){svg.innerHTML="";el("rect",{x:60,y:180,width:420,height:10,fill:css("--muted")},svg);el("line",{x1:cx,y1:30,x2:cx,y2:180,stroke:css("--ink"),"stroke-width":2,"stroke-dasharray":"6 5"},svg);label(svg,cx+8,26,"Normal","start",css("--ink"),15);label(svg,60,172,"Mirror","start",css("--muted"),14);g=el("g",{},svg);draw(40)}function draw(a){g.innerHTML="";const s=Math.sin(a*R),c=Math.cos(a*R),x0=cx-L*s,y0=cy-L*c,x1=cx+L*s;const col=css("--focus");el("line",{x1:x0,y1:y0,x2:cx,y2:cy,stroke:col,"stroke-width":4},g);el("line",{x1:cx,y1:cy,x2:x1,y2:y0,stroke:col,"stroke-width":4},g);const mx=(x0+cx)/2,my=(y0+cy)/2;el("path",{d:`M${mx-9*s+7*c} ${my-9*c-7*s} L${mx+9*s} ${my+9*c} L${mx-9*s-7*c} ${my-9*c+7*s}`,fill:"none",stroke:col,"stroke-width":3},g);const nx=(x1+cx)/2;el("path",{d:`M${nx-9*s-7*c} ${my+9*c-7*s} L${nx+9*s} ${my-9*c} L${nx-9*s+7*c} ${my+9*c+7*s}`,fill:"none",stroke:col,"stroke-width":3},g);const r=50,hot=css("--hot");el("path",{d:`M${cx} ${cy-r} A${r} ${r} 0 0 0 ${cx-r*s} ${cy-r*c}`,fill:"none",stroke:hot,"stroke-width":2.5},g);el("path",{d:`M${cx} ${cy-r} A${r} ${r} 0 0 1 ${cx+r*s} ${cy-r*c}`,fill:"none",stroke:hot,"stroke-width":2.5},g);label(g,x0-6,y0-8,"Incident ray","end",css("--ink"),14);label(g,x1+6,y0-8,"Reflected ray","start",css("--ink"),14);const A=Math.round(a);label(g,60,218,"Angle of incidence = "+A+"°","start",hot,15);label(g,480,218,"Angle of reflection = "+A+"°","end",hot,15)}const an=anim(dt=>{t+=dt;draw(45-15*Math.cos(t*.8))});build();return{start(){if(reduce){draw(40);return}an.start()},stop(){an.stop()}}}();$("#reflGo").onclick=refl.start;$("#reflStop").onclick=refl.stop;const refr=function(){const svg=$("#svgRefr");const P=[[100,0],[200,100],[253,200],[323,270]],V=[120,80,120];let d=0,trail,dot;const segs=[];let tot=0;for(let i=0;i<3;i++){const l=Math.hypot(P[i+1][0]-P[i][0],P[i+1][1]-P[i][1]);segs.push(l);tot+=l/V[i]}function at(tt){let left=tt;for(let i=0;i<3;i++){const dur=segs[i]/V[i];if(left<=dur){const f=left/dur;return[P[i][0]+(P[i+1][0]-P[i][0])*f,P[i][1]+(P[i+1][1]-P[i][1])*f,i]}left-=dur}return[P[3][0],P[3][1],2]}function build(){svg.innerHTML="";el("rect",{x:0,y:100,width:540,height:100,fill:css("--cold"),opacity:.2},svg);el("line",{x1:0,y1:100,x2:540,y2:100,stroke:css("--ink"),"stroke-width":2},svg);el("line",{x1:0,y1:200,x2:540,y2:200,stroke:css("--ink"),"stroke-width":2},svg);[[200,40,160],[253,140,260]].forEach(n=>el("line",{x1:n[0],y1:n[1],x2:n[0],y2:n[2],stroke:css("--ink"),"stroke-width":2,"stroke-dasharray":"6 5"},svg));label(svg,200,32,"Normal","middle",css("--ink"),14);label(svg,20,55,"Air","start",css("--ink"),16);label(svg,20,155,"Glass","start",css("--ink"),16);label(svg,20,245,"Air","start",css("--ink"),16);label(svg,520,55,"Light is fast","end",css("--muted"),15);label(svg,520,155,"Light slows down","end",css("--muted"),15);label(svg,520,245,"Light speeds up","end",css("--muted"),15);el("polyline",{points:P.map(p=>p.join(",")).join(" "),fill:"none",stroke:css("--focus"),"stroke-width":3,opacity:.35},svg);label(svg,212,94,"Bends here","start",css("--hot"),14);label(svg,241,222,"Bends here","end",css("--hot"),14);trail=el("polyline",{points:"",fill:"none",stroke:css("--focus"),"stroke-width":5},svg);dot=el("circle",{cx:P[0][0],cy:P[0][1],r:8,fill:css("--focus"),stroke:css("--ink"),"stroke-width":1.5},svg);draw(tot)}function draw(tt){const p=at(tt),pts=[P[0]];for(let i=1;i<=p[2];i++)pts.push(P[i]);pts.push([p[0],p[1]]);trail.setAttribute("points",pts.map(q=>q.join(",")).join(" "));dot.setAttribute("cx",p[0]);dot.setAttribute("cy",p[1])}const an=anim(dt=>{d+=dt;if(d>tot+.8)d=0;draw(Math.min(d,tot))});build();return{start(){if(reduce){draw(tot);return}d=0;an.start()},stop(){an.stop()}}}();$("#refrGo").onclick=refr.start;$("#refrStop").onclick=refr.stop;const coin=function(){const svg=$("#svgCoin");let lvl=220,wat,surf,g,an;function build(){svg.innerHTML="";wat=el("rect",{x:62,y:220,width:236,height:0,fill:css("--cold"),opacity:.3},svg);surf=el("line",{x1:62,y1:220,x2:298,y2:220,stroke:css("--cold"),"stroke-width":3,opacity:0},svg);el("path",{d:"M60 88 V220 H300 V88",fill:"none",stroke:css("--ink"),"stroke-width":4},svg);el("ellipse",{cx:130,cy:215,rx:18,ry:5,fill:css("--focus"),stroke:css("--ink"),"stroke-width":1.5},svg);label(svg,130,238,"Coin","middle",css("--ink"),14);el("path",{d:"M455 30 Q480 12 505 30 Q480 48 455 30 Z",fill:css("--surface"),stroke:css("--ink"),"stroke-width":2.5},svg);el("circle",{cx:474,cy:31,r:7,fill:css("--ink")},svg);label(svg,480,66,"Eye","middle",css("--ink"),15);g=el("g",{},svg);draw()}function draw(){wat.setAttribute("y",lvl);wat.setAttribute("height",220-lvl);surf.setAttribute("y1",lvl);surf.setAttribute("y2",lvl);surf.setAttribute("opacity",lvl<218?1:0);g.innerHTML="";if(lvl>=219){el("line",{x1:130,y1:212,x2:300,y2:125,stroke:css("--muted"),"stroke-width":3,"stroke-dasharray":"7 5"},g);el("path",{d:"M308 115 l14 14 M322 115 l-14 14",stroke:css("--hot"),"stroke-width":4},g);label(g,330,150,"Blocked","start",css("--hot"),14)}else if(lvl<=100.5){const col=css("--focus");el("polyline",{points:"130,212 249,100 480,30",fill:"none",stroke:col,"stroke-width":4},g);[[190,156,119,-112],[364,65,231,-70]].forEach(a=>{const m=Math.hypot(a[2],a[3]),ux=a[2]/m,uy=a[3]/m,bx=a[0]-12*ux,by=a[1]-12*uy;el("path",{d:`M${bx-7*uy} ${by+7*ux} L${a[0]} ${a[1]} L${bx+7*uy} ${by-7*ux}`,fill:"none",stroke:col,"stroke-width":3},g)})}}function done(){lvl=100;draw();$("#coinTxt").textContent="The water is in. Now the eye can see the coin."}an=anim(dt=>{lvl=Math.max(100,lvl-dt*200);draw();if(lvl<=100){an.stop();done()}});build();return{go(){if(reduce){done();return}an.start()},reset(){an.stop();lvl=220;draw();$("#coinTxt").textContent="The cup is empty. The cup wall blocks the light from the coin."}}}();$("#coinGo").onclick=coin.go;$("#coinReset").onclick=coin.reset;document.addEventListener("stepchange",()=>{refl.stop();refr.stop()})})();</script>
+</body>
+</html>

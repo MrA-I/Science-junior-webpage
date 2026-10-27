@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 3: Features of waves</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+:root{
+  --bg:#eef3f1;--surface:#ffffff;--ink:#1c2b3a;--muted:#51616f;--line:#cfdad6;--soft:#e3ebe8;
+  --focus:#d99a00;--good:#2d7a46;--bad:#b3261e;--book:#fff4d6;--bookline:#d99a00;
+  --hot:#cf4a1f;--cold:#2f6fb0;--cond:#7a4fb0;--conv:#0f7d74;--rad:#b0336e;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--body:"Atkinson Hyperlegible",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.5 var(--body)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:900px;margin:0 auto;padding:18px 16px 36px}
+.back{display:inline-block;font:700 1rem var(--body);color:var(--ink);text-decoration:underline;text-underline-offset:3px;padding:8px 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.top .t{font:800 1.3rem var(--display)}
+.prog{display:flex;gap:6px;align-items:center;font-size:.95rem;color:var(--muted)}
+.bar{width:160px;height:10px;border-radius:99px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:99px;transition:width .3s}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.part{font:700 .85rem var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 4px}
+h1{font:800 clamp(1.8rem,4vw,2.4rem)/1.1 var(--display);margin:0 0 12px}
+h2{font:800 1.6rem/1.2 var(--display);margin:0 0 12px}
+p{margin:0 0 12px}
+.big{font-size:1.15rem}
+.defn{border:3px solid var(--mc,var(--ink));border-radius:14px;padding:12px 16px;margin:0 0 14px;font-size:1.1rem}
+.defn b{color:var(--mc,var(--ink))}
+ul.pts{margin:0 0 12px;padding-left:22px}
+ul.pts li{margin-bottom:6px}
+.scene{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:8px;margin:0 0 12px}
+.scene svg{display:block;width:100%;height:auto;max-height:340px}
+.btn{font:700 1.05rem var(--body);color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;min-height:48px;padding:8px 20px;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--surface)}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.scene .row{margin:8px 4px 4px}
+.look{font-size:1rem;color:var(--muted)}
+.rule{background:var(--book);border:2px solid var(--bookline);border-radius:14px;padding:12px 16px;font-weight:700}
+.book{display:flex;gap:12px;align-items:flex-start;background:var(--book);border:2px dashed var(--bookline);border-radius:14px;padding:12px 16px;margin-top:16px}
+.book .ic{font-size:1.5rem;line-height:1}
+.book .h{font-weight:700;display:block}
+.choices{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 4px}
+.choice{font:700 1.05rem var(--body);color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:14px;min-height:52px;padding:10px 18px;cursor:pointer}
+.choice[aria-pressed="true"]{border-color:var(--ink);background:var(--surface)}
+.choice.ok{border-color:var(--good);box-shadow:inset 0 0 0 2px var(--good)}
+.choice.no{border-color:var(--bad)}
+.fb{margin:8px 0 0;font-size:1.05rem}
+.fb.ok b{color:var(--good)}.fb.no b{color:var(--bad)}
+.fill .sent{font-size:1.2rem;line-height:2.4;margin:0 0 6px}
+.blank{display:inline-block;min-width:120px;min-height:44px;vertical-align:middle;border:none;border-bottom:3px solid var(--ink);background:var(--soft);border-radius:8px 8px 0 0;font:700 1.1rem var(--body);color:var(--ink);padding:4px 12px;cursor:pointer;text-align:center}
+.blank.ok{border-bottom-color:var(--good);color:var(--good)}
+.blank.no{border-bottom-color:var(--bad);color:var(--bad)}
+.bank{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.bank .lab{width:100%;font-size:.95rem;color:var(--muted)}
+.chip{font:700 1.05rem var(--body);background:var(--surface);color:var(--ink);border:2px solid var(--ink);border-radius:12px;min-height:48px;padding:6px 18px;cursor:pointer}
+.chip:disabled{opacity:.3}
+.match{display:grid;gap:12px}
+.match .m{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg)}
+.match .m p{margin:0 0 4px;font-weight:700}
+.reveal{margin-top:12px}
+.reveal>summary{display:inline-flex;gap:6px;list-style:none;cursor:pointer;font:700 .9rem var(--body);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;min-height:38px;align-items:center}
+.reveal>summary::-webkit-details-marker{display:none}
+.reveal>summary::before{content:"▸"}.reveal[open]>summary::before{content:"▾"}
+.reveal .body{margin-top:8px;padding:8px 14px;border-left:3px solid var(--line);font-size:1.05rem}
+.checklist{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px}
+.checklist label{display:flex;gap:12px;align-items:flex-start;cursor:pointer;min-height:48px;padding:6px 0;font-size:1.1rem}
+.checklist input{width:26px;height:26px;margin-top:3px;accent-color:var(--good);flex:none}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+footer{margin-top:24px;color:var(--muted);font-size:.9rem;text-align:center}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+.two .defn{margin:0}
+@media (max-width:600px){.two{grid-template-columns:1fr}}
+.tbl{width:100%;border-collapse:collapse;margin:0 0 12px;font-size:1.05rem}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--soft)}
+.formula{font:800 1.6rem var(--display);text-align:center;margin:6px 0 12px}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;line-height:1.15}
+.frac>span:first-child{border-bottom:2px solid currentColor;padding:0 4px}
+.frac>span:last-child{padding:0 4px}
+</style>
+</head>
+<body data-key="y9et-m3-v1">
+<div class="wrap">
+  <a class="back" href="./">← My lessons</a>
+  <div class="top">
+    <span class="t">Lesson 3: Features of waves</span>
+    <span class="prog"><span id="pn">Step 1 of 14</span><span class="bar"><i id="pb"></i></span></span>
+  </div>
+<section class="step">
+    <div class="card">
+      <h1>Lesson 3: Features of waves</h1>
+      <p class="big"><b>My goal:</b> I can say what amplitude, wavelength, frequency and speed mean.</p>
+      <p>Today you will learn these new words:</p>
+      <ul class="pts">
+        <li><b>amplitude</b></li>
+        <li><b>wavelength</b> (λ)</li>
+        <li><b>frequency</b> and <b>hertz</b> (Hz)</li>
+      </ul>
+      <p class="rule">Write every answer in your book. Ticking on the screen is not enough.</p>
+      <p>Press <b>Next</b> to start.</p>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Getting started</p>
+      <h2>The rope wave</h2>
+      <div class="scene">
+        <svg viewBox="0 0 540 170" role="img" aria-label="A hand shakes one end of a long rope. Waves move along the rope.">
+          <line x1="40" y1="85" x2="520" y2="85" style="stroke:var(--line)" stroke-width="2" stroke-dasharray="6 5"/>
+          <path style="fill:none;stroke:var(--cold)" stroke-width="5" d="M60 85 Q100 35 140 85 T220 85 T300 85 T380 85 T460 85 T520 85"/>
+          <rect style="fill:var(--hot);stroke:var(--ink)" x="30" y="70" width="34" height="30" rx="10" stroke-width="2"/>
+          <text x="47" y="158" text-anchor="middle" font-size="15" font-weight="700" style="fill:var(--ink)">Hand</text>
+          <path style="fill:none;stroke:var(--ink)" stroke-width="3" d="M47 60 V36 M40 44 L47 36 L54 44 M47 108 V132 M40 124 L47 132 L54 124"/>
+          <text x="100" y="46" text-anchor="middle" font-size="15" font-weight="700" style="fill:var(--ink)">Crest</text>
+          <text x="260" y="46" text-anchor="middle" font-size="15" font-weight="700" style="fill:var(--ink)">Crest</text>
+          <path style="fill:none;stroke:var(--ink)" stroke-width="3" d="M100 155 H260 M100 155 l10 -6 M100 155 l10 6 M260 155 l-10 -6 M260 155 l-10 6"/>
+        </svg>
+      </div>
+      <p>You shake a rope. Then you shake it harder, so the waves are three times taller.</p>
+      <p>You shake it just as often. The wave speed stays the same.</p>
+      <p><b>What happens to the distance between the crests?</b></p>
+      <div class="pick" data-correct="1" data-ok="The height of a wave does not change the distance between crests." data-no="Not quite. You shake just as often. Does taller change the spacing?">
+        <div class="choices"><button class="choice" type="button">It gets 3 times longer</button><button class="choice" type="button">It stays the same</button><button class="choice" type="button">It gets shorter</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>When the waves get taller, the distance between crests ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Parts of a wave</p>
+      <h2>Crest, trough, amplitude and wavelength</h2>
+      <div class="scene">
+        <svg viewBox="0 0 620 220" role="img" aria-label="A wave drawn on a rest line. A crest, a trough, the amplitude and one wavelength are labelled.">
+          <line x1="10" y1="120" x2="610" y2="120" style="stroke:var(--muted)" stroke-width="2" stroke-dasharray="6 5"/>
+          <text x="12" y="110" font-size="15" font-weight="700" style="fill:var(--muted)">Rest line</text>
+          <path style="fill:none;stroke:var(--cold)" stroke-width="4" d="M100 120 Q140 0 180 120 T260 120 T340 120 T420 120 T500 120"/>
+          <path style="fill:none;stroke:var(--cond)" stroke-width="3" d="M140 42 H300 M140 42 l10 -6 M140 42 l10 6 M300 42 l-10 -6 M300 42 l-10 6"/>
+          <line x1="140" y1="36" x2="140" y2="60" style="stroke:var(--cond)" stroke-width="2"/>
+          <line x1="300" y1="36" x2="300" y2="60" style="stroke:var(--cond)" stroke-width="2"/>
+          <text x="220" y="28" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--cond)">Wavelength (λ)</text>
+          <text x="460" y="48" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--ink)">Crest</text>
+          <text x="380" y="208" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--ink)">Trough</text>
+          <line x1="460" y1="60" x2="530" y2="60" style="stroke:var(--hot)" stroke-width="2" stroke-dasharray="4 4"/>
+          <path style="fill:none;stroke:var(--hot)" stroke-width="3" d="M520 120 V62 M520 62 l-6 10 M520 62 l6 10 M520 120 l-6 -10 M520 120 l6 -10"/>
+          <text x="530" y="96" font-size="16" font-weight="700" style="fill:var(--hot)">Amplitude</text>
+        </svg>
+      </div>
+      <div class="defn">The <b>amplitude</b> is the height from the rest line to a crest.</div>
+      <div class="defn">The <b>wavelength</b> is the distance from one crest to the next crest. Its symbol is λ. It is measured in metres (m).</div>
+      <ul class="pts">
+        <li>A <b>crest</b> is the top of a wave.</li>
+        <li>A <b>trough</b> is the bottom of a wave.</li>
+        <li>A bigger amplitude means the wave carries more energy.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Label the wave</h2>
+      <div class="scene">
+        <svg viewBox="0 0 620 220" role="img" aria-label="A wave with four numbered labels: 1 at a crest, 2 at a trough, 3 on a height arrow, 4 on a crest-to-crest arrow.">
+          <line x1="10" y1="120" x2="610" y2="120" style="stroke:var(--muted)" stroke-width="2" stroke-dasharray="6 5"/>
+          <path style="fill:none;stroke:var(--cold)" stroke-width="4" d="M100 120 Q140 0 180 120 T260 120 T340 120 T420 120 T500 120"/>
+          <g font-size="17" font-weight="700" text-anchor="middle">
+            <circle cx="140" cy="36" r="15" style="fill:var(--surface);stroke:var(--ink)" stroke-width="2"/><text x="140" y="42" style="fill:var(--ink)">1</text>
+            <circle cx="220" cy="204" r="15" style="fill:var(--surface);stroke:var(--ink)" stroke-width="2"/><text x="220" y="210" style="fill:var(--ink)">2</text>
+            <line x1="460" y1="60" x2="530" y2="60" style="stroke:var(--hot)" stroke-width="2" stroke-dasharray="4 4"/>
+            <path style="fill:none;stroke:var(--hot)" stroke-width="3" d="M520 120 V62 M520 62 l-6 10 M520 62 l6 10 M520 120 l-6 -10 M520 120 l6 -10"/>
+            <circle cx="560" cy="90" r="15" style="fill:var(--surface);stroke:var(--ink)" stroke-width="2"/><text x="560" y="96" style="fill:var(--ink)">3</text>
+            <path style="fill:none;stroke:var(--cond)" stroke-width="3" d="M300 42 H460 M300 42 l10 -6 M300 42 l10 6 M460 42 l-10 -6 M460 42 l-10 6"/>
+            <circle cx="380" cy="24" r="15" style="fill:var(--surface);stroke:var(--ink)" stroke-width="2"/><text x="380" y="30" style="fill:var(--ink)">4</text>
+          </g>
+        </svg>
+      </div>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">1 is a <button class="blank" type="button" data-answer="crest"></button>.</p>
+        <p class="sent">2 is a <button class="blank" type="button" data-answer="trough"></button>.</p>
+        <p class="sent">3 is the <button class="blank" type="button" data-answer="amplitude"></button>.</p>
+        <p class="sent">4 is the <button class="blank" type="button" data-answer="wavelength"></button>.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">wavelength</button><button class="chip" type="button">trough</button><button class="chip" type="button">amplitude</button><button class="chip" type="button">crest</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Draw a wave with a ruler line through the middle. Label a crest, a trough, the amplitude and one wavelength (λ).</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Key word</p>
+      <h2>Frequency</h2>
+      <div class="defn">The <b>frequency</b> is how many waves pass a point each second. It is measured in <b>hertz</b> (Hz).</div>
+      <div class="scene">
+        <svg id="svgF" viewBox="0 0 540 200" role="img" aria-label="A wave moves to the right past a flag. A clock and a counter show how many crests pass the flag."></svg>
+        <div class="row"><button class="btn primary" type="button" id="fGo">Start the wave</button></div>
+      </div>
+      <ul class="pts">
+        <li>Count the crests that pass the flag.</li>
+        <li>The wave runs for 3 seconds.</li>
+        <li>1 Hz means 1 wave passes each second.</li>
+      </ul>
+      <p><b>How many waves pass the flag each second?</b></p>
+      <div class="pick" data-correct="0" data-ok="6 crests pass in 3 seconds. That is 2 each second, so the frequency is 2 Hz." data-no="Not quite. Look at the count after 3 seconds. Share it between the 3 seconds.">
+        <div class="choices"><button class="choice" type="button">2</button><button class="choice" type="button">6</button><button class="choice" type="button">3</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>______ waves pass each second. The frequency is ______ Hz.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Wave simulator</p>
+      <h2>Change the wave</h2>
+      <p>This wave always travels at <b>6 m/s</b>. Press Start. Then change the amplitude and the frequency.</p>
+      <div class="scene">
+        <svg id="svgS" viewBox="0 0 540 210" role="img" aria-label="A moving wave. Buttons change its amplitude and its frequency. The wavelength is marked at the top."></svg>
+        <div class="row"><button class="btn primary" type="button" id="sGo">Start the wave</button><button class="btn" type="button" id="sStop">Stop</button></div>
+        <div class="row"><button class="btn" type="button" id="sAmp">Change amplitude</button><button class="btn" type="button" id="sFreq">Change frequency</button></div>
+      </div>
+      <table class="tbl">
+        <tr><th>Amplitude</th><th>Frequency</th><th>Wavelength</th><th>Speed</th></tr>
+        <tr><td id="rA">1 m</td><td id="rF">1 Hz</td><td id="rL">6 m</td><td>6 m/s</td></tr>
+      </table>
+      <ul class="pts">
+        <li>A taller wave keeps the same wavelength and speed.</li>
+        <li>A higher frequency makes the wavelength shorter.</li>
+        <li>The speed does not change. It depends on the medium.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>What changes?</h2>
+      <div class="match">
+        <div class="m pick" data-correct="1" data-ok="Amplitude is height. It does not change the spacing." data-no="Not quite. Look at the wavelength in the table when you change only the amplitude.">
+          <p>The amplitude gets bigger. The wavelength…</p>
+          <div class="choices"><button class="choice" type="button">gets longer</button><button class="choice" type="button">stays the same</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="Twice as many waves fit in the same space, so each one is half as long." data-no="Not quite. Try 1 Hz, then 2 Hz in the simulator. Watch the wavelength.">
+          <p>The frequency doubles. The wavelength…</p>
+          <div class="choices"><button class="choice" type="button">halves</button><button class="choice" type="button">doubles</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="The speed depends on the medium, not on the height of the wave." data-no="Not quite. Look at the speed in the table. Did it ever change?">
+          <p>The amplitude gets bigger. The wave speed…</p>
+          <div class="choices"><button class="choice" type="button">gets faster</button><button class="choice" type="button">stays the same</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>When frequency goes up, wavelength goes ______. When amplitude goes up, wavelength ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">The wave equation</p>
+      <h2>Speed, frequency and wavelength</h2>
+      <p class="formula">v = f × λ</p>
+      <table class="tbl">
+        <tr><th>Symbol</th><th>Means</th><th>Unit</th></tr>
+        <tr><td>v</td><td>speed</td><td>m/s</td></tr>
+        <tr><td>f</td><td>frequency</td><td>Hz</td></tr>
+        <tr><td>λ</td><td>wavelength</td><td>m</td></tr>
+      </table>
+      <p>You can turn the equation around:</p>
+      <div class="two">
+        <div class="defn" style="--mc:var(--conv)">To find <b>f</b>:<br><span class="formula">f = <span class="frac"><span>v</span><span>λ</span></span></span></div>
+        <div class="defn" style="--mc:var(--cond)">To find <b>λ</b>:<br><span class="formula">λ = <span class="frac"><span>v</span><span>f</span></span></span></div>
+      </div>
+      <div class="defn" style="--mc:var(--hot)"><b>Worked example</b><br>A wave has f = 20 Hz and λ = 3 m. Find v.<br>v = f × λ<br>v = 20 × 3<br>v = 60 m/s</div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Copy v = f × λ, the table and the two turned-around forms. Copy the worked example.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Calculate</p>
+      <h2>Find the speed</h2>
+      <p>A wave has a frequency of <b>50 Hz</b>. Its wavelength is <b>4 m</b>.</p>
+      <p class="formula">v = f × λ</p>
+      <p class="formula">v = 50 × 4 = ___ m/s</p>
+      <div class="pick" data-correct="1" data-ok="50 × 4 = 200, so the speed is 200 m/s." data-no="Not quite. Check which sign is in v = f × λ.">
+        <div class="choices"><button class="choice" type="button">54 m/s</button><button class="choice" type="button">200 m/s</button><button class="choice" type="button">12.5 m/s</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>v = f × λ<br>v = ______ × ______<br>v = ______ m/s</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Calculate</p>
+      <h2>Find the frequency</h2>
+      <p>Sound travels at <b>340 m/s</b>. A sound wave has a wavelength of <b>2 m</b>.</p>
+      <p class="formula">f = <span class="frac"><span>v</span><span>λ</span></span> = <span class="frac"><span>340</span><span>2</span></span> = ___ Hz</p>
+      <div class="pick" data-correct="0" data-ok="340 shared into 2 equal parts is 170, so the frequency is 170 Hz." data-no="Not quite. The line in the fraction means divide the top by the bottom.">
+        <div class="choices"><button class="choice" type="button">170 Hz</button><button class="choice" type="button">680 Hz</button><button class="choice" type="button">338 Hz</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Write f = v over λ as a fraction (v on top, λ underneath).<br>Put in the numbers: 340 over ______.<br>f = ______ Hz</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Calculate</p>
+      <h2>Find the wavelength</h2>
+      <p>A wave travels at <b>1200 m/s</b>. Its frequency is <b>300 Hz</b>.</p>
+      <p class="formula">λ = <span class="frac"><span>v</span><span>f</span></span> = <span class="frac"><span>1200</span><span>300</span></span> = ___ m</p>
+      <div class="pick" data-correct="2" data-ok="300 goes into 1200 four times, so the wavelength is 4 m." data-no="Not quite. How many groups of 300 make 1200?">
+        <div class="choices"><button class="choice" type="button">40 m</button><button class="choice" type="button">900 m</button><button class="choice" type="button">4 m</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Write λ = v over f as a fraction (v on top, f underneath).<br>Put in the numbers: 1200 over ______.<br>λ = ______ m</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Case study</p>
+      <h2>Tsunami waves</h2>
+      <p>A tsunami is a huge ocean wave. Watch it move from deep sea to the shore.</p>
+      <div class="scene">
+        <svg id="svgT" viewBox="0 0 540 220" role="img" aria-label="A tsunami wave moves from deep water on the left to shallow water near land on the right. Near land the waves get closer together and taller."></svg>
+        <div class="row"><button class="btn primary" type="button" id="tGo">Start the tsunami</button><button class="btn" type="button" id="tStop">Stop</button></div>
+      </div>
+      <ul class="pts">
+        <li>In deep sea, the wave is fast. It has a long wavelength and is not very tall.</li>
+        <li>Near the shore, the water is shallow. The wave slows down.</li>
+        <li>The frequency stays the same, so the wavelength gets shorter.</li>
+        <li>The energy is squeezed into a smaller space.</li>
+      </ul>
+      <p><b>Near the shore, what happens to the height of the wave?</b></p>
+      <div class="pick" data-correct="0" data-ok="The same energy is squeezed into a shorter wave, so the wave grows taller." data-no="Not quite. Look at the right side of the picture again.">
+        <div class="choices"><button class="choice" type="button">It gets taller</button><button class="choice" type="button">It gets shorter</button><button class="choice" type="button">It stays the same</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Near the shore, a tsunami slows down. Its wavelength gets ______. Its amplitude gets ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Key words</p>
+      <h2>Features of waves</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">The height from the rest line to a crest is the <button class="blank" type="button" data-answer="amplitude"></button>.</p>
+        <p class="sent">The distance from crest to crest is the <button class="blank" type="button" data-answer="wavelength"></button>.</p>
+        <p class="sent">The number of waves each second is the <button class="blank" type="button" data-answer="frequency"></button>.</p>
+        <p class="sent">Frequency is measured in <button class="blank" type="button" data-answer="hertz"></button>.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">frequency</button><button class="chip" type="button">hertz</button><button class="chip" type="button">wavelength</button><button class="chip" type="button">amplitude</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Copy the four sentences.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <h2>Well done!</h2>
+      <p>Tick each one you can do now.</p>
+      <ul class="checklist">
+        <li><label><input type="checkbox"> I can label a crest, a trough, the amplitude and the wavelength.</label></li>
+        <li><label><input type="checkbox"> I can say what frequency means and that it is measured in hertz.</label></li>
+        <li><label><input type="checkbox"> I can say that a taller wave does not travel faster.</label></li>
+        <li><label><input type="checkbox"> I can use v = f × λ to find the speed of a wave.</label></li>
+      </ul>
+      <p class="rule">Show your teacher your book.</p>
+    </div>
+  </section>
+
+  <div class="pager">
+    <button class="btn" type="button" id="prev">← Back</button>
+    <button class="btn primary" type="button" id="next">Next →</button>
+  </div>
+  <footer>Year 9 Science · Energy transfer · Lesson 3</footer>
+</div>
+<script>(function(){const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const NS="http://www.w3.org/2000/svg";const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;const KEY=document.body.dataset.key;const store={get(k){try{return JSON.parse(localStorage.getItem(KEY+k))}catch(e){return null}},set(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}};function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}function hex(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");return[0,2,4].map(i=>parseInt(h.substr(i,2),16))}function mix(a,b,t){const pa=hex(a),pb=hex(b);return"rgb("+pa.map((x,i)=>Math.round(x+(pb[i]-x)*t)).join(",")+")"}function label(svg,x,y,t,anchor,fill,size){const e=el("text",{x:x,y:y,"text-anchor":anchor||"middle","font-family":"Atkinson Hyperlegible, system-ui, sans-serif","font-size":size||15,"font-weight":700,fill:fill||css("--ink")},svg);e.textContent=t;return e}function anim(fn){let raf=null,last=null;function loop(ts){const now=ts/1e3,dt=Math.min(.05,now-(last||now));last=now;fn(dt,now);raf=requestAnimationFrame(loop)}return{start(){if(reduce){fn(0,0);return}if(!raf){last=null;raf=requestAnimationFrame(loop)}},stop(){if(raf){cancelAnimationFrame(raf);raf=null}},get on(){return!!raf}}}window.K={$,$$,el,css,mix,label,anim,reduce};const steps=$$(".step");let cur=0;function go(i){cur=Math.max(0,Math.min(steps.length-1,i));steps.forEach((s,j)=>s.hidden=j!==cur);$("#pn").textContent="Step "+(cur+1)+" of "+steps.length;$("#pb").style.width=(cur+1)/steps.length*100+"%";$("#prev").disabled=cur===0;$("#next").hidden=cur===steps.length-1;store.set("step",cur);window.scrollTo({top:0,behavior:"auto"});document.dispatchEvent(new CustomEvent("stepchange",{detail:cur}))}$("#prev").onclick=()=>go(cur-1);$("#next").onclick=()=>go(cur+1);$$(".pick").forEach(box=>{const btns=[...box.querySelectorAll(":scope > .choices .choice")],fb=box.querySelector(":scope > .fb"),ok=+box.dataset.correct;btns.forEach((b,i)=>b.onclick=()=>{btns.forEach((x,j)=>{x.setAttribute("aria-pressed",j===i);x.classList.remove("ok","no")});b.classList.add(i===ok?"ok":"no");fb.hidden=false;fb.className="fb "+(i===ok?"ok":"no");fb.innerHTML=i===ok?"<b>✓ Yes!</b> "+box.dataset.ok:"<b>✗</b> "+box.dataset.no})});$$(".fill").forEach(box=>{const blanks=[...box.querySelectorAll(".blank")],chips=[...box.querySelectorAll(".chip")],fb=box.querySelector(".fb");function sync(){chips.forEach((c,i)=>{c.disabled=blanks.some(b=>b.dataset.src===String(i))})}function empty(b){b.textContent="";delete b.dataset.src;b.classList.remove("ok","no")}chips.forEach((c,i)=>c.onclick=()=>{const e=blanks.find(b=>!b.textContent);if(!e)return;e.textContent=c.textContent;e.dataset.src=i;e.classList.remove("ok","no");fb.hidden=true;sync()});blanks.forEach(b=>b.onclick=()=>{empty(b);fb.hidden=true;sync()});box.querySelector("[data-clear]").onclick=()=>{blanks.forEach(empty);fb.hidden=true;sync()};box.querySelector("[data-check]").onclick=()=>{if(blanks.some(b=>!b.textContent)){fb.hidden=false;fb.className="fb no";fb.innerHTML="<b>Fill every gap first.</b> Tap a word below.";return}let all=true;blanks.forEach(b=>{const r=b.textContent===b.dataset.answer;b.classList.toggle("ok",r);b.classList.toggle("no",!r);if(!r)all=false});fb.hidden=false;fb.className="fb "+(all?"ok":"no");fb.innerHTML=all?"<b>✓ All correct!</b> Now write it in your book.":"<b>✗ Not yet.</b> Tap a red word to take it out, then try again."}});window.addEventListener("load",()=>{const sv=store.get("step");go(typeof sv==="number"?sv:0)})})();</script>
+<script>(function(){const{$,$$,el,css,label,anim,reduce}=K;const all=[];document.addEventListener("stepchange",()=>all.forEach(a=>a.stop()));
+const freq=function(){const svg=$("#svgF"),F=2,LAM=120,FX=300,AMP=42,Y=105;let t=0,path,cnt,clk,done=false;
+function build(){svg.innerHTML="";el("line",{x1:10,y1:Y,x2:530,y2:Y,stroke:css("--line"),"stroke-width":2,"stroke-dasharray":"6 5"},svg);path=el("path",{fill:"none",stroke:css("--cold"),"stroke-width":4},svg);el("line",{x1:FX,y1:40,x2:FX,y2:175,stroke:css("--ink"),"stroke-width":3},svg);el("path",{d:`M${FX} 40 h34 l-8 9 l8 9 h-34z`,fill:css("--hot"),stroke:css("--ink"),"stroke-width":1.5},svg);label(svg,FX,192,"Flag","middle",css("--ink"),14);clk=label(svg,20,28,"","start",css("--ink"),16);cnt=label(svg,520,28,"","end",css("--ink"),16);draw()}
+function draw(){let d="";for(let x=10;x<=530;x+=4){const y=Y-AMP*Math.cos(2*Math.PI*((x-FX)/LAM-(F*t-0.25)));d+=(x===10?"M":"L")+x+" "+y.toFixed(1)}path.setAttribute("d",d);const n=Math.max(0,Math.floor(F*t-0.25+1e-9)+1);clk.textContent="Time: "+t.toFixed(1)+" s";cnt.textContent="Crests past the flag: "+(t<0.125?0:n)}
+const a=anim(dt=>{t=Math.min(3,t+dt);draw();if(t>=3)a.stop()});build();all.push(a);
+return{start(){t=0;if(reduce){t=3;draw();return}a.start()}}}();$("#fGo").onclick=freq.start;
+const sim=function(){const svg=$("#svgS"),X0=20,PX=500/12,Y=115,V=6;let t=0,A=1,F=1,path,arr,arrT;
+function build(){svg.innerHTML="";el("line",{x1:X0,y1:Y,x2:520,y2:Y,stroke:css("--line"),"stroke-width":2,"stroke-dasharray":"6 5"},svg);arr=el("path",{fill:"none",stroke:css("--cond"),"stroke-width":3},svg);arrT=label(svg,0,22,"Wavelength","middle",css("--cond"),15);path=el("path",{fill:"none",stroke:css("--cold"),"stroke-width":4},svg);label(svg,520,202,"Wave moves →","end",css("--muted"),14);draw()}
+function draw(){const L=V/F,lp=L*PX;let d="";for(let x=X0;x<=520;x+=3){const m=(x-X0)/PX;const y=Y-A*36*Math.sin(2*Math.PI*(m/L-F*t*0.5));d+=(x===X0?"M":"L")+x+" "+y.toFixed(1)}path.setAttribute("d",d);const m0=L*(((0.25+0.5*F*t)%1+1)%1),x1=X0+m0*PX,x2=x1+lp,cy=Y-A*36;arr.setAttribute("d",`M${x1} 34 H${x2} M${x1} 34 l10 -6 M${x1} 34 l10 6 M${x2} 34 l-10 -6 M${x2} 34 l-10 6 M${x1} 26 V${cy} M${x2} 26 V${cy}`);arrT.setAttribute("x",Math.min(Math.max(x1+lp/2,95),445));arrT.textContent="Wavelength "+L+" m";$("#rA").textContent=A+" m";$("#rF").textContent=F+" Hz";$("#rL").textContent=L+" m"}
+const a=anim(dt=>{t+=dt;draw()});build();all.push(a);
+$("#sAmp").onclick=()=>{A=A===1?2:1;draw()};$("#sFreq").onclick=()=>{F=F%3+1;draw()};
+return{start(){if(reduce){t=0.3;draw();return}a.start()},stop(){a.stop()}}}();$("#sGo").onclick=sim.start;$("#sStop").onclick=sim.stop;
+const tsu=function(){const svg=$("#svgT"),SEA=92,XS=470;let t=0,water,line;const ph=[];
+function depth(x){return 120-110*x/XS}
+function build(){svg.innerHTML="";let p=0;ph.length=0;for(let x=0;x<=XS;x+=3){ph.push({x,p,A:Math.min(6*Math.pow(120/depth(x),0.6),0.75*depth(x))});p+=3*2*Math.PI/(190*Math.sqrt(depth(x)/120))}water=el("path",{fill:css("--cold"),opacity:.22},svg);line=el("path",{fill:"none",stroke:css("--cold"),"stroke-width":3.5},svg);el("path",{d:`M0 212 L${XS} 102 L540 84 V220 H0z`,fill:css("--focus"),opacity:.55},svg);el("path",{d:`M0 212 L${XS} 102 L540 84`,fill:"none",stroke:css("--ink"),"stroke-width":2},svg);label(svg,90,24,"Deep sea","middle",css("--ink"),15);label(svg,380,24,"Shallow water","middle",css("--ink"),15);label(svg,508,72,"Land","middle",css("--ink"),15);label(svg,300,200,"Sea floor","middle",css("--ink"),14);draw()}
+function draw(){let d="";ph.forEach((q,i)=>{const y=SEA-q.A*Math.sin(q.p-2*Math.PI*0.5*t);d+=(i?"L":"M")+q.x+" "+y.toFixed(1)});line.setAttribute("d",d);water.setAttribute("d",d+` L${XS} 102 L0 212 Z`)}
+const a=anim(dt=>{t+=dt;draw()});build();all.push(a);
+return{start(){if(reduce){t=0.2;draw();return}a.start()},stop(){a.stop()}}}();$("#tGo").onclick=tsu.start;$("#tStop").onclick=tsu.stop})();</script>
+</body>
+</html>

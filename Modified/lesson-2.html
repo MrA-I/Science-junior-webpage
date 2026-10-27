@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 2: Waves</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+:root{
+  --bg:#eef3f1;--surface:#ffffff;--ink:#1c2b3a;--muted:#51616f;--line:#cfdad6;--soft:#e3ebe8;
+  --focus:#d99a00;--good:#2d7a46;--bad:#b3261e;--book:#fff4d6;--bookline:#d99a00;
+  --hot:#cf4a1f;--cold:#2f6fb0;--cond:#7a4fb0;--conv:#0f7d74;--rad:#b0336e;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--body:"Atkinson Hyperlegible",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.5 var(--body)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:900px;margin:0 auto;padding:18px 16px 36px}
+.back{display:inline-block;font:700 1rem var(--body);color:var(--ink);text-decoration:underline;text-underline-offset:3px;padding:8px 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.top .t{font:800 1.3rem var(--display)}
+.prog{display:flex;gap:6px;align-items:center;font-size:.95rem;color:var(--muted)}
+.bar{width:160px;height:10px;border-radius:99px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:99px;transition:width .3s}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.part{font:700 .85rem var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 4px}
+h1{font:800 clamp(1.8rem,4vw,2.4rem)/1.1 var(--display);margin:0 0 12px}
+h2{font:800 1.6rem/1.2 var(--display);margin:0 0 12px}
+p{margin:0 0 12px}
+.big{font-size:1.15rem}
+.defn{border:3px solid var(--mc,var(--ink));border-radius:14px;padding:12px 16px;margin:0 0 14px;font-size:1.1rem}
+.defn b{color:var(--mc,var(--ink))}
+ul.pts{margin:0 0 12px;padding-left:22px}
+ul.pts li{margin-bottom:6px}
+.scene{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:8px;margin:0 0 12px}
+.scene svg{display:block;width:100%;height:auto;max-height:340px}
+.btn{font:700 1.05rem var(--body);color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;min-height:48px;padding:8px 20px;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--surface)}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.scene .row{margin:8px 4px 4px}
+.look{font-size:1rem;color:var(--muted)}
+.rule{background:var(--book);border:2px solid var(--bookline);border-radius:14px;padding:12px 16px;font-weight:700}
+.book{display:flex;gap:12px;align-items:flex-start;background:var(--book);border:2px dashed var(--bookline);border-radius:14px;padding:12px 16px;margin-top:16px}
+.book .ic{font-size:1.5rem;line-height:1}
+.book .h{font-weight:700;display:block}
+.choices{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 4px}
+.choice{font:700 1.05rem var(--body);color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:14px;min-height:52px;padding:10px 18px;cursor:pointer}
+.choice[aria-pressed="true"]{border-color:var(--ink);background:var(--surface)}
+.choice.ok{border-color:var(--good);box-shadow:inset 0 0 0 2px var(--good)}
+.choice.no{border-color:var(--bad)}
+.fb{margin:8px 0 0;font-size:1.05rem}
+.fb.ok b{color:var(--good)}.fb.no b{color:var(--bad)}
+.fill .sent{font-size:1.2rem;line-height:2.4;margin:0 0 6px}
+.blank{display:inline-block;min-width:120px;min-height:44px;vertical-align:middle;border:none;border-bottom:3px solid var(--ink);background:var(--soft);border-radius:8px 8px 0 0;font:700 1.1rem var(--body);color:var(--ink);padding:4px 12px;cursor:pointer;text-align:center}
+.blank.ok{border-bottom-color:var(--good);color:var(--good)}
+.blank.no{border-bottom-color:var(--bad);color:var(--bad)}
+.bank{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.bank .lab{width:100%;font-size:.95rem;color:var(--muted)}
+.chip{font:700 1.05rem var(--body);background:var(--surface);color:var(--ink);border:2px solid var(--ink);border-radius:12px;min-height:48px;padding:6px 18px;cursor:pointer}
+.chip:disabled{opacity:.3}
+.match{display:grid;gap:12px}
+.match .m{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg)}
+.match .m p{margin:0 0 4px;font-weight:700}
+.reveal{margin-top:12px}
+.reveal>summary{display:inline-flex;gap:6px;list-style:none;cursor:pointer;font:700 .9rem var(--body);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;min-height:38px;align-items:center}
+.reveal>summary::-webkit-details-marker{display:none}
+.reveal>summary::before{content:"▸"}.reveal[open]>summary::before{content:"▾"}
+.reveal .body{margin-top:8px;padding:8px 14px;border-left:3px solid var(--line);font-size:1.05rem}
+.checklist{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px}
+.checklist label{display:flex;gap:12px;align-items:flex-start;cursor:pointer;min-height:48px;padding:6px 0;font-size:1.1rem}
+.checklist input{width:26px;height:26px;margin-top:3px;accent-color:var(--good);flex:none}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+footer{margin-top:24px;color:var(--muted);font-size:.9rem;text-align:center}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+.two .defn{margin:0}
+@media (max-width:600px){.two{grid-template-columns:1fr}}
+.tbl{width:100%;border-collapse:collapse;margin:0 0 12px;font-size:1.05rem}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--soft)}
+.formula{font:800 1.6rem var(--display);text-align:center;margin:6px 0 12px}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;line-height:1.15}
+.frac>span:first-child{border-bottom:2px solid currentColor;padding:0 4px}
+.frac>span:last-child{padding:0 4px}
+</style>
+</head>
+<body data-key="y9et-m2-v1">
+<div class="wrap">
+  <a class="back" href="./">← My lessons</a>
+  <div class="top">
+    <span class="t">Lesson 2: Waves</span>
+    <span class="prog"><span id="pn">Step 1 of 13</span><span class="bar"><i id="pb"></i></span></span>
+  </div>
+<section class="step">
+    <div class="card">
+      <h1>Lesson 2: Waves</h1>
+      <p class="big"><b>My goal:</b> I can say what a wave carries and what a medium is.</p>
+      <p>Today you will learn these new words:</p>
+      <ul class="pts">
+        <li><b>wave</b></li>
+        <li><b>medium</b></li>
+        <li><b style="color:var(--cond)">transverse</b> and <b style="color:var(--conv)">longitudinal</b></li>
+      </ul>
+      <p class="rule">Write every answer in your book. Ticking on the screen is not enough.</p>
+      <p>Press <b>Next</b> to start.</p>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Getting started</p>
+      <h2>The floating cork</h2>
+      <div class="scene">
+        <svg viewBox="0 0 460 170" role="img" aria-label="A cork floating on the sea. A wave moves from left to right towards a beach.">
+          <path style="fill:var(--cold)" opacity=".25" d="M0 100 Q40 70 80 100 T160 100 T240 100 T320 100 V170 H0z"/>
+          <path style="fill:none;stroke:var(--cold)" stroke-width="4" d="M0 100 Q40 70 80 100 T160 100 T240 100 T320 100"/>
+          <path style="fill:var(--focus)" d="M320 100 L460 60 V170 H320z" opacity=".5"/>
+          <text x="400" y="150" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--ink)">Beach</text>
+          <rect style="fill:var(--hot);stroke:var(--ink)" x="148" y="72" width="24" height="18" rx="5" stroke-width="2"/>
+          <text x="160" y="60" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--ink)">Cork</text>
+          <path style="fill:var(--ink)" d="M200 30h70v-10l22 16-22 16v-10h-70z"/>
+          <text x="245" y="20" text-anchor="middle" font-size="15" font-weight="700" style="fill:var(--ink)">Wave</text>
+        </svg>
+      </div>
+      <p>A cork floats on the sea. A wave rolls past it towards the beach.</p>
+      <p><b>What does the cork do?</b></p>
+      <div class="pick" data-correct="1" data-ok="The water moves up and down in the same place. The wave moves on, but the cork stays." data-no="Not quite. If waves carried the water away, the sea would pile up on the beach.">
+        <div class="choices"><button class="choice" type="button">Goes to the beach</button><button class="choice" type="button">Bobs up and down</button><button class="choice" type="button">Sinks to the bottom</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>The cork ______ as the wave goes past.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">What is a wave?</p>
+      <h2>A wave carries energy</h2>
+      <div class="defn">A <b>wave</b> carries energy from one place to another.</div>
+      <div class="scene">
+        <svg id="svgW1" viewBox="0 0 540 190" role="img" aria-label="Rows of particles. A wave moves through them from left to right. One red particle moves up and down but stays near its ring."></svg>
+        <div class="row"><button class="btn primary" type="button" data-wgo="svgW1">Start the wave</button><button class="btn" type="button" data-wstop="svgW1">Stop</button></div>
+      </div>
+      <ul class="pts">
+        <li>Watch the <b style="color:var(--hot)">red</b> particle.</li>
+        <li>It moves a little, then comes back to its ring.</li>
+        <li>The wave moves along. The particles stay in place.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">What is a wave?</p>
+      <h2>Energy, not particles</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">A wave carries <button class="blank" type="button" data-answer="energy"></button>.</p>
+        <p class="sent">The particles stay in <button class="blank" type="button" data-answer="place"></button>.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">place</button><button class="chip" type="button">energy</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Write both sentences.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Key word</p>
+      <h2>The medium</h2>
+      <div class="defn">The <b>medium</b> is the stuff a wave travels through. It can be air, water or rock.</div>
+      <div class="scene">
+        <svg viewBox="0 0 480 140" role="img" aria-label="Three boxes: air, water and rock. Each one can be a medium.">
+          <g font-size="17" font-weight="700" text-anchor="middle">
+            <rect style="fill:var(--surface);stroke:var(--ink)" x="20" y="20" width="130" height="90" rx="12" stroke-width="2"/>
+            <g style="fill:var(--cold)"><circle cx="45" cy="45" r="5"/><circle cx="110" cy="40" r="5"/><circle cx="75" cy="75" r="5"/><circle cx="125" cy="85" r="5"/><circle cx="50" cy="90" r="5"/></g>
+            <text x="85" y="132" style="fill:var(--ink)">Air</text>
+            <rect style="fill:var(--surface);stroke:var(--ink)" x="175" y="20" width="130" height="90" rx="12" stroke-width="2"/>
+            <g style="fill:var(--cold)"><circle cx="195" cy="40" r="5"/><circle cx="212" cy="45" r="5"/><circle cx="230" cy="38" r="5"/><circle cx="250" cy="50" r="5"/><circle cx="270" cy="42" r="5"/><circle cx="288" cy="48" r="5"/><circle cx="200" cy="65" r="5"/><circle cx="220" cy="70" r="5"/><circle cx="240" cy="66" r="5"/><circle cx="262" cy="72" r="5"/><circle cx="282" cy="68" r="5"/><circle cx="198" cy="92" r="5"/><circle cx="218" cy="88" r="5"/><circle cx="240" cy="94" r="5"/><circle cx="262" cy="90" r="5"/><circle cx="284" cy="94" r="5"/></g>
+            <text x="240" y="132" style="fill:var(--ink)">Water</text>
+            <rect style="fill:var(--surface);stroke:var(--ink)" x="330" y="20" width="130" height="90" rx="12" stroke-width="2"/>
+            <g style="fill:var(--muted)"><circle cx="350" cy="38" r="6"/><circle cx="365" cy="38" r="6"/><circle cx="380" cy="38" r="6"/><circle cx="395" cy="38" r="6"/><circle cx="410" cy="38" r="6"/><circle cx="425" cy="38" r="6"/><circle cx="440" cy="38" r="6"/><circle cx="350" cy="58" r="6"/><circle cx="365" cy="58" r="6"/><circle cx="380" cy="58" r="6"/><circle cx="395" cy="58" r="6"/><circle cx="410" cy="58" r="6"/><circle cx="425" cy="58" r="6"/><circle cx="440" cy="58" r="6"/><circle cx="350" cy="78" r="6"/><circle cx="365" cy="78" r="6"/><circle cx="380" cy="78" r="6"/><circle cx="395" cy="78" r="6"/><circle cx="410" cy="78" r="6"/><circle cx="425" cy="78" r="6"/><circle cx="440" cy="78" r="6"/><circle cx="350" cy="96" r="6"/><circle cx="365" cy="96" r="6"/><circle cx="380" cy="96" r="6"/><circle cx="395" cy="96" r="6"/><circle cx="410" cy="96" r="6"/><circle cx="425" cy="96" r="6"/><circle cx="440" cy="96" r="6"/></g>
+            <text x="395" y="132" style="fill:var(--ink)">Rock</text>
+          </g>
+        </svg>
+      </div>
+      <p><b>A wave moves across a pond. What is the medium?</b></p>
+      <div class="pick" data-correct="0" data-ok="The wave travels through the water, so water is the medium." data-no="Not quite. What does the wave travel through?">
+        <div class="choices"><button class="choice" type="button">The water</button><button class="choice" type="button">The sunlight</button><button class="choice" type="button">The fish</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>A medium is the stuff a wave travels through. Example: ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card" style="--mc:var(--cond)">
+      <p class="part">Wave type 1</p>
+      <h2>Transverse waves</h2>
+      <div class="defn">In a <b>transverse</b> wave, the particles move <b>across</b> the way the wave moves. Here they move up and down.</div>
+      <div class="scene">
+        <svg id="svgW2" viewBox="0 0 540 190" role="img" aria-label="A transverse wave. The particles move up and down while the wave moves from left to right."></svg>
+        <div class="row"><button class="btn primary" type="button" data-wgo="svgW2">Start the wave</button><button class="btn" type="button" data-wstop="svgW2">Stop</button></div>
+      </div>
+      <ul class="pts">
+        <li>The red particle moves up and down.</li>
+        <li>The wave moves across the screen.</li>
+        <li>Example: shaking a rope or a slinky up and down.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card" style="--mc:var(--conv)">
+      <p class="part">Wave type 2</p>
+      <h2>Longitudinal waves</h2>
+      <div class="defn">In a <b>longitudinal</b> wave, the particles move <b>along</b> the way the wave moves. They go back and forth.</div>
+      <div class="scene">
+        <svg id="svgW3" viewBox="0 0 540 190" role="img" aria-label="A longitudinal wave. The particles move back and forth. Some places are squashed together and some are spread out."></svg>
+        <div class="row"><button class="btn primary" type="button" data-wgo="svgW3">Start the wave</button><button class="btn" type="button" data-wstop="svgW3">Stop</button></div>
+      </div>
+      <ul class="pts">
+        <li>The red particle moves back and forth.</li>
+        <li>Squashed together = <b>compression</b>.</li>
+        <li>Spread out = <b>rarefaction</b>.</li>
+        <li>Example: pushing and pulling a slinky. Sound is a longitudinal wave.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Transverse or longitudinal?</h2>
+      <p>For each one, choose the type of wave.</p>
+      <div class="match">
+        <div class="m pick" data-correct="0" data-ok="The slinky moves up and down, across the way the wave goes." data-no="Not quite. Is the slinky moving across or along the way the wave goes?">
+          <p>You shake a slinky up and down.</p>
+          <div class="choices"><button class="choice" type="button">Transverse</button><button class="choice" type="button">Longitudinal</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="The slinky moves back and forth, the same way the wave goes." data-no="Not quite. Is the slinky moving across or along the way the wave goes?">
+          <p>You push and pull a slinky.</p>
+          <div class="choices"><button class="choice" type="button">Transverse</button><button class="choice" type="button">Longitudinal</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="Sound squashes and spreads out the air particles." data-no="Not quite. Sound has compressions and rarefactions.">
+          <p>Sound moving through air.</p>
+          <div class="choices"><button class="choice" type="button">Transverse</button><button class="choice" type="button">Longitudinal</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Write each example. Next to it, write transverse or longitudinal.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Two kinds of waves</p>
+      <h2>Does it need a medium?</h2>
+      <div class="two">
+        <div class="defn" style="--mc:var(--hot)"><b>Mechanical waves</b> need a medium. They cannot travel through empty space.<br>Examples: sound, water waves.</div>
+        <div class="defn" style="--mc:var(--rad)"><b>Electromagnetic waves</b> do not need a medium. They can travel through empty space.<br>Examples: light, radio waves.</div>
+      </div>
+      <p>Empty space with no particles is called a <b>vacuum</b>.</p>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">Sound <button class="blank" type="button" data-answer="needs"></button> a medium.</p>
+        <p class="sent">Light can travel through a <button class="blank" type="button" data-answer="vacuum"></button>.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">vacuum</button><button class="chip" type="button">needs</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Write both sentences.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Test it</p>
+      <h2>The bell in the jar</h2>
+      <p>A bell rings inside a glass jar. A laser shines through the jar.</p>
+      <div class="scene">
+        <svg id="svgJar" viewBox="0 0 540 230" role="img" aria-label="A glass jar with a ringing bell inside and air particles. A laser beam shines through the jar."></svg>
+        <div class="row"><button class="btn primary" type="button" id="jarGo">Pump out the air</button><button class="btn" type="button" id="jarReset">Start again</button></div>
+      </div>
+      <p class="look" id="jarTxt">The jar is full of air. You can hear the bell.</p>
+      <p><b>Press <i>Pump out the air</i>. With no air, what still gets out of the jar?</b></p>
+      <div class="pick" data-correct="1" data-ok="Light does not need a medium. Sound needs air particles, so it stops." data-no="Not quite. Watch the jar again. Which one needs particles?">
+        <div class="choices"><button class="choice" type="button">The sound</button><button class="choice" type="button">The light</button><button class="choice" type="button">Both</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>With no air, the ______ still gets out. The ______ stops because it needs a medium.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Sort the waves</h2>
+      <p>Does each wave need a medium?</p>
+      <div class="match">
+        <div class="m pick" data-correct="0" data-ok="Sound needs particles to travel." data-no="Not quite. Think about the bell in the jar.">
+          <p>Sound</p>
+          <div class="choices"><button class="choice" type="button">Mechanical</button><button class="choice" type="button">Electromagnetic</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="Light travels from the Sun through empty space." data-no="Not quite. Think about the bell in the jar. Does it need particles?">
+          <p>Light</p>
+          <div class="choices"><button class="choice" type="button">Mechanical</button><button class="choice" type="button">Electromagnetic</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="Ocean waves travel through water." data-no="Not quite. Ocean waves need the water.">
+          <p>Ocean waves</p>
+          <div class="choices"><button class="choice" type="button">Mechanical</button><button class="choice" type="button">Electromagnetic</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="Radio waves can travel through space to satellites." data-no="Not quite. Think about the bell in the jar. Does it need particles?">
+          <p>Radio waves</p>
+          <div class="choices"><button class="choice" type="button">Mechanical</button><button class="choice" type="button">Electromagnetic</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Draw two columns: Mechanical and Electromagnetic. Put each wave in the right column.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Key words</p>
+      <h2>Waves</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">A wave carries <button class="blank" type="button" data-answer="energy"></button>.</p>
+        <p class="sent">The stuff a wave travels through is the <button class="blank" type="button" data-answer="medium"></button>.</p>
+        <p class="sent"><b style="color:var(--cond)">Transverse:</b> particles move <button class="blank" type="button" data-answer="across"></button> the way the wave moves.</p>
+        <p class="sent"><b style="color:var(--conv)">Longitudinal:</b> particles move <button class="blank" type="button" data-answer="along"></button> the way the wave moves.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">along</button><button class="chip" type="button">medium</button><button class="chip" type="button">across</button><button class="chip" type="button">energy</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Copy the four sentences.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <h2>Well done!</h2>
+      <p>Tick each one you can do now.</p>
+      <ul class="checklist">
+        <li><label><input type="checkbox"> I can say that a wave carries energy.</label></li>
+        <li><label><input type="checkbox"> I can say what a medium is.</label></li>
+        <li><label><input type="checkbox"> I can tell a transverse wave from a longitudinal wave.</label></li>
+        <li><label><input type="checkbox"> I can say that sound needs a medium but light does not.</label></li>
+      </ul>
+      <p class="rule">Show your teacher your book.</p>
+    </div>
+  </section>
+
+  <div class="pager">
+    <button class="btn" type="button" id="prev">← Back</button>
+    <button class="btn primary" type="button" id="next">Next →</button>
+  </div>
+  <footer>Year 9 Science · Energy transfer · Lesson 2</footer>
+</div>
+<script>(function(){const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const NS="http://www.w3.org/2000/svg";const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;const KEY=document.body.dataset.key;const store={get(k){try{return JSON.parse(localStorage.getItem(KEY+k))}catch(e){return null}},set(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}};function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}function hex(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");return[0,2,4].map(i=>parseInt(h.substr(i,2),16))}function mix(a,b,t){const pa=hex(a),pb=hex(b);return"rgb("+pa.map((x,i)=>Math.round(x+(pb[i]-x)*t)).join(",")+")"}function label(svg,x,y,t,anchor,fill,size){const e=el("text",{x:x,y:y,"text-anchor":anchor||"middle","font-family":"Atkinson Hyperlegible, system-ui, sans-serif","font-size":size||15,"font-weight":700,fill:fill||css("--ink")},svg);e.textContent=t;return e}function anim(fn){let raf=null,last=null;function loop(ts){const now=ts/1e3,dt=Math.min(.05,now-(last||now));last=now;fn(dt,now);raf=requestAnimationFrame(loop)}return{start(){if(reduce){fn(0,0);return}if(!raf){last=null;raf=requestAnimationFrame(loop)}},stop(){if(raf){cancelAnimationFrame(raf);raf=null}},get on(){return!!raf}}}window.K={$,$$,el,css,mix,label,anim,reduce};const steps=$$(".step");let cur=0;function go(i){cur=Math.max(0,Math.min(steps.length-1,i));steps.forEach((s,j)=>s.hidden=j!==cur);$("#pn").textContent="Step "+(cur+1)+" of "+steps.length;$("#pb").style.width=(cur+1)/steps.length*100+"%";$("#prev").disabled=cur===0;$("#next").hidden=cur===steps.length-1;store.set("step",cur);window.scrollTo({top:0,behavior:"auto"});document.dispatchEvent(new CustomEvent("stepchange",{detail:cur}))}$("#prev").onclick=()=>go(cur-1);$("#next").onclick=()=>go(cur+1);$$(".pick").forEach(box=>{const btns=[...box.querySelectorAll(":scope > .choices .choice")],fb=box.querySelector(":scope > .fb"),ok=+box.dataset.correct;btns.forEach((b,i)=>b.onclick=()=>{btns.forEach((x,j)=>{x.setAttribute("aria-pressed",j===i);x.classList.remove("ok","no")});b.classList.add(i===ok?"ok":"no");fb.hidden=false;fb.className="fb "+(i===ok?"ok":"no");fb.innerHTML=i===ok?"<b>✓ Yes!</b> "+box.dataset.ok:"<b>✗</b> "+box.dataset.no})});$$(".fill").forEach(box=>{const blanks=[...box.querySelectorAll(".blank")],chips=[...box.querySelectorAll(".chip")],fb=box.querySelector(".fb");function sync(){chips.forEach((c,i)=>{c.disabled=blanks.some(b=>b.dataset.src===String(i))})}function empty(b){b.textContent="";delete b.dataset.src;b.classList.remove("ok","no")}chips.forEach((c,i)=>c.onclick=()=>{const e=blanks.find(b=>!b.textContent);if(!e)return;e.textContent=c.textContent;e.dataset.src=i;e.classList.remove("ok","no");fb.hidden=true;sync()});blanks.forEach(b=>b.onclick=()=>{empty(b);fb.hidden=true;sync()});box.querySelector("[data-clear]").onclick=()=>{blanks.forEach(empty);fb.hidden=true;sync()};box.querySelector("[data-check]").onclick=()=>{if(blanks.some(b=>!b.textContent)){fb.hidden=false;fb.className="fb no";fb.innerHTML="<b>Fill every gap first.</b> Tap a word below.";return}let all=true;blanks.forEach(b=>{const r=b.textContent===b.dataset.answer;b.classList.toggle("ok",r);b.classList.toggle("no",!r);if(!r)all=false});fb.hidden=false;fb.className="fb "+(all?"ok":"no");fb.innerHTML=all?"<b>✓ All correct!</b> Now write it in your book.":"<b>✗ Not yet.</b> Tap a red word to take it out, then try again."}});window.addEventListener("load",()=>{const sv=store.get("step");go(typeof sv==="number"?sv:0)})})();</script>
+<script>(function(){const{$,$$,el,css,label,anim,reduce}=K;const waves={};function makeWave(id,mode){const svg=document.getElementById(id);const N=22,rows=[50,95,140],ps=[];let t=0,ring;function build(){svg.innerHTML="";ps.length=0;const k=2*Math.PI/200;for(let r=0;r<3;r++)for(let i=0;i<N;i++){const hx=40+i*22,hy=rows[r];const red=r===1&&i===10;if(red)ring=el("circle",{cx:hx,cy:hy,r:13,fill:"none",stroke:css("--hot"),"stroke-width":2.5,"stroke-dasharray":"4 3"},svg);ps.push({hx,hy,red,c:el("circle",{cx:hx,cy:hy,r:red?8:6,fill:red?css("--hot"):css("--cold"),stroke:css("--ink"),"stroke-width":red?1.5:.8},svg)})}const ah=el("path",{d:"M380 178 H500 M500 178 l-10 -6 M500 178 l-10 6",fill:"none",stroke:css("--ink"),"stroke-width":3},svg);label(svg,330,183,"Wave moves","end",css("--muted"),14);draw(0)}function draw(tt){const k=2*Math.PI/200,A=mode==="t"?16:13;ps.forEach(p=>{const d=A*Math.sin(k*p.hx-2.4*tt);p.c.setAttribute("cx",mode==="t"?p.hx:p.hx+d);p.c.setAttribute("cy",mode==="t"?p.hy+d:p.hy)})}const a=anim((dt)=>{t+=dt;draw(t)});build();waves[id]={start(){if(reduce){draw(.6);return}a.start()},stop(){a.stop()}}}makeWave("svgW1","t");makeWave("svgW2","t");makeWave("svgW3","l");$$("[data-wgo]").forEach(b=>b.onclick=()=>waves[b.dataset.wgo].start());$$("[data-wstop]").forEach(b=>b.onclick=()=>waves[b.dataset.wstop].stop());document.addEventListener("stepchange",()=>Object.values(waves).forEach(w=>w.stop()));const jar=function(){const svg=$("#svgJar");let air=true,t=0,airG,rings,beam,bell,snd;const pts=[];function build(){svg.innerHTML="";el("path",{d:"M170 210 V60 Q170 20 210 20 H330 Q370 20 370 60 V210",fill:"none",stroke:css("--ink"),"stroke-width":4},svg);el("rect",{x:150,y:208,width:240,height:12,rx:4,fill:css("--soft"),stroke:css("--ink"),"stroke-width":2},svg);label(svg,270,14,"Glass jar","middle",css("--muted"),13);airG=el("g",{},svg);pts.length=0;for(let i=0;i<26;i++){const x=185+Math.random()*170,y=35+Math.random()*165;pts.push({x,y,c:el("circle",{cx:x,cy:y,r:5,fill:css("--cold"),opacity:.75},airG)})}beam=el("line",{x1:20,y1:170,x2:520,y2:170,stroke:css("--rad"),"stroke-width":4},svg);el("rect",{x:4,y:158,width:30,height:24,rx:4,fill:css("--muted")},svg);label(svg,20,200,"Laser","middle",css("--ink"),14);bell=el("path",{d:"M248 120 Q248 80 270 80 Q292 80 292 120 L298 128 H242 Z",fill:css("--focus"),stroke:css("--ink"),"stroke-width":2},svg);el("circle",{cx:270,cy:132,r:5,fill:css("--ink")},svg);label(svg,270,152,"Bell","middle",css("--ink"),13);rings=el("g",{},svg);snd=label(svg,460,70,"Sound: heard","middle",css("--ink"),15);label(svg,460,140,"Light: seen","middle",css("--ink"),15);draw()}function draw(){rings.innerHTML="";if(air){const r=(t*40)%60;[r,r+30].forEach(rr=>{if(rr<60)el("circle",{cx:270,cy:104,r:30+rr,fill:"none",stroke:css("--hot"),"stroke-width":3,opacity:(1-rr/60).toFixed(2)},rings)})}pts.forEach((p,i)=>{p.c.setAttribute("cx",p.x+Math.sin(t*3+i)*3);p.c.setAttribute("cy",p.y+Math.cos(t*2.6+i)*3)});airG.setAttribute("opacity",air?1:0);bell.setAttribute("transform",`rotate(${Math.sin(t*14)*8} 270 80)`);snd.textContent=air?"Sound: heard":"Sound: silent"}const a=anim(dt=>{t+=dt;draw()});build();a.start();return{pump(){air=false;draw();$("#jarTxt").textContent="The air is gone. The bell still rings, but you hear nothing. The laser beam still shines through."},reset(){air=true;draw();$("#jarTxt").textContent="The jar is full of air. You can hear the bell."}}}();$("#jarGo").onclick=jar.pump;$("#jarReset").onclick=jar.reset})();</script>
+</body>
+</html>

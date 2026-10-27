@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 4: Sound energy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+:root{
+  --bg:#eef3f1;--surface:#ffffff;--ink:#1c2b3a;--muted:#51616f;--line:#cfdad6;--soft:#e3ebe8;
+  --focus:#d99a00;--good:#2d7a46;--bad:#b3261e;--book:#fff4d6;--bookline:#d99a00;
+  --hot:#cf4a1f;--cold:#2f6fb0;--cond:#7a4fb0;--conv:#0f7d74;--rad:#b0336e;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--body:"Atkinson Hyperlegible",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.5 var(--body)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:900px;margin:0 auto;padding:18px 16px 36px}
+.back{display:inline-block;font:700 1rem var(--body);color:var(--ink);text-decoration:underline;text-underline-offset:3px;padding:8px 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.top .t{font:800 1.3rem var(--display)}
+.prog{display:flex;gap:6px;align-items:center;font-size:.95rem;color:var(--muted)}
+.bar{width:160px;height:10px;border-radius:99px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:99px;transition:width .3s}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.part{font:700 .85rem var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 4px}
+h1{font:800 clamp(1.8rem,4vw,2.4rem)/1.1 var(--display);margin:0 0 12px}
+h2{font:800 1.6rem/1.2 var(--display);margin:0 0 12px}
+p{margin:0 0 12px}
+.big{font-size:1.15rem}
+.defn{border:3px solid var(--mc,var(--ink));border-radius:14px;padding:12px 16px;margin:0 0 14px;font-size:1.1rem}
+.defn b{color:var(--mc,var(--ink))}
+ul.pts{margin:0 0 12px;padding-left:22px}
+ul.pts li{margin-bottom:6px}
+.scene{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:8px;margin:0 0 12px}
+.scene svg{display:block;width:100%;height:auto;max-height:340px}
+.btn{font:700 1.05rem var(--body);color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;min-height:48px;padding:8px 20px;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--surface)}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.scene .row{margin:8px 4px 4px}
+.look{font-size:1rem;color:var(--muted)}
+.rule{background:var(--book);border:2px solid var(--bookline);border-radius:14px;padding:12px 16px;font-weight:700}
+.book{display:flex;gap:12px;align-items:flex-start;background:var(--book);border:2px dashed var(--bookline);border-radius:14px;padding:12px 16px;margin-top:16px}
+.book .ic{font-size:1.5rem;line-height:1}
+.book .h{font-weight:700;display:block}
+.choices{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 4px}
+.choice{font:700 1.05rem var(--body);color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:14px;min-height:52px;padding:10px 18px;cursor:pointer}
+.choice[aria-pressed="true"]{border-color:var(--ink);background:var(--surface)}
+.choice.ok{border-color:var(--good);box-shadow:inset 0 0 0 2px var(--good)}
+.choice.no{border-color:var(--bad)}
+.fb{margin:8px 0 0;font-size:1.05rem}
+.fb.ok b{color:var(--good)}.fb.no b{color:var(--bad)}
+.fill .sent{font-size:1.2rem;line-height:2.4;margin:0 0 6px}
+.blank{display:inline-block;min-width:120px;min-height:44px;vertical-align:middle;border:none;border-bottom:3px solid var(--ink);background:var(--soft);border-radius:8px 8px 0 0;font:700 1.1rem var(--body);color:var(--ink);padding:4px 12px;cursor:pointer;text-align:center}
+.blank.ok{border-bottom-color:var(--good);color:var(--good)}
+.blank.no{border-bottom-color:var(--bad);color:var(--bad)}
+.bank{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.bank .lab{width:100%;font-size:.95rem;color:var(--muted)}
+.chip{font:700 1.05rem var(--body);background:var(--surface);color:var(--ink);border:2px solid var(--ink);border-radius:12px;min-height:48px;padding:6px 18px;cursor:pointer}
+.chip:disabled{opacity:.3}
+.match{display:grid;gap:12px}
+.match .m{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg)}
+.match .m p{margin:0 0 4px;font-weight:700}
+.reveal{margin-top:12px}
+.reveal>summary{display:inline-flex;gap:6px;list-style:none;cursor:pointer;font:700 .9rem var(--body);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;min-height:38px;align-items:center}
+.reveal>summary::-webkit-details-marker{display:none}
+.reveal>summary::before{content:"▸"}.reveal[open]>summary::before{content:"▾"}
+.reveal .body{margin-top:8px;padding:8px 14px;border-left:3px solid var(--line);font-size:1.05rem}
+.checklist{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px}
+.checklist label{display:flex;gap:12px;align-items:flex-start;cursor:pointer;min-height:48px;padding:6px 0;font-size:1.1rem}
+.checklist input{width:26px;height:26px;margin-top:3px;accent-color:var(--good);flex:none}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+footer{margin-top:24px;color:var(--muted);font-size:.9rem;text-align:center}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+.two .defn{margin:0}
+@media (max-width:600px){.two{grid-template-columns:1fr}}
+.tbl{width:100%;border-collapse:collapse;margin:0 0 12px;font-size:1.05rem}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--soft)}
+.formula{font:800 1.6rem var(--display);text-align:center;margin:6px 0 12px}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;line-height:1.15}
+.frac>span:first-child{border-bottom:2px solid currentColor;padding:0 4px}
+.frac>span:last-child{padding:0 4px}
+</style>
+</head>
+<body data-key="y9et-m4-v1">
+<div class="wrap">
+  <a class="back" href="./">← My lessons</a>
+  <div class="top">
+    <span class="t">Lesson 4: Sound energy</span>
+    <span class="prog"><span id="pn">Step 1 of 13</span><span class="bar"><i id="pb"></i></span></span>
+  </div>
+<section class="step">
+    <div class="card">
+      <h1>Lesson 4: Sound energy</h1>
+      <p class="big"><b>My goal:</b> I can say that sound is energy carried by vibrating particles.</p>
+      <p>Today you will learn these new words:</p>
+      <ul class="pts">
+        <li><b>vibration</b></li>
+        <li><b>volume</b></li>
+        <li><b>pitch</b></li>
+      </ul>
+      <p class="rule">Write every answer in your book. Ticking on the screen is not enough.</p>
+      <p>Press <b>Next</b> to start.</p>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Getting started</p>
+      <h2>Turn it up</h2>
+      <div class="scene">
+        <svg viewBox="0 0 480 160" role="img" aria-label="A speaker playing a note. Sound waves come out of it. A volume knob is turned up.">
+          <rect style="fill:var(--surface);stroke:var(--ink)" x="40" y="30" width="90" height="110" rx="10" stroke-width="3"/>
+          <circle style="fill:var(--soft);stroke:var(--ink)" cx="85" cy="95" r="30" stroke-width="3"/>
+          <circle style="fill:var(--ink)" cx="85" cy="95" r="9"/>
+          <circle style="fill:var(--soft);stroke:var(--ink)" cx="85" cy="48" r="10" stroke-width="2"/>
+          <g style="fill:none;stroke:var(--cold)" stroke-width="4" stroke-linecap="round">
+            <path d="M160 65 Q175 95 160 125"/><path d="M190 50 Q212 95 190 140"/><path d="M220 38 Q250 95 220 152"/>
+          </g>
+          <circle style="fill:var(--surface);stroke:var(--ink)" cx="360" cy="85" r="40" stroke-width="3"/>
+          <line style="stroke:var(--hot)" x1="360" y1="85" x2="388" y2="57" stroke-width="5" stroke-linecap="round"/>
+          <text x="360" y="150" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--ink)">Volume: up</text>
+        </svg>
+      </div>
+      <p>You turn up the volume on a speaker. The note stays the same.</p>
+      <p><b>What changed in the sound wave?</b></p>
+      <div class="pick" data-correct="0" data-ok="Volume depends on the height of the wave, which is the amplitude." data-no="Not quite. The note is the same. Think about the height of the wave.">
+        <div class="choices"><button class="choice" type="button">Amplitude</button><button class="choice" type="button">Frequency</button><button class="choice" type="button">Wave speed</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>When the volume goes up, the ______ of the wave changes.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card" style="--mc:var(--conv)">
+      <p class="part">How sound travels</p>
+      <h2>Vibrations make sound</h2>
+      <div class="defn"><b>Sound</b> is energy carried by vibrating particles. A <b>vibration</b> is a fast back and forth movement.</div>
+      <div class="scene">
+        <svg id="svgV" viewBox="0 0 540 200" role="img" aria-label="A speaker cone moves back and forth. It pushes air particles together and then lets them spread out. The pattern moves away from the speaker."></svg>
+        <div class="row"><button class="btn primary" type="button" data-go="svgV">Start the speaker</button><button class="btn" type="button" data-stop="svgV">Stop</button></div>
+      </div>
+      <ul class="pts">
+        <li>The speaker vibrates back and forth.</li>
+        <li>It pushes air particles together. This is a <b>compression</b>.</li>
+        <li>Then the particles spread out. This is a <b>rarefaction</b>.</li>
+        <li>Each particle passes the energy on to the next one.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>From vibration to sound</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">1. Something starts a <button class="blank" type="button" data-answer="vibration"></button>.</p>
+        <p class="sent">2. Particles are pushed together. This is a <button class="blank" type="button" data-answer="compression"></button>.</p>
+        <p class="sent">3. Particles spread out. This is a <button class="blank" type="button" data-answer="rarefaction"></button>.</p>
+        <p class="sent">4. The <button class="blank" type="button" data-answer="energy"></button> passes on to the next particles.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">energy</button><button class="chip" type="button">rarefaction</button><button class="chip" type="button">vibration</button><button class="chip" type="button">compression</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Write the four steps in order.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Demonstrations</p>
+      <h2>Two demonstrations</h2>
+      <div class="two">
+        <div class="scene">
+          <svg viewBox="0 0 240 180" role="img" aria-label="A tuning fork dipped into a bowl of water. Water splashes up around it.">
+            <path style="fill:none;stroke:var(--muted)" stroke-width="9" stroke-linecap="round" d="M120 32 V66"/>
+            <path style="fill:none;stroke:var(--muted)" stroke-width="7" stroke-linecap="round" d="M104 128 V84 Q104 68 120 68 Q136 68 136 84 V128"/>
+            <path style="fill:var(--cold)" opacity=".35" d="M40 100 H200 L188 165 H52z"/>
+            <path style="fill:none;stroke:var(--ink)" stroke-width="3" d="M36 90 L52 165 H188 L204 90"/>
+            <g style="fill:var(--cold)"><circle cx="88" cy="80" r="5"/><circle cx="152" cy="78" r="5"/><circle cx="78" cy="62" r="4"/><circle cx="162" cy="60" r="4"/><circle cx="94" cy="50" r="3"/><circle cx="148" cy="46" r="3"/></g>
+            <text x="120" y="20" text-anchor="middle" font-size="14" font-weight="700" style="fill:var(--ink)">Tuning fork</text>
+          </svg>
+        </div>
+        <div class="scene">
+          <svg viewBox="0 0 240 180" role="img" aria-label="Cling film stretched over a speaker. Grains of salt jump up off the cling film.">
+            <rect style="fill:var(--surface);stroke:var(--ink)" x="50" y="110" width="140" height="60" rx="8" stroke-width="3"/>
+            <line style="stroke:var(--cold)" x1="44" y1="110" x2="196" y2="110" stroke-width="4"/>
+            <circle style="fill:var(--soft);stroke:var(--ink)" cx="120" cy="140" r="20" stroke-width="2"/>
+            <g style="fill:var(--ink)"><rect x="80" y="80" width="6" height="6"/><rect x="104" y="60" width="6" height="6"/><rect x="130" y="72" width="6" height="6"/><rect x="152" y="88" width="6" height="6"/><rect x="118" y="44" width="6" height="6"/><rect x="92" y="98" width="6" height="6"/><rect x="142" y="54" width="6" height="6"/></g>
+            <text x="120" y="24" text-anchor="middle" font-size="14" font-weight="700" style="fill:var(--ink)">Salt on cling film</text>
+          </svg>
+        </div>
+      </div>
+      <ul class="pts">
+        <li>Hit a tuning fork. Dip it in water. The water splashes.</li>
+        <li>Put salt on cling film over a speaker. Play a sound. The salt jumps.</li>
+      </ul>
+      <p><b>What do both demonstrations show?</b></p>
+      <div class="pick" data-correct="1" data-ok="The splashing and jumping show that a sound comes from something vibrating." data-no="Not quite. What is the fork or the speaker doing to make the water and salt move?">
+        <div class="choices"><button class="choice" type="button">Sound is made of air</button><button class="choice" type="button">Sound comes from vibrations</button><button class="choice" type="button">Sound only travels in water</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>The water splashes and the salt jumps. This shows that sound comes from ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Sound lab</p>
+      <h2>Volume and pitch</h2>
+      <div class="two">
+        <div class="defn" style="--mc:var(--hot)"><b>Volume</b> is how loud a sound is. It depends on the <b>amplitude</b>. It is measured in decibels (dB).</div>
+        <div class="defn" style="--mc:var(--cond)"><b>Pitch</b> is how high or low a sound is. It depends on the <b>frequency</b>.</div>
+      </div>
+      <div class="scene">
+        <svg id="svgO" viewBox="0 0 540 230" role="img" aria-label="A picture of a sound wave, like on a screen. Buttons make it louder, quieter, higher or lower."></svg>
+        <div class="row"><button class="btn primary" type="button" data-go="svgO">Start the sound picture</button><button class="btn" type="button" data-stop="svgO">Stop</button></div>
+        <div class="row"><button class="btn" type="button" id="oLoud">Louder or quieter</button><button class="btn" type="button" id="oHigh">Higher or lower</button></div>
+      </div>
+      <ul class="pts">
+        <li>Louder sound: taller waves.</li>
+        <li>Higher pitch: waves closer together.</li>
+        <li>This picture is silent. Your teacher may play real sounds.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Amplitude or frequency?</h2>
+      <p>For each one, choose the wave feature it goes with.</p>
+      <div class="match">
+        <div class="m pick" data-correct="0" data-ok="Volume depends on how tall the wave is." data-no="Not quite. Volume is about how loud. Which feature made the wave taller?">
+          <p>Volume</p>
+          <div class="choices"><button class="choice" type="button">Amplitude</button><button class="choice" type="button">Frequency</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="Pitch depends on how many waves there are each second." data-no="Not quite. Pitch is high or low. Which feature changed the spacing?">
+          <p>Pitch</p>
+          <div class="choices"><button class="choice" type="button">Amplitude</button><button class="choice" type="button">Frequency</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="Decibels (dB) measure how loud a sound is." data-no="Not quite. dB measures loudness.">
+          <p>Loudness, measured in decibels (dB)</p>
+          <div class="choices"><button class="choice" type="button">Amplitude</button><button class="choice" type="button">Frequency</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="Hertz (Hz) counts waves each second." data-no="Not quite. Hz counts waves each second.">
+          <p>Measured in hertz (Hz)</p>
+          <div class="choices"><button class="choice" type="button">Amplitude</button><button class="choice" type="button">Frequency</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Amplitude affects ______. Frequency affects ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Solids, liquids and gases</p>
+      <h2>The sound race</h2>
+      <p>The same sound travels through air, water and iron. Watch which one gets there first.</p>
+      <div class="scene">
+        <svg id="svgR" viewBox="0 0 540 250" role="img" aria-label="Three rows of particles: air with particles far apart, water closer together, iron packed tightly. A pulse of sound travels along each row. It moves fastest in iron."></svg>
+        <div class="row"><button class="btn primary" type="button" data-go="svgR">Start the race</button></div>
+      </div>
+      <table class="tbl">
+        <tr><th>Medium</th><th>State</th><th>Speed of sound</th></tr>
+        <tr><td>Air</td><td>gas</td><td>about 340 m/s</td></tr>
+        <tr><td>Water</td><td>liquid</td><td>about 1480 m/s</td></tr>
+        <tr><td>Iron</td><td>solid</td><td>about 5100 m/s</td></tr>
+      </table>
+      <ul class="pts">
+        <li>In a solid, particles are close and strongly joined. They pass the vibration on faster.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Fast or slow?</h2>
+      <div class="match">
+        <div class="m pick" data-correct="2" data-ok="Iron is a solid. Its particles are packed closest." data-no="Not quite. Look back at the race. Where were the particles closest?">
+          <p>Sound travels fastest in…</p>
+          <div class="choices"><button class="choice" type="button">air</button><button class="choice" type="button">water</button><button class="choice" type="button">iron</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="Air is a gas. Its particles are far apart." data-no="Not quite. Where were the particles furthest apart?">
+          <p>Sound travels slowest in…</p>
+          <div class="choices"><button class="choice" type="button">air</button><button class="choice" type="button">water</button><button class="choice" type="button">iron</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="The speed depends on the medium. A loud sound has more energy, but it is not faster." data-no="Not quite. What sets the speed: the sound, or the stuff it travels through?">
+          <p>A loud shout and a quiet whisper travel through air. Which gets to you first?</p>
+          <div class="choices"><button class="choice" type="button">The shout</button><button class="choice" type="button">Both together</button><button class="choice" type="button">The whisper</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Sound is fastest in ______ and slowest in ______. Loud and quiet sounds travel at the ______ speed.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Looking back</p>
+      <h2>Sound in space</h2>
+      <div class="scene">
+        <svg viewBox="0 0 480 150" role="img" aria-label="Two astronauts in empty space. One shouts, but there are no particles between them.">
+          <g style="fill:var(--muted)"><circle cx="40" cy="20" r="2"/><circle cx="200" cy="30" r="2"/><circle cx="300" cy="130" r="2"/><circle cx="450" cy="40" r="2"/><circle cx="240" cy="110" r="2"/></g>
+          <g style="fill:var(--surface);stroke:var(--ink)" stroke-width="3">
+            <circle cx="90" cy="60" r="26"/><rect x="66" y="88" width="48" height="50" rx="12"/>
+            <circle cx="390" cy="60" r="26"/><rect x="366" y="88" width="48" height="50" rx="12"/>
+          </g>
+          <g style="fill:var(--cold)" opacity=".5"><rect x="76" y="50" width="28" height="16" rx="6"/><rect x="376" y="50" width="28" height="16" rx="6"/></g>
+          <text x="240" y="70" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--ink)">No particles</text>
+        </svg>
+      </div>
+      <p>An astronaut shouts to a friend in empty space. Space is a <b>vacuum</b>.</p>
+      <p><b>Does the friend hear the shout?</b></p>
+      <div class="pick" data-correct="1" data-ok="Sound needs particles to vibrate. A vacuum has none." data-no="Not quite. Remember the bell in the jar. What does sound need?">
+        <div class="choices"><button class="choice" type="button">Yes</button><button class="choice" type="button">No</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Sound cannot travel in a vacuum because there are no ______ to vibrate.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Calculate</p>
+      <h2>Find the wavelength</h2>
+      <p>A sound wave in air travels at <b>340 m/s</b>. Its frequency is <b>170 Hz</b>.</p>
+      <p class="formula">λ = <span class="frac"><span>v</span><span>f</span></span> = <span class="frac"><span>340</span><span>170</span></span> = ___ m</p>
+      <div class="pick" data-correct="1" data-ok="170 goes into 340 two times, so the wavelength is 2 m." data-no="Not quite. How many groups of 170 make 340?">
+        <div class="choices"><button class="choice" type="button">0.5 m</button><button class="choice" type="button">2 m</button><button class="choice" type="button">510 m</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Write λ = v over f as a fraction (v on top, f underneath).<br>Put in the numbers: ______ over 170.<br>λ = ______ m</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Key words</p>
+      <h2>Sound energy</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">Sound is energy carried by <button class="blank" type="button" data-answer="vibrating"></button> particles.</p>
+        <p class="sent">How loud a sound is: <button class="blank" type="button" data-answer="volume"></button>.</p>
+        <p class="sent">How high or low a sound is: <button class="blank" type="button" data-answer="pitch"></button>.</p>
+        <p class="sent">Sound travels fastest in a <button class="blank" type="button" data-answer="solid"></button>.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">pitch</button><button class="chip" type="button">solid</button><button class="chip" type="button">vibrating</button><button class="chip" type="button">volume</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Copy the four sentences.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <h2>Well done!</h2>
+      <p>Tick each one you can do now.</p>
+      <ul class="checklist">
+        <li><label><input type="checkbox"> I can say that sound is energy carried by vibrating particles.</label></li>
+        <li><label><input type="checkbox"> I can say that amplitude sets the volume and frequency sets the pitch.</label></li>
+        <li><label><input type="checkbox"> I can say that sound is fastest in solids and slowest in gases.</label></li>
+        <li><label><input type="checkbox"> I can say why sound cannot travel in a vacuum.</label></li>
+      </ul>
+      <p class="rule">Show your teacher your book.</p>
+    </div>
+  </section>
+
+  <div class="pager">
+    <button class="btn" type="button" id="prev">← Back</button>
+    <button class="btn primary" type="button" id="next">Next →</button>
+  </div>
+  <footer>Year 9 Science · Energy transfer · Lesson 4</footer>
+</div>
+<script>(function(){const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const NS="http://www.w3.org/2000/svg";const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;const KEY=document.body.dataset.key;const store={get(k){try{return JSON.parse(localStorage.getItem(KEY+k))}catch(e){return null}},set(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}};function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}function hex(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");return[0,2,4].map(i=>parseInt(h.substr(i,2),16))}function mix(a,b,t){const pa=hex(a),pb=hex(b);return"rgb("+pa.map((x,i)=>Math.round(x+(pb[i]-x)*t)).join(",")+")"}function label(svg,x,y,t,anchor,fill,size){const e=el("text",{x:x,y:y,"text-anchor":anchor||"middle","font-family":"Atkinson Hyperlegible, system-ui, sans-serif","font-size":size||15,"font-weight":700,fill:fill||css("--ink")},svg);e.textContent=t;return e}function anim(fn){let raf=null,last=null;function loop(ts){const now=ts/1e3,dt=Math.min(.05,now-(last||now));last=now;fn(dt,now);raf=requestAnimationFrame(loop)}return{start(){if(reduce){fn(0,0);return}if(!raf){last=null;raf=requestAnimationFrame(loop)}},stop(){if(raf){cancelAnimationFrame(raf);raf=null}},get on(){return!!raf}}}window.K={$,$$,el,css,mix,label,anim,reduce};const steps=$$(".step");let cur=0;function go(i){cur=Math.max(0,Math.min(steps.length-1,i));steps.forEach((s,j)=>s.hidden=j!==cur);$("#pn").textContent="Step "+(cur+1)+" of "+steps.length;$("#pb").style.width=(cur+1)/steps.length*100+"%";$("#prev").disabled=cur===0;$("#next").hidden=cur===steps.length-1;store.set("step",cur);window.scrollTo({top:0,behavior:"auto"});document.dispatchEvent(new CustomEvent("stepchange",{detail:cur}))}$("#prev").onclick=()=>go(cur-1);$("#next").onclick=()=>go(cur+1);$$(".pick").forEach(box=>{const btns=[...box.querySelectorAll(":scope > .choices .choice")],fb=box.querySelector(":scope > .fb"),ok=+box.dataset.correct;btns.forEach((b,i)=>b.onclick=()=>{btns.forEach((x,j)=>{x.setAttribute("aria-pressed",j===i);x.classList.remove("ok","no")});b.classList.add(i===ok?"ok":"no");fb.hidden=false;fb.className="fb "+(i===ok?"ok":"no");fb.innerHTML=i===ok?"<b>✓ Yes!</b> "+box.dataset.ok:"<b>✗</b> "+box.dataset.no})});$$(".fill").forEach(box=>{const blanks=[...box.querySelectorAll(".blank")],chips=[...box.querySelectorAll(".chip")],fb=box.querySelector(".fb");function sync(){chips.forEach((c,i)=>{c.disabled=blanks.some(b=>b.dataset.src===String(i))})}function empty(b){b.textContent="";delete b.dataset.src;b.classList.remove("ok","no")}chips.forEach((c,i)=>c.onclick=()=>{const e=blanks.find(b=>!b.textContent);if(!e)return;e.textContent=c.textContent;e.dataset.src=i;e.classList.remove("ok","no");fb.hidden=true;sync()});blanks.forEach(b=>b.onclick=()=>{empty(b);fb.hidden=true;sync()});box.querySelector("[data-clear]").onclick=()=>{blanks.forEach(empty);fb.hidden=true;sync()};box.querySelector("[data-check]").onclick=()=>{if(blanks.some(b=>!b.textContent)){fb.hidden=false;fb.className="fb no";fb.innerHTML="<b>Fill every gap first.</b> Tap a word below.";return}let all=true;blanks.forEach(b=>{const r=b.textContent===b.dataset.answer;b.classList.toggle("ok",r);b.classList.toggle("no",!r);if(!r)all=false});fb.hidden=false;fb.className="fb "+(all?"ok":"no");fb.innerHTML=all?"<b>✓ All correct!</b> Now write it in your book.":"<b>✗ Not yet.</b> Tap a red word to take it out, then try again."}});window.addEventListener("load",()=>{const sv=store.get("step");go(typeof sv==="number"?sv:0)})})();</script>
+<script>(function(){const{$,$$,el,css,label,anim,reduce}=K;const sims={};document.addEventListener("stepchange",()=>Object.values(sims).forEach(s=>s.stop()));
+sims.svgV=function(){const svg=$("#svgV"),ps=[],K2=2*Math.PI/120;let t=0,cone;
+function build(){svg.innerHTML="";el("rect",{x:10,y:40,width:40,height:120,rx:6,fill:css("--soft"),stroke:css("--ink"),"stroke-width":2.5},svg);cone=el("rect",{x:50,y:55,width:10,height:90,rx:3,fill:css("--ink")},svg);label(svg,30,180,"Speaker","middle",css("--ink"),14);for(let r=0;r<6;r++)for(let i=0;i<24;i++){const hx=80+i*19,hy=45+r*22,red=r===2&&i===8;ps.push({hx,hy,c:el("circle",{cx:hx,cy:hy,r:red?7:5,fill:red?css("--hot"):css("--cold")},svg)})}el("path",{d:"M380 190 H500 M500 190 l-10 -6 M500 190 l-10 6",fill:"none",stroke:css("--ink"),"stroke-width":3},svg);label(svg,370,195,"Energy moves","end",css("--muted"),14);draw()}
+function draw(){const s=Math.sin(-3*t);cone.setAttribute("x",50+6*s);ps.forEach(p=>{const d=7*Math.sin(K2*(p.hx-60)-3*t);p.c.setAttribute("cx",p.hx-d)})}
+const a=anim(dt=>{t+=dt;draw()});build();return{start(){if(reduce){t=.5;draw();return}a.start()},stop(){a.stop()}}}();
+sims.svgO=function(){const svg=$("#svgO");let t=0,loud=false,high=false,path,txt;
+function build(){svg.innerHTML="";el("rect",{x:10,y:10,width:520,height:210,rx:10,fill:css("--surface"),stroke:css("--line"),"stroke-width":2},svg);el("line",{x1:20,y1:128,x2:520,y2:128,stroke:css("--line"),"stroke-width":2,"stroke-dasharray":"6 5"},svg);path=el("path",{fill:"none",stroke:css("--cold"),"stroke-width":4},svg);txt=label(svg,30,36,"","start",css("--ink"),16);draw()}
+function draw(){const A=loud?66:28,n=high?8:3;let d="";for(let x=20;x<=520;x+=2){const y=128-A*Math.sin(2*Math.PI*(n*(x-20)/500-t*0.6));d+=(x===20?"M":"L")+x+" "+y.toFixed(1)}path.setAttribute("d",d);txt.textContent=(loud?"Loud":"Quiet")+", "+(high?"high pitch":"low pitch")}
+const a=anim(dt=>{t+=dt;draw()});build();$("#oLoud").onclick=()=>{loud=!loud;draw()};$("#oHigh").onclick=()=>{high=!high;draw()};return{start(){if(reduce){draw();return}a.start()},stop(){a.stop()}}}();
+sims.svgR=function(){const svg=$("#svgR"),X0=110,X1=520,rows=[{n:"Air",y:50,g:34,v:1},{n:"Water",y:125,g:22,v:2.2},{n:"Iron",y:200,g:14,v:5}];let t=0;
+function build(){svg.innerHTML="";rows.forEach(r=>{label(svg,14,r.y+6,r.n,"start",css("--ink"),16);r.ps=[];for(let x=X0;x<=X1;x+=r.g)for(let k=-1;k<=1;k++)r.ps.push({x,y:r.y+k*(r.g*.7),c:el("circle",{cx:x,cy:r.y+k*(r.g*.7),r:5,fill:css("--cold")},svg)});r.flag=label(svg,X1,r.y-28,"","end",css("--good"),14)});el("line",{x1:X1+8,y1:20,x2:X1+8,y2:235,stroke:css("--ink"),"stroke-width":3,"stroke-dasharray":"6 4"},svg);draw()}
+function draw(){rows.forEach(r=>{const front=X0+r.v*80*t;r.ps.forEach(p=>{const on=Math.abs(p.x-front)<22;p.c.setAttribute("fill",on?css("--hot"):css("--cold"));p.c.setAttribute("r",on?7:5)});r.flag.textContent=front>=X1?"Arrived":""})}
+const a=anim(dt=>{t+=dt;draw();if(X0+rows[0].v*80*t>X1+30)a.stop()});build();return{start(){t=0;if(reduce){t=(X1-X0)/(5*80)+.05;draw();return}a.start()},stop(){a.stop()}}}();
+$$("[data-go]").forEach(b=>b.onclick=()=>sims[b.dataset.go].start());$$("[data-stop]").forEach(b=>b.onclick=()=>sims[b.dataset.stop].stop())})();</script>
+</body>
+</html>

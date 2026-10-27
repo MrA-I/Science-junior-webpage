@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 10: How we see</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+:root{
+  --bg:#eef3f1;--surface:#ffffff;--ink:#1c2b3a;--muted:#51616f;--line:#cfdad6;--soft:#e3ebe8;
+  --focus:#d99a00;--good:#2d7a46;--bad:#b3261e;--book:#fff4d6;--bookline:#d99a00;
+  --hot:#cf4a1f;--cold:#2f6fb0;--cond:#7a4fb0;--conv:#0f7d74;--rad:#b0336e;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--body:"Atkinson Hyperlegible",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.5 var(--body)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:900px;margin:0 auto;padding:18px 16px 36px}
+.back{display:inline-block;font:700 1rem var(--body);color:var(--ink);text-decoration:underline;text-underline-offset:3px;padding:8px 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.top .t{font:800 1.3rem var(--display)}
+.prog{display:flex;gap:6px;align-items:center;font-size:.95rem;color:var(--muted)}
+.bar{width:160px;height:10px;border-radius:99px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:99px;transition:width .3s}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.part{font:700 .85rem var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 4px}
+h1{font:800 clamp(1.8rem,4vw,2.4rem)/1.1 var(--display);margin:0 0 12px}
+h2{font:800 1.6rem/1.2 var(--display);margin:0 0 12px}
+p{margin:0 0 12px}
+.big{font-size:1.15rem}
+.defn{border:3px solid var(--mc,var(--ink));border-radius:14px;padding:12px 16px;margin:0 0 14px;font-size:1.1rem}
+.defn b{color:var(--mc,var(--ink))}
+ul.pts{margin:0 0 12px;padding-left:22px}
+ul.pts li{margin-bottom:6px}
+.scene{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:8px;margin:0 0 12px}
+.scene svg{display:block;width:100%;height:auto;max-height:340px}
+.btn{font:700 1.05rem var(--body);color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;min-height:48px;padding:8px 20px;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--surface)}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.scene .row{margin:8px 4px 4px}
+.look{font-size:1rem;color:var(--muted)}
+.rule{background:var(--book);border:2px solid var(--bookline);border-radius:14px;padding:12px 16px;font-weight:700}
+.book{display:flex;gap:12px;align-items:flex-start;background:var(--book);border:2px dashed var(--bookline);border-radius:14px;padding:12px 16px;margin-top:16px}
+.book .ic{font-size:1.5rem;line-height:1}
+.book .h{font-weight:700;display:block}
+.choices{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 4px}
+.choice{font:700 1.05rem var(--body);color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:14px;min-height:52px;padding:10px 18px;cursor:pointer}
+.choice[aria-pressed="true"]{border-color:var(--ink);background:var(--surface)}
+.choice.ok{border-color:var(--good);box-shadow:inset 0 0 0 2px var(--good)}
+.choice.no{border-color:var(--bad)}
+.fb{margin:8px 0 0;font-size:1.05rem}
+.fb.ok b{color:var(--good)}.fb.no b{color:var(--bad)}
+.fill .sent{font-size:1.2rem;line-height:2.4;margin:0 0 6px}
+.blank{display:inline-block;min-width:120px;min-height:44px;vertical-align:middle;border:none;border-bottom:3px solid var(--ink);background:var(--soft);border-radius:8px 8px 0 0;font:700 1.1rem var(--body);color:var(--ink);padding:4px 12px;cursor:pointer;text-align:center}
+.blank.ok{border-bottom-color:var(--good);color:var(--good)}
+.blank.no{border-bottom-color:var(--bad);color:var(--bad)}
+.bank{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.bank .lab{width:100%;font-size:.95rem;color:var(--muted)}
+.chip{font:700 1.05rem var(--body);background:var(--surface);color:var(--ink);border:2px solid var(--ink);border-radius:12px;min-height:48px;padding:6px 18px;cursor:pointer}
+.chip:disabled{opacity:.3}
+.match{display:grid;gap:12px}
+.match .m{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg)}
+.match .m p{margin:0 0 4px;font-weight:700}
+.reveal{margin-top:12px}
+.reveal>summary{display:inline-flex;gap:6px;list-style:none;cursor:pointer;font:700 .9rem var(--body);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;min-height:38px;align-items:center}
+.reveal>summary::-webkit-details-marker{display:none}
+.reveal>summary::before{content:"▸"}.reveal[open]>summary::before{content:"▾"}
+.reveal .body{margin-top:8px;padding:8px 14px;border-left:3px solid var(--line);font-size:1.05rem}
+.checklist{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px}
+.checklist label{display:flex;gap:12px;align-items:flex-start;cursor:pointer;min-height:48px;padding:6px 0;font-size:1.1rem}
+.checklist input{width:26px;height:26px;margin-top:3px;accent-color:var(--good);flex:none}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+footer{margin-top:24px;color:var(--muted);font-size:.9rem;text-align:center}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+.two .defn{margin:0}
+@media (max-width:600px){.two{grid-template-columns:1fr}}
+.tbl{width:100%;border-collapse:collapse;margin:0 0 12px;font-size:1.05rem}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--soft)}
+.formula{font:800 1.6rem var(--display);text-align:center;margin:6px 0 12px}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;line-height:1.15}
+.frac>span:first-child{border-bottom:2px solid currentColor;padding:0 4px}
+.frac>span:last-child{padding:0 4px}
+</style>
+</head>
+<body data-key="y9et-m10-v1">
+<div class="wrap">
+  <a class="back" href="./">← My lessons</a>
+  <div class="top">
+    <span class="t">Lesson 10: How we see</span>
+    <span class="prog"><span id="pn">Step 1 of 14</span><span class="bar"><i id="pb"></i></span></span>
+  </div>
+<section class="step">
+    <div class="card">
+      <h1>Lesson 10: How we see</h1>
+      <p class="big"><b>My goal:</b> I can name the parts of the eye that focus light.</p>
+      <p>Today you will learn these new words:</p>
+      <ul class="pts">
+        <li><b style="color:var(--cold)">cornea</b> and <b style="color:var(--cold)">lens</b></li>
+        <li><b style="color:var(--conv)">pupil</b> and <b style="color:var(--conv)">iris</b></li>
+        <li><b style="color:var(--hot)">retina</b></li>
+        <li><b style="color:var(--rad)">optic nerve</b></li>
+      </ul>
+      <p class="rule">Write every answer in your book. Ticking on the screen is not enough.</p>
+      <p>Press <b>Next</b> to start.</p>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Getting started</p>
+      <h2>From bright to dim</h2>
+      <div class="scene">
+        <svg viewBox="0 0 460 170" role="img" aria-label="A sunny playground on the left. An arrow points to a dim hall on the right.">
+          <rect style="fill:var(--focus)" opacity=".35" x="20" y="20" width="170" height="120" rx="12"/>
+          <circle style="fill:var(--focus)" cx="70" cy="62" r="24"/>
+          <g style="stroke:var(--focus)" stroke-width="4" stroke-linecap="round"><path d="M70 26v-0M70 30v-6M106 62h6M28 62h6M96 36l4-4M44 36l-4-4"/></g>
+          <text x="105" y="162" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--ink)">Bright playground</text>
+          <path style="fill:var(--ink)" d="M200 80h50v-10l20 15-20 15v-10h-50z"/>
+          <rect style="fill:var(--muted)" opacity=".45" x="285" y="20" width="160" height="120" rx="12"/>
+          <path style="fill:none;stroke:var(--ink)" stroke-width="3" d="M305 140 V60 L365 30 L425 60 V140"/>
+          <text x="365" y="162" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--ink)">Dim hall</text>
+        </svg>
+      </div>
+      <p>The <b>pupil</b> is the black circle in the middle of your eye. Light goes in through it.</p>
+      <p><b>You walk into a dim hall. What does your pupil do?</b></p>
+      <div class="pick" data-correct="0" data-ok="In dim light the pupil gets bigger to let in more light." data-no="Not quite. In a dim room, does the eye need more light or less?">
+        <div class="choices"><button class="choice" type="button">It gets bigger</button><button class="choice" type="button">It gets smaller</button><button class="choice" type="button">It stays the same</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>In a dim room, my pupil gets ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card" style="--mc:var(--conv)">
+      <p class="part">The front of the eye</p>
+      <h2>The pupil and the iris</h2>
+      <div class="defn">The <b>iris</b> is the coloured ring. It is a muscle. It makes the <b>pupil</b> bigger or smaller.</div>
+      <div class="scene">
+        <svg id="svgPupil" viewBox="0 0 540 220" role="img" aria-label="The front of an eye. When the light gets bright, the pupil gets small. When the light gets dim, the pupil gets big."></svg>
+        <div class="row"><button class="btn primary" type="button" id="pupBright">Make it bright</button><button class="btn" type="button" id="pupDim">Make it dim</button></div>
+      </div>
+      <ul class="pts">
+        <li>In bright light, the pupil gets <b>smaller</b>. Less light gets in. This protects the back of the eye.</li>
+        <li>In dim light, the pupil gets <b>bigger</b>. More light gets in, so you can see.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Bright light and dim light</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">In bright light, the pupil gets <button class="blank" type="button" data-answer="smaller"></button>.</p>
+        <p class="sent">In dim light, the pupil gets <button class="blank" type="button" data-answer="bigger"></button>.</p>
+        <p class="sent">The <button class="blank" type="button" data-answer="iris"></button> changes the size of the pupil.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">bigger</button><button class="chip" type="button">iris</button><button class="chip" type="button">smaller</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Write all three sentences.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card" style="--mc:var(--cold)">
+      <p class="part">Inside the eye</p>
+      <h2>Parts of the eye</h2>
+      <div class="scene">
+        <svg viewBox="0 0 580 270" role="img" aria-label="Side view of the eye. Light enters at the left through the cornea, the pupil and the lens. The retina is at the back. The optic nerve goes from the back of the eye to the brain.">
+          <ellipse style="fill:var(--surface);stroke:var(--ink)" cx="290" cy="135" rx="170" ry="100" stroke-width="3"/>
+          <path style="fill:none;stroke:var(--cold)" stroke-width="6" d="M150 78 Q95 135 150 192"/>
+          <path style="stroke:var(--conv)" stroke-width="8" d="M168 72 V115 M168 155 V198"/>
+          <ellipse style="fill:var(--cold);stroke:var(--cold)" fill-opacity=".3" cx="205" cy="135" rx="15" ry="42" stroke-width="3"/>
+          <path style="fill:none;stroke:var(--hot)" stroke-width="7" d="M399 58 A170 100 0 0 1 399 212"/>
+          <rect style="fill:var(--rad)" x="458" y="126" width="80" height="18" rx="6"/>
+          <g style="stroke:var(--muted)" stroke-width="2">
+            <line x1="110" y1="52" x2="128" y2="100"/><line x1="168" y1="40" x2="168" y2="70"/>
+            <line x1="140" y1="232" x2="166" y2="140"/><line x1="420" y1="232" x2="418" y2="205"/>
+          </g>
+          <g font-size="16" font-weight="700" text-anchor="middle" style="fill:var(--ink)">
+            <text x="98" y="44">Cornea</text><text x="168" y="32">Iris</text><text x="250" y="100">Lens</text>
+            <text x="130" y="252">Pupil</text><text x="425" y="252">Retina</text>
+            <text x="512" y="112">Optic nerve</text><text x="512" y="168">To the brain</text>
+          </g>
+        </svg>
+      </div>
+      <div class="two">
+        <div class="defn">The <b>cornea</b> is the clear front of the eye. It does <b>most</b> of the bending of light.</div>
+        <div class="defn">The <b>lens</b> changes shape. It <b>fine-tunes</b> the focus so the picture is sharp.</div>
+      </div>
+      <ul class="pts">
+        <li>The cornea and the lens bend light by <b>refraction</b>.</li>
+        <li>The <b style="color:var(--hot)">retina</b> is at the back. It changes light into electrical signals.</li>
+        <li>The <b style="color:var(--rad)">optic nerve</b> carries the signals to the brain.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Jobs of the parts</h2>
+      <p>Choose the part that does each job.</p>
+      <div class="match">
+        <div class="m pick" data-correct="0" data-ok="The clear, curved cornea does most of the bending." data-no="Not quite. It is the clear part at the very front.">
+          <p>Does most of the bending of light</p>
+          <div class="choices"><button class="choice" type="button">Cornea</button><button class="choice" type="button">Lens</button><button class="choice" type="button">Retina</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="The lens changes shape to make the picture sharp." data-no="Not quite. This part can change its shape.">
+          <p>Fine-tunes the focus</p>
+          <div class="choices"><button class="choice" type="button">Cornea</button><button class="choice" type="button">Lens</button><button class="choice" type="button">Retina</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="2" data-ok="The retina at the back changes light into electrical signals." data-no="Not quite. This part is at the back of the eye.">
+          <p>Changes light into electrical signals</p>
+          <div class="choices"><button class="choice" type="button">Cornea</button><button class="choice" type="button">Lens</button><button class="choice" type="button">Retina</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Press Back and copy the eye. Label the six parts. Write its job next to the cornea, lens and retina.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">The path of light</p>
+      <h2>From the tree to the brain</h2>
+      <div class="scene">
+        <svg id="svgPath" viewBox="0 0 580 260" role="img" aria-label="Light from a tree travels into the eye. It passes through the cornea, the pupil and the lens, and lands on the retina. The retina sends electrical signals along the optic nerve to the brain."></svg>
+        <div class="row"><button class="btn primary" type="button" id="pathGo">Send the light</button><button class="btn" type="button" id="pathStop">Stop</button></div>
+      </div>
+      <p class="look" id="pathTxt">Light from the tree goes into the eye.</p>
+      <ul class="pts">
+        <li>Light comes <b>from</b> the object <b>into</b> the eye. Nothing comes out of the eye.</li>
+        <li>The retina changes light energy into electrical signals.</li>
+        <li>The brain uses the signals to make the picture you see.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Put the path in order</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">1. Light goes through the clear <button class="blank" type="button" data-answer="cornea"></button>.</p>
+        <p class="sent">2. It goes through the gap called the <button class="blank" type="button" data-answer="pupil"></button>.</p>
+        <p class="sent">3. The <button class="blank" type="button" data-answer="lens"></button> fine-tunes the focus.</p>
+        <p class="sent">4. The light lands on the <button class="blank" type="button" data-answer="retina"></button>.</p>
+        <p class="sent">5. Signals go along the <button class="blank" type="button" data-answer="optic nerve"></button> to the brain.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">retina</button><button class="chip" type="button">pupil</button><button class="chip" type="button">optic nerve</button><button class="chip" type="button">cornea</button><button class="chip" type="button">lens</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Draw six boxes with arrows: cornea → pupil → lens → retina → optic nerve → brain. Under the retina box, write: light changes to electrical signals.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Think about it</p>
+      <h2>The dark room</h2>
+      <div class="scene">
+        <svg id="svgDark" viewBox="0 0 460 160" role="img" aria-label="A room with no light at all. A cup sits on a table. A person's eye looks towards it."></svg>
+      </div>
+      <p>A room has no light at all. You look at a cup.</p>
+      <p><b>Why can't you see the cup?</b></p>
+      <div class="pick" data-correct="1" data-ok="We see when light from an object goes into our eyes. With no light, nothing reaches the eye." data-no="Not quite. Eyes do not send out rays. Think about which way the light travels.">
+        <div class="choices"><button class="choice" type="button">The rays from the eye are too weak</button><button class="choice" type="button">No light goes from the cup to the eye</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>We see when light goes from an ______ into our ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card" style="--mc:var(--cold)">
+      <p class="part">Focusing</p>
+      <h2>Near and far</h2>
+      <div class="defn">The <b>lens</b> changes shape to focus. Small muscles around it change its shape.</div>
+      <div class="scene">
+        <svg id="svgFocus" viewBox="0 0 580 260" role="img" aria-label="An object moves closer to the eye. The lens gets thicker so the light still meets on the retina. When the object moves away, the lens gets thinner."></svg>
+        <div class="row"><button class="btn primary" type="button" id="focGo">Move the object</button><button class="btn" type="button" id="focStop">Stop</button></div>
+      </div>
+      <ul class="pts">
+        <li>Far object: the lens is <b>thin</b>.</li>
+        <li>Near object: the lens is <b>thick</b>.</li>
+        <li>A thick lens bends light more.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Reading a book</h2>
+      <p>You look up at a far tree. Then you read a book close to your face.</p>
+      <p><b>What happens to your lens when you read the book?</b></p>
+      <div class="pick" data-correct="1" data-ok="For a near object, the lens gets thicker so it bends light more." data-no="Not quite. Watch the animation again. What does the lens do as the object comes closer?">
+        <div class="choices"><button class="choice" type="button">It gets thinner</button><button class="choice" type="button">It gets thicker</button><button class="choice" type="button">It stays the same</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>For a near object, the lens is ______. For a far object, the lens is ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">The retina</p>
+      <h2>Rods and cones</h2>
+      <div class="two">
+        <div class="defn" style="--mc:var(--muted)"><b>Rods</b> work in dim light. Rods detect shades of grey.</div>
+        <div class="defn" style="--mc:var(--hot)"><b>Cones</b> need bright light. Cones detect colour.</div>
+      </div>
+      <p>Rods and cones are cells in the retina. They detect light.</p>
+      <div class="match">
+        <div class="m pick" data-correct="1" data-ok="Cones detect colour." data-no="Not quite. Which cells need bright light?">
+          <p>You see a red apple.</p>
+          <div class="choices"><button class="choice" type="button">Rods</button><button class="choice" type="button">Cones</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="Rods work in dim light and detect shades of grey." data-no="Not quite. Which cells work in dim light?">
+          <p>You walk outside at night.</p>
+          <div class="choices"><button class="choice" type="button">Rods</button><button class="choice" type="button">Cones</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Rods work in ______ light. Cones detect ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Key words</p>
+      <h2>How we see</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">The <button class="blank" type="button" data-answer="cornea"></button> does most of the bending of light.</p>
+        <p class="sent">The <button class="blank" type="button" data-answer="lens"></button> changes shape to focus.</p>
+        <p class="sent">The <button class="blank" type="button" data-answer="retina"></button> changes light into electrical signals.</p>
+        <p class="sent">The <button class="blank" type="button" data-answer="optic nerve"></button> carries signals to the brain.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">optic nerve</button><button class="chip" type="button">lens</button><button class="chip" type="button">retina</button><button class="chip" type="button">cornea</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Copy the four sentences.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <h2>Well done!</h2>
+      <p>Tick each one you can do now.</p>
+      <ul class="checklist">
+        <li><label><input type="checkbox"> I can name the cornea and the lens as the parts that focus light.</label></li>
+        <li><label><input type="checkbox"> I can say what the pupil does in bright and dim light.</label></li>
+        <li><label><input type="checkbox"> I can put the path of light through the eye in order.</label></li>
+        <li><label><input type="checkbox"> I can say that the retina changes light into electrical signals.</label></li>
+      </ul>
+      <p class="rule">Show your teacher your book.</p>
+    </div>
+  </section>
+
+  <div class="pager">
+    <button class="btn" type="button" id="prev">← Back</button>
+    <button class="btn primary" type="button" id="next">Next →</button>
+  </div>
+  <footer>Year 9 Science · Energy transfer · Lesson 10</footer>
+</div>
+<script>(function(){const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const NS="http://www.w3.org/2000/svg";const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;const KEY=document.body.dataset.key;const store={get(k){try{return JSON.parse(localStorage.getItem(KEY+k))}catch(e){return null}},set(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}};function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}function hex(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");return[0,2,4].map(i=>parseInt(h.substr(i,2),16))}function mix(a,b,t){const pa=hex(a),pb=hex(b);return"rgb("+pa.map((x,i)=>Math.round(x+(pb[i]-x)*t)).join(",")+")"}function label(svg,x,y,t,anchor,fill,size){const e=el("text",{x:x,y:y,"text-anchor":anchor||"middle","font-family":"Atkinson Hyperlegible, system-ui, sans-serif","font-size":size||15,"font-weight":700,fill:fill||css("--ink")},svg);e.textContent=t;return e}function anim(fn){let raf=null,last=null;function loop(ts){const now=ts/1e3,dt=Math.min(.05,now-(last||now));last=now;fn(dt,now);raf=requestAnimationFrame(loop)}return{start(){if(reduce){fn(0,0);return}if(!raf){last=null;raf=requestAnimationFrame(loop)}},stop(){if(raf){cancelAnimationFrame(raf);raf=null}},get on(){return!!raf}}}window.K={$,$$,el,css,mix,label,anim,reduce};const steps=$$(".step");let cur=0;function go(i){cur=Math.max(0,Math.min(steps.length-1,i));steps.forEach((s,j)=>s.hidden=j!==cur);$("#pn").textContent="Step "+(cur+1)+" of "+steps.length;$("#pb").style.width=(cur+1)/steps.length*100+"%";$("#prev").disabled=cur===0;$("#next").hidden=cur===steps.length-1;store.set("step",cur);window.scrollTo({top:0,behavior:"auto"});document.dispatchEvent(new CustomEvent("stepchange",{detail:cur}))}$("#prev").onclick=()=>go(cur-1);$("#next").onclick=()=>go(cur+1);$$(".pick").forEach(box=>{const btns=[...box.querySelectorAll(":scope > .choices .choice")],fb=box.querySelector(":scope > .fb"),ok=+box.dataset.correct;btns.forEach((b,i)=>b.onclick=()=>{btns.forEach((x,j)=>{x.setAttribute("aria-pressed",j===i);x.classList.remove("ok","no")});b.classList.add(i===ok?"ok":"no");fb.hidden=false;fb.className="fb "+(i===ok?"ok":"no");fb.innerHTML=i===ok?"<b>✓ Yes!</b> "+box.dataset.ok:"<b>✗</b> "+box.dataset.no})});$$(".fill").forEach(box=>{const blanks=[...box.querySelectorAll(".blank")],chips=[...box.querySelectorAll(".chip")],fb=box.querySelector(".fb");function sync(){chips.forEach((c,i)=>{c.disabled=blanks.some(b=>b.dataset.src===String(i))})}function empty(b){b.textContent="";delete b.dataset.src;b.classList.remove("ok","no")}chips.forEach((c,i)=>c.onclick=()=>{const e=blanks.find(b=>!b.textContent);if(!e)return;e.textContent=c.textContent;e.dataset.src=i;e.classList.remove("ok","no");fb.hidden=true;sync()});blanks.forEach(b=>b.onclick=()=>{empty(b);fb.hidden=true;sync()});box.querySelector("[data-clear]").onclick=()=>{blanks.forEach(empty);fb.hidden=true;sync()};box.querySelector("[data-check]").onclick=()=>{if(blanks.some(b=>!b.textContent)){fb.hidden=false;fb.className="fb no";fb.innerHTML="<b>Fill every gap first.</b> Tap a word below.";return}let all=true;blanks.forEach(b=>{const r=b.textContent===b.dataset.answer;b.classList.toggle("ok",r);b.classList.toggle("no",!r);if(!r)all=false});fb.hidden=false;fb.className="fb "+(all?"ok":"no");fb.innerHTML=all?"<b>✓ All correct!</b> Now write it in your book.":"<b>✗ Not yet.</b> Tap a red word to take it out, then try again."}});window.addEventListener("load",()=>{const sv=store.get("step");go(typeof sv==="number"?sv:0)})})();</script>
+<script>(function(){const{$,$$,el,css,label,anim,reduce}=K;const de=document.documentElement;const dark=de.dataset.theme==="dark"||(de.dataset.theme!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);const pup=function(){const svg=$("#svgPupil");let r=30,target=30,pc,glow,txt,rays;function build(){svg.innerHTML="";glow=el("circle",{cx:70,cy:70,r:30,fill:css("--focus")},svg);rays=el("g",{stroke:css("--focus"),"stroke-width":4,"stroke-linecap":"round"},svg);for(let i=0;i<8;i++){const a=i*Math.PI/4;el("line",{x1:70+40*Math.cos(a),y1:70+40*Math.sin(a),x2:70+52*Math.cos(a),y2:70+52*Math.sin(a)},rays)}el("ellipse",{cx:320,cy:110,rx:190,ry:85,fill:dark?css("--ink"):css("--surface"),stroke:css("--muted"),"stroke-width":3},svg);el("circle",{cx:320,cy:110,r:68,fill:css("--conv")},svg);pc=el("circle",{cx:320,cy:110,r:r,fill:dark?css("--bg"):css("--ink")},svg);label(svg,320,212,"Iris (coloured ring)","middle",css("--ink"),15);el("line",{x1:395,y1:40,x2:326,y2:104,stroke:css("--muted"),"stroke-width":2},svg);label(svg,400,34,"Pupil","start",css("--ink"),15);txt=label(svg,70,160,"","middle",css("--ink"),15);draw()}function draw(){pc.setAttribute("r",r);const b=(44-r)/32;glow.setAttribute("opacity",(0.25+0.75*b).toFixed(2));rays.setAttribute("opacity",b.toFixed(2));txt.textContent=b>.6?"Bright light":b<.4?"Dim light":"Medium light"}const a=anim(dt=>{r+=(target-r)*Math.min(1,dt*3);draw();if(Math.abs(target-r)<.2){r=target;draw();a.stop()}});build();function set(t){target=t;if(reduce){r=t;draw();return}a.start()}return{bright(){set(13)},dim(){set(44)},stop(){a.stop()}}}();$("#pupBright").onclick=pup.bright;$("#pupDim").onclick=pup.dim;const path=function(){const svg=$("#svgPath");const P=[[50,100],[135,121],[168,126],[205,128],[459,135]];const P2=[[50,100],[135,149],[168,146],[205,142],[459,135]];const msgs=["Light from the tree goes into the eye.","The cornea bends the light the most.","The light goes through the pupil.","The lens fine-tunes the focus.","The light lands on the retina. It changes into electrical signals.","Signals go along the optic nerve to the brain."];const ids=[];let t=0,tr1,tr2,sig,lab=[];function build(){svg.innerHTML="";el("rect",{x:28,y:60,width:12,height:60,fill:css("--muted")},svg);el("circle",{cx:34,cy:58,r:26,fill:css("--conv")},svg);label(svg,34,145,"Tree","middle",css("--ink"),14);el("ellipse",{cx:300,cy:135,rx:160,ry:95,fill:css("--surface"),stroke:css("--ink"),"stroke-width":3},svg);el("path",{d:"M150 82 Q100 135 150 188",fill:"none",stroke:css("--cold"),"stroke-width":6},svg);el("path",{d:"M168 74 V118 M168 152 V196",stroke:css("--conv"),"stroke-width":8},svg);el("ellipse",{cx:205,cy:135,rx:14,ry:40,fill:css("--cold"),"fill-opacity":.3,stroke:css("--cold"),"stroke-width":3},svg);el("path",{d:"M403 62 A160 95 0 0 1 403 208",fill:"none",stroke:css("--hot"),"stroke-width":7},svg);el("rect",{x:458,y:127,width:70,height:16,rx:6,fill:css("--rad"),opacity:.5},svg);el("path",{d:"M535 115 Q560 100 570 120 Q578 150 555 158 Q535 160 535 140 Z",fill:css("--rad"),opacity:.35,stroke:css("--rad"),"stroke-width":2},svg);label(svg,556,92,"Brain","middle",css("--ink"),14);const L=[[92,228,"Cornea"],[215,258,"Pupil"],[245,100,"Lens"],[420,250,"Retina"],[512,174,"Optic nerve"]];[[105,214,127,166],[205,244,171,139]].forEach(q=>el("line",{x1:q[0],y1:q[1],x2:q[2],y2:q[3],stroke:css("--muted"),"stroke-width":2},svg));lab=L.map(l=>label(svg,l[0],l[1],l[2],"middle",css("--muted"),15));tr1=el("polyline",{points:"",fill:"none",stroke:css("--focus"),"stroke-width":4},svg);tr2=el("polyline",{points:"",fill:"none",stroke:css("--focus"),"stroke-width":4},svg);sig=el("circle",{cx:460,cy:135,r:7,opacity:0,fill:css("--rad"),stroke:css("--ink"),"stroke-width":1.5},svg);draw(0)}function part(Q,u){const pts=[Q[0]];let tot=0;const seg=[];for(let i=0;i<4;i++){const l=Math.hypot(Q[i+1][0]-Q[i][0],Q[i+1][1]-Q[i][1]);seg.push(l);tot+=l}let d=u*tot;for(let i=0;i<4;i++){if(d>=seg[i]){pts.push(Q[i+1]);d-=seg[i]}else{const f=d/seg[i];pts.push([Q[i][0]+(Q[i+1][0]-Q[i][0])*f,Q[i][1]+(Q[i+1][1]-Q[i][1])*f]);break}}return pts.map(p=>p.join(",")).join(" ")}function draw(tt){const u=Math.min(1,tt/3);tr1.setAttribute("points",part(P,u));tr2.setAttribute("points",part(P2,u));const x=u*409+50;let k=x<135?0:x<168?1:x<205?2:x<450?3:4;if(tt>3)k=4;if(tt>3.6)k=5;const s=tt>3.6?Math.min(1,(tt-3.6)/1.2):0;sig.setAttribute("cx",460+s*80);sig.setAttribute("opacity",tt>3.6?1:0);sig.setAttribute("cy",135+(tt>3.6?Math.sin(s*30)*4:0));lab.forEach((l,i)=>{const on=(k===i+1)||(k===0&&false)||(k===4&&i===3)||(k===5&&i===4);l.setAttribute("fill",on?css("--hot"):css("--muted"))});$("#pathTxt").textContent=msgs[k]}const a=anim(dt=>{t+=dt;if(t>6.5)t=0;draw(t)});build();return{start(){if(reduce){draw(4.4);return}t=0;a.start()},stop(){a.stop()}}}();$("#pathGo").onclick=path.start;$("#pathStop").onclick=path.stop;const foc=function(){const svg=$("#svgFocus");let t=0,obj,lens,r1,r2,m1,m2,txt;function build(){svg.innerHTML="";el("ellipse",{cx:430,cy:130,rx:120,ry:95,fill:css("--surface"),stroke:css("--ink"),"stroke-width":3},svg);el("path",{d:"M505 56 A120 95 0 0 1 505 204",fill:"none",stroke:css("--hot"),"stroke-width":6},svg);label(svg,520,246,"Retina","middle",css("--ink"),14);el("line",{x1:0,y1:130,x2:550,y2:130,stroke:css("--line"),"stroke-width":1.5,"stroke-dasharray":"4 4"},svg);r1=el("polyline",{points:"",fill:"none",stroke:css("--focus"),"stroke-width":3},svg);r2=el("polyline",{points:"",fill:"none",stroke:css("--focus"),"stroke-width":3},svg);lens=el("ellipse",{cx:340,cy:130,rx:10,ry:55,fill:css("--cold"),"fill-opacity":.35,stroke:css("--cold"),"stroke-width":3},svg);m1=el("rect",{x:332,y:52,width:16,height:20,rx:4,fill:css("--cond")},svg);m2=el("rect",{x:332,y:188,width:16,height:20,rx:4,fill:css("--cond")},svg);label(svg,340,40,"Lens muscle","middle",css("--ink"),14);label(svg,340,246,"Lens","middle",css("--ink"),14);obj=el("circle",{cx:30,cy:130,r:9,fill:css("--hot"),stroke:css("--ink"),"stroke-width":1.5},svg);label(svg,110,30,"Object","middle",css("--ink"),14);txt=label(svg,110,60,"","middle",css("--hot"),15);draw(0)}function draw(s){const ox=30+s*200,th=8+s*16;obj.setAttribute("cx",ox);lens.setAttribute("rx",th);m1.setAttribute("height",20-s*8);m2.setAttribute("y",188+s*8);m2.setAttribute("height",20-s*8);r1.setAttribute("points",`${ox},130 340,90 548,130`);r2.setAttribute("points",`${ox},130 340,170 548,130`);txt.textContent=s<.35?"Far: thin lens":s>.65?"Near: thick lens":""}const a=anim(dt=>{t+=dt;draw((1-Math.cos(t*.9))/2)});build();return{start(){if(reduce){draw(1);return}a.start()},stop(){a.stop()}}}();$("#focGo").onclick=foc.start;$("#focStop").onclick=foc.stop;(function(){const svg=$("#svgDark"),fg=dark?css("--muted"):css("--soft"),room=dark?css("--bg"):css("--ink");el("rect",{x:20,y:10,width:420,height:140,rx:12,fill:room,stroke:css("--line"),"stroke-width":2},svg);el("rect",{x:300,y:100,width:110,height:10,fill:fg,opacity:.5},svg);el("path",{d:"M335 100 L331 66 H379 L375 100 Z",fill:fg,opacity:.5},svg);el("path",{d:"M379 72 Q394 74 392 84 Q390 94 377 92",fill:"none",stroke:fg,"stroke-width":4,opacity:.5},svg);el("path",{d:"M80 80 Q105 62 130 80 Q105 98 80 80 Z",fill:"none",stroke:fg,"stroke-width":3,opacity:.6},svg);el("circle",{cx:105,cy:80,r:7,fill:fg,opacity:.6},svg);label(svg,105,125,"Eye","middle",fg,15);label(svg,355,135,"Cup","middle",fg,15)})();document.addEventListener("stepchange",()=>{pup.stop();path.stop();foc.stop()})})();</script>
+</body>
+</html>

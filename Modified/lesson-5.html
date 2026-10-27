@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 5: The Doppler effect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+:root{
+  --bg:#eef3f1;--surface:#ffffff;--ink:#1c2b3a;--muted:#51616f;--line:#cfdad6;--soft:#e3ebe8;
+  --focus:#d99a00;--good:#2d7a46;--bad:#b3261e;--book:#fff4d6;--bookline:#d99a00;
+  --hot:#cf4a1f;--cold:#2f6fb0;--cond:#7a4fb0;--conv:#0f7d74;--rad:#b0336e;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--body:"Atkinson Hyperlegible",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.5 var(--body)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:900px;margin:0 auto;padding:18px 16px 36px}
+.back{display:inline-block;font:700 1rem var(--body);color:var(--ink);text-decoration:underline;text-underline-offset:3px;padding:8px 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.top .t{font:800 1.3rem var(--display)}
+.prog{display:flex;gap:6px;align-items:center;font-size:.95rem;color:var(--muted)}
+.bar{width:160px;height:10px;border-radius:99px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:99px;transition:width .3s}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.part{font:700 .85rem var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 4px}
+h1{font:800 clamp(1.8rem,4vw,2.4rem)/1.1 var(--display);margin:0 0 12px}
+h2{font:800 1.6rem/1.2 var(--display);margin:0 0 12px}
+p{margin:0 0 12px}
+.big{font-size:1.15rem}
+.defn{border:3px solid var(--mc,var(--ink));border-radius:14px;padding:12px 16px;margin:0 0 14px;font-size:1.1rem}
+.defn b{color:var(--mc,var(--ink))}
+ul.pts{margin:0 0 12px;padding-left:22px}
+ul.pts li{margin-bottom:6px}
+.scene{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:8px;margin:0 0 12px}
+.scene svg{display:block;width:100%;height:auto;max-height:340px}
+.btn{font:700 1.05rem var(--body);color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;min-height:48px;padding:8px 20px;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--surface)}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.scene .row{margin:8px 4px 4px}
+.look{font-size:1rem;color:var(--muted)}
+.rule{background:var(--book);border:2px solid var(--bookline);border-radius:14px;padding:12px 16px;font-weight:700}
+.book{display:flex;gap:12px;align-items:flex-start;background:var(--book);border:2px dashed var(--bookline);border-radius:14px;padding:12px 16px;margin-top:16px}
+.book .ic{font-size:1.5rem;line-height:1}
+.book .h{font-weight:700;display:block}
+.choices{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 4px}
+.choice{font:700 1.05rem var(--body);color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:14px;min-height:52px;padding:10px 18px;cursor:pointer}
+.choice[aria-pressed="true"]{border-color:var(--ink);background:var(--surface)}
+.choice.ok{border-color:var(--good);box-shadow:inset 0 0 0 2px var(--good)}
+.choice.no{border-color:var(--bad)}
+.fb{margin:8px 0 0;font-size:1.05rem}
+.fb.ok b{color:var(--good)}.fb.no b{color:var(--bad)}
+.fill .sent{font-size:1.2rem;line-height:2.4;margin:0 0 6px}
+.blank{display:inline-block;min-width:120px;min-height:44px;vertical-align:middle;border:none;border-bottom:3px solid var(--ink);background:var(--soft);border-radius:8px 8px 0 0;font:700 1.1rem var(--body);color:var(--ink);padding:4px 12px;cursor:pointer;text-align:center}
+.blank.ok{border-bottom-color:var(--good);color:var(--good)}
+.blank.no{border-bottom-color:var(--bad);color:var(--bad)}
+.bank{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.bank .lab{width:100%;font-size:.95rem;color:var(--muted)}
+.chip{font:700 1.05rem var(--body);background:var(--surface);color:var(--ink);border:2px solid var(--ink);border-radius:12px;min-height:48px;padding:6px 18px;cursor:pointer}
+.chip:disabled{opacity:.3}
+.match{display:grid;gap:12px}
+.match .m{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg)}
+.match .m p{margin:0 0 4px;font-weight:700}
+.reveal{margin-top:12px}
+.reveal>summary{display:inline-flex;gap:6px;list-style:none;cursor:pointer;font:700 .9rem var(--body);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;min-height:38px;align-items:center}
+.reveal>summary::-webkit-details-marker{display:none}
+.reveal>summary::before{content:"▸"}.reveal[open]>summary::before{content:"▾"}
+.reveal .body{margin-top:8px;padding:8px 14px;border-left:3px solid var(--line);font-size:1.05rem}
+.checklist{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px}
+.checklist label{display:flex;gap:12px;align-items:flex-start;cursor:pointer;min-height:48px;padding:6px 0;font-size:1.1rem}
+.checklist input{width:26px;height:26px;margin-top:3px;accent-color:var(--good);flex:none}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+footer{margin-top:24px;color:var(--muted);font-size:.9rem;text-align:center}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+.two .defn{margin:0}
+@media (max-width:600px){.two{grid-template-columns:1fr}}
+.tbl{width:100%;border-collapse:collapse;margin:0 0 12px;font-size:1.05rem}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--soft)}
+.formula{font:800 1.6rem var(--display);text-align:center;margin:6px 0 12px}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;line-height:1.15}
+.frac>span:first-child{border-bottom:2px solid currentColor;padding:0 4px}
+.frac>span:last-child{padding:0 4px}
+</style>
+</head>
+<body data-key="y9et-m5-v1">
+<div class="wrap">
+  <a class="back" href="./">← My lessons</a>
+  <div class="top">
+    <span class="t">Lesson 5: The Doppler effect</span>
+    <span class="prog"><span id="pn">Step 1 of 13</span><span class="bar"><i id="pb"></i></span></span>
+  </div>
+<section class="step">
+    <div class="card">
+      <h1>Lesson 5: The Doppler effect</h1>
+      <p class="big"><b>My goal:</b> I can say that the Doppler effect is a change in the frequency you hear.</p>
+      <p>Today you will learn these new words:</p>
+      <ul class="pts">
+        <li><b>Doppler effect</b></li>
+        <li><b>source</b>: the thing that gives out the sound</li>
+        <li><b>observer</b>: the person who hears it</li>
+      </ul>
+      <p class="rule">Write every answer in your book. Ticking on the screen is not enough.</p>
+      <p>Press <b>Next</b> to start.</p>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Getting started</p>
+      <h2>The passing ambulance</h2>
+      <div class="scene">
+        <svg viewBox="0 0 540 170" role="img" aria-label="An ambulance with its siren on drives along a road past a person standing on the footpath.">
+          <rect style="fill:var(--soft)" x="0" y="120" width="540" height="40"/>
+          <line style="stroke:var(--muted)" x1="0" y1="140" x2="540" y2="140" stroke-width="3" stroke-dasharray="20 14"/>
+          <rect style="fill:var(--surface);stroke:var(--ink)" x="60" y="62" width="130" height="58" rx="8" stroke-width="3"/>
+          <rect style="fill:var(--surface);stroke:var(--ink)" x="190" y="80" width="40" height="40" rx="6" stroke-width="3"/>
+          <rect style="fill:var(--hot)" x="112" y="76" width="26" height="8"/><rect style="fill:var(--hot)" x="121" y="67" width="8" height="26"/>
+          <rect style="fill:var(--rad)" x="110" y="52" width="30" height="10" rx="3"/>
+          <circle style="fill:var(--ink)" cx="95" cy="122" r="13"/><circle style="fill:var(--ink)" cx="200" cy="122" r="13"/>
+          <g style="fill:none;stroke:var(--rad)" stroke-width="3" stroke-linecap="round"><path d="M150 44 Q160 30 150 16"/><path d="M162 50 Q178 30 162 10"/></g>
+          <path style="fill:var(--ink)" d="M245 92 h60 v-9 l18 14 -18 14 v-9 h-60z"/>
+          <circle style="fill:none;stroke:var(--ink)" cx="440" cy="50" r="12" stroke-width="3"/>
+          <path style="fill:none;stroke:var(--ink)" stroke-width="3" d="M440 62 V95 M422 74 H458 M440 95 l-12 22 M440 95 l12 22"/>
+          <text x="440" y="20" text-anchor="middle" font-size="15" font-weight="700" style="fill:var(--ink)">You</text>
+        </svg>
+      </div>
+      <p>An ambulance drives towards you with its siren on. It passes you, then drives away.</p>
+      <p><b>What happens to the pitch you hear?</b></p>
+      <div class="pick" data-correct="0" data-ok="Think of the ‘neee-owww’ sound. The pitch is higher as it comes, then lower as it goes." data-no="Not quite. Picture the ‘neee-owww’ sound of a passing siren.">
+        <div class="choices"><button class="choice" type="button">Higher, then lower</button><button class="choice" type="button">It stays the same</button><button class="choice" type="button">Lower, then higher</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>As the ambulance comes towards me, the pitch is ______. As it goes away, the pitch is ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Demonstration</p>
+      <h2>The buzzer on a string</h2>
+      <p>Your teacher swings a buzzer on a string in a circle. The buzzer makes one steady note.</p>
+      <div class="scene">
+        <svg id="svgB" viewBox="0 0 540 230" role="img" aria-label="Seen from above, a buzzer swings in a circle on a string. A listener stands to the right. A label shows the pitch the listener hears."></svg>
+        <div class="row"><button class="btn primary" type="button" data-go="svgB">Start swinging</button><button class="btn" type="button" data-stop="svgB">Stop</button></div>
+      </div>
+      <ul class="pts">
+        <li>When the buzzer comes towards you, you hear a higher pitch.</li>
+        <li>When it goes away from you, you hear a lower pitch.</li>
+        <li>The buzzer itself never changes its note.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Sound waves</p>
+      <h2>A source that stays still</h2>
+      <p>A car stands still and sounds its horn. Each ring is one sound wave.</p>
+      <div class="scene">
+        <svg id="svgD1" viewBox="0 0 540 240" role="img" aria-label="A car that is not moving sends out sound waves as rings. The rings are evenly spaced on all sides. Observer A is on the right and Observer B is on the left."></svg>
+        <div class="row"><button class="btn primary" type="button" data-go="svgD1">Sound the horn</button><button class="btn" type="button" data-stop="svgD1">Stop</button></div>
+      </div>
+      <ul class="pts">
+        <li>Observer A and Observer B hear the same pitch.</li>
+      </ul>
+      <p><b>Is the wavelength the same on both sides?</b></p>
+      <div class="pick" data-correct="0" data-ok="The car is not moving, so the rings are evenly spaced all round." data-no="Not quite. Look at the gaps between the rings on the left and the right.">
+        <div class="choices"><button class="choice" type="button">Yes</button><button class="choice" type="button">No</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Draw a still car with even rings around it. Write: Both observers hear the ______ pitch.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Sound waves</p>
+      <h2>A moving source</h2>
+      <div class="defn">The <b>Doppler effect</b> is a change in the frequency you hear. It happens when the source moves towards you or away from you.</div>
+      <div class="scene">
+        <svg id="svgD2" viewBox="0 0 540 240" role="img" aria-label="A car moves to the right while sounding its horn. The rings are bunched up in front of the car and spread out behind it."></svg>
+        <div class="row"><button class="btn primary" type="button" data-go="svgD2">Drive the car</button><button class="btn" type="button" data-stop="svgD2">Stop</button></div>
+      </div>
+      <ul class="pts">
+        <li><b>In front:</b> the waves are bunched up. Shorter wavelength, higher frequency, higher pitch.</li>
+        <li><b>Behind:</b> the waves are spread out. Longer wavelength, lower frequency, lower pitch.</li>
+        <li>The waves still travel at the same speed in air.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>In front of the car</h2>
+      <p>Observer A stands in front of the moving car.</p>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">The waves are <button class="blank" type="button" data-answer="bunched up"></button>.</p>
+        <p class="sent">The wavelength is <button class="blank" type="button" data-answer="shorter"></button>.</p>
+        <p class="sent">The pitch is <button class="blank" type="button" data-answer="higher"></button>.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">higher</button><button class="chip" type="button">bunched up</button><button class="chip" type="button">shorter</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>In front of the moving car, the waves are ______, so the wavelength is ______ and the pitch is ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Behind the car</h2>
+      <p>Observer B stands behind the moving car.</p>
+      <div class="match">
+        <div class="m pick" data-correct="1" data-ok="The car moves away from the waves behind it, so they spread out." data-no="Not quite. Look at the gaps between the rings behind the car.">
+          <p>The waves behind the car are…</p>
+          <div class="choices"><button class="choice" type="button">bunched up</button><button class="choice" type="button">spread out</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="Spread out waves have a longer wavelength." data-no="Not quite. Are the rings further apart or closer together?">
+          <p>The wavelength behind the car is…</p>
+          <div class="choices"><button class="choice" type="button">longer</button><button class="choice" type="button">shorter</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="Fewer waves reach B each second, so B hears a lower pitch." data-no="Not quite. Do more or fewer waves reach B each second?">
+          <p>Observer B hears a pitch that is…</p>
+          <div class="choices"><button class="choice" type="button">higher</button><button class="choice" type="button">lower</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Draw a table with two columns: In front and Behind. In each column write: wavelength ______, pitch ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Common mix-ups</p>
+      <h2>What really changes?</h2>
+      <p>Think back to the buzzer on a string and the moving car.</p>
+      <div class="match">
+        <div class="m pick" data-correct="1" data-ok="The siren always gives out the same note. Only the frequency the listener hears changes." data-no="Not quite. Remember the buzzer. Did its own note change?">
+          <p>As an ambulance drives past, does the siren itself change its note?</p>
+          <div class="choices"><button class="choice" type="button">Yes</button><button class="choice" type="button">No</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="The Doppler effect changes the frequency you hear, and frequency sets the pitch. It is not about loudness." data-no="Not quite. Which one depends on frequency?">
+          <p>The Doppler effect changes the…</p>
+          <div class="choices"><button class="choice" type="button">pitch you hear</button><button class="choice" type="button">loudness you hear</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>As an ambulance passes, its siren ______ change its own note. The Doppler effect changes the ______ I hear.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Apply it</p>
+      <h2>The race car</h2>
+      <div class="match">
+        <div class="m pick" data-correct="1" data-ok="The car is getting closer, so more waves reach you each second." data-no="Not quite. Is the car getting closer or further away?">
+          <p>A race car speeds towards you. The pitch you hear is…</p>
+          <div class="choices"><button class="choice" type="button">lower</button><button class="choice" type="button">higher</button><button class="choice" type="button">the same</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="The car is moving away, so fewer waves reach you each second." data-no="Not quite. Is the car getting closer or further away?">
+          <p>The race car moves away from you. The pitch you hear is…</p>
+          <div class="choices"><button class="choice" type="button">lower</button><button class="choice" type="button">higher</button><button class="choice" type="button">the same</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="2" data-ok="You move with the horn, so the distance between you does not change." data-no="Not quite. Does the distance between you and the horn change?">
+          <p>You ride inside the car. The horn's pitch, as you hear it, is…</p>
+          <div class="choices"><button class="choice" type="button">lower</button><button class="choice" type="button">higher</button><button class="choice" type="button">the same</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Coming towards me: ______ pitch. Going away: ______ pitch. Riding in the car: ______ pitch.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">The Doppler effect at work</p>
+      <h2>Police radar</h2>
+      <div class="scene">
+        <svg viewBox="0 0 540 170" role="img" aria-label="A police officer points a radar gun at a moving car. Radio waves go out to the car and bounce back.">
+          <rect style="fill:var(--soft)" x="0" y="130" width="540" height="40"/>
+          <circle style="fill:none;stroke:var(--ink)" cx="50" cy="52" r="12" stroke-width="3"/>
+          <path style="fill:none;stroke:var(--ink)" stroke-width="3" d="M50 64 V100 M50 100 l-12 28 M50 100 l12 28 M50 76 H86"/>
+          <rect style="fill:var(--ink)" x="84" y="68" width="30" height="16" rx="3"/>
+          <text x="80" y="160" text-anchor="middle" font-size="15" font-weight="700" style="fill:var(--ink)">Radar gun</text>
+          <path style="fill:none;stroke:var(--rad)" stroke-width="3" d="M125 70 q10 -10 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 M305 70 l-10 -6 M305 70 l-10 6"/>
+          <path style="fill:none;stroke:var(--cold)" stroke-width="3" d="M335 96 q8 -8 16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0" transform="translate(-210 0)"/>
+          <path style="fill:none;stroke:var(--cold)" stroke-width="3" d="M125 96 l10 -6 M125 96 l10 6"/>
+          <text x="230" y="50" text-anchor="middle" font-size="14" font-weight="700" style="fill:var(--rad)">Waves go out</text>
+          <text x="230" y="122" text-anchor="middle" font-size="14" font-weight="700" style="fill:var(--cold)">Waves bounce back</text>
+          <rect style="fill:var(--hot);stroke:var(--ink)" x="370" y="78" width="120" height="40" rx="10" stroke-width="3"/>
+          <rect style="fill:var(--surface);stroke:var(--ink)" x="395" y="60" width="64" height="22" rx="6" stroke-width="2"/>
+          <circle style="fill:var(--ink)" cx="395" cy="122" r="12"/><circle style="fill:var(--ink)" cx="465" cy="122" r="12"/>
+          <path style="fill:var(--ink)" d="M380 40 h-40 v-7 l-14 11 14 11 v-7 h40z"/>
+          <text x="430" y="160" text-anchor="middle" font-size="15" font-weight="700" style="fill:var(--ink)">Moving car</text>
+        </svg>
+      </div>
+      <ul class="pts">
+        <li>A radar gun sends out radio waves.</li>
+        <li>The waves bounce off the moving car and come back.</li>
+        <li>The frequency of the waves that come back has changed.</li>
+        <li>A bigger change means the car is going faster.</li>
+      </ul>
+      <p>The Doppler effect works for all waves. Doctors use it with ultrasound to see blood flow. Ultrasound is sound too high for people to hear. Weather radar uses it to track rain. Ships use sonar, which sends sound through water.</p>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Sound or electromagnetic?</h2>
+      <p>Which kind of wave does each one use?</p>
+      <div class="match">
+        <div class="m pick" data-correct="1" data-ok="Radar uses radio waves, which are electromagnetic." data-no="Not quite. A radar gun sends out radio waves.">
+          <p>Police speed radar</p>
+          <div class="choices"><button class="choice" type="button">Sound waves</button><button class="choice" type="button">Electromagnetic waves</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="Ultrasound is very high-pitched sound." data-no="Not quite. Look at the word: ultra-sound.">
+          <p>Blood flow ultrasound</p>
+          <div class="choices"><button class="choice" type="button">Sound waves</button><button class="choice" type="button">Electromagnetic waves</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="Weather radar also uses radio waves." data-no="Not quite. Radar uses radio waves.">
+          <p>Weather radar</p>
+          <div class="choices"><button class="choice" type="button">Sound waves</button><button class="choice" type="button">Electromagnetic waves</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="Sonar sends sound pulses through the water." data-no="Not quite. Sonar works under water, where sound travels well.">
+          <p>Sonar on a ship</p>
+          <div class="choices"><button class="choice" type="button">Sound waves</button><button class="choice" type="button">Electromagnetic waves</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Draw two columns: Sound waves and Electromagnetic waves. Put each use in the right column.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Key words</p>
+      <h2>The Doppler effect</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">The Doppler effect is a change in the <button class="blank" type="button" data-answer="frequency"></button> an observer hears.</p>
+        <p class="sent">The thing that gives out the sound is the <button class="blank" type="button" data-answer="source"></button>.</p>
+        <p class="sent">The person who hears the sound is the <button class="blank" type="button" data-answer="observer"></button>.</p>
+        <p class="sent">Police use <button class="blank" type="button" data-answer="radar"></button> to measure the speed of cars.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">observer</button><button class="chip" type="button">radar</button><button class="chip" type="button">frequency</button><button class="chip" type="button">source</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Copy the four sentences.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <h2>Well done!</h2>
+      <p>Tick each one you can do now.</p>
+      <ul class="checklist">
+        <li><label><input type="checkbox"> I can say that the Doppler effect is a change in the frequency an observer hears.</label></li>
+        <li><label><input type="checkbox"> I can say that waves bunch up in front of a moving source and spread out behind it.</label></li>
+        <li><label><input type="checkbox"> I can say that the source does not change its own note.</label></li>
+        <li><label><input type="checkbox"> I can name one use of the Doppler effect.</label></li>
+      </ul>
+      <p class="rule">Show your teacher your book.</p>
+    </div>
+  </section>
+
+  <div class="pager">
+    <button class="btn" type="button" id="prev">← Back</button>
+    <button class="btn primary" type="button" id="next">Next →</button>
+  </div>
+  <footer>Year 9 Science · Energy transfer · Lesson 5</footer>
+</div>
+<script>(function(){const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const NS="http://www.w3.org/2000/svg";const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;const KEY=document.body.dataset.key;const store={get(k){try{return JSON.parse(localStorage.getItem(KEY+k))}catch(e){return null}},set(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}};function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}function hex(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");return[0,2,4].map(i=>parseInt(h.substr(i,2),16))}function mix(a,b,t){const pa=hex(a),pb=hex(b);return"rgb("+pa.map((x,i)=>Math.round(x+(pb[i]-x)*t)).join(",")+")"}function label(svg,x,y,t,anchor,fill,size){const e=el("text",{x:x,y:y,"text-anchor":anchor||"middle","font-family":"Atkinson Hyperlegible, system-ui, sans-serif","font-size":size||15,"font-weight":700,fill:fill||css("--ink")},svg);e.textContent=t;return e}function anim(fn){let raf=null,last=null;function loop(ts){const now=ts/1e3,dt=Math.min(.05,now-(last||now));last=now;fn(dt,now);raf=requestAnimationFrame(loop)}return{start(){if(reduce){fn(0,0);return}if(!raf){last=null;raf=requestAnimationFrame(loop)}},stop(){if(raf){cancelAnimationFrame(raf);raf=null}},get on(){return!!raf}}}window.K={$,$$,el,css,mix,label,anim,reduce};const steps=$$(".step");let cur=0;function go(i){cur=Math.max(0,Math.min(steps.length-1,i));steps.forEach((s,j)=>s.hidden=j!==cur);$("#pn").textContent="Step "+(cur+1)+" of "+steps.length;$("#pb").style.width=(cur+1)/steps.length*100+"%";$("#prev").disabled=cur===0;$("#next").hidden=cur===steps.length-1;store.set("step",cur);window.scrollTo({top:0,behavior:"auto"});document.dispatchEvent(new CustomEvent("stepchange",{detail:cur}))}$("#prev").onclick=()=>go(cur-1);$("#next").onclick=()=>go(cur+1);$$(".pick").forEach(box=>{const btns=[...box.querySelectorAll(":scope > .choices .choice")],fb=box.querySelector(":scope > .fb"),ok=+box.dataset.correct;btns.forEach((b,i)=>b.onclick=()=>{btns.forEach((x,j)=>{x.setAttribute("aria-pressed",j===i);x.classList.remove("ok","no")});b.classList.add(i===ok?"ok":"no");fb.hidden=false;fb.className="fb "+(i===ok?"ok":"no");fb.innerHTML=i===ok?"<b>✓ Yes!</b> "+box.dataset.ok:"<b>✗</b> "+box.dataset.no})});$$(".fill").forEach(box=>{const blanks=[...box.querySelectorAll(".blank")],chips=[...box.querySelectorAll(".chip")],fb=box.querySelector(".fb");function sync(){chips.forEach((c,i)=>{c.disabled=blanks.some(b=>b.dataset.src===String(i))})}function empty(b){b.textContent="";delete b.dataset.src;b.classList.remove("ok","no")}chips.forEach((c,i)=>c.onclick=()=>{const e=blanks.find(b=>!b.textContent);if(!e)return;e.textContent=c.textContent;e.dataset.src=i;e.classList.remove("ok","no");fb.hidden=true;sync()});blanks.forEach(b=>b.onclick=()=>{empty(b);fb.hidden=true;sync()});box.querySelector("[data-clear]").onclick=()=>{blanks.forEach(empty);fb.hidden=true;sync()};box.querySelector("[data-check]").onclick=()=>{if(blanks.some(b=>!b.textContent)){fb.hidden=false;fb.className="fb no";fb.innerHTML="<b>Fill every gap first.</b> Tap a word below.";return}let all=true;blanks.forEach(b=>{const r=b.textContent===b.dataset.answer;b.classList.toggle("ok",r);b.classList.toggle("no",!r);if(!r)all=false});fb.hidden=false;fb.className="fb "+(all?"ok":"no");fb.innerHTML=all?"<b>✓ All correct!</b> Now write it in your book.":"<b>✗ Not yet.</b> Tap a red word to take it out, then try again."}});window.addEventListener("load",()=>{const sv=store.get("step");go(typeof sv==="number"?sv:0)})})();</script>
+<script>(function(){const{$,$$,el,css,label,anim,reduce}=K;const sims={};document.addEventListener("stepchange",()=>Object.values(sims).forEach(s=>s.stop()));
+function person(svg,x,y,name){el("circle",{cx:x,cy:y-34,r:9,fill:"none",stroke:css("--ink"),"stroke-width":2.5},svg);el("path",{d:`M${x} ${y-25} V${y-2} M${x-13} ${y-16} H${x+13} M${x} ${y-2} l-9 16 M${x} ${y-2} l9 16`,fill:"none",stroke:css("--ink"),"stroke-width":2.5},svg);label(svg,x,y+32,name,"middle",css("--ink"),14)}
+function doppler(id,vs){const svg=$("#"+id),C=70,X0=vs?150:270,Y=115,EV=.55,CYC=vs?5.2:4.4;let t=0,g,car,tA,tB;
+function build(){svg.innerHTML="";g=el("g",{},svg);car=el("g",{},svg);el("rect",{x:-18,y:-10,width:36,height:20,rx:6,fill:css("--hot"),stroke:css("--ink"),"stroke-width":2},car);if(vs)el("path",{d:"M24 0 H44 M44 0 l-8 -5 M44 0 l-8 5",fill:"none",stroke:css("--ink"),"stroke-width":3},car);person(svg,490,120,"Observer A");person(svg,50,120,"Observer B");if(vs){tA=label(svg,480,30,"Bunched up","end",css("--hot"),15);tB=label(svg,60,30,"Spread out","start",css("--cold"),15)}draw()}
+function draw(){g.innerHTML="";for(let te=0;te<=t;te+=EV){const r=C*(t-te);if(r<2||r>330)continue;el("circle",{cx:X0+vs*te,cy:Y,r:r.toFixed(1),fill:"none",stroke:css("--cold"),"stroke-width":2.5,opacity:Math.max(.25,1-r/360).toFixed(2)},g)}car.setAttribute("transform",`translate(${X0+vs*t} ${Y})`)}
+const a=anim(dt=>{t+=dt;if(t>CYC)t=0;draw()});build();return{start(){if(reduce){t=CYC*.8;draw();return}a.start()},stop(){a.stop()}}}
+sims.svgD1=doppler("svgD1",0);sims.svgD2=doppler("svgD2",38);
+sims.svgB=function(){const svg=$("#svgB"),CX=190,CY=115,R=80,OX=470;let t=0,bz,str,txt;
+function build(){svg.innerHTML="";el("circle",{cx:CX,cy:CY,r:R,fill:"none",stroke:css("--line"),"stroke-width":2,"stroke-dasharray":"6 5"},svg);str=el("line",{x1:CX,y1:CY,x2:CX+R,y2:CY,stroke:css("--muted"),"stroke-width":2.5},svg);el("circle",{cx:CX,cy:CY,r:9,fill:css("--soft"),stroke:css("--ink"),"stroke-width":2},svg);label(svg,CX,CY-18,"Hand","middle",css("--muted"),13);label(svg,CX,CY+R+30,"Buzzer goes round","middle",css("--muted"),13);bz=el("circle",{r:12,fill:css("--focus"),stroke:css("--ink"),"stroke-width":2},svg);person(svg,OX,140,"You");txt=label(svg,340,22,"","middle",css("--ink"),16);draw()}
+function draw(){const a=1.6*t,x=CX+R*Math.cos(a),y=CY+R*Math.sin(a);bz.setAttribute("cx",x);bz.setAttribute("cy",y);str.setAttribute("x2",x);str.setAttribute("y2",y);const vx=-Math.sin(a),vy=Math.cos(a),dx=OX-x,dy=105-y,d=Math.hypot(dx,dy),c=(vx*dx+vy*dy)/d;if(t===0&&!reduce){txt.textContent="Press Start";txt.setAttribute("fill",css("--ink"))}else if(c>.25){txt.textContent="Coming towards you: higher pitch";txt.setAttribute("fill",css("--hot"))}else if(c<-.25){txt.textContent="Going away: lower pitch";txt.setAttribute("fill",css("--cold"))}else{txt.textContent="Moving across: in between";txt.setAttribute("fill",css("--muted"))}}
+const an=anim(dt=>{t+=dt;draw()});build();return{start(){if(reduce){t=1.1;draw();return}an.start()},stop(){an.stop()}}}();
+$$("[data-go]").forEach(b=>b.onclick=()=>sims[b.dataset.go].start());$$("[data-stop]").forEach(b=>b.onclick=()=>sims[b.dataset.stop].stop())})();</script>
+</body>
+</html>

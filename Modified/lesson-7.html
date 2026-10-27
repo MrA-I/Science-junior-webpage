@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 7: First Nations peoples’ use of sound</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+:root{
+  --bg:#eef3f1;--surface:#ffffff;--ink:#1c2b3a;--muted:#51616f;--line:#cfdad6;--soft:#e3ebe8;
+  --focus:#d99a00;--good:#2d7a46;--bad:#b3261e;--book:#fff4d6;--bookline:#d99a00;
+  --hot:#cf4a1f;--cold:#2f6fb0;--cond:#7a4fb0;--conv:#0f7d74;--rad:#b0336e;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--body:"Atkinson Hyperlegible",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.5 var(--body)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:900px;margin:0 auto;padding:18px 16px 36px}
+.back{display:inline-block;font:700 1rem var(--body);color:var(--ink);text-decoration:underline;text-underline-offset:3px;padding:8px 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.top .t{font:800 1.3rem var(--display)}
+.prog{display:flex;gap:6px;align-items:center;font-size:.95rem;color:var(--muted)}
+.bar{width:160px;height:10px;border-radius:99px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:99px;transition:width .3s}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.part{font:700 .85rem var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 4px}
+h1{font:800 clamp(1.8rem,4vw,2.4rem)/1.1 var(--display);margin:0 0 12px}
+h2{font:800 1.6rem/1.2 var(--display);margin:0 0 12px}
+p{margin:0 0 12px}
+.big{font-size:1.15rem}
+.defn{border:3px solid var(--mc,var(--ink));border-radius:14px;padding:12px 16px;margin:0 0 14px;font-size:1.1rem}
+.defn b{color:var(--mc,var(--ink))}
+ul.pts{margin:0 0 12px;padding-left:22px}
+ul.pts li{margin-bottom:6px}
+.scene{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:8px;margin:0 0 12px}
+.scene svg{display:block;width:100%;height:auto;max-height:340px}
+.btn{font:700 1.05rem var(--body);color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;min-height:48px;padding:8px 20px;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--surface)}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.scene .row{margin:8px 4px 4px}
+.look{font-size:1rem;color:var(--muted)}
+.rule{background:var(--book);border:2px solid var(--bookline);border-radius:14px;padding:12px 16px;font-weight:700}
+.book{display:flex;gap:12px;align-items:flex-start;background:var(--book);border:2px dashed var(--bookline);border-radius:14px;padding:12px 16px;margin-top:16px}
+.book .ic{font-size:1.5rem;line-height:1}
+.book .h{font-weight:700;display:block}
+.choices{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 4px}
+.choice{font:700 1.05rem var(--body);color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:14px;min-height:52px;padding:10px 18px;cursor:pointer}
+.choice[aria-pressed="true"]{border-color:var(--ink);background:var(--surface)}
+.choice.ok{border-color:var(--good);box-shadow:inset 0 0 0 2px var(--good)}
+.choice.no{border-color:var(--bad)}
+.fb{margin:8px 0 0;font-size:1.05rem}
+.fb.ok b{color:var(--good)}.fb.no b{color:var(--bad)}
+.fill .sent{font-size:1.2rem;line-height:2.4;margin:0 0 6px}
+.blank{display:inline-block;min-width:120px;min-height:44px;vertical-align:middle;border:none;border-bottom:3px solid var(--ink);background:var(--soft);border-radius:8px 8px 0 0;font:700 1.1rem var(--body);color:var(--ink);padding:4px 12px;cursor:pointer;text-align:center}
+.blank.ok{border-bottom-color:var(--good);color:var(--good)}
+.blank.no{border-bottom-color:var(--bad);color:var(--bad)}
+.bank{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.bank .lab{width:100%;font-size:.95rem;color:var(--muted)}
+.chip{font:700 1.05rem var(--body);background:var(--surface);color:var(--ink);border:2px solid var(--ink);border-radius:12px;min-height:48px;padding:6px 18px;cursor:pointer}
+.chip:disabled{opacity:.3}
+.match{display:grid;gap:12px}
+.match .m{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg)}
+.match .m p{margin:0 0 4px;font-weight:700}
+.reveal{margin-top:12px}
+.reveal>summary{display:inline-flex;gap:6px;list-style:none;cursor:pointer;font:700 .9rem var(--body);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;min-height:38px;align-items:center}
+.reveal>summary::-webkit-details-marker{display:none}
+.reveal>summary::before{content:"▸"}.reveal[open]>summary::before{content:"▾"}
+.reveal .body{margin-top:8px;padding:8px 14px;border-left:3px solid var(--line);font-size:1.05rem}
+.checklist{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px}
+.checklist label{display:flex;gap:12px;align-items:flex-start;cursor:pointer;min-height:48px;padding:6px 0;font-size:1.1rem}
+.checklist input{width:26px;height:26px;margin-top:3px;accent-color:var(--good);flex:none}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+footer{margin-top:24px;color:var(--muted);font-size:.9rem;text-align:center}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+.two .defn{margin:0}
+@media (max-width:600px){.two{grid-template-columns:1fr}}
+.tbl{width:100%;border-collapse:collapse;margin:0 0 12px;font-size:1.05rem}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--soft)}
+.formula{font:800 1.6rem var(--display);text-align:center;margin:6px 0 12px}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;line-height:1.15}
+.frac>span:first-child{border-bottom:2px solid currentColor;padding:0 4px}
+.frac>span:last-child{padding:0 4px}
+</style>
+</head>
+<body data-key="y9et-m7-v1">
+<div class="wrap">
+  <a class="back" href="./">← My lessons</a>
+  <div class="top">
+    <span class="t">Lesson 7: First Nations peoples’ use of sound</span>
+    <span class="prog"><span id="pn">Step 1 of 13</span><span class="bar"><i id="pb"></i></span></span>
+  </div>
+<section class="step">
+    <div class="card">
+      <h1>Lesson 7: First Nations peoples’ use of sound</h1>
+      <p class="big"><b>My goal:</b> I can describe one way First Nations peoples use knowledge about sound.</p>
+      <p>Today you will learn these new words:</p>
+      <ul class="pts">
+        <li><b>idiophone</b>, <b>membranophone</b> and <b>aerophone</b></li>
+        <li><b>bore</b></li>
+      </ul>
+      <div class="defn" style="--mc:var(--conv)"><b>Working respectfully.</b> Aboriginal and Torres Strait Islander peoples are many different Nations. Each has its own instruments, names and ways of doing things. The examples today are from your textbook.</div>
+      <p class="rule">Write every answer in your book. Ticking on the screen is not enough.</p>
+      <p>Press <b>Next</b> to start.</p>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Getting started</p>
+      <h2>The didjeridu</h2>
+      <div class="scene">
+        <svg viewBox="0 0 520 140" role="img" aria-label="A didjeridu: a long wooden tube. The player blows into the narrow end.">
+          <path style="fill:var(--focus);stroke:var(--ink)" stroke-width="2.5" d="M60 62 L470 50 Q490 70 470 92 L60 78 Z"/>
+          <path style="fill:none;stroke:var(--ink)" stroke-width="2" d="M470 50 Q455 71 470 92"/>
+          <text x="265" y="125" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--ink)">A long wooden tube</text>
+          <text x="20" y="40" text-anchor="start" font-size="15" font-weight="700" style="fill:var(--ink)">Player blows here</text>
+          <path style="fill:var(--ink)" d="M54 46 h12 l-6 10z"/>
+        </svg>
+      </div>
+      <p>A didjeridu is a long wooden tube.</p>
+      <p><b>How does it make sound?</b></p>
+      <div class="pick" data-correct="1" data-ok="The lips vibrate. This makes the air inside the tube vibrate." data-no="Not quite. Think about what the player does with their mouth.">
+        <div class="choices"><button class="choice" type="button">The wood is hit with a stick</button><button class="choice" type="button">The lips make the air inside vibrate</button><button class="choice" type="button">Strings along the tube vibrate</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>A didjeridu makes sound when ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">How it makes sound</p>
+      <h2>Vibrating air</h2>
+      <div class="defn">Sound is made when something <b>vibrates</b>. In a didjeridu, the <b>air</b> inside the tube vibrates.</div>
+      <div class="scene">
+        <svg id="svgDid" viewBox="0 0 560 200" role="img" aria-label="The player's lips vibrate at one end of the tube. The air particles inside the tube squash together and spread out. Sound waves come out of the far end."></svg>
+        <div class="row"><button class="btn primary" type="button" id="didGo">Start playing</button><button class="btn" type="button" id="didStop">Stop</button></div>
+      </div>
+      <ul class="pts">
+        <li>The player’s lips vibrate against the end of the tube.</li>
+        <li>This makes the air inside the tube vibrate.</li>
+        <li>A sound wave comes out of the other end.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>What vibrates?</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">1. The player’s <button class="blank" type="button" data-answer="lips"></button> vibrate.</p>
+        <p class="sent">2. The <button class="blank" type="button" data-answer="air"></button> inside the tube vibrates.</p>
+        <p class="sent">3. A <button class="blank" type="button" data-answer="sound"></button> wave comes out of the end.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">sound</button><button class="chip" type="button">lips</button><button class="chip" type="button">air</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Write the three sentences in order.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Length and frequency</p>
+      <h2>A longer tube</h2>
+      <div class="defn">A <b>longer</b> tube makes a sound with a <b>lower</b> frequency. It sounds deeper.</div>
+      <div class="scene">
+        <svg id="svgLen" viewBox="0 0 560 200" role="img" aria-label="A tube grows from 1 metre to 2 metres, then stops. The wave inside gets longer, and the frequency number goes down."></svg>
+        <div class="row"><button class="btn primary" type="button" id="lenGo">Make it longer</button><button class="btn" type="button" id="lenStop">Stop</button></div>
+      </div>
+      <table class="tbl">
+        <tr><th>Length of tube</th><th>Lowest frequency</th></tr>
+        <tr><td>1 m</td><td>about 86 Hz</td></tr>
+        <tr><td>1.5 m</td><td>about 57 Hz</td></tr>
+        <tr><td>2 m</td><td>about 43 Hz</td></tr>
+      </table>
+      <ul class="pts">
+        <li>This is a simple model of a straight tube.</li>
+        <li>Real instruments also depend on their shape, their width and how they are played.</li>
+        <li>The lowest frequency is the deepest note the tube can play.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Longer or shorter?</h2>
+      <div class="match">
+        <div class="m pick" data-correct="1" data-ok="A longer tube has a longer wave inside, so the frequency is lower." data-no="Not quite. Look at the table again. What happens as the tube gets longer?">
+          <p>The tube is made longer. The frequency …</p>
+          <div class="choices"><button class="choice" type="button">goes up</button><button class="choice" type="button">goes down</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="A shorter tube has a shorter wave inside, so the frequency is higher." data-no="Not quite. Look at the table. Which tube has the higher number?">
+          <p>The tube is made shorter. The frequency …</p>
+          <div class="choices"><button class="choice" type="button">goes up</button><button class="choice" type="button">goes down</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Press Back and copy the table. Then write: As the length increases, the frequency ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Types of instruments</p>
+      <h2>Three ways to make a sound</h2>
+      <p>Instruments are grouped by <b>what vibrates</b>.</p>
+      <div class="defn" style="--mc:var(--hot)"><b>Idiophone:</b> the instrument itself vibrates when it is hit or shaken. Examples: clapsticks, seed-pod rattles such as the kulap.</div>
+      <div class="defn" style="--mc:var(--cond)"><b>Membranophone:</b> a stretched sheet (a membrane) vibrates when it is hit. Example: drums such as the buljirr.</div>
+      <div class="defn" style="--mc:var(--cold)"><b>Aerophone:</b> air vibrates inside or around the instrument. Examples: the didjeridu, leaf instruments.</div>
+      <div class="scene">
+        <svg id="svgTypes" viewBox="0 0 600 190" role="img" aria-label="Three instruments. Two sticks hit each other and vibrate. A drum skin moves up and down. Air vibrates inside a tube."></svg>
+        <div class="row"><button class="btn primary" type="button" id="typGo">Start</button><button class="btn" type="button" id="typStop">Stop</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Sort the instruments</h2>
+      <p>For each one, ask: what vibrates?</p>
+      <div class="match">
+        <div class="m pick" data-correct="0" data-ok="The sticks themselves vibrate when they hit each other." data-no="Not quite. What vibrates when the sticks hit?">
+          <p>Clapsticks</p>
+          <div class="choices"><button class="choice" type="button">Idiophone</button><button class="choice" type="button">Membranophone</button><button class="choice" type="button">Aerophone</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="The stretched skin of the drum vibrates." data-no="Not quite. A drum has a stretched sheet on top.">
+          <p>Drum</p>
+          <div class="choices"><button class="choice" type="button">Idiophone</button><button class="choice" type="button">Membranophone</button><button class="choice" type="button">Aerophone</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="2" data-ok="Air vibrates around the leaf." data-no="Not quite. The player blows across the leaf.">
+          <p>Leaf instrument</p>
+          <div class="choices"><button class="choice" type="button">Idiophone</button><button class="choice" type="button">Membranophone</button><button class="choice" type="button">Aerophone</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="The rattle itself vibrates when it is shaken." data-no="Not quite. What happens when you shake a rattle?">
+          <p>Seed-pod rattle (kulap)</p>
+          <div class="choices"><button class="choice" type="button">Idiophone</button><button class="choice" type="button">Membranophone</button><button class="choice" type="button">Aerophone</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Make a table with three columns: Idiophone, Membranophone, Aerophone. Put each instrument in the right column.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Materials and design</p>
+      <h2>The bore</h2>
+      <div class="defn">The <b>bore</b> is the hollow space inside a tube-shaped instrument.</div>
+      <ul class="pts">
+        <li>Termites hollow out some eucalypt trunks. This makes the bore.</li>
+        <li>A long, wide bore helps make deep, low-frequency sounds.</li>
+        <li>The material, length, width and shape all change the frequency and amplitude.</li>
+        <li>For a drum, a tighter membrane or a smaller drum gives a higher pitch.</li>
+      </ul>
+      <p><b>A drum’s membrane is made looser. What happens to the pitch?</b></p>
+      <div class="pick" data-correct="1" data-ok="A looser membrane vibrates more slowly, so the pitch is lower." data-no="Not quite. A tighter membrane gives a higher pitch. Looser is the opposite.">
+        <div class="choices"><button class="choice" type="button">It gets higher</button><button class="choice" type="button">It gets lower</button><button class="choice" type="button">It stays the same</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>The bore is ______. A long, wide bore makes ______ sounds. A looser drum membrane gives a ______ pitch.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Calculate</p>
+      <h2>Wavelength of a didjeridu note</h2>
+      <p class="formula">λ = <span class="frac"><span>v</span><span>f</span></span></p>
+      <p>v = speed of sound in air = 343 m/s. f = frequency in Hz.</p>
+      <div class="defn"><b>Worked example.</b> A didjeridu makes a note of 70 Hz.<br>λ = <span class="frac"><span>343</span><span>70</span></span> = 4.9 m</div>
+      <p><b>A longer didjeridu makes a note of 49 Hz. What is the wavelength?</b></p>
+      <p>λ = <span class="frac"><span>343</span><span>49</span></span> = ?</p>
+      <div class="pick" data-correct="2" data-ok="343 divided by 49 is 7, so the wavelength is 7 m. The lower note has the longer wave." data-no="Not quite. Use a calculator: 343 on top, 49 on the bottom.">
+        <div class="choices"><button class="choice" type="button">0.14 m</button><button class="choice" type="button">392 m</button><button class="choice" type="button">7 m</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Write the worked example. Then write: λ = <span class="frac"><span>343</span><span>49</span></span> = ______ m. The ______ note has the longer wavelength.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Knowledge over generations</p>
+      <h2>Sound in culture</h2>
+      <div class="defn" style="--mc:var(--conv)">The knowledge of how to make and use instruments has been developed, tested and passed on over many generations.</div>
+      <ul class="pts">
+        <li>Instruments support ceremony, storytelling and communication.</li>
+        <li>Low-frequency sounds have long wavelengths. They can carry a long way.</li>
+        <li>Instruments have been used to share messages and stories, as well as for music.</li>
+        <li>Some instruments are used only by certain people or at certain times.</li>
+      </ul>
+      <p><b>Why are low-frequency sounds good for sending a message far away?</b></p>
+      <div class="pick" data-correct="1" data-ok="Low-frequency sounds have long wavelengths. They can carry a long way." data-no="Not quite. Read the second point again.">
+        <div class="choices"><button class="choice" type="button">They travel faster</button><button class="choice" type="button">They carry a long way</button><button class="choice" type="button">They need no air</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>One way First Nations peoples use sound is ______. Low-frequency sounds are useful because ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Key words</p>
+      <h2>Instruments and sound</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent"><button class="blank" type="button" data-answer="idiophone"></button>: the instrument itself vibrates.</p>
+        <p class="sent"><button class="blank" type="button" data-answer="membranophone"></button>: a stretched sheet vibrates.</p>
+        <p class="sent"><button class="blank" type="button" data-answer="aerophone"></button>: the air vibrates.</p>
+        <p class="sent"><button class="blank" type="button" data-answer="bore"></button>: the hollow space inside a tube.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">bore</button><button class="chip" type="button">aerophone</button><button class="chip" type="button">membranophone</button><button class="chip" type="button">idiophone</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Copy the four sentences.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <h2>Well done!</h2>
+      <p>Tick each one you can do now.</p>
+      <ul class="checklist">
+        <li><label><input type="checkbox"> I can explain how a didjeridu makes sound.</label></li>
+        <li><label><input type="checkbox"> I can say that a longer tube gives a lower frequency.</label></li>
+        <li><label><input type="checkbox"> I can sort instruments into idiophones, membranophones and aerophones.</label></li>
+        <li><label><input type="checkbox"> I can describe one way First Nations peoples use knowledge about sound.</label></li>
+      </ul>
+      <p class="rule">Show your teacher your book.</p>
+    </div>
+  </section>
+
+  <div class="pager">
+    <button class="btn" type="button" id="prev">← Back</button>
+    <button class="btn primary" type="button" id="next">Next →</button>
+  </div>
+  <footer>Year 9 Science · Energy transfer · Lesson 7</footer>
+</div>
+<script>(function(){const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const NS="http://www.w3.org/2000/svg";const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;const KEY=document.body.dataset.key;const store={get(k){try{return JSON.parse(localStorage.getItem(KEY+k))}catch(e){return null}},set(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}};function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}function hex(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");return[0,2,4].map(i=>parseInt(h.substr(i,2),16))}function mix(a,b,t){const pa=hex(a),pb=hex(b);return"rgb("+pa.map((x,i)=>Math.round(x+(pb[i]-x)*t)).join(",")+")"}function label(svg,x,y,t,anchor,fill,size){const e=el("text",{x:x,y:y,"text-anchor":anchor||"middle","font-family":"Atkinson Hyperlegible, system-ui, sans-serif","font-size":size||15,"font-weight":700,fill:fill||css("--ink")},svg);e.textContent=t;return e}function anim(fn){let raf=null,last=null;function loop(ts){const now=ts/1e3,dt=Math.min(.05,now-(last||now));last=now;fn(dt,now);raf=requestAnimationFrame(loop)}return{start(){if(reduce){fn(0,0);return}if(!raf){last=null;raf=requestAnimationFrame(loop)}},stop(){if(raf){cancelAnimationFrame(raf);raf=null}},get on(){return!!raf}}}window.K={$,$$,el,css,mix,label,anim,reduce};const steps=$$(".step");let cur=0;function go(i){cur=Math.max(0,Math.min(steps.length-1,i));steps.forEach((s,j)=>s.hidden=j!==cur);$("#pn").textContent="Step "+(cur+1)+" of "+steps.length;$("#pb").style.width=(cur+1)/steps.length*100+"%";$("#prev").disabled=cur===0;$("#next").hidden=cur===steps.length-1;store.set("step",cur);window.scrollTo({top:0,behavior:"auto"});document.dispatchEvent(new CustomEvent("stepchange",{detail:cur}))}$("#prev").onclick=()=>go(cur-1);$("#next").onclick=()=>go(cur+1);$$(".pick").forEach(box=>{const btns=[...box.querySelectorAll(":scope > .choices .choice")],fb=box.querySelector(":scope > .fb"),ok=+box.dataset.correct;btns.forEach((b,i)=>b.onclick=()=>{btns.forEach((x,j)=>{x.setAttribute("aria-pressed",j===i);x.classList.remove("ok","no")});b.classList.add(i===ok?"ok":"no");fb.hidden=false;fb.className="fb "+(i===ok?"ok":"no");fb.innerHTML=i===ok?"<b>✓ Yes!</b> "+box.dataset.ok:"<b>✗</b> "+box.dataset.no})});$$(".fill").forEach(box=>{const blanks=[...box.querySelectorAll(".blank")],chips=[...box.querySelectorAll(".chip")],fb=box.querySelector(".fb");function sync(){chips.forEach((c,i)=>{c.disabled=blanks.some(b=>b.dataset.src===String(i))})}function empty(b){b.textContent="";delete b.dataset.src;b.classList.remove("ok","no")}chips.forEach((c,i)=>c.onclick=()=>{const e=blanks.find(b=>!b.textContent);if(!e)return;e.textContent=c.textContent;e.dataset.src=i;e.classList.remove("ok","no");fb.hidden=true;sync()});blanks.forEach(b=>b.onclick=()=>{empty(b);fb.hidden=true;sync()});box.querySelector("[data-clear]").onclick=()=>{blanks.forEach(empty);fb.hidden=true;sync()};box.querySelector("[data-check]").onclick=()=>{if(blanks.some(b=>!b.textContent)){fb.hidden=false;fb.className="fb no";fb.innerHTML="<b>Fill every gap first.</b> Tap a word below.";return}let all=true;blanks.forEach(b=>{const r=b.textContent===b.dataset.answer;b.classList.toggle("ok",r);b.classList.toggle("no",!r);if(!r)all=false});fb.hidden=false;fb.className="fb "+(all?"ok":"no");fb.innerHTML=all?"<b>✓ All correct!</b> Now write it in your book.":"<b>✗ Not yet.</b> Tap a red word to take it out, then try again."}});window.addEventListener("load",()=>{const sv=store.get("step");go(typeof sv==="number"?sv:0)})})();</script>
+<script>(function(){const{$,$$,el,css,label,anim,reduce}=K;const all=[];
+function tubePath(x0,x1,y,h0,h1){return `M${x0} ${y-h0} L${x1} ${y-h1} L${x1} ${y+h1} L${x0} ${y+h0} Z`}
+const did=function(){const svg=$("#svgDid");let t=0,lip1,lip2,ps=[],arcs=[],on=false;
+function build(){svg.innerHTML="";el("path",{d:tubePath(70,470,90,22,32),fill:css("--focus"),opacity:.3,stroke:css("--ink"),"stroke-width":2.5},svg);lip1=el("ellipse",{cx:56,cy:80,rx:9,ry:6,fill:css("--hot")},svg);lip2=el("ellipse",{cx:56,cy:100,rx:9,ry:6,fill:css("--hot")},svg);label(svg,56,140,"Lips","middle",css("--ink"),15);
+for(let i=0;i<34;i++)for(let j=0;j<3;j++){const hx=82+i*11.5,hy=90+(j-1)*(11+i*.12);ps.push({hx,hy,c:el("circle",{cx:hx,cy:hy,r:3.6,fill:css("--cold")},svg)})}
+for(let i=0;i<3;i++)arcs.push(el("path",{fill:"none",stroke:css("--hot"),"stroke-width":3},svg));
+label(svg,270,150,"Air inside the tube","middle",css("--ink"),15);label(svg,520,150,"Sound","middle",css("--ink"),15);draw()}
+function draw(){const a=on?4*Math.sin(t*40):0;lip1.setAttribute("cy",80-Math.abs(a)*.6);lip2.setAttribute("cy",100+Math.abs(a)*.6);const k=2*Math.PI/120;ps.forEach(p=>{p.c.setAttribute("cx",p.hx+(on?4.5*Math.sin(k*p.hx-t*6):0))});arcs.forEach((r,i)=>{const s=((t*0.8+i/3)%1);const x=478+s*60;r.setAttribute("d",`M${x} ${90-20-s*20} q${10+s*8} ${20+s*20} 0 ${40+s*40}`);r.setAttribute("opacity",on?(1-s).toFixed(2):0)})}
+const A=anim(dt=>{t+=dt;draw()});build();return{start(){on=true;if(reduce){t=.4;draw();return}A.start()},stop(){A.stop()}}}();all.push(did);$("#didGo").onclick=did.start;$("#didStop").onclick=did.stop;
+const len=function(){const svg=$("#svgLen");let t=0,g=0,tube,wave,txt,ltxt;const X0=40,PX=240;
+function build(){svg.innerHTML="";tube=el("path",{fill:css("--focus"),opacity:.3,stroke:css("--ink"),"stroke-width":2.5},svg);wave=el("path",{fill:"none",stroke:css("--cold"),"stroke-width":3},svg);ltxt=label(svg,0,40,"","middle",css("--ink"),16);txt=label(svg,280,170,"","middle",css("--ink"),18);label(svg,X0,150,"Blow here","start",css("--muted"),14);draw()}
+function draw(){const s=(1-Math.cos(Math.min(1,g)*Math.PI))/2,L=1+s,Lr=Math.round(L*10)/10,w=PX*L,x1=X0+w;tube.setAttribute("d",tubePath(X0,x1,95,20,26));let d2="";for(let i=0;i<=80;i++){const u=i/80,x=X0+u*w,y=95-18*Math.sin(u*Math.PI/2)*Math.cos(t*(10/L));d2+=(i?"L":"M")+x.toFixed(1)+" "+y.toFixed(1)}wave.setAttribute("d",d2);ltxt.setAttribute("x",X0+w/2);ltxt.textContent="Length: "+Lr.toFixed(1)+" m";txt.textContent="Lowest frequency: about "+Math.round(343/(4*Lr))+" Hz"}
+const A=anim(dt=>{t+=dt;g=Math.min(1,g+dt/4);draw()});build();return{start(){if(g>=1)g=0;if(reduce){g=1;draw();return}A.start()},stop(){A.stop()}}}();all.push(len);$("#lenGo").onclick=len.start;$("#lenStop").onclick=len.stop;
+const typ=function(){const svg=$("#svgTypes");let t=0,s1,s2,mem,air=[],on=false,rings=[];
+function build(){svg.innerHTML="";label(svg,100,24,"Idiophone","middle",css("--hot"),16);label(svg,300,24,"Membranophone","middle",css("--cond"),16);label(svg,500,24,"Aerophone","middle",css("--cold"),16);
+s1=el("rect",{x:-6,y:-55,width:12,height:110,rx:5,fill:css("--focus"),stroke:css("--ink"),"stroke-width":2},svg);s2=el("rect",{x:-6,y:-55,width:12,height:110,rx:5,fill:css("--focus"),stroke:css("--ink"),"stroke-width":2},svg);label(svg,100,180,"Sticks vibrate","middle",css("--ink"),14);
+el("path",{d:"M230 110 V150 Q300 172 370 150 V110",fill:css("--soft"),stroke:css("--ink"),"stroke-width":2.5},svg);mem=el("path",{fill:"none",stroke:css("--cond"),"stroke-width":4},svg);label(svg,300,180,"Membrane vibrates","middle",css("--ink"),14);
+el("path",{d:tubePath(430,580,105,14,20),fill:css("--focus"),opacity:.3,stroke:css("--ink"),"stroke-width":2},svg);for(let i=0;i<12;i++)for(let j=0;j<2;j++){const hx=440+i*12,hy=99+j*12;air.push({hx,hy,c:el("circle",{cx:hx,cy:hy,r:3.4,fill:css("--cold")},svg)})}label(svg,500,180,"Air vibrates","middle",css("--ink"),14);draw()}
+function draw(){const hit=on?Math.max(0,Math.sin(t*5)):0,v=on?2.5*Math.sin(t*45)*(1-hit):0;s1.setAttribute("transform",`translate(${80-hit*14+v},100) rotate(${-20+hit*12})`);s2.setAttribute("transform",`translate(${120+hit*14-v},100) rotate(${20-hit*12})`);
+const m=on?7*Math.sin(t*30):0;mem.setAttribute("d",`M230 110 Q300 ${110+m} 370 110`);
+const k=2*Math.PI/60;air.forEach(p=>p.c.setAttribute("cx",p.hx+(on?3.5*Math.sin(k*p.hx-t*8):0)))}
+const A=anim(dt=>{t+=dt;draw()});build();return{start(){on=true;if(reduce){t=.2;draw();return}A.start()},stop(){A.stop()}}}();all.push(typ);$("#typGo").onclick=typ.start;$("#typStop").onclick=typ.stop;
+document.addEventListener("stepchange",()=>all.forEach(x=>x.stop()))})();</script>
+</body>
+</html>

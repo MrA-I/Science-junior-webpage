@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 8: The electromagnetic spectrum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+:root{
+  --bg:#eef3f1;--surface:#ffffff;--ink:#1c2b3a;--muted:#51616f;--line:#cfdad6;--soft:#e3ebe8;
+  --focus:#d99a00;--good:#2d7a46;--bad:#b3261e;--book:#fff4d6;--bookline:#d99a00;
+  --hot:#cf4a1f;--cold:#2f6fb0;--cond:#7a4fb0;--conv:#0f7d74;--rad:#b0336e;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--body:"Atkinson Hyperlegible",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.5 var(--body)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:900px;margin:0 auto;padding:18px 16px 36px}
+.back{display:inline-block;font:700 1rem var(--body);color:var(--ink);text-decoration:underline;text-underline-offset:3px;padding:8px 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.top .t{font:800 1.3rem var(--display)}
+.prog{display:flex;gap:6px;align-items:center;font-size:.95rem;color:var(--muted)}
+.bar{width:160px;height:10px;border-radius:99px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:99px;transition:width .3s}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.part{font:700 .85rem var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 4px}
+h1{font:800 clamp(1.8rem,4vw,2.4rem)/1.1 var(--display);margin:0 0 12px}
+h2{font:800 1.6rem/1.2 var(--display);margin:0 0 12px}
+p{margin:0 0 12px}
+.big{font-size:1.15rem}
+.defn{border:3px solid var(--mc,var(--ink));border-radius:14px;padding:12px 16px;margin:0 0 14px;font-size:1.1rem}
+.defn b{color:var(--mc,var(--ink))}
+ul.pts{margin:0 0 12px;padding-left:22px}
+ul.pts li{margin-bottom:6px}
+.scene{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:8px;margin:0 0 12px}
+.scene svg{display:block;width:100%;height:auto;max-height:340px}
+.btn{font:700 1.05rem var(--body);color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;min-height:48px;padding:8px 20px;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--surface)}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.scene .row{margin:8px 4px 4px}
+.look{font-size:1rem;color:var(--muted)}
+.rule{background:var(--book);border:2px solid var(--bookline);border-radius:14px;padding:12px 16px;font-weight:700}
+.book{display:flex;gap:12px;align-items:flex-start;background:var(--book);border:2px dashed var(--bookline);border-radius:14px;padding:12px 16px;margin-top:16px}
+.book .ic{font-size:1.5rem;line-height:1}
+.book .h{font-weight:700;display:block}
+.choices{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 4px}
+.choice{font:700 1.05rem var(--body);color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:14px;min-height:52px;padding:10px 18px;cursor:pointer}
+.choice[aria-pressed="true"]{border-color:var(--ink);background:var(--surface)}
+.choice.ok{border-color:var(--good);box-shadow:inset 0 0 0 2px var(--good)}
+.choice.no{border-color:var(--bad)}
+.fb{margin:8px 0 0;font-size:1.05rem}
+.fb.ok b{color:var(--good)}.fb.no b{color:var(--bad)}
+.fill .sent{font-size:1.2rem;line-height:2.4;margin:0 0 6px}
+.blank{display:inline-block;min-width:120px;min-height:44px;vertical-align:middle;border:none;border-bottom:3px solid var(--ink);background:var(--soft);border-radius:8px 8px 0 0;font:700 1.1rem var(--body);color:var(--ink);padding:4px 12px;cursor:pointer;text-align:center}
+.blank.ok{border-bottom-color:var(--good);color:var(--good)}
+.blank.no{border-bottom-color:var(--bad);color:var(--bad)}
+.bank{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.bank .lab{width:100%;font-size:.95rem;color:var(--muted)}
+.chip{font:700 1.05rem var(--body);background:var(--surface);color:var(--ink);border:2px solid var(--ink);border-radius:12px;min-height:48px;padding:6px 18px;cursor:pointer}
+.chip:disabled{opacity:.3}
+.match{display:grid;gap:12px}
+.match .m{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg)}
+.match .m p{margin:0 0 4px;font-weight:700}
+.reveal{margin-top:12px}
+.reveal>summary{display:inline-flex;gap:6px;list-style:none;cursor:pointer;font:700 .9rem var(--body);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;min-height:38px;align-items:center}
+.reveal>summary::-webkit-details-marker{display:none}
+.reveal>summary::before{content:"▸"}.reveal[open]>summary::before{content:"▾"}
+.reveal .body{margin-top:8px;padding:8px 14px;border-left:3px solid var(--line);font-size:1.05rem}
+.checklist{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px}
+.checklist label{display:flex;gap:12px;align-items:flex-start;cursor:pointer;min-height:48px;padding:6px 0;font-size:1.1rem}
+.checklist input{width:26px;height:26px;margin-top:3px;accent-color:var(--good);flex:none}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+footer{margin-top:24px;color:var(--muted);font-size:.9rem;text-align:center}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+.two .defn{margin:0}
+@media (max-width:600px){.two{grid-template-columns:1fr}}
+.tbl{width:100%;border-collapse:collapse;margin:0 0 12px;font-size:1.05rem}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--soft)}
+.formula{font:800 1.6rem var(--display);text-align:center;margin:6px 0 12px}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 4px;line-height:1.15}
+.frac>span:first-child{border-bottom:2px solid currentColor;padding:0 4px}
+.frac>span:last-child{padding:0 4px}
+</style>
+</head>
+<body data-key="y9et-m8-v1">
+<div class="wrap">
+  <a class="back" href="./">← My lessons</a>
+  <div class="top">
+    <span class="t">Lesson 8: The electromagnetic spectrum</span>
+    <span class="prog"><span id="pn">Step 1 of 13</span><span class="bar"><i id="pb"></i></span></span>
+  </div>
+<section class="step">
+    <div class="card">
+      <h1>Lesson 8: The electromagnetic spectrum</h1>
+      <p class="big"><b>My goal:</b> I can list the seven parts of the electromagnetic spectrum in order.</p>
+      <p>Today you will learn these new words:</p>
+      <ul class="pts">
+        <li><b>electromagnetic spectrum</b></li>
+        <li><b>photon</b></li>
+        <li><b>ultraviolet (UV)</b></li>
+      </ul>
+      <p class="rule">Write every answer in your book. Ticking on the screen is not enough.</p>
+      <p>Press <b>Next</b> to start.</p>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Getting started</p>
+      <h2>Colours of light</h2>
+      <div class="scene">
+        <svg viewBox="0 0 520 130" role="img" aria-label="A band of visible light colours from red on the left to violet on the right.">
+          <defs><linearGradient id="vis8" x1="0" x2="1"><stop offset="0" stop-color="#d63b2b"/><stop offset=".25" stop-color="#e8c030"/><stop offset=".5" stop-color="#3aa86a"/><stop offset=".75" stop-color="#3b4bd8"/><stop offset="1" stop-color="#8b2be2"/></linearGradient></defs>
+          <rect x="40" y="30" width="440" height="50" rx="8" fill="url(#vis8)" style="stroke:var(--ink)" stroke-width="2"/>
+          <text x="40" y="110" font-size="17" font-weight="700" style="fill:var(--ink)">Red end</text>
+          <text x="480" y="110" text-anchor="end" font-size="17" font-weight="700" style="fill:var(--ink)">Violet end</text>
+        </svg>
+      </div>
+      <p>Visible light is a mix of colours, from red to violet.</p>
+      <p><b>Which end carries the most energy?</b></p>
+      <div class="pick" data-correct="1" data-ok="Violet has the shortest wavelength of visible light, so it has the most energy." data-no="Not quite. A shorter wavelength means more energy. Which colour has the shortest wavelength?">
+        <div class="choices"><button class="choice" type="button">The red end</button><button class="choice" type="button">The violet end</button><button class="choice" type="button">They are the same</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>I think the ______ end carries the most energy.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">The spectrum</p>
+      <h2>Seven kinds of waves</h2>
+      <div class="defn" style="--mc:var(--rad)">The <b>electromagnetic spectrum</b> is the full range of electromagnetic waves, in order of wavelength.</div>
+      <div class="scene">
+        <svg id="svgSweep" viewBox="0 0 640 240" role="img" aria-label="A wave moves along the spectrum from radio waves to gamma rays. The wavelength gets shorter at each step."></svg>
+        <div class="row"><button class="btn primary" type="button" id="swGo">Start the wave</button><button class="btn" type="button" id="swStop">Stop</button></div>
+      </div>
+      <ul class="pts">
+        <li>Radio waves have the longest wavelength.</li>
+        <li>Gamma rays have the shortest wavelength.</li>
+        <li>Visible light is the only part our eyes can see.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Parts of the spectrum in order</h2>
+      <p>Start with the longest wavelength.</p>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">1. <button class="blank" type="button" data-answer="Radio waves"></button></p>
+        <p class="sent">2. <button class="blank" type="button" data-answer="Microwaves"></button></p>
+        <p class="sent">3. <button class="blank" type="button" data-answer="Infrared"></button></p>
+        <p class="sent">4. <button class="blank" type="button" data-answer="Visible light"></button></p>
+        <p class="sent">5. <button class="blank" type="button" data-answer="Ultraviolet"></button></p>
+        <p class="sent">6. <button class="blank" type="button" data-answer="X-rays"></button></p>
+        <p class="sent">7. <button class="blank" type="button" data-answer="Gamma rays"></button></p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">Ultraviolet</button><button class="chip" type="button">Gamma rays</button><button class="chip" type="button">Microwaves</button><button class="chip" type="button">Visible light</button><button class="chip" type="button">Radio waves</button><button class="chip" type="button">X-rays</button><button class="chip" type="button">Infrared</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Draw a long box with seven parts. Write the seven waves in order, from longest to shortest wavelength.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">The pattern</p>
+      <h2>Wavelength, frequency and energy</h2>
+      <div class="scene">
+        <svg viewBox="0 0 640 200" role="img" aria-label="From radio waves to gamma rays: the wavelength decreases, the frequency increases and the energy increases.">
+          <g font-size="16" font-weight="700">
+            <text x="20" y="24" style="fill:var(--ink)">Radio waves</text>
+            <text x="620" y="24" text-anchor="end" style="fill:var(--ink)">Gamma rays</text>
+            <path style="fill:none;stroke:var(--cold)" stroke-width="4" d="M20 55 H620 M620 55 l-12 -7 M620 55 l-12 7"/>
+            <text x="20" y="82" style="fill:var(--cold)">Wavelength gets shorter</text>
+            <path style="fill:none;stroke:var(--cond)" stroke-width="4" d="M20 112 H620 M620 112 l-12 -7 M620 112 l-12 7"/>
+            <text x="20" y="139" style="fill:var(--cond)">Frequency gets higher</text>
+            <path style="fill:none;stroke:var(--hot)" stroke-width="4" d="M20 169 H620 M620 169 l-12 -7 M620 169 l-12 7"/>
+            <text x="20" y="196" style="fill:var(--hot)">Energy gets higher</text>
+          </g>
+        </svg>
+      </div>
+      <ul class="pts">
+        <li>A <b>photon</b> is a tiny packet of electromagnetic energy.</li>
+        <li>All electromagnetic waves travel at the <b>same speed</b> in a vacuum (empty space): about 300 000 km/s.</li>
+        <li>Radio waves are <b>not</b> sound waves. They are electromagnetic waves.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Use the pattern</h2>
+      <div class="match">
+        <div class="m pick" data-correct="1" data-ok="Gamma rays have the shortest wavelength, so they have the most energy." data-no="Not quite. Which one is at the short wavelength end?">
+          <p>Which has more energy?</p>
+          <div class="choices"><button class="choice" type="button">Radio waves</button><button class="choice" type="button">Gamma rays</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="Infrared comes before ultraviolet, so it has a longer wavelength." data-no="Not quite. Look at your list of seven. Which comes first?">
+          <p>Which has the longer wavelength?</p>
+          <div class="choices"><button class="choice" type="button">Infrared</button><button class="choice" type="button">Ultraviolet</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="2" data-ok="All electromagnetic waves travel at the same speed in a vacuum." data-no="Not quite. Read the second point on the last screen again.">
+          <p>In space, which is faster: radio waves or X-rays?</p>
+          <div class="choices"><button class="choice" type="button">Radio waves are faster</button><button class="choice" type="button">X-rays are faster</button><button class="choice" type="button">They travel at the same speed</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>As wavelength gets shorter, frequency gets ______ and energy gets ______. All electromagnetic waves travel at the ______ speed in a vacuum (empty space).</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Uses and risks</p>
+      <h2>What each wave is used for</h2>
+      <table class="tbl">
+        <tr><th>Wave</th><th>A use</th><th>A risk</th></tr>
+        <tr><td>Radio waves</td><td>Radio, mobile phones, satellites</td><td>Very low risk</td></tr>
+        <tr><td>Microwaves</td><td>Cooking food, satellites</td><td>Strong microwaves can heat body tissue</td></tr>
+        <tr><td>Infrared</td><td>TV remotes, thermal cameras</td><td>Too much can burn</td></tr>
+        <tr><td>Visible light</td><td>Seeing</td><td>Very bright light can hurt eyes</td></tr>
+        <tr><td>Ultraviolet</td><td>Finding blood in forensics</td><td>Too much damages skin and eyes</td></tr>
+        <tr><td>X-rays</td><td>Images of bones</td><td>Can damage cells</td></tr>
+        <tr><td>Gamma rays</td><td>Treating cancer, killing germs on medical equipment</td><td>Can damage cells</td></tr>
+      </table>
+      <p>We feel infrared as heat. Long radio waves can travel a long way.</p>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Copy the table.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Match the use</h2>
+      <p>Which wave is used for each job?</p>
+      <div class="match">
+        <div class="m pick" data-correct="0" data-ok="Microwaves heat the water in food." data-no="Not quite. Which wave heats the water in food? Press Back to look at the table.">
+          <p>Cooking food</p>
+          <div class="choices"><button class="choice" type="button">Microwaves</button><button class="choice" type="button">Gamma rays</button><button class="choice" type="button">Ultraviolet</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="2" data-ok="A TV remote sends out infrared." data-no="Not quite. Press Back and look at the 'A use' column of the table.">
+          <p>A TV remote</p>
+          <div class="choices"><button class="choice" type="button">X-rays</button><button class="choice" type="button">Radio waves</button><button class="choice" type="button">Infrared</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="Radio waves have long wavelengths and travel a long way." data-no="Not quite. Which wave has the longest wavelength?">
+          <p>Sending a radio show to a town far away</p>
+          <div class="choices"><button class="choice" type="button">Visible light</button><button class="choice" type="button">Radio waves</button><button class="choice" type="button">Ultraviolet</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Cooking food: ______. TV remote: ______. Radio show far away: ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card" style="--mc:var(--hot)">
+      <p class="part">Demo</p>
+      <h2>The TV remote and the camera</h2>
+      <p>Point a TV remote at a phone camera. Press a button.</p>
+      <p>Use the front (selfie) camera. Your teacher may do this with you.</p>
+      <div class="scene">
+        <svg id="svgRem" viewBox="0 0 600 230" role="img" aria-label="A TV remote points at a phone. An eye looks at the remote and sees nothing. The phone camera screen shows the end of the remote flashing."></svg>
+        <div class="row"><button class="btn primary" type="button" id="remGo">Press the button</button><button class="btn" type="button" id="remStop">Stop</button></div>
+      </div>
+      <p class="look" id="remTxt">The remote is not sending anything yet.</p>
+      <p><b>Your eyes see nothing. Why can the phone camera see the flash?</b></p>
+      <div class="pick" data-correct="0" data-ok="The camera can detect infrared. Our eyes can only detect visible light." data-no="Not quite. Think about which part of the spectrum our eyes can detect.">
+        <div class="choices"><button class="choice" type="button">The camera detects infrared</button><button class="choice" type="button">The camera makes the light</button><button class="choice" type="button">The remote sends sound</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>A TV remote sends out ______. My eyes cannot see it, but a phone camera can.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">X-rays</p>
+      <h2>Images of bones</h2>
+      <div class="scene">
+        <svg id="svgXray" viewBox="0 0 500 215" role="img" aria-label="X-rays shine through a hand onto an image. On the dark X-ray image, the bones show up light and the soft tissue is faint.">
+          <g font-size="15" font-weight="700" text-anchor="middle">
+            <g style="stroke:var(--rad)" stroke-width="3"><path d="M20 60 H298 M20 105 H298 M20 145 H298"/></g>
+            <text x="60" y="40" style="fill:var(--ink)">X-rays</text>
+            <path transform="translate(-185,0)" style="fill:var(--focus);stroke:var(--ink)" opacity=".85" stroke-width="2" d="M340 160 V95 Q340 80 352 80 L352 40 Q360 30 368 40 V80 L378 80 V32 Q386 22 394 32 V80 L404 80 V38 Q412 28 420 38 V85 Q430 90 432 100 L432 160 Z"/>
+            <text x="200" y="185" style="fill:var(--ink)">Hand</text>
+            <rect id="xFilm" stroke-width="2" style="stroke:var(--ink)" x="300" y="24" width="170" height="155" rx="8"/>
+            <path id="xTis" opacity=".35" d="M340 160 V95 Q340 80 352 80 L352 40 Q360 30 368 40 V80 L378 80 V32 Q386 22 394 32 V80 L404 80 V38 Q412 28 420 38 V85 Q430 90 432 100 L432 160 Z"/>
+            <g id="xBone"><rect x="357" y="45" width="6" height="40" rx="3"/><rect x="383" y="38" width="6" height="45" rx="3"/><rect x="409" y="44" width="6" height="42" rx="3"/><rect x="360" y="95" width="6" height="60" rx="3"/><rect x="383" y="95" width="6" height="60" rx="3"/><rect x="406" y="95" width="6" height="60" rx="3"/></g>
+            <text x="385" y="14" style="fill:var(--ink)">X-ray image</text>
+            <text x="385" y="205" style="fill:var(--ink)">Bones show up light</text>
+          </g>
+        </svg>
+      </div>
+      <ul class="pts">
+        <li>Bones absorb more X-rays than soft tissue.</li>
+        <li>So bones show up clearly on the image.</li>
+        <li>X-ray exposure is kept short because X-rays can damage cells.</li>
+      </ul>
+      <p><b>Why do bones show up clearly on an X-ray image?</b></p>
+      <div class="pick" data-correct="1" data-ok="Bones absorb more X-rays, so fewer get through to the image." data-no="Not quite. Read the first point again.">
+        <div class="choices"><button class="choice" type="button">Bones give off X-rays</button><button class="choice" type="button">Bones absorb more X-rays</button><button class="choice" type="button">Skin blocks all X-rays</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Bones show up on an X-ray image because they ______ more X-rays than soft tissue.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Energy and safety</p>
+      <h2>Lower or higher energy?</h2>
+      <div class="defn" style="--mc:var(--hot)">Waves with <b>higher energy</b> can damage cells. These are ultraviolet, X-rays and gamma rays.</div>
+      <p>We use sunscreen to protect our skin from UV. Lead aprons protect people during X-rays.</p>
+      <p>UV beads change colour in sunlight but not under the classroom lights.</p>
+      <div class="match">
+        <div class="m pick" data-correct="0" data-ok="Radio waves have the lowest energy." data-no="Not quite. Where are radio waves on the spectrum?">
+          <p>Radio waves</p>
+          <div class="choices"><button class="choice" type="button">Lower energy</button><button class="choice" type="button">Higher energy</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="Gamma rays have the most energy of all." data-no="Not quite. Where are gamma rays on the spectrum?">
+          <p>Gamma rays</p>
+          <div class="choices"><button class="choice" type="button">Lower energy</button><button class="choice" type="button">Higher energy</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="0" data-ok="Infrared has less energy than visible light." data-no="Not quite. Is infrared before or after visible light?">
+          <p>Infrared</p>
+          <div class="choices"><button class="choice" type="button">Lower energy</button><button class="choice" type="button">Higher energy</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Ultraviolet, X-rays and gamma rays have ______ energy. They can damage ______. We protect our skin from UV with ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Key words</p>
+      <h2>The electromagnetic spectrum</h2>
+      <div class="fill">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">The full range of electromagnetic waves is the <button class="blank" type="button" data-answer="spectrum"></button>.</p>
+        <p class="sent">A tiny packet of electromagnetic energy is a <button class="blank" type="button" data-answer="photon"></button>.</p>
+        <p class="sent">The wave with the longest wavelength is <button class="blank" type="button" data-answer="radio waves"></button>.</p>
+        <p class="sent">The wave with the most energy is <button class="blank" type="button" data-answer="gamma rays"></button>.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">gamma rays</button><button class="chip" type="button">photon</button><button class="chip" type="button">radio waves</button><button class="chip" type="button">spectrum</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Copy the four sentences.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <h2>Well done!</h2>
+      <p>Tick each one you can do now.</p>
+      <ul class="checklist">
+        <li><label><input type="checkbox"> I can list the seven parts of the electromagnetic spectrum in order.</label></li>
+        <li><label><input type="checkbox"> I can say that shorter wavelength means higher frequency and more energy.</label></li>
+        <li><label><input type="checkbox"> I can give a use for each kind of wave.</label></li>
+        <li><label><input type="checkbox"> I can say why UV, X-rays and gamma rays need care.</label></li>
+      </ul>
+      <p class="rule">Show your teacher your book.</p>
+    </div>
+  </section>
+
+  <div class="pager">
+    <button class="btn" type="button" id="prev">← Back</button>
+    <button class="btn primary" type="button" id="next">Next →</button>
+  </div>
+  <footer>Year 9 Science · Energy transfer · Lesson 8</footer>
+</div>
+<script>(function(){const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const NS="http://www.w3.org/2000/svg";const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;const KEY=document.body.dataset.key;const store={get(k){try{return JSON.parse(localStorage.getItem(KEY+k))}catch(e){return null}},set(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}};function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}function hex(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");return[0,2,4].map(i=>parseInt(h.substr(i,2),16))}function mix(a,b,t){const pa=hex(a),pb=hex(b);return"rgb("+pa.map((x,i)=>Math.round(x+(pb[i]-x)*t)).join(",")+")"}function label(svg,x,y,t,anchor,fill,size){const e=el("text",{x:x,y:y,"text-anchor":anchor||"middle","font-family":"Atkinson Hyperlegible, system-ui, sans-serif","font-size":size||15,"font-weight":700,fill:fill||css("--ink")},svg);e.textContent=t;return e}function anim(fn){let raf=null,last=null;function loop(ts){const now=ts/1e3,dt=Math.min(.05,now-(last||now));last=now;fn(dt,now);raf=requestAnimationFrame(loop)}return{start(){if(reduce){fn(0,0);return}if(!raf){last=null;raf=requestAnimationFrame(loop)}},stop(){if(raf){cancelAnimationFrame(raf);raf=null}},get on(){return!!raf}}}window.K={$,$$,el,css,mix,label,anim,reduce};const steps=$$(".step");let cur=0;function go(i){cur=Math.max(0,Math.min(steps.length-1,i));steps.forEach((s,j)=>s.hidden=j!==cur);$("#pn").textContent="Step "+(cur+1)+" of "+steps.length;$("#pb").style.width=(cur+1)/steps.length*100+"%";$("#prev").disabled=cur===0;$("#next").hidden=cur===steps.length-1;store.set("step",cur);window.scrollTo({top:0,behavior:"auto"});document.dispatchEvent(new CustomEvent("stepchange",{detail:cur}))}$("#prev").onclick=()=>go(cur-1);$("#next").onclick=()=>go(cur+1);$$(".pick").forEach(box=>{const btns=[...box.querySelectorAll(":scope > .choices .choice")],fb=box.querySelector(":scope > .fb"),ok=+box.dataset.correct;btns.forEach((b,i)=>b.onclick=()=>{btns.forEach((x,j)=>{x.setAttribute("aria-pressed",j===i);x.classList.remove("ok","no")});b.classList.add(i===ok?"ok":"no");fb.hidden=false;fb.className="fb "+(i===ok?"ok":"no");fb.innerHTML=i===ok?"<b>✓ Yes!</b> "+box.dataset.ok:"<b>✗</b> "+box.dataset.no})});$$(".fill").forEach(box=>{const blanks=[...box.querySelectorAll(".blank")],chips=[...box.querySelectorAll(".chip")],fb=box.querySelector(".fb");function sync(){chips.forEach((c,i)=>{c.disabled=blanks.some(b=>b.dataset.src===String(i))})}function empty(b){b.textContent="";delete b.dataset.src;b.classList.remove("ok","no")}chips.forEach((c,i)=>c.onclick=()=>{const e=blanks.find(b=>!b.textContent);if(!e)return;e.textContent=c.textContent;e.dataset.src=i;e.classList.remove("ok","no");fb.hidden=true;sync()});blanks.forEach(b=>b.onclick=()=>{empty(b);fb.hidden=true;sync()});box.querySelector("[data-clear]").onclick=()=>{blanks.forEach(empty);fb.hidden=true;sync()};box.querySelector("[data-check]").onclick=()=>{if(blanks.some(b=>!b.textContent)){fb.hidden=false;fb.className="fb no";fb.innerHTML="<b>Fill every gap first.</b> Tap a word below.";return}let all=true;blanks.forEach(b=>{const r=b.textContent===b.dataset.answer;b.classList.toggle("ok",r);b.classList.toggle("no",!r);if(!r)all=false});fb.hidden=false;fb.className="fb "+(all?"ok":"no");fb.innerHTML=all?"<b>✓ All correct!</b> Now write it in your book.":"<b>✗ Not yet.</b> Tap a red word to take it out, then try again."}});window.addEventListener("load",()=>{const sv=store.get("step");go(typeof sv==="number"?sv:0)})})();</script>
+<script>(function(){const{$,$$,el,css,label,anim,reduce}=K;const all=[];
+const sweep=function(){const svg=$("#svgSweep");let t=0,wave,name,boxes=[],ptr;const R=["Radio","Microwave","Infrared","Visible","UV","X-ray","Gamma"],full=["Radio waves","Microwaves","Infrared","Visible light","Ultraviolet","X-rays","Gamma rays"],C=["--cold","--conv","--hot","--focus","--cond","--rad","--ink"];const W=84,G=6,X0=18;
+function build(){svg.innerHTML="";R.forEach((r,i)=>{const x=X0+i*(W+G);boxes.push(el("rect",{x:x,y:150,width:W,height:40,rx:6,fill:css(C[i]),opacity:.25,stroke:css("--ink"),"stroke-width":1.5},svg));label(svg,x+W/2,176,r,"middle",css("--ink"),14)});label(svg,X0,218,"Long wavelength","start",css("--muted"),14);label(svg,622,218,"Short wavelength","end",css("--muted"),14);el("path",{d:"M190 213 H450 M450 213 l-9 -5 M450 213 l-9 5",fill:"none",stroke:css("--muted"),"stroke-width":2},svg);wave=el("path",{fill:"none","stroke-width":3},svg);name=label(svg,320,26,"","middle",css("--ink"),20);ptr=el("path",{fill:css("--ink")},svg);draw()}
+function draw(){const k=Math.min(6,Math.floor((t%14)/2));const lam=[300,150,80,45,25,13,7][k];let d="";for(let i=0;i<=600;i++){const x=20+i,y=88+34*Math.sin(2*Math.PI*(x/lam)-t*6);d+=(i?"L":"M")+x+" "+y.toFixed(1)}wave.setAttribute("d",d);wave.setAttribute("stroke",css(C[k]));name.textContent=(k+1)+". "+full[k];boxes.forEach((b,i)=>b.setAttribute("opacity",i===k?.75:.2));const cx=X0+k*(W+G)+W/2;ptr.setAttribute("d",`M${cx} 146 l-8 -12 h16 z`)}
+const A=anim(dt=>{t+=dt;draw()});build();return{start(){if(reduce){t=6.5;draw();return}A.start()},stop(){A.stop()}}}();all.push(sweep);$("#swGo").onclick=sweep.start;$("#swStop").onclick=sweep.stop;
+const rem=function(){const svg=$("#svgRem");let t=0,on=false,beam,dot,scrDot,eyeX;
+function build(){svg.innerHTML="";el("rect",{x:30,y:70,width:60,height:120,rx:12,fill:css("--soft"),stroke:css("--ink"),"stroke-width":2.5},svg);for(let i=0;i<3;i++)for(let j=0;j<2;j++)el("circle",{cx:48+j*24,cy:120+i*22,r:6,fill:css("--muted")},svg);dot=el("circle",{cx:60,cy:84,r:6,fill:css("--muted")},svg);label(svg,60,214,"TV remote","middle",css("--ink"),15);
+beam=el("g",{},svg);
+el("rect",{x:430,y:40,width:120,height:170,rx:14,fill:css("--surface"),stroke:css("--ink"),"stroke-width":2.5},svg);el("rect",{x:442,y:56,width:96,height:130,rx:6,fill:css("--ink")},svg);el("rect",{x:470,y:100,width:40,height:44,rx:6,fill:css("--muted"),opacity:.6},svg);scrDot=el("circle",{cx:490,cy:106,r:9,fill:css("--rad"),opacity:0},svg);label(svg,490,226,"Phone camera screen","middle",css("--ink"),15);
+el("path",{d:"M150 40 Q180 18 210 40 Q180 62 150 40 Z",fill:css("--surface"),stroke:css("--ink"),"stroke-width":2.5},svg);el("circle",{cx:180,cy:40,r:8,fill:css("--ink")},svg);eyeX=label(svg,222,46,"Eye: sees nothing","start",css("--muted"),15);draw()}
+function draw(){beam.innerHTML="";const fl=on&&Math.sin(t*14)>0;if(on){for(let i=0;i<3;i++){const s=((t*0.9+i/3)%1),x=100+s*320;el("path",{d:`M${x} ${84-14} q10 14 0 28`,fill:"none",stroke:css("--muted"),"stroke-width":2.5,"stroke-dasharray":"4 4",opacity:(1-s*.6).toFixed(2)},beam)}const l=el("text",{x:260,y:120,"text-anchor":"middle","font-size":14,"font-weight":700,fill:css("--muted"),"font-family":"Atkinson Hyperlegible, system-ui, sans-serif"},beam);l.textContent="Infrared (invisible)"}scrDot.setAttribute("opacity",on?(fl?1:.35):0)}
+const A=anim(dt=>{t+=dt;draw()});build();return{start(){on=true;$("#remTxt").textContent="Your eye sees no light from the remote. The phone screen shows the end of the remote flashing.";if(reduce){t=.05;draw();return}A.start()},stop(){A.stop();on=false;draw();$("#remTxt").textContent="The remote is not sending anything yet."}}}();all.push(rem);$("#remGo").onclick=rem.start;$("#remStop").onclick=rem.stop;
+function lum(c){const m=c.match(/[0-9a-f]{2}/gi);return m?m.slice(0,3).reduce((a,h)=>a+parseInt(h,16),0):0}function xray(){const a=css("--ink"),b=css("--bg"),isL=lum(a)<lum(b),dk=isL?a:css("--soft"),lt=isL?b:a;$("#xFilm").setAttribute("fill",dk);$("#xTis").setAttribute("fill",css("--muted"));$("#xTis").setAttribute("opacity",isL?.5:.35);$("#xBone").setAttribute("fill",lt)}xray();if(window.matchMedia)window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",xray);
+document.addEventListener("stepchange",()=>all.forEach(x=>x.stop()))})();</script>
+</body>
+</html>
