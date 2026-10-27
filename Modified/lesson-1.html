@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 1: Heat transfer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+:root{
+  --bg:#eef3f1;--surface:#ffffff;--ink:#1c2b3a;--muted:#51616f;--line:#cfdad6;--soft:#e3ebe8;
+  --focus:#d99a00;--good:#2d7a46;--bad:#b3261e;--book:#fff4d6;--bookline:#d99a00;
+  --hot:#cf4a1f;--cold:#2f6fb0;--cond:#7a4fb0;--conv:#0f7d74;--rad:#b0336e;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;--body:"Atkinson Hyperlegible",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141d24;--surface:#1c2832;--ink:#e4ecf0;--muted:#9fb0bc;--line:#2d3d49;--soft:#24323d;
+  --focus:#f2bf3a;--good:#7cc596;--bad:#f08a80;--book:#2d2710;--bookline:#f2bf3a;
+  --hot:#ff7a4d;--cold:#6aa7e8;--cond:#b892ee;--conv:#4cc2b6;--rad:#ee7fb0;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.5 var(--body)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:900px;margin:0 auto;padding:18px 16px 36px}
+.back{display:inline-block;font:700 1rem var(--body);color:var(--ink);text-decoration:underline;text-underline-offset:3px;padding:8px 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.top .t{font:800 1.3rem var(--display)}
+.prog{display:flex;gap:6px;align-items:center;font-size:.95rem;color:var(--muted)}
+.bar{width:160px;height:10px;border-radius:99px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:99px;transition:width .3s}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.part{font:700 .85rem var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 4px}
+h1{font:800 clamp(1.8rem,4vw,2.4rem)/1.1 var(--display);margin:0 0 12px}
+h2{font:800 1.6rem/1.2 var(--display);margin:0 0 12px}
+p{margin:0 0 12px}
+.big{font-size:1.15rem}
+.defn{border:3px solid var(--mc,var(--ink));border-radius:14px;padding:12px 16px;margin:0 0 14px;font-size:1.1rem}
+.defn b{color:var(--mc,var(--ink))}
+ul.pts{margin:0 0 12px;padding-left:22px}
+ul.pts li{margin-bottom:6px}
+.scene{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:8px;margin:0 0 12px}
+.scene svg{display:block;width:100%;height:auto;max-height:340px}
+.btn{font:700 1.05rem var(--body);color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:999px;min-height:48px;padding:8px 20px;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--surface)}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.scene .row{margin:8px 4px 4px}
+.look{font-size:1rem;color:var(--muted)}
+.rule{background:var(--book);border:2px solid var(--bookline);border-radius:14px;padding:12px 16px;font-weight:700}
+.book{display:flex;gap:12px;align-items:flex-start;background:var(--book);border:2px dashed var(--bookline);border-radius:14px;padding:12px 16px;margin-top:16px}
+.book .ic{font-size:1.5rem;line-height:1}
+.book .h{font-weight:700;display:block}
+.choices{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 4px}
+.choice{font:700 1.05rem var(--body);color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:14px;min-height:52px;padding:10px 18px;cursor:pointer}
+.choice[aria-pressed="true"]{border-color:var(--ink);background:var(--surface)}
+.choice.ok{border-color:var(--good);box-shadow:inset 0 0 0 2px var(--good)}
+.choice.no{border-color:var(--bad)}
+.fb{margin:8px 0 0;font-size:1.05rem}
+.fb.ok b{color:var(--good)}.fb.no b{color:var(--bad)}
+.fill .sent{font-size:1.2rem;line-height:2.4;margin:0 0 6px}
+.blank{display:inline-block;min-width:120px;min-height:44px;vertical-align:middle;border:none;border-bottom:3px solid var(--ink);background:var(--soft);border-radius:8px 8px 0 0;font:700 1.1rem var(--body);color:var(--ink);padding:4px 12px;cursor:pointer;text-align:center}
+.blank.ok{border-bottom-color:var(--good);color:var(--good)}
+.blank.no{border-bottom-color:var(--bad);color:var(--bad)}
+.bank{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.bank .lab{width:100%;font-size:.95rem;color:var(--muted)}
+.chip{font:700 1.05rem var(--body);background:var(--surface);color:var(--ink);border:2px solid var(--ink);border-radius:12px;min-height:48px;padding:6px 18px;cursor:pointer}
+.chip:disabled{opacity:.3}
+.match{display:grid;gap:12px}
+.match .m{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg)}
+.match .m p{margin:0 0 4px;font-weight:700}
+.reveal{margin-top:12px}
+.reveal>summary{display:inline-flex;gap:6px;list-style:none;cursor:pointer;font:700 .9rem var(--body);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px;min-height:38px;align-items:center}
+.reveal>summary::-webkit-details-marker{display:none}
+.reveal>summary::before{content:"▸"}.reveal[open]>summary::before{content:"▾"}
+.reveal .body{margin-top:8px;padding:8px 14px;border-left:3px solid var(--line);font-size:1.05rem}
+.checklist{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:6px}
+.checklist label{display:flex;gap:12px;align-items:flex-start;cursor:pointer;min-height:48px;padding:6px 0;font-size:1.1rem}
+.checklist input{width:26px;height:26px;margin-top:3px;accent-color:var(--good);flex:none}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+footer{margin-top:24px;color:var(--muted);font-size:.9rem;text-align:center}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="./">← My lessons</a>
+  <div class="top">
+    <span class="t">Lesson 1: Heat transfer</span>
+    <span class="prog"><span id="pn">Step 1 of 12</span><span class="bar"><i id="pb"></i></span></span>
+  </div>
+
+  <section class="step">
+    <div class="card">
+      <h1>Lesson 1: Heat transfer</h1>
+      <p class="big"><b>My goal:</b> I can name the three ways heat moves.</p>
+      <p>Today you will learn three new words:</p>
+      <ul class="pts">
+        <li><b style="color:var(--cond)">conduction</b></li>
+        <li><b style="color:var(--conv)">convection</b></li>
+        <li><b style="color:var(--rad)">radiation</b></li>
+      </ul>
+      <p class="rule">Write every answer in your book. Ticking on the screen is not enough.</p>
+      <p>Press <b>Next</b> to start.</p>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Getting started</p>
+      <h2>Heat moves from hot to cold</h2>
+      <div class="scene">
+        <svg viewBox="0 0 420 170" role="img" aria-label="A hot cup on the left. An arrow labelled heat points from the cup to a cold hand on the right.">
+          <rect style="fill:var(--hot)" x="40" y="50" width="80" height="90" rx="10"/>
+          <path style="fill:none;stroke:var(--hot)" d="M120 75c30 0 30 40 0 40" stroke-width="10"/>
+          <path style="fill:none;stroke:var(--muted)" d="M60 40c-8-10 8-16 0-28M90 40c-8-10 8-16 0-28" stroke-width="4" stroke-linecap="round"/>
+          <text x="80" y="164" text-anchor="middle" font-size="18" font-weight="700" style="fill:var(--ink)">Hot cup</text>
+          <path style="fill:var(--ink)" d="M170 92h120v-14l30 22-30 22v-14h-120z"/>
+          <text x="240" y="70" text-anchor="middle" font-size="18" font-weight="700" style="fill:var(--ink)">Heat</text>
+          <rect style="fill:var(--cold)" x="340" y="60" width="50" height="80" rx="20"/>
+          <text x="365" y="164" text-anchor="middle" font-size="18" font-weight="700" style="fill:var(--ink)">Cold hand</text>
+        </svg>
+      </div>
+      <p><b>Heat is energy that moves from something hot to something colder.</b></p>
+      <div class="fill" data-q="hot">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">Heat moves from <button class="blank" type="button" data-answer="hot"></button> to <button class="blank" type="button" data-answer="cold"></button>.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">cold</button><button class="chip" type="button">hot</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Write the full sentence.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card" style="--mc:var(--cond)">
+      <p class="part">Way 1</p>
+      <h2>Conduction</h2>
+      <div class="defn"><b>Conduction</b> is heat moving through a solid, from particle to particle.</div>
+      <div class="scene">
+        <svg id="svgCond" viewBox="0 0 520 230" role="img" aria-label="Particles in a metal rod. The left end is heated. The particles there shake faster, and the shaking spreads along the rod."></svg>
+        <div class="row"><button class="btn primary" type="button" id="condGo">Turn on the heat</button><button class="btn" type="button" id="condReset">Start again</button></div>
+      </div>
+      <ul class="pts">
+        <li>The heat makes the particles at the hot end shake faster.</li>
+        <li>They bump into the next particles and make them shake too.</li>
+        <li>The heat moves along the rod. The particles stay in place.</li>
+      </ul>
+      <p class="look">Look: red particles are shaking fast. Blue particles are shaking slowly.</p>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Way 1: Conduction</p>
+      <h2>Which pin falls first?</h2>
+      <div class="scene">
+        <svg viewBox="0 0 460 170" role="img" aria-label="A metal rod with four pins stuck under it with wax, numbered 1 to 4 from left to right. A flame heats the left end.">
+          <rect style="fill:var(--muted);stroke:var(--ink)" x="40" y="40" width="390" height="22" rx="6" stroke-width="2"/>
+          <g font-size="18" font-weight="700" text-anchor="middle">
+            <line style="stroke:var(--ink)" x1="120" y1="62" x2="120" y2="112" stroke-width="4"/><circle style="fill:var(--ink)" cx="120" cy="116" r="6"/><text x="120" y="145" style="fill:var(--ink)">1</text>
+            <line style="stroke:var(--ink)" x1="200" y1="62" x2="200" y2="112" stroke-width="4"/><circle style="fill:var(--ink)" cx="200" cy="116" r="6"/><text x="200" y="145" style="fill:var(--ink)">2</text>
+            <line style="stroke:var(--ink)" x1="280" y1="62" x2="280" y2="112" stroke-width="4"/><circle style="fill:var(--ink)" cx="280" cy="116" r="6"/><text x="280" y="145" style="fill:var(--ink)">3</text>
+            <line style="stroke:var(--ink)" x1="360" y1="62" x2="360" y2="112" stroke-width="4"/><circle style="fill:var(--ink)" cx="360" cy="116" r="6"/><text x="360" y="145" style="fill:var(--ink)">4</text>
+          </g>
+          <path style="fill:var(--hot)" d="M55 150c-18-12-14-34 0-48c14 14 18 36 0 48z"/>
+          <path style="fill:var(--focus)" d="M55 146c-8-6-7-18 0-26c7 8 8 20 0 26z"/>
+          <text x="55" y="168" text-anchor="middle" font-size="15" font-weight="700" style="fill:var(--ink)">Heat</text>
+        </svg>
+      </div>
+      <p>Your teacher heats one end of a metal rod. Pins are stuck to the rod with wax.</p>
+      <p><b>Which pin will fall off first?</b></p>
+      <div class="pick" data-correct="0" data-ok="Pin 1 is closest to the heat. The heat reaches it first by conduction." data-no="Not quite. Which pin does the heat reach first?">
+        <div class="choices"><button class="choice" type="button">Pin 1</button><button class="choice" type="button">Pin 4</button><button class="choice" type="button">All at the same time</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Pin ___ falls off first. The heat moves along the rod by ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card" style="--mc:var(--conv)">
+      <p class="part">Way 2</p>
+      <h2>Convection</h2>
+      <div class="defn"><b>Convection</b> is heat moving when a hot liquid or gas rises.</div>
+      <div class="scene">
+        <svg id="svgConv" viewBox="0 0 520 268" role="img" aria-label="A beaker of water heated under the left side. Hot water rises on the left, moves across the top, cools and sinks on the right, then moves back along the bottom."></svg>
+        <div class="row"><button class="btn primary" type="button" id="convGo">Turn on the heat</button><button class="btn" type="button" id="convReset">Start again</button></div>
+      </div>
+      <ul class="pts">
+        <li>Hot water rises.</li>
+        <li>At the top it cools down, so it sinks.</li>
+        <li>This makes a loop. The loop is called a <b>convection current</b>.</li>
+      </ul>
+      <p class="look">Look: red particles go up on the left. Blue particles come down on the right.</p>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Way 2: Convection</p>
+      <h2>Rise or sink?</h2>
+      <p>Your teacher drops a purple crystal into water and heats one side. The purple water moves in a loop.</p>
+      <div class="fill" data-q="conv">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent">Hot water <button class="blank" type="button" data-answer="rises"></button>.</p>
+        <p class="sent">Cool water <button class="blank" type="button" data-answer="sinks"></button>.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">sinks</button><button class="chip" type="button">rises</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Write both sentences. Then write: This loop is called ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card" style="--mc:var(--rad)">
+      <p class="part">Way 3</p>
+      <h2>Radiation</h2>
+      <div class="defn"><b>Radiation</b> is heat moving as invisible waves. It does not need any particles.</div>
+      <div class="scene">
+        <svg id="svgRad" viewBox="0 0 520 230" role="img" aria-label="A hot heater on the left sends invisible waves across empty space. The waves warm a can on the right."></svg>
+        <div class="row"><button class="btn primary" type="button" id="radGo">Turn on the heat</button><button class="btn" type="button" id="radReset">Start again</button></div>
+      </div>
+      <ul class="pts">
+        <li>Hot things send out invisible heat waves.</li>
+        <li>The waves can travel through empty space.</li>
+        <li>You don't need to touch the hot thing to feel it.</li>
+      </ul>
+      <p class="look">Look: the waves cross the empty gap and the can gets warmer.</p>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Way 3: Radiation</p>
+      <h2>Heat from the Sun</h2>
+      <div class="scene">
+        <svg viewBox="0 0 460 150" role="img" aria-label="The Sun on the left, empty space in the middle, Earth on the right.">
+          <circle style="fill:var(--focus)" cx="70" cy="75" r="50"/>
+          <text x="70" y="145" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--ink)">Sun</text>
+          <text x="230" y="80" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--muted)">Empty space</text>
+          <circle style="fill:var(--cold)" cx="395" cy="75" r="34"/>
+          <path style="fill:var(--good)" d="M380 55c10 0 14 10 6 16s-14 4-14-6zM395 85c12-4 18 6 10 12s-16 0-10-12z"/>
+          <text x="395" y="145" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--ink)">Earth</text>
+        </svg>
+      </div>
+      <p>Between the Sun and Earth there is empty space. There are almost no particles.</p>
+      <p><b>How does heat from the Sun reach Earth?</b></p>
+      <div class="pick" data-correct="2" data-ok="Only radiation can travel through empty space. It does not need particles." data-no="Not quite. Which way of moving heat works with no particles?">
+        <div class="choices"><button class="choice" type="button">Conduction</button><button class="choice" type="button">Convection</button><button class="choice" type="button">Radiation</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Heat from the Sun reaches Earth by ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>Name the way</h2>
+      <p>For each one, choose the way the heat moves.</p>
+      <div class="match">
+        <div class="m pick" data-correct="0" data-ok="Your hands touch the solid mug." data-no="Not quite. Your hands are touching the mug.">
+          <p>A warm mug heats your hands.</p>
+          <div class="choices"><button class="choice" type="button">Conduction</button><button class="choice" type="button">Convection</button><button class="choice" type="button">Radiation</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="The warm air moves around the room." data-no="Not quite. The warm air is moving.">
+          <p>Warm air from a heater moves around the room.</p>
+          <div class="choices"><button class="choice" type="button">Conduction</button><button class="choice" type="button">Convection</button><button class="choice" type="button">Radiation</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="2" data-ok="Heat waves come from the Sun." data-no="Not quite. You are not touching the Sun.">
+          <p>The Sun warms your skin.</p>
+          <div class="choices"><button class="choice" type="button">Conduction</button><button class="choice" type="button">Convection</button><button class="choice" type="button">Radiation</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Write each example. Next to it, write the way heat moves.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Practice</p>
+      <h2>The boiling pot</h2>
+      <div class="scene">
+        <svg viewBox="0 20 400 280" role="img" aria-label="A metal pot of water on a hot stove. Spot 1 is the metal handle. Spot 2 is the water inside the pot. Spot 3 is beside the hot stove.">
+          <rect style="fill:var(--surface);stroke:var(--ink)" x="100" y="110" width="180" height="140" rx="6" stroke-width="4"/>
+          <rect style="fill:var(--cold)" x="104" y="138" width="172" height="108" opacity=".22"/>
+          <path style="fill:none;stroke:var(--cold)" d="M150 230 C150 190 150 170 165 160 C185 150 215 150 235 160 C250 170 250 200 245 230" stroke-width="3" stroke-dasharray="6 6"/>
+          <rect style="fill:var(--muted);stroke:var(--ink)" x="280" y="130" width="90" height="16" rx="8" stroke-width="3"/>
+          <rect style="fill:var(--hot)" x="90" y="256" width="200" height="14" rx="7"/>
+          <rect style="fill:var(--soft);stroke:var(--ink)" x="70" y="272" width="240" height="18" rx="4" stroke-width="2"/>
+          <path style="fill:none;stroke:var(--hot)" d="M58 266c-8-4-8-10 0-14s8-10 0-14M42 266c-8-4-8-10 0-14s8-10 0-14" stroke-width="3"/>
+          <g font-size="18" font-weight="700" text-anchor="middle">
+            <circle style="fill:var(--ink)" cx="345" cy="104" r="17"/><text x="345" y="110" style="fill:var(--surface)">1</text>
+            <circle style="fill:var(--ink)" cx="200" cy="196" r="17"/><text x="200" y="202" style="fill:var(--surface)">2</text>
+            <circle style="fill:var(--ink)" cx="28" cy="226" r="17"/><text x="28" y="232" style="fill:var(--surface)">3</text>
+          </g>
+        </svg>
+      </div>
+      <div class="match">
+        <div class="m pick" data-correct="0" data-ok="Heat moves through the solid metal handle." data-no="Not quite. The handle is a solid.">
+          <p>1. The metal handle gets hot.</p>
+          <div class="choices"><button class="choice" type="button">Conduction</button><button class="choice" type="button">Convection</button><button class="choice" type="button">Radiation</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="1" data-ok="Hot water rises and cool water sinks." data-no="Not quite. The water is moving in a loop.">
+          <p>2. The water moves in a loop.</p>
+          <div class="choices"><button class="choice" type="button">Conduction</button><button class="choice" type="button">Convection</button><button class="choice" type="button">Radiation</button></div>
+          <p class="fb" hidden></p>
+        </div>
+        <div class="m pick" data-correct="2" data-ok="Invisible heat waves come out of the hot stove." data-no="Not quite. You are not touching the stove.">
+          <p>3. Your hand feels warm beside the stove.</p>
+          <div class="choices"><button class="choice" type="button">Conduction</button><button class="choice" type="button">Convection</button><button class="choice" type="button">Radiation</button></div>
+          <p class="fb" hidden></p>
+        </div>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Handle = ______. Water = ______. Beside the stove = ______.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <p class="part">Key words</p>
+      <h2>The three ways</h2>
+      <div class="fill" data-q="defs">
+        <p>Tap a word to fill each gap.</p>
+        <p class="sent"><b style="color:var(--cond)">Conduction:</b> heat moves through a <button class="blank" type="button" data-answer="solid"></button>.</p>
+        <p class="sent"><b style="color:var(--conv)">Convection:</b> a hot liquid or gas <button class="blank" type="button" data-answer="rises"></button>.</p>
+        <p class="sent"><b style="color:var(--rad)">Radiation:</b> heat moves as invisible <button class="blank" type="button" data-answer="waves"></button>.</p>
+        <div class="bank"><span class="lab">Words to use</span><button class="chip" type="button">waves</button><button class="chip" type="button">solid</button><button class="chip" type="button">rises</button></div>
+        <div class="row"><button class="btn" type="button" data-check>Check</button><button class="btn" type="button" data-clear>Clear</button></div>
+        <p class="fb" hidden></p>
+      </div>
+      <div class="book"><span class="ic">✎</span><span><span class="h">Write in your book</span>Copy the three sentences.</span></div>
+    </div>
+  </section>
+
+  <section class="step" hidden>
+    <div class="card">
+      <h2>Well done!</h2>
+      <p>Tick each one you can do now.</p>
+      <ul class="checklist">
+        <li><label><input type="checkbox"> I can say that heat moves from hot to cold.</label></li>
+        <li><label><input type="checkbox"> I can name the three ways heat moves.</label></li>
+        <li><label><input type="checkbox"> I can give one example of each way.</label></li>
+      </ul>
+      <p class="rule">Show your teacher your book.</p>
+    </div>
+  </section>
+
+  <div class="pager">
+    <button class="btn" type="button" id="prev">← Back</button>
+    <button class="btn primary" type="button" id="next">Next →</button>
+  </div>
+  <footer>Year 9 Science · Heat transfer · Lesson 1</footer>
+</div>
+<script>(function(){const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];const NS="http://www.w3.org/2000/svg";const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;const KEY="y9et-m1-v1";const store={get(k){try{return JSON.parse(localStorage.getItem(KEY+k))}catch(e){return null}},set(k,v){try{localStorage.setItem(KEY+k,JSON.stringify(v))}catch(e){}}};function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}function mix(a,b,t){const pa=hex(a),pb=hex(b);return"rgb("+pa.map((x,i)=>Math.round(x+(pb[i]-x)*t)).join(",")+")"}function hex(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");return[0,2,4].map(i=>parseInt(h.substr(i,2),16))}const steps=$$(".step");let cur=0;function go(i){cur=Math.max(0,Math.min(steps.length-1,i));steps.forEach((s,j)=>s.hidden=j!==cur);$("#pn").textContent="Step "+(cur+1)+" of "+steps.length;$("#pb").style.width=(cur+1)/steps.length*100+"%";$("#prev").disabled=cur===0;$("#next").hidden=cur===steps.length-1;store.set("step",cur);window.scrollTo({top:0,behavior:"auto"})}$("#prev").onclick=()=>go(cur-1);$("#next").onclick=()=>go(cur+1);const sv=store.get("step");go(typeof sv==="number"?sv:0);$$(".pick").forEach(box=>{const btns=[...box.querySelectorAll(":scope > .choices .choice")],fb=box.querySelector(":scope > .fb"),ok=+box.dataset.correct;btns.forEach((b,i)=>b.onclick=()=>{btns.forEach((x,j)=>{x.setAttribute("aria-pressed",j===i);x.classList.remove("ok","no")});b.classList.add(i===ok?"ok":"no");fb.hidden=false;fb.className="fb "+(i===ok?"ok":"no");fb.innerHTML=i===ok?"<b>✓ Yes!</b> "+box.dataset.ok:"<b>✗</b> "+box.dataset.no})});$$(".fill").forEach(box=>{const blanks=[...box.querySelectorAll(".blank")],chips=[...box.querySelectorAll(".chip")],fb=box.querySelector(".fb");function sync(){const used=blanks.map(b=>b.textContent);chips.forEach(c=>{c.disabled=used.includes(c.textContent)})}chips.forEach(c=>c.onclick=()=>{const e=blanks.find(b=>!b.textContent);if(!e)return;e.textContent=c.textContent;e.classList.remove("ok","no");fb.hidden=true;sync()});blanks.forEach(b=>b.onclick=()=>{b.textContent="";b.classList.remove("ok","no");fb.hidden=true;sync()});box.querySelector("[data-clear]").onclick=()=>{blanks.forEach(b=>{b.textContent="";b.classList.remove("ok","no")});fb.hidden=true;sync()};box.querySelector("[data-check]").onclick=()=>{if(blanks.some(b=>!b.textContent)){fb.hidden=false;fb.className="fb no";fb.innerHTML="<b>Fill every gap first.</b> Tap a word below.";return}let all=true;blanks.forEach(b=>{const r=b.textContent===b.dataset.answer;b.classList.toggle("ok",r);b.classList.toggle("no",!r);if(!r)all=false});fb.hidden=false;fb.className="fb "+(all?"ok":"no");fb.innerHTML=all?"<b>✓ All correct!</b> Now write it in your book.":"<b>✗ Not yet.</b> Tap a red word to take it out, then try again."}});function flame(g,x,y,on){g.innerHTML="";if(!on)return;el("path",{d:`M${x} ${y}c-14-10-10-26 0-38c10 12 14 28 0 38z`,fill:css("--hot")},g);el("path",{d:`M${x} ${y-2}c-6-5-5-14 0-20c5 6 6 15 0 20z`,fill:css("--focus")},g)}function label(svg,x,y,t,anchor,fill,size){const e=el("text",{x:x,y:y,"text-anchor":anchor||"middle","font-family":"Atkinson Hyperlegible, system-ui, sans-serif","font-size":size||15,"font-weight":700,fill:fill||css("--ink")},svg);e.textContent=t;return e}const cond=function(){const svg=$("#svgCond");const N=12,R=3;let parts=[],E=new Array(N*R).fill(0),on=false,t=0,raf=null,fl;function build(){svg.innerHTML="";el("rect",{x:40,y:58,width:440,height:112,rx:10,fill:css("--surface"),stroke:css("--ink"),"stroke-width":3},svg);label(svg,60,44,"Hot end","start");label(svg,460,44,"Cold end","end");label(svg,260,206,"Metal rod (particles shown much bigger than real life)","middle",css("--muted"),14);fl=el("g",{},svg);parts=[];for(let r=0;r<R;r++)for(let i=0;i<N;i++){const cx=70+i*35,cy=82+r*32;parts.push({cx:cx,cy:cy,c:el("circle",{cx:cx,cy:cy,r:12,fill:css("--cold"),stroke:css("--ink"),"stroke-width":1.2},svg)})}draw()}function draw(){const hot=css("--hot"),cold=css("--cold");parts.forEach((p,k)=>{const e=E[k],a=reduce?0:1+e*6;const dx=reduce?0:Math.sin(t*(18+k%5)+k)*a,dy=reduce?0:Math.cos(t*(21+k%7)+k*1.7)*a;p.c.setAttribute("cx",p.cx+dx);p.c.setAttribute("cy",p.cy+dy);p.c.setAttribute("fill",mix(cold,hot,Math.min(1,e)))});flame(fl,40,214,on)}function step(dt){if(on)for(let r=0;r<R;r++)E[r*N]=1;const n=E.slice();for(let r=0;r<R;r++)for(let i=0;i<N;i++){const k=r*N+i,l=i>0?E[k-1]:E[k],rr=i<N-1?E[k+1]:E[k];n[k]=E[k]+6*dt*(l+rr-2*E[k])}E=n}function loop(ts){const now=ts/1e3;const dt=Math.min(.05,now-(loop.last||now));loop.last=now;t=now;step(dt);draw();raf=requestAnimationFrame(loop)}function start(){on=true;if(reduce){E=E.map((_,k)=>Math.max(0,1-k%N/(N*.85)));draw();return}if(!raf){loop.last=null;raf=requestAnimationFrame(loop)}}function reset(){on=false;E.fill(0);if(raf){cancelAnimationFrame(raf);raf=null}t=0;draw()}build();return{start:start,reset:reset,build:build}}();$("#condGo").onclick=cond.start;$("#condReset").onclick=cond.reset;const conv=function(){const svg=$("#svgConv");const M=34;let ps=[],on=false,raf=null,fl,arrows;const L=120,Rr=400,T=70,B=178;function path(u){const w=Rr-L,h=B-T,per=2*(w+h);let d=u*per;if(d<h)return[L,B-d,"up"];d-=h;if(d<w)return[L+d,T,"top"];d-=w;if(d<h)return[Rr,T+d,"down"];d-=h;return[Rr-d,B,"bottom"]}function heat(u){const w=Rr-L,h=B-T,per=2*(w+h),d=u*per;if(d<h)return.55+.45*(d/h);if(d<h+w)return 1-.6*((d-h)/w);if(d<2*h+w)return.4-.4*((d-h-w)/h);return 0+.55*((d-2*h-w)/w)}function build(){svg.innerHTML="";el("path",{d:"M70 30 V214 H450 V30",fill:"none",stroke:css("--ink"),"stroke-width":4},svg);el("rect",{x:73,y:48,width:374,height:163,fill:css("--cold"),opacity:.12},svg);label(svg,260,22,"Beaker of water","middle",css("--muted"),14);arrows=el("g",{opacity:0},svg);[["M92 180 V88","up"],["M140 44 H380","r"],["M428 70 V170","d"],["M380 203 H140","l"]].forEach(a=>el("path",{d:a[0],fill:"none",stroke:css("--muted"),"stroke-width":3,"stroke-dasharray":"7 6","marker-end":"url(#cvh)"},arrows));const defs=el("defs",{},svg);const m=el("marker",{id:"cvh",viewBox:"0 0 10 10",refX:8,refY:5,markerWidth:6,markerHeight:6,orient:"auto-start-reverse"},defs);el("path",{d:"M0 0L10 5L0 10z",fill:css("--muted")},m);el("rect",{x:60,y:216,width:400,height:8,rx:3,fill:css("--soft"),stroke:css("--ink"),"stroke-width":1.5},svg);fl=el("g",{},svg);ps=[];for(let i=0;i<M;i++){const u=i/M,off=[(Math.random()-.5)*34,(Math.random()-.5)*34];ps.push({u:u,off:off,c:el("circle",{r:9,fill:css("--cold"),stroke:css("--ink"),"stroke-width":1},svg)})}draw()}function draw(){const hot=css("--hot"),cold=css("--cold");ps.forEach(p=>{const[x,y]=path(p.u);p.c.setAttribute("cx",x+p.off[0]);p.c.setAttribute("cy",y+p.off[1]);p.c.setAttribute("fill",on?mix(cold,hot,heat(p.u)):cold)});flame(fl,120,262,on);arrows.setAttribute("opacity",on?1:0)}function loop(ts){const now=ts/1e3,dt=Math.min(.05,now-(loop.last||now));loop.last=now;ps.forEach(p=>{p.u=(p.u+dt*.06)%1});draw();raf=requestAnimationFrame(loop)}function start(){on=true;if(reduce){draw();return}if(!raf){loop.last=null;raf=requestAnimationFrame(loop)}}function reset(){on=false;if(raf){cancelAnimationFrame(raf);raf=null}ps.forEach((p,i)=>p.u=i/M);draw()}build();return{start:start,reset:reset,build:build}}();$("#convGo").onclick=conv.start;$("#convReset").onclick=conv.reset;const rad=function(){const svg=$("#svgRad");let on=false,raf=null,waves,can,temp,tempTxt,heater,T=20,ph=0;function build(){svg.innerHTML="";heater=el("rect",{x:30,y:60,width:60,height:110,rx:10,fill:css("--soft"),stroke:css("--ink"),"stroke-width":3},svg);label(svg,60,195,"Heater");el("rect",{x:120,y:40,width:250,height:150,rx:10,fill:"none",stroke:css("--line"),"stroke-width":2,"stroke-dasharray":"6 6"},svg);label(svg,245,30,"Empty space: no particles","middle",css("--muted"),14);waves=el("g",{},svg);can=el("rect",{x:400,y:80,width:60,height:90,rx:8,fill:css("--muted"),stroke:css("--ink"),"stroke-width":3},svg);label(svg,430,195,"Can");el("rect",{x:478,y:60,width:12,height:120,rx:6,fill:css("--surface"),stroke:css("--ink"),"stroke-width":2},svg);temp=el("rect",{x:481,y:160,width:6,height:17,rx:3,fill:css("--hot")},svg);tempTxt=label(svg,484,52,"20 °C","middle",css("--ink"),14);draw()}function wave(y,shift){let d="";for(let x=0;x<=230;x+=4){const yy=y+Math.sin((x-shift)/12)*8;d+=(x?"L":"M")+(130+x)+" "+yy.toFixed(1)}return d}function draw(){waves.innerHTML="";heater.setAttribute("fill",on?css("--hot"):css("--soft"));if(on)[85,115,145].forEach(y=>el("path",{d:wave(y,ph),fill:"none",stroke:css("--rad"),"stroke-width":3,"stroke-linecap":"round"},waves));const f=(T-20)/30;temp.setAttribute("height",17+f*95);temp.setAttribute("y",177-(17+f*95));tempTxt.textContent=Math.round(T)+" °C"}function loop(ts){const now=ts/1e3,dt=Math.min(.05,now-(loop.last||now));loop.last=now;ph+=dt*80;if(on)T=Math.min(50,T+dt*3.5);draw();raf=requestAnimationFrame(loop)}function start(){on=true;if(reduce){T=50;draw();return}if(!raf){loop.last=null;raf=requestAnimationFrame(loop)}}function reset(){on=false;T=20;if(raf){cancelAnimationFrame(raf);raf=null}draw()}build();return{start:start,reset:reset,build:build}}();$("#radGo").onclick=rad.start;$("#radReset").onclick=rad.reset})();</script>
+</body>
+</html>
